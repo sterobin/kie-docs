@@ -45,7 +45,6 @@ include::product-user-guide/guided-decision-tables-messages-ref.adoc[leveloffset
 
 include::product-user-guide/guided-decision-tables-validation-disable-proc.adoc[leveloffset=+2]
 
-
 == Next steps
 
 * Packaging and deploying your decision service
