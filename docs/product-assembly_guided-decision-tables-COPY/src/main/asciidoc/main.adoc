@@ -28,7 +28,6 @@ include::product-user-guide/guided-decision-tables-hit-policies-con.adoc[levelof
 include::product-user-guide/guided-decision-tables-hit-policies-examples-ref.adoc[leveloffset=+2]
 
 
-
 == Next steps
 
 * Packaging and deploying your decision service
