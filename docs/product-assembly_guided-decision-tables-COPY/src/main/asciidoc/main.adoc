@@ -25,6 +25,26 @@ SME change: Remove decision tables include.
 
 include::product-user-guide/guided-decision-tables-hit-policies-con.adoc[leveloffset=+1]
 
+include::product-user-guide/guided-decision-tables-hit-policies-examples-ref.adoc[leveloffset=+2]
+
+include::product-user-guide/guided-decision-tables-types-con.adoc[leveloffset=+3]
+
+include::product-user-guide/guided-decision-tables-columns-create-proc.adoc[leveloffset=+1]
+
+include::product-user-guide/guided-decision-tables-columns-types-con.adoc[leveloffset=+1]
+
+include::product-user-guide/guided-decision-tables-columns-edit-proc.adoc[leveloffset=+1]
+
+include::product-user-guide/guided-decision-tables-rows-create-proc.adoc[leveloffset=+1]
+
+include::product-user-guide/guided-decision-tables-validation-con.adoc[leveloffset=+1]
+
+include::product-user-guide/guided-decision-tables-errors-ref.adoc[leveloffset=+2]
+
+include::product-user-guide/guided-decision-tables-messages-ref.adoc[leveloffset=+2]
+
+include::product-user-guide/guided-decision-tables-validation-disable-proc.adoc[leveloffset=+2]
+
 == Next steps
 
 * Packaging and deploying your decision service
