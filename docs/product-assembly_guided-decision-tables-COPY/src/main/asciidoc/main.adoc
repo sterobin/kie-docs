@@ -25,7 +25,6 @@ include::product-user-guide/guided-decision-tables-create-proc.adoc[leveloffset=
 
 include::product-user-guide/guided-decision-tables-hit-policies-con.adoc[leveloffset=+1]
 
-
 == Next steps
 
 * Packaging and deploying your decision service
