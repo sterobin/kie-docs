@@ -43,7 +43,7 @@ include::product-user-guide/guided-decision-tables-errors-ref.adoc[leveloffset=+
 
 include::product-user-guide/guided-decision-tables-messages-ref.adoc[leveloffset=+2]
 
-include::product-user-guide/guided-decision-tables-validation-disable-proc.adoc[leveloffset=+2]
+SME change: Remove validation include.
 
 == Next steps
 
