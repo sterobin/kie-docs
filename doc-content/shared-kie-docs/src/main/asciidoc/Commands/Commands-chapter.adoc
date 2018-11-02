@@ -1,6 +1,9 @@
 [[_ch.commands]]
-= Drools Commands
+= Drools commands
+:context: kie-apis
 
-include::API/API-section.adoc[leveloffset=+1]
-include::Commands/Commands-section.adoc[leveloffset=+1]
+include::runtime-commands-con.adoc[leveloffset=+1]
 
+include::runtime-commands-marshalling-ref.adoc[leveloffset=+2]
+
+include::runtime-commands-samples-ref.adoc[leveloffset=+2]

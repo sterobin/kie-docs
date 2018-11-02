@@ -1,0 +1,4 @@
+[id='kie-server-commands-marshalling-ref_{context}']
+= {KIE_SERVER} and KIE container commands marshalling
+
+*<@Maciej/@Tiho: We need here whatever the equivalent {KIE_SERVER} command marshalling requirements are, like <<runtime-commands-marshalling-ref_kie-apis>>.>*

@@ -1,0 +1,10 @@
+[id='kie-server-commands-con_{context}']
+= {KIE_SERVER} and KIE container commands in {PRODUCT}
+
+{PRODUCT} supports server and container management commands that you can send to {KIE_SERVER} for server-related or container-related operations, such as retrieving server information or creating or deleting a container. The full list of supported {KIE_SERVER} configuration commands is located in the `org.kie.server.api.commands` package in your {PRODUCT} instance.
+
+In the {KIE_SERVER} REST API, you can use the `org.kie.server.api.commands` commands as the request body for `POST` requests to `\http://SERVER:PORT/kie-server/services/rest/server/config`. In the {KIE_SERVER} Java client API, you can embed these commands in your Java application using the relevant Java client. For example, for most server-related commands, you use the parent `KieServicesClient` Java client.
+
+For more information about using the {KIE_SERVER} REST API, see xref:kie-server-rest-api-con_kie-apis[].
+
+For more information about using the {KIE_SERVER} Java client API, see xref:kie-server-java-api-con_kie-apis[].

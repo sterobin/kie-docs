@@ -34,3 +34,4 @@
 
 
 :ENGINE: Planner engine
+:URL_COMPONENT_ENGINE: planner-engine
