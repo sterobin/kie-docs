@@ -1,7 +1,7 @@
 [id='kie-server-java-api-requests-proc_{context}']
 = Sending requests with the {KIE_SERVER} Java client API
 
-The {KIE_SERVER} Java client API enables you to send REST requests to {KIE_SERVER} from your Java client application. You can use the {KIE_SERVER} Java client API as an alternative to the {KIE_SERVER} REST API to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using {CENTRAL}.
+The {KIE_SERVER} Java client API enables you to connect to {KIE_SERVER} using REST protocol from your Java client application. You can use the {KIE_SERVER} Java client API as an alternative to the {KIE_SERVER} REST API to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using {CENTRAL}.
 
 .Prerequisites
 * {KIE_SERVER} is installed and running.

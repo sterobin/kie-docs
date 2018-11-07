@@ -110,7 +110,7 @@ Returns information about a specified {KIE_SERVER} template.
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template to be retrieved
 |String
 |Required
@@ -213,7 +213,7 @@ Creates a new {KIE_SERVER} template with a specified ID.
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the new {KIE_SERVER} template
 |String
 |Required
@@ -267,7 +267,7 @@ Deletes a specified {KIE_SERVER} template.
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template to be deleted
 |String
 |Required
@@ -306,7 +306,7 @@ Returns all KIE containers for a specified {KIE_SERVER} template.
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template for which you are retrieving KIE containers
 |String
 |Required
@@ -393,7 +393,7 @@ Returns information about a specified KIE container for a specified {KIE_SERVER}
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template associated with the KIE container
 |String
 |Required
@@ -451,7 +451,7 @@ Creates a KIE container in a specified {KIE_SERVER} template. You set the KIE co
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template associated with the new KIE container
 |String
 |Required
@@ -573,7 +573,7 @@ Updates information about a specified KIE container in a specified {KIE_SERVER} 
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template associated with the KIE container
 |String
 |Required
@@ -634,7 +634,7 @@ Disposes a specified KIE container in a specified {KIE_SERVER} template.
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template associated with the KIE container
 |String
 |Required
@@ -672,7 +672,7 @@ Updates configurations for a specified KIE container in a specified {KIE_SERVER}
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template associated with the KIE container
 |String
 |Required
@@ -739,7 +739,7 @@ Activates a specified KIE container in a specified {KIE_SERVER} template.
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template associated with the KIE container
 |String
 |Required
@@ -777,7 +777,7 @@ Deactivates a specified KIE container in a specified {KIE_SERVER} template.
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template associated with the KIE container
 |String
 |Required
@@ -815,7 +815,7 @@ Starts a specified KIE container in a specified {KIE_SERVER} template.
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template associated with the KIE container
 |String
 |Required
@@ -853,7 +853,7 @@ Stops a specified KIE container in a specified {KIE_SERVER} template.
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template associated with the KIE container
 |String
 |Required

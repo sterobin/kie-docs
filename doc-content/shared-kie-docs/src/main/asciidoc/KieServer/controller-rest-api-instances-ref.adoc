@@ -17,7 +17,7 @@ Returns all {KIE_SERVER} instances configured with the {CONTROLLER} for a specif
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template for which you are retrieving {KIE_SERVER} instances
 |String
 |Required
@@ -40,7 +40,7 @@ Returns all {KIE_SERVER} instances configured with the {CONTROLLER} for a specif
 
 == [GET] /runtime/servers/{serverId}/containers/{containerId}/instances
 
-Returns all KIE containers for a specified {KIE_SERVER} template in the {KIE_SERVER} instance.
+Returns all instances of a specified KIE container in a specified {KIE_SERVER} template.
 
 .Request parameters
 [cols="25%,45%,15%,15%", frame="all", options="header"]
@@ -50,7 +50,7 @@ Returns all KIE containers for a specified {KIE_SERVER} template in the {KIE_SER
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template for which you are retrieving KIE containers
 |String
 |Required
@@ -96,7 +96,7 @@ Returns all KIE containers for a specified {KIE_SERVER} template and a specified
 |Type
 |Requirement
 
-|`serverId`
+|`serverTemplateId`
 |ID of the {KIE_SERVER} template associated with the {KIE_SERVER} instance
 |String
 |Required
@@ -218,7 +218,7 @@ Configures a new {KIE_SERVER} instance with the {CONTROLLER}.
   "response": [
     {
       "type": "SUCCESS",
-      "msg": "Server instance new-kieserver-instance@localhost:8080 successfully created."
+      "msg": "Server instance new-kieserver-instance@localhost:8080 successfully connected."
     }
   ]
 }
@@ -264,7 +264,7 @@ http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/server/new-kieserv
   "response": [
     {
       "type": "SUCCESS",
-      "msg": "Server instance new-kieserver-instance@localhost:8080 successfully removed."
+      "msg": "Server instance new-kieserver-instance@localhost:8080 successfully disconnected."
     }
   ]
 }
