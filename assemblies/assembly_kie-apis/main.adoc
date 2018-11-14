@@ -39,13 +39,13 @@ include::{shared-dir}/KieServer/kie-server-java-clients-ref.adoc[leveloffset=+2]
 
 include::{shared-dir}/KieServer/kie-server-java-api-examples-ref.adoc[leveloffset=+2]
 
-include::{shared-dir}/Commands/runtime-commands-con.adoc[leveloffset=+1]
-
-include::{shared-dir}/Commands/runtime-commands-samples-ref.adoc[leveloffset=+2]
-
 include::{shared-dir}/KieServer/kie-server-commands-con.adoc[leveloffset=+1]
 
 include::{shared-dir}/KieServer/kie-server-commands-samples-ref.adoc[leveloffset=+2]
+
+include::{shared-dir}/Commands/runtime-commands-con.adoc[leveloffset=+1]
+
+include::{shared-dir}/Commands/runtime-commands-samples-ref.adoc[leveloffset=+2]
 
 include::{shared-dir}/KieServer/controller-rest-api-con.adoc[leveloffset=+1]
 

@@ -2,8 +2,6 @@
 
 = Sample {KIE_SERVER} and KIE container commands
 
-*<@Maciej: Can you re-validate this section now, especially the new Java request examples? I'm not confident in my explanations nor in my Java request examples.>*
-
 The following are sample {KIE_SERVER} commands that you can use with the {KIE_SERVER} REST API or Java client API for server-related or container-related operations in {KIE_SERVER}:
 
 * `GetServerInfoCommand`
@@ -90,7 +88,7 @@ public void disposeAndCreateContainer() {
 }
 ----
 
-Each command in this section includes a JSON request body example for the {KIE_SERVER} REST API and an embedded method from the `KieServicesClient` Java client for the {KIE_SERVER} Java client API.
+Each command in this section includes a JSON request body example for the {KIE_SERVER} REST API and an embedded method example from the `KieServicesClient` Java client for the {KIE_SERVER} Java client API.
 
 GetServerInfoCommand::
 +
@@ -107,7 +105,7 @@ Returns information about the {KIE_SERVER}.
 }
 ----
 
-.Example Java request
+.Example Java client method
 [source,java]
 ----
 KieServerInfo serverInfo = kieServicesClient.getServerInfo();
@@ -170,7 +168,7 @@ Returns information about the current state and configurations of the {KIE_SERVE
 }
 ----
 
-.Example Java request
+.Example Java client method
 [source,java]
 ----
 KieServerStateInfo serverStateInfo = kieServicesClient.getServerState();
@@ -294,7 +292,7 @@ Creates a KIE container in the {KIE_SERVER}.
 }
 ----
 
-.Example Java request
+.Example Java client method
 [source,java]
 ----
 ServiceResponse<KieContainerResource> response = kieServicesClient.createContainer("command-script-container", resource);
@@ -375,7 +373,7 @@ Returns information about a specified KIE container in {KIE_SERVER}.
 }
 ----
 
-.Example Java request
+.Example Java client method
 [source,java]
 ----
 ServiceResponse<KieContainerResource> response = kieServicesClient.getContainerInfo("command-script-container");
@@ -452,7 +450,7 @@ Returns a list of KIE containers that have been created in the {KIE_SERVER}.
 }
 ----
 
-.Example Java request
+.Example Java client method
 [source,java]
 ----
 KieContainerResourceFilter filter = new KieContainerResourceFilter.Builder()
@@ -567,16 +565,14 @@ Calls a KIE container and executes one or more runtime commands. For information
 }
 ----
 
-.Example Java request
+.Example Java client method
 [source,java]
 ----
 List<Command<?>> commands = new ArrayList<Command<?>>();
-        BatchExecutionCommand batchExecution1 = commandsFactory.newBatchExecution(commands, "defaultKieSession");
+      BatchExecutionCommand batchExecution1 = commandsFactory.newBatchExecution(commands, "defaultKieSession");
+      commands.add(commandsFactory.newFireAllRules());
 
-        commands.add(commandsFactory.newInsert(person, PERSON_OUT_IDENTIFIER));
-        commands.add(commandsFactory.newFireAllRules());
-
-        ServiceResponse<ExecutionResults> response1 = ruleClient.executeCommandsWithResults("command-script-container", batchExecution1);
+      ServiceResponse<ExecutionResults> response1 = ruleClient.executeCommandsWithResults("command-script-container", batchExecution1);
 ----
 
 .Example server response (JSON)
@@ -622,7 +618,7 @@ Disposes a specified KIE container in the {KIE_SERVER}.
 }
 ----
 
-.Example Java request
+.Example Java client method
 [source,java]
 ----
 ServiceResponse<Void> response = kieServicesClient.disposeContainer("command-script-container");
@@ -671,7 +667,7 @@ Returns information about the KIE scanner used for automatic updates in a specif
 }
 ----
 
-.Example Java request
+.Example Java client method
 [source,java]
 ----
 ServiceResponse<KieScannerResource> response = kieServicesClient.getScannerInfo("command-script-container");
@@ -737,12 +733,14 @@ Starts or stops a KIE scanner that controls polling for updated KIE container de
 }
 ----
 
-*<@Maciej: Can't figure out what this Java request example should be. Needs to have a status and I don't know where.>*
-
-.Example Java request
+.Example Java client method
 [source,java]
 ----
-ServiceResponse<KieScannerResource> response = kieServicesClient.updateScanner("command-script-container", resource);
+KieScannerResource scannerResource = new KieScannerResource();
+scannerResource.setPollInterval(10000);
+scannerResource.setStatus(KieScannerStatus. STARTED);
+
+ServiceResponse<KieScannerResource> response = kieServicesClient.updateScanner("command-script-container", scannerResource);
 ----
 
 .Example server response (JSON)
@@ -802,7 +800,7 @@ Updates the release ID data (group ID, artifact ID, version) for a specified KIE
 }
 ----
 
-.Example Java request
+.Example Java client method
 [source,java]
 ----
 ServiceResponse<ReleaseId> response = kieServicesClient.updateReleaseId("command-script-container", "com.redhat:Project1:1.1");

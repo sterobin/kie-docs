@@ -23,7 +23,7 @@ endif::PAM,JBPM[]
 
 For the full list of supported runtime commands, see the `org.drools.core.command.runtime` package in your {PRODUCT} instance.
 
-Each command in this section includes a JSON request body example for the {KIE_SERVER} REST API and an embedded Java request example for the {KIE_SERVER} Java client API. The Java examples use an object `org.drools.compiler.test.Person` with the fields `name` (String) and `age` (Integer).
+Each command in this section includes a JSON request body example for the {KIE_SERVER} REST API and an embedded Java command example for the {KIE_SERVER} Java client API. The Java examples use an object `org.drools.compiler.test.Person` with the fields `name` (String) and `age` (Integer).
 
 ////
 // Not currently applicable to the examples, but leaving for now. (Stetson, Oct 5, 2018)
@@ -98,7 +98,7 @@ Contains multiple commands to be executed together.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 BatchExecutionCommand command = new BatchExecutionCommand();
@@ -187,7 +187,7 @@ Inserts an object into the KIE session.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 
@@ -255,14 +255,14 @@ Retracts an object from the KIE session.
 }
 ----
 
-.Example Java request: Use `FactHandleFromString`
+.Example Java command: Use `FactHandleFromString`
 [source,java]
 ----
 RetractCommand retractCommand = new RetractCommand();
 retractCommand.setFactHandleFromString("123:234:345:456:567");
 ----
 
-.Example Java request: Use `FactHandle` from inserted object
+.Example Java command: Use `FactHandle` from inserted object
 [source,java]
 ----
 RetractCommand retractCommand = new RetractCommand(factHandle);
@@ -325,7 +325,7 @@ Modifies a previously inserted object in the KIE session.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 ModifyCommand modifyCommand = new ModifyCommand(factHandle);
@@ -390,7 +390,7 @@ Retrieves an object from a KIE session.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 GetObjectCommand getObjectCommand = new GetObjectCommand();
@@ -456,7 +456,7 @@ Retrieves all objects from the KIE session as a Collection.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 GetObjectsCommand getObjectsCommand = new GetObjectsCommand();
@@ -554,7 +554,7 @@ Inserts a list of objects into the KIE session.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 List<Object> objects = new ArrayList<Object>();
@@ -638,7 +638,7 @@ Executes all rules in the KIE session.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 FireAllRulesCommand fireAllRulesCommand = new FireAllRulesCommand();
@@ -713,7 +713,7 @@ Starts a process using the ID. You can also pass parameters and initial data to 
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 StartProcessCommand startProcessCommand = new StartProcessCommand();
@@ -782,7 +782,7 @@ Sends a signal event to the KIE session.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 SignalEventCommand signalEventCommand = new SignalEventCommand();
@@ -840,7 +840,7 @@ Completes a work item in the KIE session.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 CompleteWorkItemCommand completeWorkItemCommand = new CompleteWorkItemCommand();
@@ -896,7 +896,7 @@ Aborts a work item in the KIE session in the same way as `ksession.getWorkItemMa
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 AbortWorkItemCommand abortWorkItemCommand = new AbortWorkItemCommand();
@@ -965,7 +965,7 @@ Executes a query defined in the KIE base.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 QueryCommand queryCommand = new QueryCommand();
@@ -1106,7 +1106,7 @@ Sets an object to a global state.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 SetGlobalCommand setGlobalCommand = new SetGlobalCommand();
@@ -1176,7 +1176,7 @@ Retrieves a previously defined global object.
 }
 ----
 
-.Example Java request
+.Example Java command
 [source,java]
 ----
 GetGlobalCommand getGlobalCommand = new GetGlobalCommand();

@@ -23,9 +23,10 @@ The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/r
 
 For the full list of {KIE_SERVER} REST API endpoints and descriptions, use one of the following resources:
 
-* http://jbpm.org/learn/documentation.html[{KIE_SERVER} REST API] on the jBPM Documentation page (static)
+* http://jbpm.org/learn/documentation.html[Execution Server REST API] on the jBPM Documentation page (static)
 * Swagger UI for the {KIE_SERVER} REST API at `\http://SERVER:PORT/kie-server/docs` (dynamic, requires running {KIE_SERVER})
 
+ifdef::PAM,JBPM[]
 [discrete]
 == Endpoint requirements
 
@@ -43,3 +44,4 @@ http://localhost:8080/kie-server/services/rest/server/queries/definitions/jbpmPr
 
 For a list of available query mappers in {PRODUCT}, download and extract the *{PRODUCT} {PRODUCT_VERSION} Source Distribution* from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html[Red Hat Customer Portal] and navigate to `~/jbpm-$VERSION/jbpm-services/jbpm-kie-services/src/main/java/org/jbpm/kie/services/impl/query/mapper`.
 --
+endif::[]
