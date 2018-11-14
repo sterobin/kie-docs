@@ -1,9 +1,11 @@
 [id='runtime-commands-con_{context}']
 = Runtime commands in {PRODUCT}
 
+*<@Maciej: Compare this chapter (validated by Matteo Mortari) with <<kie-server-commands-con_kie-apis>>. They're slightly different. Do both chapters make sense and are both correct from your perspective?>*
+
 {PRODUCT} supports runtime commands that you can send to {KIE_SERVER} for asset-related operations, such as inserting or retracting objects in a KIE session or firing all rules. The full list of supported runtime commands is located in the `org.drools.core.command.runtime` package in your {PRODUCT} instance.
 
-In the {KIE_SERVER} REST API, you can use the global `org.drools.core.command.runtime` commands or the rule-specific `org.drools.core.command.runtime.rule` commands as the request body for `POST` requests to `\http://SERVER:PORT/kie-server/services/rest/server/containers/instances/{containerId}`. In the {KIE_SERVER} Java client API, you can embed these commands in your Java application using the relevant Java client. For example, for rule-related commands, you use the `RuleServicesClient` Java client.
+In the {KIE_SERVER} REST API, you use the global `org.drools.core.command.runtime` commands or the rule-specific `org.drools.core.command.runtime.rule` commands as the request body for `POST` requests to `\http://SERVER:PORT/kie-server/services/rest/server/containers/instances/{containerId}`. In the {KIE_SERVER} Java client API, you can embed these commands in your Java application using the relevant Java client. For example, for rule-related commands, you use the `RuleServicesClient` Java client.
 
 For more information about using the {KIE_SERVER} REST API, see xref:kie-server-rest-api-con_kie-apis[].
 

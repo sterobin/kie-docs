@@ -1,7 +1,7 @@
 [id='kie-server-rest-api-requests-swagger-proc_{context}']
 = Sending requests with the {KIE_SERVER} REST API using the Swagger interface
 
-The {KIE_SERVER} REST API supports a Swagger web interface that you can use instead of a standalone REST client or curl utility to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using {CENTRAL}.
+The {KIE_SERVER} REST API supports a Swagger web interface that you can use instead of a standalone REST client or curl utility to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using the {CENTRAL} user interface.
 
 .Prerequisites
 * {KIE_SERVER} is installed and running.

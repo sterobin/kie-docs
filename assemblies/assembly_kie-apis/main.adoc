@@ -41,13 +41,9 @@ include::{shared-dir}/KieServer/kie-server-java-api-examples-ref.adoc[leveloffse
 
 include::{shared-dir}/Commands/runtime-commands-con.adoc[leveloffset=+1]
 
-include::{shared-dir}/Commands/runtime-commands-marshalling-ref.adoc[leveloffset=+2]
-
 include::{shared-dir}/Commands/runtime-commands-samples-ref.adoc[leveloffset=+2]
 
 include::{shared-dir}/KieServer/kie-server-commands-con.adoc[leveloffset=+1]
-
-include::{shared-dir}/KieServer/kie-server-commands-marshalling-ref.adoc[leveloffset=+2]
 
 include::{shared-dir}/KieServer/kie-server-commands-samples-ref.adoc[leveloffset=+2]
 

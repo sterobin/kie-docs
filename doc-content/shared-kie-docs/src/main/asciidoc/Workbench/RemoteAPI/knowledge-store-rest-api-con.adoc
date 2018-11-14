@@ -1,7 +1,7 @@
 [id='knowledge-store-rest-api-con_{context}']
 = Knowledge Store REST API for {CENTRAL} spaces and projects
 
-{PRODUCT} provides a Knowledge Store REST API that you can use to interact with your projects and spaces in {PRODUCT} without using {CENTRAL}. The Knowledge Store is the artifact repository for assets in {PRODUCT}. This API support enables you to maintain your {PRODUCT} resources more efficiently and optimize your integration and development with {PRODUCT}.
+{PRODUCT} provides a Knowledge Store REST API that you can use to interact with your projects and spaces in {PRODUCT} without using the {CENTRAL} user interface. The Knowledge Store is the artifact repository for assets in {PRODUCT}. This API support enables you to facilitate and automate maintenance of {CENTRAL} projects and spaces.
 
 With the Knowledge Store REST API, you can perform the following actions:
 
@@ -51,7 +51,7 @@ Base URL::
 The base URL for Knowledge Store REST API requests is `\http://SERVER:PORT/{URL_COMPONENT_CENTRAL}/rest/`, such as  `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/`
 
 Endpoints::
-Knowledge Store REST API endpoints, such as `/spaces/{spaceName}` for a specified space, are the URIs that you append to the {KIE_SERVER} base URL to access the corresponding resource or type of resource in {PRODUCT}.
+Knowledge Store REST API endpoints, such as `/spaces/{spaceName}` for a specified space, are the URIs that you append to the Knowledge Store REST API base URL to access the corresponding resource or type of resource in {PRODUCT}.
 +
 --
 .Example request URL for `/spaces/{spaceName}` endpoint:

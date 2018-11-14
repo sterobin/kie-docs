@@ -2,6 +2,8 @@
 
 = Sample {KIE_SERVER} and KIE container commands
 
+*<@Maciej: Can you re-validate this section now, especially the new Java request examples? I'm not confident in my explanations nor in my Java request examples.>*
+
 The following are sample {KIE_SERVER} commands that you can use with the {KIE_SERVER} REST API or Java client API for server-related or container-related operations in {KIE_SERVER}:
 
 * `GetServerInfoCommand`
@@ -17,9 +19,9 @@ The following are sample {KIE_SERVER} commands that you can use with the {KIE_SE
 
 For the full list of supported {KIE_SERVER} configuration and management commands, see the `org.kie.server.api.commands` package in your {PRODUCT} instance.
 
-You can run {KIE_SERVER} commands individually or together as a batch Java command or a batch REST API request:
+You can run {KIE_SERVER} commands individually or together as a batch REST API request or batch Java API request:
 
-.Example batch request to create, call, and dispose a KIE container (JSON)
+.Batch REST API request to create, call, and dispose a KIE container (JSON)
 [source,json]
 ----
 {
@@ -52,37 +54,48 @@ You can run {KIE_SERVER} commands individually or together as a batch Java comma
 }
 ----
 
-Each command in this section includes an embedded Java command example for the {KIE_SERVER} Java client API and a JSON request body example for the {KIE_SERVER} REST API. The Java examples use an object `org.drools.compiler.test.Person` with the fields `name` (String) and `age` (Integer).
+.Batch Java API request to retrieve, dispose, and re-create a KIE container
+[source,java]
+----
+public void disposeAndCreateContainer() {
+    System.out.println("== Disposing and creating containers ==");
 
+    // Retrieve list of KIE containers
+    List<KieContainerResource> kieContainers = kieServicesClient.listContainers().getResult().getContainers();
+    if (kieContainers.size() == 0) {
+        System.out.println("No containers available...");
+        return;
+    }
+
+    // Dispose KIE container
+    KieContainerResource container = kieContainers.get(0);
+    String containerId = container.getContainerId();
+    ServiceResponse<Void> responseDispose = kieServicesClient.disposeContainer(containerId);
+    if (responseDispose.getType() == ResponseType.FAILURE) {
+        System.out.println("Error disposing " + containerId + ". Message: ");
+        System.out.println(responseDispose.getMsg());
+        return;
+    }
+    System.out.println("Success Disposing container " + containerId);
+    System.out.println("Trying to recreate the container...");
+
+    // Re-create KIE container
+    ServiceResponse<KieContainerResource> createResponse = kieServicesClient.createContainer(containerId, container);
+    if(createResponse.getType() == ResponseType.FAILURE) {
+        System.out.println("Error creating " + containerId + ". Message: ");
+        System.out.println(responseDispose.getMsg());
+        return;
+    }
+    System.out.println("Container recreated with success!");
+}
+----
+
+Each command in this section includes a JSON request body example for the {KIE_SERVER} REST API and an embedded method from the `KieServicesClient` Java client for the {KIE_SERVER} Java client API.
 
 GetServerInfoCommand::
 +
 --
 Returns information about the {KIE_SERVER}.
-
-*<@Maciej/@Tiho: For this and _all_ commands that follow, need to add the remainder of the required and optional command attributes, and need to provide an example Java command that users can use with the Java client API, like the command list in <<runtime-commands-marshalling-ref_kie-apis>>. The Java examples should use an object `org.drools.compiler.test.Person` with the fields `name` (String) and `age` (Integer). I've started putting the command attributes where I could.>*
-
-.Command attributes
-[cols="30%,50%,20%", frame="all", options="header"]
-|===
-|Name
-|Description
-|Requirement
-
-|
-|
-|Optional
-
-|
-|
-|Optional
-|===
-
-.Example Java command
-[source,java]
-----
-
-----
 
 .Example REST request body (JSON)
 [source,json]
@@ -92,6 +105,12 @@ Returns information about the {KIE_SERVER}.
     "get-server-info" : { }
   } ]
 }
+----
+
+.Example Java request
+[source,java]
+----
+KieServerInfo serverInfo = kieServicesClient.getServerInfo();
 ----
 
 .Example server response (JSON)
@@ -141,28 +160,6 @@ GetServerStateCommand::
 --
 Returns information about the current state and configurations of the {KIE_SERVER}.
 
-.Command attributes
-[cols="30%,50%,20%", frame="all", options="header"]
-|===
-|Name
-|Description
-|Requirement
-
-|
-|
-|Required
-
-|
-|
-|Optional
-|===
-
-.Example Java command
-[source,java]
-----
-
-----
-
 .Example REST request body (JSON)
 [source,json]
 ----
@@ -171,6 +168,12 @@ Returns information about the current state and configurations of the {KIE_SERVE
     "get-server-state" : { }
   } ]
 }
+----
+
+.Example Java request
+[source,java]
+----
+KieServerStateInfo serverStateInfo = kieServicesClient.getServerState();
 ----
 
 .Example server response (JSON)
@@ -264,28 +267,10 @@ Creates a KIE container in the {KIE_SERVER}.
 |Description
 |Requirement
 
-|`containerId`
-|ID of the KIE container to be created
+|`container`
+|Map containing the `container-id`, `release-id` (group ID, artifact ID, version) data, `status`, and any other components of the new KIE container
 |Required
-
-|`releaseId`
-|GAV (group ID, artifact ID, version) data of the new KIE container
-|Required
-
-|`status`
-|Status to be set on the new KIE container (`STARTED`, `STOPPED`)
-|Optional
-
-|
-|
-|Optional
 |===
-
-.Example Java command
-[source,java]
-----
-
-----
 
 .Example REST request body (JSON)
 [source,json]
@@ -307,6 +292,12 @@ Creates a KIE container in the {KIE_SERVER}.
     }
   } ]
 }
+----
+
+.Example Java request
+[source,java]
+----
+ServiceResponse<KieContainerResource> response = kieServicesClient.createContainer("command-script-container", resource);
 ----
 
 .Example server response (JSON)
@@ -367,20 +358,10 @@ Returns information about a specified KIE container in {KIE_SERVER}.
 |Description
 |Requirement
 
-|`containerId`
+|`container-id`
 |ID of the KIE container
 |Required
-
-|
-|
-|Optional
 |===
-
-.Example Java command
-[source,java]
-----
-
-----
 
 .Example REST request body (JSON)
 [source,json]
@@ -392,6 +373,12 @@ Returns information about a specified KIE container in {KIE_SERVER}.
     }
   } ]
 }
+----
+
+.Example Java request
+[source,java]
+----
+ServiceResponse<KieContainerResource> response = kieServicesClient.getContainerInfo("command-script-container");
 ----
 
 .Example server response (JSON)
@@ -443,28 +430,10 @@ Returns a list of KIE containers that have been created in the {KIE_SERVER}.
 |Description
 |Requirement
 
-|
-|
-|Required
-
-|
-|
-|Required
-
-|
-|
-|Optional
-
-|
-|
+|`kie-container-filter`
+|Optional map containing `release-id-filter`, `container-status-filter`, and any other KIE container properties by which you want to filter results
 |Optional
 |===
-
-.Example Java command
-[source,java]
-----
-
-----
 
 .Example REST request body (JSON)
 [source,json]
@@ -475,12 +444,22 @@ Returns a list of KIE containers that have been created in the {KIE_SERVER}.
       "kie-container-filter" : {
         "release-id-filter" : { },
         "container-status-filter" : {
-          "accepted-status" : [ "CREATING", "STARTED", "FAILED", "DISPOSING", "STOPPED" ]
+          "accepted-status" : ["FAILED"]
         }
       }
     }
   } ]
 }
+----
+
+.Example Java request
+[source,java]
+----
+KieContainerResourceFilter filter = new KieContainerResourceFilter.Builder()
+        .status(KieContainerStatus.FAILED)
+        .build();
+
+KieContainerResourceList containersList = kieServicesClient.listContainers(filter);
 ----
 
 .Example server response (JSON)
@@ -566,37 +545,14 @@ Calls a KIE container and executes one or more runtime commands. For information
 |Description
 |Requirement
 
-|`containerId`
+|`container-id`
 |ID of the KIE container to be called
 |Required
 
 |`payload`
 |One or more commands in a `BatchExecutionCommand` wrapper to be executed on the KIE container
 |Required
-
-|
-|
-|Optional
 |===
-
-*<@Maciej/@Tiho: The above attributes table is missing the rest of the required and optional parameters, and the below example Java command contains only the required payload portion and needs the rest of the call-container command to be complete.>*
-
-.Example Java command
-[source,java]
-----
-import org.kie.server.api.marshalling.Marshaller;
-import org.kie.server.api.marshalling.MarshallerFactory;
-import org.kie.server.api.marshalling.MarshallingFormat;
-
-...
-
-Marshaller marshaller = MarshallerFactory.getMarshaller(MarshallingFormat.JSON,myclass.class.getClassLoader());
-//Marshalling format is changed based on the method of marshalling for the CallContainerCommand. Also note myclass.class classloader is called. If replicating this code, change the name to the name of your class.
-
-Command<?> fire = KieServices.Factory.get().getCommands().newFireAllRules();
-BatchExecutionCommand batch = KieServices.Factory.get().getCommands().newBatchExecution(Arrays.<Command<?>>asList(fire), "defaultKieSession");
-String payload = marshaller.marshall(batch);
-----
 
 .Example REST request body (JSON)
 [source,json]
@@ -611,6 +567,18 @@ String payload = marshaller.marshall(batch);
 }
 ----
 
+.Example Java request
+[source,java]
+----
+List<Command<?>> commands = new ArrayList<Command<?>>();
+        BatchExecutionCommand batchExecution1 = commandsFactory.newBatchExecution(commands, "defaultKieSession");
+
+        commands.add(commandsFactory.newInsert(person, PERSON_OUT_IDENTIFIER));
+        commands.add(commandsFactory.newFireAllRules());
+
+        ServiceResponse<ExecutionResults> response1 = ruleClient.executeCommandsWithResults("command-script-container", batchExecution1);
+----
+
 .Example server response (JSON)
 [source,json]
 ----
@@ -618,7 +586,7 @@ String payload = marshaller.marshall(batch);
   "response": [
     {
       "type": "SUCCESS",
-      "msg": "Container employee-rostering successfully called.",
+      "msg": "Container command-script-container successfully called.",
       "result": "{\n  \"results\" : [ ],\n  \"facts\" : [ ]\n}"
     }
   ]
@@ -637,20 +605,10 @@ Disposes a specified KIE container in the {KIE_SERVER}.
 |Description
 |Requirement
 
-|`containerId`
+|`container-id`
 |ID of the KIE container to be disposed
 |Required
-
-|
-|
-|Optional
 |===
-
-.Example Java command
-[source,java]
-----
-
-----
 
 .Example REST request body (JSON)
 [source,json]
@@ -658,10 +616,16 @@ Disposes a specified KIE container in the {KIE_SERVER}.
 {
   "commands" : [ {
     "dispose-container" : {
-      "container-id" : "MyContainer"
+      "container-id" : "command-script-container"
     }
   } ]
 }
+----
+
+.Example Java request
+[source,java]
+----
+ServiceResponse<Void> response = kieServicesClient.disposeContainer("command-script-container");
 ----
 
 .Example server response (JSON)
@@ -671,7 +635,7 @@ Disposes a specified KIE container in the {KIE_SERVER}.
   "response": [
     {
       "type": "SUCCESS",
-      "msg": "Container MyContainer successfully disposed.",
+      "msg": "Container command-script-container successfully disposed.",
       "result": null
     }
   ]
@@ -690,20 +654,10 @@ Returns information about the KIE scanner used for automatic updates in a specif
 |Description
 |Requirement
 
-|`containerId`
+|`container-id`
 |ID of the KIE container where the KIE scanner is used
 |Required
-
-|
-|
-|Optional
 |===
-
-.Example Java command
-[source,java]
-----
-
-----
 
 .Example REST request body (JSON)
 [source,json]
@@ -715,6 +669,12 @@ Returns information about the KIE scanner used for automatic updates in a specif
     }
   } ]
 }
+----
+
+.Example Java request
+[source,java]
+----
+ServiceResponse<KieScannerResource> response = kieServicesClient.getScannerInfo("command-script-container");
 ----
 
 .Example server response (JSON)
@@ -748,7 +708,7 @@ Starts or stops a KIE scanner that controls polling for updated KIE container de
 |Description
 |Requirement
 
-|`containerId`
+|`container-id`
 |ID of the KIE container where the KIE scanner is used
 |Required
 
@@ -756,20 +716,10 @@ Starts or stops a KIE scanner that controls polling for updated KIE container de
 |Status to be set on the new KIE container (`STARTED`, `STOPPED`)
 |Required
 
-|`pollInterval`
+|`poll-interval`
 |Permitted polling during in milliseconds
 |Required only when starting scanner
-
-|
-|
-|Optional
 |===
-
-.Example Java command
-[source,java]
-----
-
-----
 
 .Example REST request body (JSON)
 [source,json]
@@ -785,6 +735,14 @@ Starts or stops a KIE scanner that controls polling for updated KIE container de
     }
   } ]
 }
+----
+
+*<@Maciej: Can't figure out what this Java request example should be. Needs to have a status and I don't know where.>*
+
+.Example Java request
+[source,java]
+----
+ServiceResponse<KieScannerResource> response = kieServicesClient.updateScanner("command-script-container", resource);
 ----
 
 .Example server response (JSON)
@@ -818,24 +776,14 @@ Updates the release ID data (group ID, artifact ID, version) for a specified KIE
 |Description
 |Requirement
 
-|`containerId`
+|`container-id`
 |ID of the KIE container to be updated
 |Required
 
 |`releaseId`
 |Updated GAV (group ID, artifact ID, version) data to be applied to the KIE container
 |Required
-
-|
-|
-|Optional
 |===
-
-.Example Java command
-[source,java]
-----
-
-----
 
 .Example REST request body (JSON)
 [source,json]
@@ -852,6 +800,12 @@ Updates the release ID data (group ID, artifact ID, version) for a specified KIE
     }
   } ]
 }
+----
+
+.Example Java request
+[source,java]
+----
+ServiceResponse<ReleaseId> response = kieServicesClient.updateReleaseId("command-script-container", "com.redhat:Project1:1.1");
 ----
 
 .Example server response (JSON)

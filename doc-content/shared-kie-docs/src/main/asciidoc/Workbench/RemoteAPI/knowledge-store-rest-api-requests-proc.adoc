@@ -1,7 +1,7 @@
 [id='knowledge-store-rest-api-requests-proc_{context}']
 = Sending requests with the Knowledge Store REST API using a REST client or curl utility
 
-The Knowledge Store REST API enables you to interact with your projects and spaces in {PRODUCT} without using {CENTRAL}. You can send Knowledge Store REST API requests using any REST client or curl utility.
+The Knowledge Store REST API enables you to interact with your projects and spaces in {PRODUCT} without using the {CENTRAL} user interface. You can send Knowledge Store REST API requests using any REST client or curl utility.
 
 .Prerequisites
 * {CENTRAL} is installed and running.

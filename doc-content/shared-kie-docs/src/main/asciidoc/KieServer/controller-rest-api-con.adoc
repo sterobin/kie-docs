@@ -1,7 +1,7 @@
 [id='controller-rest-api-con_{context}']
 = {CONTROLLER} REST API for {KIE_SERVER} templates and instances
 
-{PRODUCT} provides a {CONTROLLER} REST API that you can use to interact with your {KIE_SERVER} templates (configurations), {KIE_SERVER} instances (remote servers), and associated KIE containers (deployment units) in {PRODUCT} without using {CENTRAL}. This API support enables you to maintain your {PRODUCT} resources more efficiently and optimize your integration and development with {PRODUCT}.
+{PRODUCT} provides a {CONTROLLER} REST API that you can use to interact with your {KIE_SERVER} templates (configurations), {KIE_SERVER} instances (remote servers), and associated KIE containers (deployment units) in {PRODUCT} without using the {CENTRAL} user interface. This API support enables you to maintain your {PRODUCT} resources more efficiently and optimize your integration and development with {PRODUCT}.
 
 With the {CONTROLLER} REST API, you can perform the following actions:
 
@@ -36,8 +36,6 @@ To configure the `kie-server` or `rest-all` user with {CONTROLLER} access, navig
 <property name="org.kie.server.controller" value="http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller"/>
 <property name="org.kie.server.controller.user" value="baAdmin"/>
 <property name="org.kie.server.controller.pwd" value="password@1"/>
-<property name="org.kie.server.user" value="baAdmin"/>
-<property name="org.kie.server.pwd" value="password@1"/>
 <property name="org.kie.server.id" value="default-kieserver"/>
 ----
 
@@ -72,7 +70,7 @@ Base URL::
 The base URL for {CONTROLLER} REST API requests is `\http://SERVER:PORT/CONTROLLER/rest/controller/`, such as  `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/` if are using the {CONTROLLER} built in to {CENTRAL}.
 
 Endpoints::
-{CONTROLLER} REST API endpoints, such as `/management/servers/{serverId}` for a specified {KIE_SERVER} template, are the URIs that you append to the {CONTROLLER} base URL to access the corresponding server resource or type of server resource in {PRODUCT}.
+{CONTROLLER} REST API endpoints, such as `/management/servers/{serverId}` for a specified {KIE_SERVER} template, are the URIs that you append to the {CONTROLLER} REST API base URL to access the corresponding server resource or type of server resource in {PRODUCT}.
 +
 --
 .Example request URL for `/management/servers/{serverId}` endpoint:

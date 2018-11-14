@@ -1,7 +1,7 @@
 [id='kie-server-rest-api-con_{context}']
 = {KIE_SERVER} REST API for KIE containers and business assets
 
-{PRODUCT} provides a {KIE_SERVER} REST API that you can use to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using {CENTRAL}. This API support enables you to maintain your {PRODUCT} resources more efficiently and optimize your integration and development with {PRODUCT}.
+{PRODUCT} provides a {KIE_SERVER} REST API that you can use to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using the {CENTRAL} user interface. This API support enables you to maintain your {PRODUCT} resources more efficiently and optimize your integration and development with {PRODUCT}.
 
 With the {KIE_SERVER} REST API, you can perform the following actions:
 
@@ -57,7 +57,7 @@ Base URL::
 The base URL for {KIE_SERVER} REST API requests is `\http://SERVER:PORT/kie-server/services/rest/server/`, such as  `\http://localhost:8080/kie-server/services/rest/server/`.
 
 Endpoints::
-{KIE_SERVER} REST API endpoints, such as `/containers/{containerId}` for a specified KIE container, are the URIs that you append to the {KIE_SERVER} base URL to access the corresponding resource or type of resource in {PRODUCT}.
+{KIE_SERVER} REST API endpoints, such as `/containers/{containerId}` for a specified KIE container, are the URIs that you append to the {KIE_SERVER} REST API base URL to access the corresponding resource or type of resource in {PRODUCT}.
 +
 --
 .Example request URL for `/containers/{containerId}` endpoint:

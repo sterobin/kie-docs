@@ -1,7 +1,7 @@
+// This section determined obsolete and handled by the Java client services in KIE Server. Retaining for now, just in case. (Stetson, 13 Nov 2018)
+
 [id='runtime-commands-marshalling-ref_{context}']
 = Runtime commands marshalling
-
-*<@Maciej/@Tiho and @Mario/@Matteo: Is this section complete and correct? Any other marshalling requirements? Maciej pointed me to this https://github.com/kiegroup/droolsjbpm-integration/blob/master/kie-server-parent/kie-server-api/src/test/java/org/kie/server/api/model/MarshallingRoundTripTest.java[MarshallingRoundTripTest] for example, but I'm not sure what if anything is required on the user's part.>*
 
 Marshalling and unmarshalling of the {PRODUCT} rule services commands requires the following classes, depending on the marshaller type:
 

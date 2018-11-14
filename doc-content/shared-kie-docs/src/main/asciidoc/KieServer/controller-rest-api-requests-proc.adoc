@@ -1,7 +1,7 @@
 [id='controller-rest-api-requests-proc_{context}']
 = Sending requests with the {CONTROLLER} REST API using a REST client or curl utility
 
-The {KIE_SERVER} REST API enables you to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using {CENTRAL}. You can send {KIE_SERVER} REST API requests using any REST client or curl utility.
+The {KIE_SERVER} REST API enables you to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using the {CENTRAL} user interface. You can send {KIE_SERVER} REST API requests using any REST client or curl utility.
 
 .Prerequisites
 * {KIE_SERVER} is installed and running.

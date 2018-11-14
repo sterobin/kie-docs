@@ -1,7 +1,7 @@
 [id='controller-java-api-requests-proc_{context}']
 = Sending requests with the {CONTROLLER} Java client API
 
-The {CONTROLLER} Java client API enables you to connect to the {CONTROLLER} using REST or WebSocket protocols from your Java client application. You can use the {CONTROLLER} Java client API as an alternative to the {CONTROLLER} REST API to interact with your {KIE_SERVER} templates (configurations), {KIE_SERVER} instances (remote servers), and associated KIE containers (deployment units) in {PRODUCT} without using {CENTRAL}.
+The {CONTROLLER} Java client API enables you to connect to the {CONTROLLER} using REST or WebSocket protocols from your Java client application. You can use the {CONTROLLER} Java client API as an alternative to the {CONTROLLER} REST API to interact with your {KIE_SERVER} templates (configurations), {KIE_SERVER} instances (remote servers), and associated KIE containers (deployment units) in {PRODUCT} without using the {CENTRAL} user interface.
 
 .Prerequisites
 * {KIE_SERVER} is installed and running.

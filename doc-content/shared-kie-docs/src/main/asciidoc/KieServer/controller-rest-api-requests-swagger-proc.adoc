@@ -1,7 +1,7 @@
 [id='controller-rest-api-requests-swagger-proc_{context}']
 = Sending requests with the {CONTROLLER} REST API using the Swagger interface
 
-The {CONTROLLER} REST API supports a Swagger web interface that you can use instead of a standalone REST client or curl utility to interact with your {KIE_SERVER} templates, instances, and associated KIE containers in {PRODUCT} without using {CENTRAL}.
+The {CONTROLLER} REST API supports a Swagger web interface that you can use instead of a standalone REST client or curl utility to interact with your {KIE_SERVER} templates, instances, and associated KIE containers in {PRODUCT} without using the {CENTRAL} user interface.
 
 .Prerequisites
 * The {CONTROLLER} is installed and running.
