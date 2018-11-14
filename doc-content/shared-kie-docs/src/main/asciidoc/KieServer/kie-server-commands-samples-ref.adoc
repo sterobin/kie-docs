@@ -88,7 +88,7 @@ public void disposeAndCreateContainer() {
 }
 ----
 
-Each command in this section includes a JSON request body example for the {KIE_SERVER} REST API and an embedded method example from the `KieServicesClient` Java client for the {KIE_SERVER} Java client API.
+Each command in this section includes a REST request body example (JSON) for the {KIE_SERVER} REST API and an embedded method example from the `KieServicesClient` Java client for the {KIE_SERVER} Java client API.
 
 GetServerInfoCommand::
 +
@@ -266,7 +266,7 @@ Creates a KIE container in the {KIE_SERVER}.
 |Requirement
 
 |`container`
-|Map containing the `container-id`, `release-id` (group ID, artifact ID, version) data, `status`, and any other components of the new KIE container
+|Map containing the `container-id`, `release-id` data (group ID, artifact ID, version), `status`, and any other components of the new KIE container
 |Required
 |===
 

@@ -1,7 +1,13 @@
 [id='kie-server-java-api-examples-ref_{context}']
 = Example requests with the {KIE_SERVER} Java client API
 
-The following are examples of {KIE_SERVER} Java client API requests for basic interactions with {KIE_SERVER}. For the full list of available {KIE_SERVER} Java clients, download the *{PRODUCT} {PRODUCT_VERSION_LONG} Source Distribution* from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html[Red Hat Customer Portal] and navigate to `~/{PRODUCT_FILE}-sources/src/droolsjbpm-integration-$VERSION/kie-server-parent/kie-server-remote/kie-server-client/src/main/java/org/kie/server/client`.
+The following are examples of {KIE_SERVER} Java client API requests for basic interactions with {KIE_SERVER}. For the full list of available {KIE_SERVER} Java clients,
+ifdef::DM,PAM[]
+download the *{PRODUCT} {PRODUCT_VERSION_LONG} Source Distribution* from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html[Red Hat Customer Portal] and navigate to `~/{PRODUCT_FILE}-sources/src/droolsjbpm-integration-$VERSION/kie-server-parent/kie-server-remote/kie-server-client/src/main/java/org/kie/server/client`.
+endif::[]
+ifdef::DROOLS,JBPM,OP[]
+see the Java client API source in https://github.com/kiegroup/droolsjbpm-integration/tree/master/kie-server-parent/kie-server-remote/kie-server-client/src/main/java/org/kie/server/client[GitHub].
+endif::[]
 
 Listing {KIE_SERVER} capabilities::
 You can use the `org.kie.server.api.model.KieServerInfo` object to identify server capabilities. The `KieServicesClient` client requires the server capability information to correctly produce service clients. You can specify the capabilities globally in `KieServicesConfiguration`; otherwise they are automatically retrieved from {KIE_SERVER}.
@@ -48,8 +54,7 @@ You can optionally filter the KIE container results using an instance of the `or
 ----
 public void listContainersWithFilter() {
 
-    // The following filter will match only containers with the ReleaseId
-    // "org.example:container:1.0.0.Final" and status FAILED
+    // Filter containers by releaseId "org.example:container:1.0.0.Final" and status FAILED
     KieContainerResourceFilter filter = new KieContainerResourceFilter.Builder()
             .releaseId("org.example", "container", "1.0.0.Final")
             .status(KieContainerStatus.FAILED)
@@ -69,7 +74,7 @@ public void listContainersWithFilter() {
 --
 
 Creating and disposing KIE containers in {KIE_SERVER}::
-You can use the `createContainer` and `disposeContainer` services in the `KieServicesClient` client to dispose and create KIE containers. In this example, when you dispose a container, the `ServiceResponse` returns a `void` response. When you create a container, the `ServiceResponse` returns a `KieContainerResource` object.
+You can use the `createContainer` and `disposeContainer` methods in the `KieServicesClient` client to dispose and create KIE containers. In this example, when you dispose a container, the `ServiceResponse` returns a `void` response. When you create a container, the `ServiceResponse` returns a `KieContainerResource` object.
 +
 --
 .Example request to dispose and re-create a KIE container
@@ -157,7 +162,7 @@ NOTE: A conversation between a client and a specific {KIE_SERVER} container in a
 ifdef::PAM,JBPM[]
 
 Listing available business processes in a KIE container::
-You can use the `QueryServicesClient` client to list available process definitions. The `QueryServicesClient` methods use pagination, so in addition to the query you make, you must provide the current page and the number of results per page. In this example, the query starts on page _0_ and lists the first _1000_ results.
+You can use the `QueryServicesClient` client to list available process definitions. The `QueryServicesClient` methods use pagination, so in addition to the query you make, you must provide the current page and the number of results per page. In this example, the query starts on page `0` and lists the first `1000` results.
 +
 --
 .Example request to list business processes in {KIE_SERVER}
@@ -227,7 +232,7 @@ public static void startProcess() {
 --
 
 Running a custom query::
-You can use the `QueryDefinition` feature of the `QueryServicesClient` to register and execute custom queries in {KIE_SERVER}.
+You can use the `QueryDefinition` object of the `QueryServicesClient` client to register and execute custom queries in {KIE_SERVER}.
 +
 --
 .Example request to register and execute a custom query in {KIE_SERVER}
@@ -252,7 +257,7 @@ queryClient.unregisterQuery(QUERY_NAME);
 // Register the query
 queryClient.registerQuery(queryDefinition);
 
-// Execute the query with parameters: query name, mapping type (to map the fields to an object), page number, page size and return type
+// Execute the query with parameters: query name, mapping type (to map the fields to an object), page number, page size, and return type
 List<TaskInstance> query = queryClient.query(QUERY_NAME, QueryServicesClient.QUERY_MAP_TASK, 0, 100, TaskInstance.class);
 
 // Read the result

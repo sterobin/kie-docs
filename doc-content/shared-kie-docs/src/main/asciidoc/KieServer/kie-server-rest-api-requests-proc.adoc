@@ -18,7 +18,7 @@ For REST client:
 * *HTTP Headers*: Set the following header:
 ** `Accept`: `application/json`
 * *HTTP method*: Set to `GET`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/kie-server/services/rest/server/containers`.
+* *URL*: Enter the {KIE_SERVER} REST API base URL and endpoint, such as `\http://localhost:8080/kie-server/services/rest/server/containers`.
 
 
 For curl utility:
@@ -27,7 +27,7 @@ For curl utility:
 * `-H`: Set the following header:
 ** `accept`: `application/json`
 * `-X`: Set to `GET`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/kie-server/services/rest/server/containers`.
+* *URL*: Enter the {KIE_SERVER} REST API base URL and endpoint, such as `\http://localhost:8080/kie-server/services/rest/server/containers`.
 
 [source]
 ----
@@ -74,7 +74,7 @@ Example server response (JSON):
 }
 ----
 --
-. Copy or note the project `group-id`, `artifact-id`, and `version` (GAV) data from one of the deployed KIE containers returned in the response.
+. For this example, copy or note the project `group-id`, `artifact-id`, and `version` (GAV) data from one of the deployed KIE containers returned in the response.
 . In your REST client or curl utility, send another API request with the following components for a `PUT` request to `/containers/{containerId}` to deploy a new KIE container with the copied project GAV data. Adjust any request details according to your use case.
 +
 --
@@ -85,7 +85,7 @@ For REST client:
 ** `Accept`: `application/json`
 ** `Content-Type`: `application/json`
 * *HTTP method*: Set to `PUT`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/kie-server/services/rest/server/containers/MyContainer`.
+* *URL*: Enter the {KIE_SERVER} REST API base URL and endpoint, such as `\http://localhost:8080/kie-server/services/rest/server/containers/MyContainer`.
 * *Request body*: Add a JSON request body with the configuration items for the new KIE container:
 
 [source,json]
@@ -132,7 +132,7 @@ For curl utility:
 ** `accept`: `application/json`
 ** `content-type`: `application/json`
 * `-X`: Set to `PUT`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/kie-server/services/rest/server/containers/MyContainer`.
+* *URL*: Enter the {KIE_SERVER} REST API base URL and endpoint, such as `\http://localhost:8080/kie-server/services/rest/server/containers/MyContainer`.
 * `-d`: Add a JSON request body or file (`@file.json`) with the configuration items for the new KIE container:
 
 [source]

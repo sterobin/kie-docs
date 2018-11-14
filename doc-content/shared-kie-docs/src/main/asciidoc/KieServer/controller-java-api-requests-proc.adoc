@@ -42,9 +42,15 @@ The {CONTROLLER} Java client API enables you to connect to the {CONTROLLER} usin
   <version>${logback.version}</version>
 </dependency>
 ----
+ifdef::DM,PAM[]
 . Download the *{PRODUCT} {PRODUCT_VERSION_LONG} Source Distribution* from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html[Red Hat Customer Portal] and navigate to `~/{PRODUCT_FILE}-sources/src/droolsjbpm-integration-$VERSION/kie-server-parent/kie-server-controller/kie-server-controller-client/src/main/java/org/kie/server/controller/client` to access the {CONTROLLER} Java clients.
-. In the `~/controller/client` folder, identify the relevant Java client for the request you want to send, such as `RestKieServerControllerClient` to access client services for {KIE_SERVER} templates and KIE containers in REST protocol.
-. In your client application, create a `.java` class for the API request. The class must contain the necessary imports, a `KieServerControllerClient` object, and the client services to execute, such as `createServerTemplate` and `createContainer` from the `RestKieServerControllerClient` client. Adjust any configuration details according to your use case.
+endif::[]
+. In the `../kie/server/controller/client` folder
+ifdef::DROOLS,JBPM,OP[]
+of the Java client API in https://github.com/kiegroup/droolsjbpm-integration/tree/master/kie-server-parent/kie-server-controller/kie-server-controller-client/src/main/java/org/kie/server/controller/client[GitHub]
+endif::[]
+, identify the relevant Java client for the request you want to send, such as `RestKieServerControllerClient` to access client services for {KIE_SERVER} templates and KIE containers in REST protocol.
+. In your client application, create a `.java` class for the API request. The class must contain the necessary imports, the {CONTROLLER} location and user credentials, a `KieServerControllerClient` object, and the client services to execute, such as `createServerTemplate` and `createContainer` from the `RestKieServerControllerClient` client. Adjust any configuration details according to your use case.
 +
 .Creating and interacting with a {KIE_SERVER} template and KIE containers
 [source,java,subs="attributes+"]
@@ -74,7 +80,7 @@ public class RestTemplateContainerExample {
                                                                                           USER,
                                                                                           PASSWORD,
                                                                                           MarshallingFormat.JSON);
-        // Create server template and KIE container, start and stop KIE container, delete server template
+        // Create server template and KIE container, start and stop KIE container, and delete server template
         ServerTemplate serverTemplate = createServerTemplate();
         ContainerSpec container = createContainer(serverTemplate);
         client.startContainer(container);

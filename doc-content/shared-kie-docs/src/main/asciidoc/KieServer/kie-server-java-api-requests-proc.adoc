@@ -35,8 +35,14 @@ The {KIE_SERVER} Java client API enables you to connect to {KIE_SERVER} using RE
   <version>${logback.version}</version>
 </dependency>
 ----
+ifdef::DM,PAM[]
 . Download the *{PRODUCT} {PRODUCT_VERSION_LONG} Source Distribution* from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html[Red Hat Customer Portal] and navigate to `~/{PRODUCT_FILE}-sources/src/droolsjbpm-integration-$VERSION/kie-server-parent/kie-server-remote/kie-server-client/src/main/java/org/kie/server/client` to access the {KIE_SERVER} Java clients.
-. In the `~/controller/client` folder, identify the relevant Java client for the request you want to send, such as `KieServicesClient` to access client services for KIE containers and other assets in {KIE_SERVER}.
+endif::[]
+. In the `../kie/server/client` folder
+ifdef::DROOLS,JBPM,OP[]
+of the Java client API in https://github.com/kiegroup/droolsjbpm-integration/tree/master/kie-server-parent/kie-server-remote/kie-server-client/src/main/java/org/kie/server/client[GitHub]
+endif::[]
+, identify the relevant Java client for the request you want to send, such as `KieServicesClient` to access client services for KIE containers and other assets in {KIE_SERVER}.
 . In your client application, create a `.java` class for the API request. The class must contain the necessary imports, {KIE_SERVER} location and user credentials, a `KieServicesClient` object, and the client services to execute, such as `createContainer` and `disposeContainer` from the `KieServicesClient` client. Adjust any configuration details according to your use case.
 +
 --
@@ -116,7 +122,7 @@ NOTE: A conversation between a client and a specific {KIE_SERVER} container in a
 --
 If you enabled debug logging, {KIE_SERVER} responds with a detailed response according to your configured marshalling format, such as JSON.
 
-Example server response for new KIE container (log):
+Example server response for a new KIE container (log):
 
 [source]
 ----

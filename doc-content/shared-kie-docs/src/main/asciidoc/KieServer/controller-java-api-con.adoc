@@ -1,7 +1,7 @@
 [id='controller-java-api-con_{context}']
 = {CONTROLLER} Java client API for {KIE_SERVER} templates and instances
 
-{PRODUCT} provides a {CONTROLLER} Java client API that you can use to send REST or WebSocket requests to the {CONTROLLER} from your Java client application. You can use the {CONTROLLER} Java client API as an alternative to the {CONTROLLER} REST API to interact with your {KIE_SERVER} templates (configurations), {KIE_SERVER} instances (remote servers), and associated KIE containers (deployment units) in {PRODUCT} without using the {CENTRAL} user interface. This API support enables you to maintain your {PRODUCT} resources more efficiently and optimize your integration and development with {PRODUCT}.
+{PRODUCT} provides a {CONTROLLER} Java client API that enables you to connect to the {CONTROLLER} using REST or WebSocket protocol from your Java client application. You can use the {CONTROLLER} Java client API as an alternative to the {CONTROLLER} REST API to interact with your {KIE_SERVER} templates (configurations), {KIE_SERVER} instances (remote servers), and associated KIE containers (deployment units) in {PRODUCT} without using the {CENTRAL} user interface. This API support enables you to maintain your {PRODUCT} servers and resources more efficiently and optimize your integration and development with {PRODUCT}.
 
 With the {CONTROLLER} Java client API, you can perform the following actions also supported by the {CONTROLLER} REST API:
 
@@ -36,8 +36,6 @@ To configure the `kie-server` or `rest-all` user with {CONTROLLER} access, navig
 <property name="org.kie.server.controller" value="http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller"/>
 <property name="org.kie.server.controller.user" value="baAdmin"/>
 <property name="org.kie.server.controller.pwd" value="password@1"/>
-<property name="org.kie.server.user" value="baAdmin"/>
-<property name="org.kie.server.pwd" value="password@1"/>
 <property name="org.kie.server.id" value="default-kieserver"/>
 ----
 

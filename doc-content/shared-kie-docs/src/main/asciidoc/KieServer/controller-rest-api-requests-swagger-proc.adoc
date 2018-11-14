@@ -8,8 +8,8 @@ The {CONTROLLER} REST API supports a Swagger web interface that you can use inst
 * You have `rest-all` user role access to the {CONTROLLER} if you installed {CENTRAL}, or `kie-server` user role access to the {HEADLESS_CONTROLLER} installed separately from {CENTRAL}.
 
 .Procedure
-. In a web browser, navigate to `\http://SERVER:PORT/CONTROLLER/docs` (such as `http://localhost:8080/{URL_COMPONENT_CENTRAL}/docs`) and log in with the user name and password of the {CONTROLLER} user with `rest-all` role or the {HEADLESS_CONTROLLER} user with `kie-server` role.
-. In the Swagger page, select the relevant API endpoint to which you want to send a request, such as *Controller::Management* -> *[GET] /management/servers* to retrieve {KIE_SERVER} templates from the {CONTROLLER}.
+. In a web browser, navigate to `\http://SERVER:PORT/CONTROLLER/docs`, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/docs`, and log in with the user name and password of the {CONTROLLER} user with `rest-all` role or the {HEADLESS_CONTROLLER} user with `kie-server` role.
+. In the Swagger page, select the relevant API endpoint to which you want to send a request, such as *Controller :: Management* -> *[GET] /management/servers* to retrieve {KIE_SERVER} templates from the {CONTROLLER}.
 . Click *Try it out* and provide any optional parameters by which you want to filter results, if applicable.
 . In the *Response content type* drop-down menu, select the desired format of the server response, such as *application/json* for JSON format.
 . Click *Execute* and review the {KIE_SERVER} response.
@@ -105,7 +105,7 @@ Example server response (JSON):
 }
 ----
 --
-. In the Swagger page, navigate to the *Controller::Management* -> *[GET] /management/servers/{serverId}* endpoint to send another request to create a new {KIE_SERVER} template. Adjust any request details according to your use case.
+. In the Swagger page, navigate to the *Controller :: Management* -> *[GET] /management/servers/{serverId}* endpoint to send another request to create a new {KIE_SERVER} template. Adjust any request details according to your use case.
 . Click *Try it out* and enter the following components for the request:
 +
 --

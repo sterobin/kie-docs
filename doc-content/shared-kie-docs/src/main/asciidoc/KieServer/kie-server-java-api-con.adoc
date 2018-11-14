@@ -1,7 +1,9 @@
 [id='kie-server-java-api-con_{context}']
 = {KIE_SERVER} Java client API for KIE containers and business assets
 
-{PRODUCT} provides a {KIE_SERVER} Java client API that you can use to send REST requests to {KIE_SERVER} from your Java client application. You can use the {KIE_SERVER} Java client API as an alternative to the {KIE_SERVER} REST API to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using the {CENTRAL} user interface. This API support enables you to maintain your {PRODUCT} resources more efficiently and optimize your integration and development with {PRODUCT}.
+{PRODUCT} provides a {KIE_SERVER} Java client API that enables you to connect to {KIE_SERVER} using REST protocol from your Java client application. You can use the {KIE_SERVER} Java client API as an alternative to the {KIE_SERVER} REST API to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using the {CENTRAL} user interface. This API support enables you to maintain your {PRODUCT} resources more efficiently and optimize your integration and development with {PRODUCT}.
+
+The {KIE_SERVER} Java client API enables you
 
 With the {KIE_SERVER} Java client API, you can perform the following actions also supported by the {KIE_SERVER} REST API:
 
@@ -128,7 +130,7 @@ public class MyConfigurationObject {
   public static void initialize() {
     conf = KieServicesFactory.newRestConfiguration(URL, USER, PASSWORD);
 
-    //If you use custom classes, such as Obj.class, add them to the configuration
+    //If you use custom classes, such as Obj.class, add them to the configuration.
     Set<Class<?>> extraClassList = new HashSet<Class<?>>();
     extraClassList.add(Obj.class);
     conf.addExtraClasses(extraClassList);
@@ -162,7 +164,7 @@ import org.kie.server.api.model.ReleaseId;
 
 public class MyAdvancedConfigurationObject {
 
-    // Please fill correct URL, credentials and marshalling format for your usecase
+    // REST API base URL, credentials, and marshalling format
     private static final String URL = "http://localhost:8080/kie-server/services/rest/server";
     private static final String USER = "baAdmin";
     private static final String PASSWORD = "password@1";;

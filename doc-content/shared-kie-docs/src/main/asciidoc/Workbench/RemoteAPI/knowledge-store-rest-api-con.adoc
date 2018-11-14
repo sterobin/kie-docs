@@ -54,7 +54,7 @@ Endpoints::
 Knowledge Store REST API endpoints, such as `/spaces/{spaceName}` for a specified space, are the URIs that you append to the Knowledge Store REST API base URL to access the corresponding resource or type of resource in {PRODUCT}.
 +
 --
-.Example request URL for `/spaces/{spaceName}` endpoint:
+.Example request URL for `/spaces/{spaceName}` endpoint
 `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/spaces/MySpace`
 --
 

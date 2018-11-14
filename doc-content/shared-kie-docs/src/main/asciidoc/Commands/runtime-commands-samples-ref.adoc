@@ -23,7 +23,7 @@ endif::PAM,JBPM[]
 
 For the full list of supported runtime commands, see the `org.drools.core.command.runtime` package in your {PRODUCT} instance.
 
-Each command in this section includes a JSON request body example for the {KIE_SERVER} REST API and an embedded Java command example for the {KIE_SERVER} Java client API. The Java examples use an object `org.drools.compiler.test.Person` with the fields `name` (String) and `age` (Integer).
+Each command in this section includes a REST request body example (JSON) for the {KIE_SERVER} REST API and an embedded Java command example for the {KIE_SERVER} Java client API. The Java examples use an object `org.drools.compiler.test.Person` with the fields `name` (String) and `age` (Integer).
 
 ////
 // Not currently applicable to the examples, but leaving for now. (Stetson, Oct 5, 2018)
@@ -674,7 +674,7 @@ ifdef::PAM,JBPM[]
 StartProcessCommand::
 +
 --
-Starts a process using the ID. You can also pass parameters and initial data to be inserted.
+Starts a process using the process ID. You can also pass parameters and initial data to be inserted.
 
 .Command attributes
 [cols="30%,50%,20%", frame="all", options="header"]

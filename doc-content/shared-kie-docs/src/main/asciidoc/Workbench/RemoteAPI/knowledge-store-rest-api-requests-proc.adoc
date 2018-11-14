@@ -18,7 +18,7 @@ For REST client:
 * *HTTP Headers*: Set the following header:
 ** `Accept`: `application/json`
 * *HTTP method*: Set to `GET`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/spaces`.
+* *URL*: Enter the Knowledge Store REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/spaces`.
 
 
 For curl utility:
@@ -27,7 +27,7 @@ For curl utility:
 * `-H`: Set the following header:
 ** `accept`: `application/json`
 * `-X`: Set to `GET`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/spaces`.
+* *URL*: Enter the Knowledge Store REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/spaces`.
 
 [source,subs="attributes+"]
 ----
@@ -121,8 +121,9 @@ For REST client:
 * *Authentication*: Enter the user name and password of the {CENTRAL} user with `rest-all` role.
 * *HTTP Headers*: Set the following header:
 ** `Accept`: `application/json`
+** `Content-Type`: `application/json`
 * *HTTP method*: Set to `POST`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/spaces/MySpace/projects`.
+* *URL*: Enter the Knowledge Store REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/spaces/MySpace/projects`.
 * *Request body*: Add a JSON request body with the identification data for the new project:
 
 [source,json]
@@ -142,7 +143,7 @@ For curl utility:
 ** `accept`: `application/json`
 ** `content-type`: `application/json`
 * `-X`: Set to `POST`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/spaces/MySpace/projects`.
+* *URL*: Enter the Knowledge Store REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/spaces/MySpace/projects`.
 * `-d`: Add a JSON request body or file (`@file.json`) with the identification data for the new project:
 
 [source,subs="attributes+"]

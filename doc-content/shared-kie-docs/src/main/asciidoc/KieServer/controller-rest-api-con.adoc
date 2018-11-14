@@ -1,7 +1,7 @@
 [id='controller-rest-api-con_{context}']
 = {CONTROLLER} REST API for {KIE_SERVER} templates and instances
 
-{PRODUCT} provides a {CONTROLLER} REST API that you can use to interact with your {KIE_SERVER} templates (configurations), {KIE_SERVER} instances (remote servers), and associated KIE containers (deployment units) in {PRODUCT} without using the {CENTRAL} user interface. This API support enables you to maintain your {PRODUCT} resources more efficiently and optimize your integration and development with {PRODUCT}.
+{PRODUCT} provides a {CONTROLLER} REST API that you can use to interact with your {KIE_SERVER} templates (configurations), {KIE_SERVER} instances (remote servers), and associated KIE containers (deployment units) in {PRODUCT} without using the {CENTRAL} user interface. This API support enables you to maintain your {PRODUCT} servers and resources more efficiently and optimize your integration and development with {PRODUCT}.
 
 With the {CONTROLLER} REST API, you can perform the following actions:
 
@@ -73,12 +73,12 @@ Endpoints::
 {CONTROLLER} REST API endpoints, such as `/management/servers/{serverId}` for a specified {KIE_SERVER} template, are the URIs that you append to the {CONTROLLER} REST API base URL to access the corresponding server resource or type of server resource in {PRODUCT}.
 +
 --
-.Example request URL for `/management/servers/{serverId}` endpoint:
+.Example request URL for `/management/servers/{serverId}` endpoint
 `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/management/servers/default-kieserver`
 --
 
 Request parameters and request data::
-Some {CONTROLLER} REST API requests require specific parameters in the request URL path to identify or filter specific resources and to perform specific actions. You can append URL parameters to the endpoint in the format `?PARAM=VALUE&PARAM=VALUE>`.
+Some {CONTROLLER} REST API requests require specific parameters in the request URL path to identify or filter specific resources and to perform specific actions. You can append URL parameters to the endpoint in the format `?<PARAM>=<VALUE>&<PARAM>=<VALUE>`.
 +
 --
 .Example DELETE request URL with parameters

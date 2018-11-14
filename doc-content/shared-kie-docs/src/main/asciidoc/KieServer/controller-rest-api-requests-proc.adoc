@@ -1,7 +1,7 @@
 [id='controller-rest-api-requests-proc_{context}']
 = Sending requests with the {CONTROLLER} REST API using a REST client or curl utility
 
-The {KIE_SERVER} REST API enables you to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using the {CENTRAL} user interface. You can send {KIE_SERVER} REST API requests using any REST client or curl utility.
+The {CONTROLLER} REST API enables you to interact with your {KIE_SERVER} templates (configurations), {KIE_SERVER} instances (remote servers), and associated KIE containers (deployment units) in {PRODUCT} without using the {CENTRAL} user interface. You can send {CONTROLLER} REST API requests using any REST client or curl utility.
 
 .Prerequisites
 * {KIE_SERVER} is installed and running.
@@ -19,7 +19,7 @@ For REST client:
 * *HTTP Headers*: Set the following header:
 ** `Accept`: `application/json`
 * *HTTP method*: Set to `GET`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/management/servers`.
+* *URL*: Enter the {CONTROLLER} REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/management/servers`.
 
 
 For curl utility:
@@ -28,7 +28,7 @@ For curl utility:
 * `-H`: Set the following header:
 ** `accept`: `application/json`
 * `-X`: Set to `GET`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/management/servers`.
+* *URL*: Enter the {CONTROLLER} REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/management/servers`.
 
 [source,subs="attributes+"]
 ----
@@ -139,7 +139,7 @@ For REST client:
 ** `Accept`: `application/json`
 ** `Content-Type`: `application/json`
 * *HTTP method*: Set to `PUT`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/management/servers/new-kieserver`.
+* *URL*: Enter the {CONTROLLER} REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/management/servers/new-kieserver`.
 * *Request body*: Add a JSON request body with the configurations for the new {KIE_SERVER} template:
 
 [source,json]
@@ -164,7 +164,7 @@ For curl utility:
 ** `accept`: `application/json`
 ** `content-type`: `application/json`
 * `-X`: Set to `PUT`.
-* *URL*: Enter the REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/management/servers/new-kieserver`.
+* *URL*: Enter the {CONTROLLER} REST API base URL and endpoint, such as `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/management/servers/new-kieserver`.
 * `-d`: Add a JSON request body or file (`@file.json`) with the configurations for the new {KIE_SERVER} template:
 
 [source,subs="attributes+"]
