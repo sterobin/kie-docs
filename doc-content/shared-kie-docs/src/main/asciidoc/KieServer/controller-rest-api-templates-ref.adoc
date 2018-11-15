@@ -857,12 +857,6 @@ Stops a specified KIE container in a specified {KIE_SERVER} template.
 |ID of the {KIE_SERVER} template associated with the KIE container
 |String
 |Required
-
-= {KIE_SERVER} instances
-
-The {CONTROLLER} REST API supports the following endpoints for managing {KIE_SERVER} instances (remote servers) configured with the {CONTROLLER}. The {CONTROLLER} REST API base URL is `\http://SERVER:PORT/CONTROLLER/rest/controller/`. All requests require basic HTTP Authentication or token-based authentication for the `rest-all` user role if you installed {CENTRAL} and you want to use the built-in {CONTROLLER}, or the `kie-server` user role if you installed the {HEADLESS_CONTROLLER} separately from {CENTRAL}.
-
-== [GET
 |===
 
 *<@Cristiano: The request works but the server responds "undocumented". Need to update the server so that it responds with the following, or similar.>*
