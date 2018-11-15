@@ -18,7 +18,7 @@ Returns entity and task information for a specified process.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process resides
+|ID of the KIE container where the process is located
 |String
 |Required
 
@@ -75,7 +75,7 @@ Returns the variables of a specified process.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process resides
+|ID of the KIE container where the process is located
 |String
 |Required
 
@@ -111,7 +111,7 @@ Returns all service tasks for a specified process.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process resides
+|ID of the KIE container where the process is located
 |String
 |Required
 
@@ -142,7 +142,7 @@ Returns all user tasks for a specified process. The response also contains maps 
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process resides
+|ID of the KIE container where the process is located
 |String
 |Required
 
@@ -236,7 +236,7 @@ Returns a list of reusable sub-processes for a specified process.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process resides
+|ID of the KIE container where the process is located
 |String
 |Required
 
@@ -267,7 +267,7 @@ Returns a list of the entities associated with a specified process.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process resides
+|ID of the KIE container where the process is located
 |String
 |Required
 
@@ -311,7 +311,7 @@ Returns input parameter names and values for a specified task in a specified pro
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process resides
+|ID of the KIE container where the process is located
 |String
 |Required
 
@@ -359,7 +359,7 @@ Returns output parameter names and values for a specified task in a specified pr
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process resides
+|ID of the KIE container where the process is located
 |String
 |Required
 

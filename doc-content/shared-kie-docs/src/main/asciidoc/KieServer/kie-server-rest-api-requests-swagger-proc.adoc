@@ -8,7 +8,7 @@ The {KIE_SERVER} REST API supports a Swagger web interface that you can use inst
 * You have `kie-server` user role access to {KIE_SERVER}.
 
 .Procedure
-. In a web browser, navigate to `\http://SERVER:PORT/kie-server/docs`, such as `\http://localhost:8080/kie-server/docs`, and log in with the user name and password of the {KIE_SERVER} user with `kie-server` role.
+. In a web browser, navigate to `\http://SERVER:PORT/kie-server/docs`, such as `\http://localhost:8080/kie-server/docs`, and log in with the user name and password of the {KIE_SERVER} user with the `kie-server` role.
 . In the Swagger page, select the relevant API endpoint to which you want to send a request, such as *KIE Server :: Core* -> *[GET] /containers* to retrieve KIE containers from {KIE_SERVER}.
 . Click *Try it out* and provide any optional parameters by which you want to filter results, if needed.
 . In the *Response content type* drop-down menu, select the desired format of the server response, such as *application/json* for JSON format.

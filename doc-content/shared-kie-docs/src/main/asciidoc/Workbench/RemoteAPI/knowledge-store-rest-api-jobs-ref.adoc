@@ -53,7 +53,7 @@ The Knowledge Store REST API supports the following endpoints for retrieving or 
 [GET] /jobs/{jobId}::
 +
 --
-Returns the status of a specified job (a previously sent API request)
+Returns the status of a specified job (a previously sent API request).
 
 .Request parameters
 [cols="25%,45%,15%,15%", frame="all", options="header"]

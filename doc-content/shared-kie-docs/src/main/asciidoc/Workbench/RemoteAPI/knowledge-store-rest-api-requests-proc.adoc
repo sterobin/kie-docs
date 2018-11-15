@@ -14,7 +14,7 @@ The Knowledge Store REST API enables you to interact with your projects and spac
 --
 For REST client:
 
-* *Authentication*: Enter the user name and password of the {CENTRAL} user with `rest-all` role.
+* *Authentication*: Enter the user name and password of the {CENTRAL} user with the `rest-all` role.
 * *HTTP Headers*: Set the following header:
 ** `Accept`: `application/json`
 * *HTTP method*: Set to `GET`.
@@ -23,7 +23,7 @@ For REST client:
 
 For curl utility:
 
-* `-u`: Enter the user name and password of the {CENTRAL} user with `rest-all` role.
+* `-u`: Enter the user name and password of the {CENTRAL} user with the `rest-all` role.
 * `-H`: Set the following header:
 ** `accept`: `application/json`
 * `-X`: Set to `GET`.
@@ -118,7 +118,7 @@ Example server response (JSON):
 --
 For REST client:
 
-* *Authentication*: Enter the user name and password of the {CENTRAL} user with `rest-all` role.
+* *Authentication*: Enter the user name and password of the {CENTRAL} user with the `rest-all` role.
 * *HTTP Headers*: Set the following header:
 ** `Accept`: `application/json`
 ** `Content-Type`: `application/json`
@@ -138,7 +138,7 @@ For REST client:
 
 For curl utility:
 
-* `-u`: Enter the user name and password of the {CENTRAL} user with `rest-all` role.
+* `-u`: Enter the user name and password of the {CENTRAL} user with the `rest-all` role.
 * `-H`: Set the following headers:
 ** `accept`: `application/json`
 ** `content-type`: `application/json`

@@ -328,7 +328,7 @@ Migrates a specified process instance to a process definition in another KIE con
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -338,7 +338,7 @@ Migrates a specified process instance to a process definition in another KIE con
 |Required
 
 |`targetContainerId`
-|ID of the KIE container where the new process definition resides, to which the process instance will be migrated
+|ID of the KIE container where the new process definition is located, to which the process instance will be migrated
 |String
 |Required
 
@@ -398,7 +398,7 @@ Migrates multiple process instances to process definition in another KIE contain
 |Required
 
 |`targetContainerId`
-|ID of the KIE container where the new process definition resides, to which the process instances will be migrated
+|ID of the KIE container where the new process definition is located, to which the process instances will be migrated
 |String
 |Required
 
@@ -462,7 +462,7 @@ Returns all nodes in a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -578,7 +578,7 @@ Triggers a specified node for a specified process instance. If the node is not a
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -621,7 +621,7 @@ Returns all the active node instances in a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -670,7 +670,7 @@ Re-triggers a specified node instance for a specified process instance. If the n
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -713,7 +713,7 @@ Aborts a specified node instance within a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -756,7 +756,7 @@ Returns all timers for a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -800,7 +800,7 @@ Updates a specified timer for a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 

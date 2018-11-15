@@ -18,7 +18,7 @@ Returns the form information for a specified process definition.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process definition resides
+|ID of the KIE container where the process definition is located
 |String
 |Required
 
@@ -225,7 +225,7 @@ Returns the form information for a specified task instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process definition resides
+|ID of the KIE container where the process definition is located
 |String
 |Required
 

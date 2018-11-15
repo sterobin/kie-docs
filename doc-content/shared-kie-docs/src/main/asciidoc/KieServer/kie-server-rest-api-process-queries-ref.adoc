@@ -952,7 +952,7 @@ Returns information about a specified process definition in a specified KIE cont
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process resides
+|ID of the KIE container where the process is located
 |String
 |Required
 

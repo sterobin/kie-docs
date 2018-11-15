@@ -64,12 +64,12 @@ Contains multiple commands to be executed together.
 |Requirement
 
 |`commands`
-|List of commands to be executed
+|List of commands to be executed.
 |Required
 
 |`lookup`
-|Sets the KIE session ID on which the commands will be executed
-|Optional
+|Sets the KIE session ID on which the commands will be executed. For stateless KIE sessions, this attribute is required. For stateful KIE sessions, this attribute is optional and if not specified, the default KIE session is used.
+|Required for stateless KIE session, optional for stateful KIE session
 
 |===
 
@@ -425,7 +425,7 @@ getObjectCommand.setOutIdentifier("john");
 GetObjectsCommand::
 +
 --
-Retrieves all objects from the KIE session as a Collection.
+Retrieves all objects from the KIE session as a collection.
 
 .Command attributes
 [cols="30%,50%,20%", frame="all", options="header"]

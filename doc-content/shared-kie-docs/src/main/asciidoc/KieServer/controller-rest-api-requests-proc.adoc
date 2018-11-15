@@ -15,7 +15,7 @@ The {CONTROLLER} REST API enables you to interact with your {KIE_SERVER} templat
 --
 For REST client:
 
-* *Authentication*: Enter the user name and password of the {CONTROLLER} user with `rest-all` role or the {HEADLESS_CONTROLLER} user with `kie-server` role.
+* *Authentication*: Enter the user name and password of the {CONTROLLER} user with the `rest-all` role or the {HEADLESS_CONTROLLER} user with the `kie-server` role.
 * *HTTP Headers*: Set the following header:
 ** `Accept`: `application/json`
 * *HTTP method*: Set to `GET`.
@@ -24,7 +24,7 @@ For REST client:
 
 For curl utility:
 
-* `-u`: Enter the user name and password of the {CONTROLLER} user with `rest-all` role or the {HEADLESS_CONTROLLER} user with `kie-server` role.
+* `-u`: Enter the user name and password of the {CONTROLLER} user with the `rest-all` role or the {HEADLESS_CONTROLLER} user with the `kie-server` role.
 * `-H`: Set the following header:
 ** `accept`: `application/json`
 * `-X`: Set to `GET`.
@@ -134,7 +134,7 @@ Example server response (JSON):
 --
 For REST client:
 
-* *Authentication*: Enter the user name and password of the {CONTROLLER} user with `rest-all` role or the {HEADLESS_CONTROLLER} user with `kie-server` role.
+* *Authentication*: Enter the user name and password of the {CONTROLLER} user with the `rest-all` role or the {HEADLESS_CONTROLLER} user with the `kie-server` role.
 * *HTTP Headers*: Set the following headers:
 ** `Accept`: `application/json`
 ** `Content-Type`: `application/json`
@@ -159,7 +159,7 @@ For REST client:
 
 For curl utility:
 
-* `-u`: Enter the user name and password of the {CONTROLLER} user with `rest-all` role or the {HEADLESS_CONTROLLER} user with `kie-server` role.
+* `-u`: Enter the user name and password of the {CONTROLLER} user with the `rest-all` role or the {HEADLESS_CONTROLLER} user with the `kie-server` role.
 * `-H`: Set the following headers:
 ** `accept`: `application/json`
 ** `content-type`: `application/json`

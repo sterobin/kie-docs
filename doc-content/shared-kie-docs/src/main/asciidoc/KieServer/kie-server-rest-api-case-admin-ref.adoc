@@ -156,7 +156,7 @@ Migrates a specified case instance to another KIE container and case definition.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -166,7 +166,7 @@ Migrates a specified case instance to another KIE container and case definition.
 |Required
 
 |`targetContainerId`
-|ID of the KIE container where the new process definition resides, to which the process instance will be migrated
+|ID of the KIE container where the new process definition is located, to which the process instance will be migrated
 |String
 |Required
 

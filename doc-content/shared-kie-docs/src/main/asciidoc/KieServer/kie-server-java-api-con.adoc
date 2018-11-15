@@ -3,8 +3,6 @@
 
 {PRODUCT} provides a {KIE_SERVER} Java client API that enables you to connect to {KIE_SERVER} using REST protocol from your Java client application. You can use the {KIE_SERVER} Java client API as an alternative to the {KIE_SERVER} REST API to interact with your KIE containers and business assets (such as business rules, processes, and solvers) in {PRODUCT} without using the {CENTRAL} user interface. This API support enables you to maintain your {PRODUCT} resources more efficiently and optimize your integration and development with {PRODUCT}.
 
-The {KIE_SERVER} Java client API enables you
-
 With the {KIE_SERVER} Java client API, you can perform the following actions also supported by the {KIE_SERVER} REST API:
 
 * Deploy or dispose KIE containers

@@ -93,7 +93,7 @@ Schedules a job and returns the ID for the new job.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the job resides
+|ID of the KIE container where the job is located
 |String
 |Optional
 
@@ -154,7 +154,7 @@ NOTE: For a list of supported job commands in {PRODUCT}, download and extract th
 |Required
 
 |`containerId`
-|ID of the KIE container where the job resides
+|ID of the KIE container where the job is located
 |String
 |Optional
 

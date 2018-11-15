@@ -113,7 +113,7 @@ Returns information about a specified project in a specified space.
 |Requirement
 
 |`spaceName`
-|Name of the space where the project resides
+|Name of the space where the project is located
 |String
 |Required
 
@@ -208,7 +208,7 @@ Deletes a specified project from a specified space.
 |Requirement
 
 |`spaceName`
-|Name of the space where the project resides
+|Name of the space where the project is located
 |String
 |Required
 
@@ -296,7 +296,7 @@ Compiles a specified project in a specified space (equivalent to `mvn compile`).
 |Requirement
 
 |`spaceName`
-|Name of the space where the project resides
+|Name of the space where the project is located
 |String
 |Required
 
@@ -331,7 +331,7 @@ Tests a specified project in a specified space (equivalent to `mvn test`).
 |Requirement
 
 |`spaceName`
-|Name of the space where the project resides
+|Name of the space where the project is located
 |String
 |Required
 
@@ -366,7 +366,7 @@ Installs a specified project in a specified space (equivalent to `mvn install`).
 |Requirement
 
 |`spaceName`
-|Name of the space where the project resides
+|Name of the space where the project is located
 |String
 |Required
 
@@ -401,7 +401,7 @@ Deploys a specified project in a specified space (equivalent to `mvn deploy`).
 |Requirement
 
 |`spaceName`
-|Name of the space where the project resides
+|Name of the space where the project is located
 |String
 |Required
 

@@ -137,7 +137,7 @@ Returns information about a specified case definition.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case definition resides
+|ID of the KIE container where the case definition is located
 |String
 |Required
 
@@ -323,7 +323,7 @@ Returns information about a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -421,7 +421,7 @@ Closes a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -464,7 +464,7 @@ Reopens a closed case instance for a specified case definition.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -528,7 +528,7 @@ Aborts or permanently destroys a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -710,7 +710,7 @@ Returns milestones for a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -881,7 +881,7 @@ Triggers a specified ad hoc fragment in a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -951,7 +951,7 @@ Triggers a specified ad hoc fragment in the specified stage of a specified case 
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1026,7 +1026,7 @@ Returns comments from a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1101,7 +1101,7 @@ Adds a comment to a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1166,7 +1166,7 @@ Updates a specified comment in a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1236,7 +1236,7 @@ Deletes a specified comment in a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1279,7 +1279,7 @@ Returns data from the case files of a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1324,7 +1324,7 @@ Adds data as case files in a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1385,7 +1385,7 @@ Deletes one or more specified case file data items from a specified case instanc
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1434,7 +1434,7 @@ Returns the value of a specified case file data item in a specified case instanc
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1474,7 +1474,7 @@ Adds a single data item as a case file in a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1539,7 +1539,7 @@ Adds a dynamic user task or service task to the specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1603,7 +1603,7 @@ Adds a dynamic user task or service task to the specified stage in a specified c
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1672,7 +1672,7 @@ Adds a dynamic subprocess to the specified stage in a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1739,7 +1739,7 @@ Adds a dynamic subprocess to a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1801,7 +1801,7 @@ Returns ad hoc fragments for a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1863,7 +1863,7 @@ Returns process instances in a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -1964,7 +1964,7 @@ Returns node instances for a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -2136,7 +2136,7 @@ Returns role assignments for a specified case instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -2189,7 +2189,7 @@ Assigns a specified case role to a specified user and group for a specified case
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 
@@ -2250,7 +2250,7 @@ Removes an assigned case role from a specified user and group for a specified ca
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the case instance resides
+|ID of the KIE container where the case instance is located
 |String
 |Required
 

@@ -179,7 +179,7 @@ Aborts multiple specified process instances in a specified KIE container.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -217,7 +217,7 @@ Returns information about a specified process instance in a specified KIE contai
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -277,7 +277,7 @@ Aborts a specified process instance in a specified KIE container.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -315,7 +315,7 @@ Returns node instances for the specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -390,7 +390,7 @@ Retrieves all variables for a specified process instance as a map in which the k
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -445,7 +445,7 @@ Updates the values of one or more variable for a specified process instance. The
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -520,7 +520,7 @@ Returns the current variable values of a specified process instance in a specifi
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -570,7 +570,7 @@ Returns the history of a specified variable in a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -641,7 +641,7 @@ Returns the value of a specified variable in a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -704,7 +704,7 @@ Creates or updates a variable for a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -784,7 +784,7 @@ Returns a list of process instances for which a specified process instance is a 
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -866,7 +866,7 @@ Starts a new process instance of a specified process.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process resides
+|ID of the KIE container where the process is located
 |String
 |Required
 
@@ -941,7 +941,7 @@ Starts a new process instance of a specified process and assigns a new correlati
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process resides
+|ID of the KIE container where the process is located
 |String
 |Required
 
@@ -1021,7 +1021,7 @@ Returns all work items for a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -1092,7 +1092,7 @@ Returns information about a specified work item for a specified process instance
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -1168,7 +1168,7 @@ Aborts a specified work item for a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -1211,7 +1211,7 @@ Completes a specified work item for a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -1268,7 +1268,7 @@ Returns all available signal names for a specified process instance.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -1299,7 +1299,7 @@ Signals a specified process instance with a specified signal name and optional s
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 
@@ -1348,7 +1348,7 @@ Signals multiple process instances with a specified signal name.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process instance resides
+|ID of the KIE container where the process instance is located
 |String
 |Required
 

@@ -48,7 +48,7 @@ The Knowledge Store REST API supports the following HTTP methods for API request
 * `DELETE`: Deletes a resource
 
 Base URL::
-The base URL for Knowledge Store REST API requests is `\http://SERVER:PORT/{URL_COMPONENT_CENTRAL}/rest/`, such as  `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/`
+The base URL for Knowledge Store REST API requests is `\http://SERVER:PORT/{URL_COMPONENT_CENTRAL}/rest/`, such as  `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/`.
 
 Endpoints::
 Knowledge Store REST API endpoints, such as `/spaces/{spaceName}` for a specified space, are the URIs that you append to the Knowledge Store REST API base URL to access the corresponding resource or type of resource in {PRODUCT}.

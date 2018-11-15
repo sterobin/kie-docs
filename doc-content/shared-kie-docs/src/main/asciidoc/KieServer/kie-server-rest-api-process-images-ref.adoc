@@ -22,7 +22,7 @@ Returns an SVG image file of a specified process definition diagram.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process definition resides
+|ID of the KIE container where the process definition is located
 |String
 |Required
 
@@ -318,7 +318,7 @@ Returns an annotated SVG image file of a specified process instance diagram.
 |Requirement
 
 |`containerId`
-|ID of the KIE container where the process definition resides
+|ID of the KIE container where the process definition is located
 |String
 |Required
 
