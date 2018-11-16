@@ -3,9 +3,9 @@
 
 The following are some of the Java client services available in the `org.kie.server.controller.client` package of your {PRODUCT} distribution. You can use these services to interact with related resources in the {CONTROLLER} similarly to the {CONTROLLER} REST API.
 
-* `KieServerControllerClient`: Used as the entry point for other {CONTROLLER} Java clients
-* `RestKieServerControllerClient`: Used to interact with {KIE_SERVER} templates and KIE containers in REST protocol (found in `~/org/kie/server/controller/client/rest`)
-* `WebSocketKieServerControllerClient`: Used to interact with {KIE_SERVER} templates and KIE containers in WebSocket protocol (found in `~/org/kie/server/controller/client/websocket`)
+* `KieServerControllerClient`: Used as the entry point for communicating with the {CONTROLLER}
+* `RestKieServerControllerClient`: Implementation used to interact with {KIE_SERVER} templates and KIE containers in REST protocol (found in `~/org/kie/server/controller/client/rest`)
+* `WebSocketKieServerControllerClient`: Implementation used to interact with {KIE_SERVER} templates and KIE containers in WebSocket protocol (found in `~/org/kie/server/controller/client/websocket`)
 
 For the full list of available {CONTROLLER} Java clients,
 ifdef::DM,PAM[]

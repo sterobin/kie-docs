@@ -617,7 +617,7 @@ Executes all rules in the KIE session.
 |Optional
 
 |`out-identifier`
-|ID to be used for the fired rules in execution results.
+|ID to be used for retrieving the number of fired rules in execution results.
 |Optional
 
 |`agenda-filter`
