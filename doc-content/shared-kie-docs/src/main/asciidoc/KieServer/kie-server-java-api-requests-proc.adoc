@@ -111,7 +111,7 @@ You define service responses using the `org.kie.server.api.model.ServiceResponse
 * `ResponseType _type_`: Returns either `SUCCESS` or `FAILURE`
 * `T _result_`: Returns the requested object
 
-In this example, when you dispose a container, the `ServiceResponse` returns a `void` response. When you create a container, the `ServiceResponse` returns a `KieContainerResource` object.
+In this example, when you dispose a container, the `ServiceResponse` returns a `Void` response. When you create a container, the `ServiceResponse` returns a `KieContainerResource` object.
 
 NOTE: A conversation between a client and a specific {KIE_SERVER} container in a clustered environment is secured by a unique `conversationID`. The `conversationID`  is transferred using the `X-KIE-ConversationId` REST header. If you update the container, unset the previous `conversationID`.  Use `KieServiesClient.completeConversation()` to unset the `conversationID` for Java API.
 

@@ -709,11 +709,11 @@ Starts or stops a KIE scanner that controls polling for updated KIE container de
 |Required
 
 |`status`
-|Status to be set on the new KIE container (`STARTED`, `STOPPED`)
+|Status to be set on the KIE scanner (`STARTED`, `STOPPED`)
 |Required
 
 |`poll-interval`
-|Permitted polling during in milliseconds
+|Permitted polling duration in milliseconds
 |Required only when starting scanner
 |===
 

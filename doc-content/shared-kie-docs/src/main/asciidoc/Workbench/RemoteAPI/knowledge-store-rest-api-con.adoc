@@ -13,7 +13,7 @@ With the Knowledge Store REST API, you can perform the following actions:
 Knowledge Store REST API requests require the following components:
 
 Authentication::
-The Knowledge Store REST API requires basic HTTP Authentication or token-based authentication for the user role `rest-all`. To view configured user roles for your {PRODUCT} distribution, navigate to `~/$SERVER_HOME/standalone/configuration/application-roles.properties` and `../application-users.properties`.
+The Knowledge Store REST API requires basic HTTP Authentication or token-based authentication for the user role `rest-all`. To view configured user roles for your {PRODUCT} distribution, navigate to `~/$SERVER_HOME/standalone/configuration/application-roles.properties` and `~/application-users.properties`.
 +
 --
 To add a user with the `rest-all` role, navigate to `~/$SERVER_HOME/bin` and run the following command:

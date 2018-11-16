@@ -19,7 +19,7 @@ The {CONTROLLER} Java client API requires basic HTTP Authentication for the foll
 * `rest-all` user role if you installed {CENTRAL} and you want to use the built-in {CONTROLLER}
 * `kie-server` user role if you installed the {HEADLESS_CONTROLLER} separately from {CENTRAL}
 
-To view configured user roles for your {PRODUCT} distribution, navigate to `~/$SERVER_HOME/standalone/configuration/application-roles.properties` and `../application-users.properties`.
+To view configured user roles for your {PRODUCT} distribution, navigate to `~/$SERVER_HOME/standalone/configuration/application-roles.properties` and `~/application-users.properties`.
 
 To add a user with the `kie-server` role or the `rest-all` role or both, navigate to `~/$SERVER_HOME/bin` and run the following command with the role or roles specified:
 

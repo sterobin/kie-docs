@@ -74,7 +74,7 @@ public void listContainersWithFilter() {
 --
 
 Creating and disposing KIE containers in {KIE_SERVER}::
-You can use the `createContainer` and `disposeContainer` methods in the `KieServicesClient` client to dispose and create KIE containers. In this example, when you dispose a container, the `ServiceResponse` returns a `void` response. When you create a container, the `ServiceResponse` returns a `KieContainerResource` object.
+You can use the `createContainer` and `disposeContainer` methods in the `KieServicesClient` client to dispose and create KIE containers. In this example, when you dispose a container, the `ServiceResponse` returns a `Void` response. When you create a container, the `ServiceResponse` returns a `KieContainerResource` object.
 +
 --
 .Example request to dispose and re-create a KIE container
