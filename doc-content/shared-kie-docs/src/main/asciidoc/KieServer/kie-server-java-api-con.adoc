@@ -14,7 +14,7 @@ With the {KIE_SERVER} Java client API, you can perform the following actions als
 {KIE_SERVER} Java client API requests require the following components:
 
 Authentication::
-The {KIE_SERVER} Java client API requires basic HTTP Authentication for the user role `kie-server`. To view configured user roles for your {PRODUCT} distribution, navigate to `~/$SERVER_HOME/standalone/configuration/application-roles.properties` and `~/application-users.properties`.
+The {KIE_SERVER} Java client API requires HTTP Basic authentication for the user role `kie-server`. To view configured user roles for your {PRODUCT} distribution, navigate to `~/$SERVER_HOME/standalone/configuration/application-roles.properties` and `~/application-users.properties`.
 +
 --
 To add a user with the `kie-server` role, navigate to `~/$SERVER_HOME/bin` and run the following command:
@@ -98,7 +98,7 @@ All Java client requests with the {KIE_SERVER} Java client API must define at le
 +
 --
 * Credentials of the `kie-server` user
-* {KIE_SERVER} REST API base URL, such as `http://localhost:8080/kie-server/services/rest/server`
+* {KIE_SERVER} location, such as `http://localhost:8080/kie-server/services/rest/server`
 * Marshalling format for API requests and responses (JSON, JAXB, or XSTREAM)
 * A `KieServicesConfiguration` object and a `KieServicesClient` object, which serve as the entry point for starting the server communication using the Java client API
 * A `KieServicesFactory` object defining REST protocol and user access

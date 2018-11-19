@@ -13,7 +13,7 @@ With the {CONTROLLER} REST API, you can perform the following actions:
 Requests to the {CONTROLLER} REST API require the following components:
 
 Authentication::
-The {CONTROLLER} REST API requires basic HTTP Authentication or token-based authentication for the following user roles, depending on controller type:
+The {CONTROLLER} REST API requires HTTP Basic authentication or token-based authentication for the following user roles, depending on controller type:
 +
 --
 * `rest-all` user role if you installed {CENTRAL} and you want to use the built-in {CONTROLLER}
@@ -67,13 +67,13 @@ The {CONTROLLER} REST API supports the following HTTP methods for API requests:
 * `DELETE`: Deletes a resource or resource instance
 
 Base URL::
-The base URL for {CONTROLLER} REST API requests is `\http://SERVER:PORT/CONTROLLER/rest/controller/`, such as  `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/` if you are using the {CONTROLLER} built in to {CENTRAL}.
+The base URL for {CONTROLLER} REST API requests is `\http://SERVER:PORT/CONTROLLER/rest/`, such as  `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/` if you are using the {CONTROLLER} built in to {CENTRAL}.
 
 Endpoints::
-{CONTROLLER} REST API endpoints, such as `/management/servers/{serverId}` for a specified {KIE_SERVER} template, are the URIs that you append to the {CONTROLLER} REST API base URL to access the corresponding server resource or type of server resource in {PRODUCT}.
+{CONTROLLER} REST API endpoints, such as `/controller/management/servers/{serverId}` for a specified {KIE_SERVER} template, are the URIs that you append to the {CONTROLLER} REST API base URL to access the corresponding server resource or type of server resource in {PRODUCT}.
 +
 --
-.Example request URL for `/management/servers/{serverId}` endpoint
+.Example request URL for `/controller/management/servers/{serverId}` endpoint
 `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller/management/servers/default-kieserver`
 --
 

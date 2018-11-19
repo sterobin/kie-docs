@@ -8,8 +8,8 @@ The {KIE_SERVER} REST API enables you to interact with your KIE containers and b
 * You have `kie-server` user role access to {KIE_SERVER}.
 
 .Procedure
-. Identify the relevant xref:kie-server-rest-api-endpoints-ref_kie-apis[API endpoint] to which you want to send a request, such as `[GET] /containers` to retrieve KIE containers from {KIE_SERVER}.
-. In a REST client or curl utility, enter the following components for a `GET` request to `/containers`. Adjust any request details according to your use case.
+. Identify the relevant xref:kie-server-rest-api-endpoints-ref_kie-apis[API endpoint] to which you want to send a request, such as `[GET] /server/containers` to retrieve KIE containers from {KIE_SERVER}.
+. In a REST client or curl utility, enter the following components for a `GET` request to `/server/containers`. Adjust any request details according to your use case.
 +
 --
 For REST client:
@@ -75,7 +75,7 @@ Example server response (JSON):
 ----
 --
 . For this example, copy or note the project `group-id`, `artifact-id`, and `version` (GAV) data from one of the deployed KIE containers returned in the response.
-. In your REST client or curl utility, send another API request with the following components for a `PUT` request to `/containers/{containerId}` to deploy a new KIE container with the copied project GAV data. Adjust any request details according to your use case.
+. In your REST client or curl utility, send another API request with the following components for a `PUT` request to `/server/containers/{containerId}` to deploy a new KIE container with the copied project GAV data. Adjust any request details according to your use case.
 +
 --
 For REST client:

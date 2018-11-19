@@ -3,7 +3,7 @@
 [id='kie-server-rest-api-server-containers-ref_{context}']
 = {KIE_SERVER} and KIE containers
 
-// The {KIE_SERVER} REST API supports the following endpoints for managing {KIE_SERVER} and KIE container configurations. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/server/`. All requests require basic HTTP Authentication or token-based authentication for the `kie-server` user role.
+// The {KIE_SERVER} REST API supports the following endpoints for managing {KIE_SERVER} and KIE container configurations. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
 == [GET]
 

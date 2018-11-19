@@ -19,7 +19,7 @@ ifdef::PAM,JBPM[]
 * Custom queries
 endif::PAM,JBPM[]
 
-The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/server/`. All requests require basic HTTP Authentication or token-based authentication for the `kie-server` user role.
+The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
 For the full list of {KIE_SERVER} REST API endpoints and descriptions, use one of the following resources:
 

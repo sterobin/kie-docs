@@ -13,7 +13,7 @@ With the {CONTROLLER} Java client API, you can perform the following actions als
 {CONTROLLER} Java client API requests require the following components:
 
 Authentication::
-The {CONTROLLER} Java client API requires basic HTTP Authentication for the following user roles, depending on controller type:
+The {CONTROLLER} Java client API requires HTTP Basic authentication for the following user roles, depending on controller type:
 +
 --
 * `rest-all` user role if you installed {CENTRAL} and you want to use the built-in {CONTROLLER}
@@ -119,7 +119,7 @@ All Java client requests with the {CONTROLLER} Java client API must define at le
 +
 --
 * Credentials of the `rest-all` user if you installed {CENTRAL}, or the `kie-server` user if you installed the {HEADLESS_CONTROLLER} separately from {CENTRAL}
-* {CONTROLLER} REST API or WebSocket base URL:
+* {CONTROLLER} location for REST or WebSocket protocol:
 ** Example REST URL: `\http://localhost:8080/{URL_COMPONENT_CENTRAL}/rest/controller`
 ** Example WebSocket URL: `ws://localhost:8080/headless-controller/websocket/controller`
 * Marshalling format for API requests and responses (JSON or JAXB)

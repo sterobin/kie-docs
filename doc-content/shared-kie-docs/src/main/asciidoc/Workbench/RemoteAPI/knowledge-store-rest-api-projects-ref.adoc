@@ -3,7 +3,7 @@
 [id='knowledge-store-rest-api-projects-ref_{context}']
 = Projects
 
-The Knowledge Store REST API supports the following endpoints for managing, building, and deploying projects in {CENTRAL}. The Knowledge Store REST API base URL is `\http://SERVER:PORT/{URL_COMPONENT_CENTRAL}/rest/`. All requests require basic HTTP Authentication or token-based authentication for the `rest-all` user role.
+The Knowledge Store REST API supports the following endpoints for managing, building, and deploying projects in {CENTRAL}. The Knowledge Store REST API base URL is `\http://SERVER:PORT/{URL_COMPONENT_CENTRAL}/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `rest-all` user role.
 
 [GET] /spaces/{spaceName}/projects::
 +

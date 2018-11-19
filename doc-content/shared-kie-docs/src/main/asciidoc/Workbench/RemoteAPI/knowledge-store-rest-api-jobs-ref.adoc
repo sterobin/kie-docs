@@ -48,7 +48,7 @@ Knowledge Store REST API requests, or _jobs_, can have the following statuses:
 * The request never existed.
 |===
 
-The Knowledge Store REST API supports the following endpoints for retrieving or deleting sent API requests. The Knowledge Store REST API base URL is `\http://SERVER:PORT/{URL_COMPONENT_CENTRAL}/rest/`. All requests require basic HTTP Authentication or token-based authentication for the `rest-all` user role.
+The Knowledge Store REST API supports the following endpoints for retrieving or deleting sent API requests. The Knowledge Store REST API base URL is `\http://SERVER:PORT/{URL_COMPONENT_CENTRAL}/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `rest-all` user role.
 
 [GET] /jobs/{jobId}::
 +

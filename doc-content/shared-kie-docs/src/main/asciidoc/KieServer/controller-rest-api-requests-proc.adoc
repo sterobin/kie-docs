@@ -9,8 +9,8 @@ The {CONTROLLER} REST API enables you to interact with your {KIE_SERVER} templat
 * You have `rest-all` user role access to the {CONTROLLER} if you installed {CENTRAL}, or `kie-server` user role access to the {HEADLESS_CONTROLLER} installed separately from {CENTRAL}.
 
 .Procedure
-. Identify the relevant xref:controller-rest-api-endpoints-ref_kie-apis[API endpoint] to which you want to send a request, such as `[GET] /management/servers` to retrieve {KIE_SERVER} templates from the {CONTROLLER}.
-. In a REST client or curl utility, enter the following components for a `GET` request to `/management/servers`. Adjust any request details according to your use case.
+. Identify the relevant xref:controller-rest-api-endpoints-ref_kie-apis[API endpoint] to which you want to send a request, such as `[GET] /controller/management/servers` to retrieve {KIE_SERVER} templates from the {CONTROLLER}.
+. In a REST client or curl utility, enter the following components for a `GET` request to `controller/management/servers`. Adjust any request details according to your use case.
 +
 --
 For REST client:
@@ -129,7 +129,7 @@ Example server response (JSON):
 }
 ----
 --
-. In your REST client or curl utility, send another API request with the following components for a `PUT` request to `/management/servers/{serverId}` to create a new {KIE_SERVER} template. Adjust any request details according to your use case.
+. In your REST client or curl utility, send another API request with the following components for a `PUT` request to `/controller/management/servers/{serverId}` to create a new {KIE_SERVER} template. Adjust any request details according to your use case.
 +
 --
 For REST client:

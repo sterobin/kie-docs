@@ -3,7 +3,7 @@
 [id='controller-rest-api-instances-ref_{context}']
 = {KIE_SERVER} instances and KIE containers
 
-// The {CONTROLLER} REST API supports the following endpoints for managing {KIE_SERVER} instances (remote servers) and associated KIE containers. The {CONTROLLER} REST API base URL is `\http://SERVER:PORT/CONTROLLER/rest/controller/`. All requests require basic HTTP Authentication or token-based authentication for the `rest-all` user role if you installed {CENTRAL} and you want to use the built-in {CONTROLLER}, or the `kie-server` user role if you installed the {HEADLESS_CONTROLLER} separately from {CENTRAL}.
+// The {CONTROLLER} REST API supports the following endpoints for managing {KIE_SERVER} instances (remote servers) and associated KIE containers. The {CONTROLLER} REST API base URL is `\http://SERVER:PORT/CONTROLLER/rest/controller/`. All requests require HTTP Basic authentication or token-based authentication for the `rest-all` user role if you installed {CENTRAL} and you want to use the built-in {CONTROLLER}, or the `kie-server` user role if you installed the {HEADLESS_CONTROLLER} separately from {CENTRAL}.
 
 == [GET] /runtime/servers/{serverId}/instances
 
