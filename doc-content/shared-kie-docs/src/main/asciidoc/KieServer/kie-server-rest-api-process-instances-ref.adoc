@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for managing process instances. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] /containers/{containerId}/processes
+== [GET] /server/containers/{containerId}/processes
 
 Returns a list of process definitions in a specified KIE container.
 
@@ -70,7 +70,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/employee-roster
 }
 ----
 
-== [GET] /containers/{containerId}/processes/instances
+== [GET] /server/containers/{containerId}/processes/instances
 
 Returns a list of process instances in a specified KIE container.
 
@@ -166,7 +166,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/employee-roster
 }
 ----
 
-== [DELETE] /containers/{containerId}/processes/instances
+== [DELETE] /server/containers/{containerId}/processes/instances
 
 Aborts multiple specified process instances in a specified KIE container.
 
@@ -204,7 +204,7 @@ Aborts multiple specified process instances in a specified KIE container.
 }
 ----
 
-== [GET] /containers/{containerId}/processes/instances/{processInstanceId}
+== [GET] /server/containers/{containerId}/processes/instances/{processInstanceId}
 
 Returns information about a specified process instance in a specified KIE container.
 
@@ -264,7 +264,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/employee-roster
 }
 ----
 
-== [DELETE] /containers/{containerId}/processes/instances/{processInstanceId}
+== [DELETE] /server/containers/{containerId}/processes/instances/{processInstanceId}
 
 Aborts a specified process instance in a specified KIE container.
 
@@ -302,7 +302,7 @@ Aborts a specified process instance in a specified KIE container.
 }
 ----
 
-== [GET] /containers/{containerId}/processes/instances/{processInstanceId}/nodes/instances
+== [GET] /server/containers/{containerId}/processes/instances/{processInstanceId}/nodes/instances
 
 Returns node instances for the specified process instance.
 
@@ -377,7 +377,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/employee-roster
 }
 ----
 
-== [GET] /containers/{containerId}/processes/instances/{processInstanceId}/variables
+== [GET] /server/containers/{containerId}/processes/instances/{processInstanceId}/variables
 
 Retrieves all variables for a specified process instance as a map in which the key is the variable name and the value is the variable value.
 
@@ -432,7 +432,7 @@ Retrieves all variables for a specified process instance as a map in which the k
 }
 ----
 
-== [POST] /containers/{containerId}/processes/instances/{processInstanceId}/variables
+== [POST] /server/containers/{containerId}/processes/instances/{processInstanceId}/variables
 
 Updates the values of one or more variable for a specified process instance. The request is a map in which the key is the variable name and the value is the new variable value.
 
@@ -507,7 +507,7 @@ Updates the values of one or more variable for a specified process instance. The
 }
 ----
 
-== [GET] /containers/{containerId}/processes/instances/{processInstanceId}/variables/instances
+== [GET] /server/containers/{containerId}/processes/instances/{processInstanceId}/variables/instances
 
 Returns the current variable values of a specified process instance in a specified KIE container.
 
@@ -557,7 +557,7 @@ Returns the current variable values of a specified process instance in a specifi
 }
 ----
 
-== [GET] /containers/{containerId}/processes/instances/{processInstanceId}/variables/instances/{variableName}
+== [GET] /server/containers/{containerId}/processes/instances/{processInstanceId}/variables/instances/{variableName}
 
 Returns the history of a specified variable in a specified process instance.
 
@@ -628,7 +628,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/mortgage-proces
 }
 ----
 
-== [GET] /containers/{containerId}/processes/instances/{processInstanceId}/variable/{variableName}
+== [GET] /server/containers/{containerId}/processes/instances/{processInstanceId}/variable/{variableName}
 
 Returns the value of a specified variable in a specified process instance.
 
@@ -691,7 +691,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/mortgage-proces
 }
 ----
 
-== [PUT] /containers/{containerId}/processes/instances/{processInstanceId}/variable/{variableName}
+== [PUT] /server/containers/{containerId}/processes/instances/{processInstanceId}/variable/{variableName}
 
 Creates or updates a variable for a specified process instance.
 
@@ -771,7 +771,7 @@ Creates or updates a variable for a specified process instance.
 }
 ----
 
-== [GET] /containers/{containerId}/processes/instances/{processInstanceId}/processes
+== [GET] /server/containers/{containerId}/processes/instances/{processInstanceId}/processes
 
 Returns a list of process instances for which a specified process instance is a parent process instance
 
@@ -853,7 +853,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/mortgage-proces
 }
 ----
 
-== [POST] /containers/{containerId}/processes/{processId}/instances
+== [POST] /server/containers/{containerId}/processes/{processId}/instances
 
 Starts a new process instance of a specified process.
 
@@ -928,7 +928,7 @@ Starts a new process instance of a specified process.
 }
 ----
 
-== [POST] /containers/{containerId}/processes/{processId}/instances/correlation/{correlationKey}
+== [POST] /server/containers/{containerId}/processes/{processId}/instances/correlation/{correlationKey}
 
 Starts a new process instance of a specified process and assigns a new correlation key to the process instance.
 
@@ -1008,7 +1008,7 @@ Starts a new process instance of a specified process and assigns a new correlati
 }
 ----
 
-== [GET] /containers/{containerId}/processes/instances/{processInstanceId}/workitems
+== [GET] /server/containers/{containerId}/processes/instances/{processInstanceId}/workitems
 
 Returns all work items for a specified process instance.
 
@@ -1079,7 +1079,7 @@ Returns all work items for a specified process instance.
 }
 ----
 
-== [GET] /containers/{containerId}/processes/instances/{processInstanceId}/workitems/{workItemId}
+== [GET] /server/containers/{containerId}/processes/instances/{processInstanceId}/workitems/{workItemId}
 
 Returns information about a specified work item for a specified process instance.
 
@@ -1155,7 +1155,7 @@ Returns information about a specified work item for a specified process instance
 }
 ----
 
-== [PUT] /containers/{containerId}/processes/instances/{processInstanceId}/workitems/{workItemId}/aborted
+== [PUT] /server/containers/{containerId}/processes/instances/{processInstanceId}/workitems/{workItemId}/aborted
 
 Aborts a specified work item for a specified process instance.
 
@@ -1255,7 +1255,7 @@ Completes a specified work item for a specified process instance.
 ----
 
 
-== [GET] /containers/{containerId}/processes/instances/{processInstanceId}/signals
+== [GET] /server/containers/{containerId}/processes/instances/{processInstanceId}/signals
 
 Returns all available signal names for a specified process instance.
 
@@ -1286,7 +1286,7 @@ Returns all available signal names for a specified process instance.
 
 ----
 
-== [POST] /containers/{containerId}/processes/instances/{processInstanceId}/signal/{signalName}
+== [POST] /server/containers/{containerId}/processes/instances/{processInstanceId}/signal/{signalName}
 
 Signals a specified process instance with a specified signal name and optional signal data.
 
@@ -1335,7 +1335,7 @@ Signals a specified process instance with a specified signal name and optional s
 
 ----
 
-== [POST] /containers/{containerId}/processes/instances/signal/{signalName}
+== [POST] /server/containers/{containerId}/processes/instances/signal/{signalName}
 
 Signals multiple process instances with a specified signal name.
 

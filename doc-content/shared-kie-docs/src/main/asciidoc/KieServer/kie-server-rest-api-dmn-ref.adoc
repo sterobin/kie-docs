@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for Decision Model and Notation (DMN) models. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] /containers/{containerId}/dmn
+== [GET] /server/containers/{containerId}/dmn
 
 Returns a list of DMN models in a specified KIE container.
 
@@ -53,7 +53,7 @@ Returns a list of DMN models in a specified KIE container.
 }
 ----
 
-== [POST] /containers/{containerId}/dmn
+== [POST] /server/containers/{containerId}/dmn
 
 Executes a DMN model in a specified KIE container.
 

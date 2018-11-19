@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoint for managing assets in KIE sessions. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [POST] /containers/instances/{containerId}
+== [POST] /server/containers/instances/{containerId}
 
 Executes one or more runtime commands provided with {PRODUCT} for asset-related operations, such as inserting or retracting objects in a KIE session or firing all rules. The full list of supported runtime commands is located in the `org.drools.core.command.runtime` package in your {PRODUCT} instance.
 

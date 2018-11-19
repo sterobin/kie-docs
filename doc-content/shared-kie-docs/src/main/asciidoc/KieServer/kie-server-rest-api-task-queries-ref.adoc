@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for querying task instances. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] /queries/tasks/instances/pot-owners
+== [GET] /server/queries/tasks/instances/pot-owners
 
 Returns tasks with a user defined as a potential owner.
 
@@ -106,7 +106,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/tasks/instances/po
 }
 ----
 
-== [GET] /queries/tasks/instances/admins
+== [GET] /server/queries/tasks/instances/admins
 
 Returns task instances assigned to business administrators.
 
@@ -180,7 +180,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/tasks/instances/ad
 }
 ----
 
-== [GET] /queries/tasks/instances/owners
+== [GET] /server/queries/tasks/instances/owners
 
 Returns task instances that the querying user owns.
 
@@ -254,7 +254,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/tasks/instances/ow
 }
 ----
 
-== [GET] /queries/tasks/instances
+== [GET] /server/queries/tasks/instances
 
 Returns all task instances.
 
@@ -340,7 +340,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/tasks/instances?us
 }
 ----
 
-== [GET] /queries/tasks/instances/{taskInstanceId}/events
+== [GET] /server/queries/tasks/instances/{taskInstanceId}/events
 
 Returns events for a specified task instance.
 
@@ -405,7 +405,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/tasks/instances/4/
 }
 ----
 
-== [GET] /queries/tasks/instances/{taskInstanceId}
+== [GET] /server/queries/tasks/instances/{taskInstanceId}
 
 Returns information about a specified task instance.
 
@@ -458,7 +458,7 @@ Returns information about a specified task instance.
 }
 ----
 
-== [GET] /queries/tasks/instances/workitem/{workItemId}
+== [GET] /server/queries/tasks/instances/workitem/{workItemId}
 
 Returns task instances with a specified work item.
 
@@ -511,7 +511,7 @@ Returns task instances with a specified work item.
 }
 ----
 
-== [GET] /queries/tasks/instances/process/{processInstanceId}
+== [GET] /server/queries/tasks/instances/process/{processInstanceId}
 
 Returns task instances associated with a specified process instance.
 
@@ -591,7 +591,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/tasks/instances/pr
 }
 ----
 
-== [GET] /queries/tasks/instances/variables/{variableName}
+== [GET] /server/queries/tasks/instances/variables/{variableName}
 
 Returns task instances with a specified variable.
 

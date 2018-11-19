@@ -20,7 +20,7 @@ For a list of available query mappers in {PRODUCT}, download and extract the *{P
 *<@Maciej/@Tiho: Are there any dependency-related or other prerequisites for using query service and custom queries with the REST API? I know there are when using the Java client API for example.>*
 ////
 
-== [GET] /queries/definitions
+== [GET] /server/queries/definitions
 
 Returns all custom query definitions.
 
@@ -122,7 +122,7 @@ Returns all custom query definitions.
 }
 ----
 
-== [GET] /queries/definitions/{queryName}
+== [GET] /server/queries/definitions/{queryName}
 
 Returns information about a specified custom query.
 
@@ -171,7 +171,7 @@ Returns information about a specified custom query.
 }
 ----
 
-== [POST] /queries/definitions/{queryName}
+== [POST] /server/queries/definitions/{queryName}
 
 Registers a custom query definition.
 
@@ -225,7 +225,7 @@ Registers a custom query definition.
 }
 ----
 
-== [PUT] /queries/definitions/{queryName}
+== [PUT] /server/queries/definitions/{queryName}
 
 Replaces existing custom query definition or registers it as new if the query does not already exist.
 
@@ -279,7 +279,7 @@ Replaces existing custom query definition or registers it as new if the query do
 }
 ----
 
-== [DELETE] /queries/definitions/{queryName}
+== [DELETE] /server/queries/definitions/{queryName}
 
 Deletes a specified custom query.
 
@@ -312,7 +312,7 @@ Deletes a specified custom query.
 }
 ----
 
-== [GET] /queries/definitions/{queryName}/data
+== [GET] /server/queries/definitions/{queryName}/data
 
 Returns the results of a specified custom query.
 
@@ -462,7 +462,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/definitions/jbpmPr
 }
 ----
 
-== [POST] /queries/definitions/{queryName}/filtered-data
+== [POST] /server/queries/definitions/{queryName}/filtered-data
 
 Returns the results of a specified custom query and filters the results based on a provided builder or filter request body.
 
@@ -575,7 +575,7 @@ NOTE: For a list of available query mappers and builders in {PRODUCT}, download 
 }
 ----
 
-== [POST] /queries/definitions/containers/{containerId}/query/{queryName}/filtered-data
+== [POST] /server/queries/definitions/containers/{containerId}/query/{queryName}/filtered-data
 
 Returns the results of a specified custom query on a specified KIE container and filters the results based on a provided builder or filter request body.
 

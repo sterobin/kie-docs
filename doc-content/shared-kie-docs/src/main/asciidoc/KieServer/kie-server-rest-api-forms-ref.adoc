@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for retrieving process and task forms. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] /containers/{containerId}/forms/processes/{processId}
+== [GET] /server/containers/{containerId}/forms/processes/{processId}
 
 Returns the form information for a specified process definition.
 
@@ -212,7 +212,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/evaluation_1.0.
 ----
 
 
-== [GET] /containers/{containerId}/forms/tasks/{taskInstanceId}
+== [GET] /server/containers/{containerId}/forms/tasks/{taskInstanceId}
 
 Returns the form information for a specified task instance.
 

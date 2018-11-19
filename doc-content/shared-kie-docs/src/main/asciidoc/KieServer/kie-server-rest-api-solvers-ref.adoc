@@ -7,7 +7,7 @@
 
 *<@Jiri: I struggled to create a working example :( so I need help with some example JSON request bodies and/or example JSON responses for some of the endpoints below.>*
 
-== [GET] /containers/{containerId}/solvers
+== [GET] /server/containers/{containerId}/solvers
 
 Returns a list of solvers in a specified KIE container.
 
@@ -40,7 +40,7 @@ Returns a list of solvers in a specified KIE container.
 }
 ----
 
-== [PUT] /containers/{containerId}/solvers/{solverId}
+== [PUT] /server/containers/{containerId}/solvers/{solverId}
 
 Creates a solver within a specified KIE container.
 
@@ -94,7 +94,7 @@ Creates a solver within a specified KIE container.
 }
 ----
 
-== [GET] /containers/{containerId}/solvers/{solverId}
+== [GET] /server/containers/{containerId}/solvers/{solverId}
 
 Returns the current state of the specified solver within the specified KIE container.
 
@@ -130,7 +130,7 @@ Returns the current state of the specified solver within the specified KIE conta
 }
 ----
 
-== [DELETE] /containers/{containerId}/solvers/{solverId}
+== [DELETE] /server/containers/{containerId}/solvers/{solverId}
 
 ⁠Disposes the specified solver within the specified KIE container. If the solver is still running, this request terminates the solver and then disposes it.
 
@@ -168,7 +168,7 @@ Returns the current state of the specified solver within the specified KIE conta
 }
 ----
 
-== [POST] /containers/{containerId}/solvers/{solverId}/state/solving
+== [POST] /server/containers/{containerId}/solvers/{solverId}/state/solving
 
 Starts the specified solver within its KIE container to solve a given planning problem.
 
@@ -287,7 +287,7 @@ NOTE: To get the best solution for the planning problem, you can first send a `G
 ----
 
 
-== [POST] /containers/{containerId}/solvers/{solverId}/state/terminating-early
+== [POST] /server/containers/{containerId}/solvers/{solverId}/state/terminating-early
 
 Stops the specified solver if it is running in the specified KIE container. This request does not delete the solver. The best solution can still be retrieved.
 
@@ -318,7 +318,7 @@ Stops the specified solver if it is running in the specified KIE container. This
 
 ----
 
-== [GET] /containers/{containerId}/solvers/{solverId}/bestsolution
+== [GET] /server/containers/{containerId}/solvers/{solverId}/bestsolution
 
 Returns the best solution from a specified solver within the specified KIE container at the time the request is made. If the solver is still running (with a current status of `SOLVING`), then this request returns the best solution found up to the point of the latest completion. Future requests after the solver completes might return a better solution.⁠
 
@@ -555,7 +555,7 @@ Returns the best solution from a specified solver within the specified KIE conta
 }
 ----
 
-== [POST] /containers/{containerId}/solvers/{solverId}/problemfactchanges
+== [POST] /server/containers/{containerId}/solvers/{solverId}/problemfactchanges
 
 Adds one or more `ProblemFactChanges` updates to the data set that the specified solver currently optimizes.
 
@@ -597,7 +597,7 @@ Adds one or more `ProblemFactChanges` updates to the data set that the specified
 
 ----
 
-== [GET] /containers/{containerId}/solvers/{solverId}/problemfactchanges/processed
+== [GET] /server/containers/{containerId}/solvers/{solverId}/problemfactchanges/processed
 
 Returns the status of all `ProblemFactChanges` updates that have been applied to the specified solver. The response status is `true` if the solver processed all problem fact changes, or `false` if the solver did not process the changes.
 

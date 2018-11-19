@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for managing process and task definitions. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] /containers/{containerId}/processes/definitions/{processId}
+== [GET] /server/containers/{containerId}/processes/definitions/{processId}
 
 Returns entity and task information for a specified process.
 
@@ -62,7 +62,7 @@ Returns entity and task information for a specified process.
 }
 ----
 
-== [GET] /containers/{containerId}/processes/definitions/{processId}/variables
+== [GET] /server/containers/{containerId}/processes/definitions/{processId}/variables
 
 Returns the variables of a specified process.
 
@@ -98,7 +98,7 @@ Returns the variables of a specified process.
 ----
 
 
-== [GET] /containers/{containerId}/processes/definitions/{processId}/tasks/service
+== [GET] /server/containers/{containerId}/processes/definitions/{processId}/tasks/service
 
 Returns all service tasks for a specified process.
 
@@ -129,7 +129,7 @@ Returns all service tasks for a specified process.
 
 ----
 
-== [GET] /containers/{containerId}/processes/definitions/{processId}/tasks/users
+== [GET] /server/containers/{containerId}/processes/definitions/{processId}/tasks/users
 
 Returns all user tasks for a specified process. The response also contains maps of the input and output parameters. The key is the parameter name and the value is the type of parameter.
 
@@ -223,7 +223,7 @@ Returns all user tasks for a specified process. The response also contains maps 
 }
 ----
 
-== [GET] /containers/{containerId}/processes/definitions/{processId}/subprocesses
+== [GET] /server/containers/{containerId}/processes/definitions/{processId}/subprocesses
 
 Returns a list of reusable sub-processes for a specified process.
 
@@ -254,7 +254,7 @@ Returns a list of reusable sub-processes for a specified process.
 
 ----
 
-== [GET] /containers/{containerId}/processes/definitions/{processId}/entities
+== [GET] /server/containers/{containerId}/processes/definitions/{processId}/entities
 
 Returns a list of the entities associated with a specified process.
 
@@ -298,7 +298,7 @@ Returns a list of the entities associated with a specified process.
 }
 ----
 
-== [GET] /containers/{containerId}/processes/definitions/{processId}/tasks/users/{taskName}/inputs
+== [GET] /server/containers/{containerId}/processes/definitions/{processId}/tasks/users/{taskName}/inputs
 
 Returns input parameter names and values for a specified task in a specified process.
 
@@ -346,7 +346,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/mortgage-proces
 }
 ----
 
-== [GET] /containers/{containerId}/processes/definitions/{processId}/tasks/users/{taskName}/outputs
+== [GET] /server/containers/{containerId}/processes/definitions/{processId}/tasks/users/{taskName}/outputs
 
 Returns output parameter names and values for a specified task in a specified process.
 

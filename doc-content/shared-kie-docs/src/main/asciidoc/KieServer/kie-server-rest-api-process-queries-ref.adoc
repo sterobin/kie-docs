@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for querying process definitions and process instances. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] /queries/processes/instances
+== [GET] /server/queries/processes/instances
 
 Returns all process instances filtered by optional parameters.
 
@@ -125,7 +125,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/processes/instance
 }
 ----
 
-== [GET] /queries/processes/{processId}/instances
+== [GET] /server/queries/processes/{processId}/instances
 
 Returns all process instances for a specified process.
 
@@ -245,7 +245,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/processes/Mortgage
 }
 ----
 
-== [GET] /queries/containers/{containerId}/process/instances
+== [GET] /server/queries/containers/{containerId}/process/instances
 
 Returns all process instances for a specified KIE container.
 
@@ -322,7 +322,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/containers/mortgag
 }
 ----
 
-== [GET] /queries/processes/instances/correlation/{correlationKey}
+== [GET] /server/queries/processes/instances/correlation/{correlationKey}
 
 Returns process instances with a specified correlation key.
 
@@ -394,7 +394,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/processes/instance
 }
 ----
 
-== [GET] /queries/processes/instance/correlation/{correlationKey}
+== [GET] /server/queries/processes/instance/correlation/{correlationKey}
 
 Returns information about a single process instance with a specified correlation key.
 
@@ -461,7 +461,7 @@ Returns information about a single process instance with a specified correlation
 }
 ----
 
-== [GET] /queries/processes/instances/{processInstanceId}
+== [GET] /server/queries/processes/instances/{processInstanceId}
 
 Returns information about a specified process instance.
 
@@ -542,7 +542,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/processes/instance
 }
 ----
 
-== [GET] /queries/processes/instances/variables/{variableName}
+== [GET] /server/queries/processes/instances/variables/{variableName}
 
 Returns process instances with a specified variable.
 
@@ -662,7 +662,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/processes/instance
 }
 ----
 
-== [GET] /queries/processes/instances/{processInstanceId}/variables/instances
+== [GET] /server/queries/processes/instances/{processInstanceId}/variables/instances
 
 Returns current variable values of a specified process instance.
 
@@ -707,7 +707,7 @@ Returns current variable values of a specified process instance.
 }
 ----
 
-== [GET] /queries/processes/instances/{processInstanceId}/variables/instances/{variableName}
+== [GET] /server/queries/processes/instances/{processInstanceId}/variables/instances/{variableName}
 
 Returns the history of a specified variable in a specified process instance.
 
@@ -773,7 +773,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/processes/instance
 }
 ----
 
-== [GET] /queries/containers/{containerId}/processes/definitions
+== [GET] /server/queries/containers/{containerId}/processes/definitions
 
 Returns all process definitions in a specified KIE container.
 
@@ -838,7 +838,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/containers/mortgag
 }
 ----
 
-== [GET] /queries/processes/definitions
+== [GET] /server/queries/processes/definitions
 
 Returns all process definitions.
 
@@ -939,7 +939,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/processes/definiti
 }
 ----
 
-== [GET] /queries/containers/{containerId}/processes/definitions/{processId}
+== [GET] /server/queries/containers/{containerId}/processes/definitions/{processId}
 
 Returns information about a specified process definition in a specified KIE container.
 
@@ -979,7 +979,7 @@ Returns information about a specified process definition in a specified KIE cont
 }
 ----
 
-== [GET] /queries/processes/definitions/{processId}
+== [GET] /server/queries/processes/definitions/{processId}
 
 Returns all process definitions for a specified process.
 
@@ -1054,7 +1054,7 @@ Returns all process definitions for a specified process.
 }
 ----
 
-== [GET] /queries/processes/instances/{processInstanceId}/nodes/instances
+== [GET] /server/queries/processes/instances/{processInstanceId}/nodes/instances
 
 Returns node instances for a specified process instance.
 
@@ -1124,7 +1124,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/processes/instance
 }
 ----
 
-== [GET] /queries/processes/instances/{processInstanceId}/wi-nodes/instances/{workItemId}
+== [GET] /server/queries/processes/instances/{processInstanceId}/wi-nodes/instances/{workItemId}
 
 Returns node instances for a specified work item in a specified process instance.
 

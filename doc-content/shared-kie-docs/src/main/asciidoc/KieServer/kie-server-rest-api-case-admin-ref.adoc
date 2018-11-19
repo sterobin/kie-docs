@@ -5,7 +5,7 @@
 
 //The {KIE_SERVER} REST API supports the following endpoints for case instance administration. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] admin/cases/instances
+== [GET] /server/admin/cases/instances
 
 Returns case instances without authentication checks.
 
@@ -143,7 +143,7 @@ http://localhost:8080/kie-server/services/rest/server/admin/cases/instances?page
 }
 ----
 
-== [PUT] admin/containers/{containerId}/cases/instances/{caseId}
+== [PUT] /server/admin/containers/{containerId}/cases/instances/{caseId}
 
 Migrates a specified case instance to another KIE container and case definition.
 

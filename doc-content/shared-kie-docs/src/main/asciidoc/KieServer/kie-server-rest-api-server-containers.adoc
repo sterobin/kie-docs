@@ -53,7 +53,7 @@ Returns information about the {KIE_SERVER}. The endpoint for this request is the
 
 //The `<capabilities>` tags provide information about your execution server. See <need section like "_extensions" in Dev Guide> for more information about the execution server extensions.
 
-== [GET] /state
+== [GET] /server/state
 
 Returns information about the current state and configurations of the {KIE_SERVER}.
 
@@ -139,7 +139,7 @@ Returns information about the current state and configurations of the {KIE_SERVE
 ////
 // Not yet available. Will uncomment and update once supported. (Stetson, Oct 9, 2018)
 
-== [GET] /readycheck
+== [GET] /server/readycheck
 
 Returns information about {KIE_SERVER} availability and readiness to accept requests.
 
@@ -149,7 +149,7 @@ Returns information about {KIE_SERVER} availability and readiness to accept requ
 
 ----
 
-== [GET] /healthcheck
+== [GET] /server/healthcheck
 
 Returns the health status of {KIE_SERVER} capabilities.
 
@@ -274,7 +274,7 @@ Returns the health status of {KIE_SERVER} capabilities.
 ]
 ----
 ////
-== [POST] /config
+== [POST] /server/config
 
 Executes one or more {KIE_SERVER} commands provided with {PRODUCT} for server-related or container-related operations, such as retrieving server information or creating or deleting a container. The full list of supported {KIE_SERVER} commands is located in the `org.kie.server.api.commands` package in your {PRODUCT} instance.
 
@@ -383,7 +383,7 @@ Executes one or more {KIE_SERVER} commands provided with {PRODUCT} for server-re
 }
 ----
 
-== [GET] /containers
+== [GET] /server/containers
 
 Returns a list of KIE containers on the {KIE_SERVER}.
 
@@ -545,7 +545,7 @@ http://localhost:8080/kie-server/services/rest/server/containers?groupId=com.red
 }
 ----
 
-== [GET] /containers/{containerId}
+== [GET] /server/containers/{containerId}
 
 Returns information about a specified KIE container.
 
@@ -634,7 +634,7 @@ Returns information about a specified KIE container.
 }
 ----
 
-== [PUT] /containers/{containerId}
+== [PUT] /server/containers/{containerId}
 
 Creates a new KIE container in the {KIE_SERVER} with a specified KIE container ID. You set the KIE container configurations in the request body.
 
@@ -743,7 +743,7 @@ Creates a new KIE container in the {KIE_SERVER} with a specified KIE container I
 }
 ----
 
-== [DELETE] /containers/{containerId}
+== [DELETE] /server/containers/{containerId}
 ⁠
 Disposes a specified KIE container.
 
@@ -775,7 +775,7 @@ Disposes a specified KIE container.
 }
 ----
 
-== [GET] /containers/{containerId}/release-id
+== [GET] /server/containers/{containerId}/release-id
 
 Returns release ID information (group ID, artifact ID, version) for a specified KIE container.
 
@@ -813,7 +813,7 @@ Returns release ID information (group ID, artifact ID, version) for a specified 
 }
 ----
 
-== [POST] /containers/{containerId}/release-id
+== [POST] /server/containers/{containerId}/release-id
 
 Updates release ID information (group ID, artifact ID, version) for a specified KIE container.
 
@@ -866,7 +866,7 @@ Updates release ID information (group ID, artifact ID, version) for a specified 
 }
 ----
 
-== [GET] /containers/{containerId}/scanner
+== [GET] /server/containers/{containerId}/scanner
 
 Returns information about the KIE scanner used for automatic updates in a specified KIE container, if applicable.
 
@@ -903,7 +903,7 @@ Returns information about the KIE scanner used for automatic updates in a specif
 }
 ----
 
-== [POST] /containers/{containerId}/scanner
+== [POST] /server/containers/{containerId}/scanner
 
 Starts or stops a KIE scanner that controls polling for updated KIE container deployments, if applicable.
 

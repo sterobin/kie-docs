@@ -5,7 +5,7 @@
 
 //The {KIE_SERVER} REST API supports the following endpoints for managing case instances. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] /containers/{containerId}/cases/definitions
+== [GET] /server/containers/{containerId}/cases/definitions
 
 Returns case definitions in a specified KIE container.
 
@@ -124,7 +124,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [GET] /containers/{containerId}/cases/definitions/{caseDefId}
+== [GET] /server/containers/{containerId}/cases/definitions/{caseDefId}
 
 Returns information about a specified case definition.
 
@@ -218,7 +218,7 @@ Returns information about a specified case definition.
 }
 ----
 
-== [GET] /containers/{containerId}/cases/instances
+== [GET] /server/containers/{containerId}/cases/instances
 
 Returns case instances in a specified KIE container.
 
@@ -310,7 +310,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [GET] /containers/{containerId}/cases/instances/{caseId}
+== [GET] /server/containers/{containerId}/cases/instances/{caseId}
 
 Returns information about a specified case instance.
 
@@ -408,7 +408,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [POST] /containers/{containerId}/cases/instances/{caseId}
+== [POST] /server/containers/{containerId}/cases/instances/{caseId}
 
 Closes a specified case instance.
 
@@ -451,7 +451,7 @@ Closes a specified case instance.
 }
 ----
 
-== [POST] /containers/{containerId}/cases/{caseDefId}/instances/{caseId}
+== [POST] /server/containers/{containerId}/cases/{caseDefId}/instances/{caseId}
 
 Reopens a closed case instance for a specified case definition.
 
@@ -515,7 +515,7 @@ Reopens a closed case instance for a specified case definition.
 }
 ----
 
-== [DELETE] /containers/{containerId}/cases/instances/{caseId}
+== [DELETE] /server/containers/{containerId}/cases/instances/{caseId}
 
 Aborts or permanently destroys a specified case instance.
 
@@ -558,7 +558,7 @@ Aborts or permanently destroys a specified case instance.
 }
 ----
 
-== [GET] /containers/{containerId}/cases/{caseDefId}/instances
+== [GET] /server/containers/{containerId}/cases/{caseDefId}/instances
 
 Returns case instances for a specified case definition.
 
@@ -638,7 +638,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [POST] /containers/{containerId}/cases/{caseDefId}/instances
+== [POST] /server/containers/{containerId}/cases/{caseDefId}/instances
 
 Starts a new case instance for a specified case definition.
 
@@ -697,7 +697,7 @@ Starts a new case instance for a specified case definition.
 }
 ----
 
-== [GET] /containers/{containerId}/cases/instances/{caseId}/milestones
+== [GET] /server/containers/{containerId}/cases/instances/{caseId}/milestones
 
 Returns milestones for a specified case instance.
 
@@ -785,7 +785,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [GET] /containers/{containerId}/cases/instances/{caseId}/stages
+== [GET] /server/containers/{containerId}/cases/instances/{caseId}/stages
 
 Returns milestones for a specified case instance.
 
@@ -868,7 +868,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [POST] /containers/{containerId}/cases/instances/{caseId}/tasks/{nodeName}
+== [POST] /server/containers/{containerId}/cases/instances/{caseId}/tasks/{nodeName}
 
 Triggers a specified ad hoc fragment in a specified case instance.
 
@@ -938,7 +938,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [POST] /containers/{containerId}/cases/instances/{caseId}/stages/{caseStageId}/tasks/{nodeName}
+== [POST] /server/containers/{containerId}/cases/instances/{caseId}/stages/{caseStageId}/tasks/{nodeName}
 
 Triggers a specified ad hoc fragment in the specified stage of a specified case instance.
 
@@ -1013,7 +1013,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [GET] /containers/{containerId}/cases/instances/{caseId}/comments
+== [GET] /server/containers/{containerId}/cases/instances/{caseId}/comments
 
 Returns comments from a specified case instance.
 
@@ -1088,7 +1088,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [POST] /containers/{containerId}/cases/instances/{caseId}/comments
+== [POST] /server/containers/{containerId}/cases/instances/{caseId}/comments
 
 Adds a comment to a specified case instance.
 
@@ -1153,7 +1153,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [PUT] /containers/{containerId}/cases/instances/{caseId}/comments/{caseCommentId}
+== [PUT] /server/containers/{containerId}/cases/instances/{caseId}/comments/{caseCommentId}
 
 Updates a specified comment in a specified case instance.
 
@@ -1223,7 +1223,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [DELETE] /containers/{containerId}/cases/instances/{caseId}/comments/{caseCommentId}
+== [DELETE] /server/containers/{containerId}/cases/instances/{caseId}/comments/{caseCommentId}
 
 Deletes a specified comment in a specified case instance.
 
@@ -1266,7 +1266,7 @@ Deletes a specified comment in a specified case instance.
 }
 ----
 
-== [GET] /containers/{containerId}/cases/instances/{caseId}/caseFile
+== [GET] /server/containers/{containerId}/cases/instances/{caseId}/caseFile
 
 Returns data from the case files of a specified case instance.
 
@@ -1311,7 +1311,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [POST] /containers/{containerId}/cases/instances/{caseId}/caseFile
+== [POST] /server/containers/{containerId}/cases/instances/{caseId}/caseFile
 
 Adds data as case files in a specified case instance.
 
@@ -1372,7 +1372,7 @@ Adds data as case files in a specified case instance.
 }
 ----
 
-== [DELETE] /containers/{containerId}/cases/instances/{caseId}/caseFile
+== [DELETE] /server/containers/{containerId}/cases/instances/{caseId}/caseFile
 
 Deletes one or more specified case file data items from a specified case instance.
 
@@ -1421,7 +1421,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [GET] /containers/{containerId}/cases/instances/{caseId}/caseFile/{dataId}
+== [GET] /server/containers/{containerId}/cases/instances/{caseId}/caseFile/{dataId}
 
 Returns the value of a specified case file data item in a specified case instance.
 
@@ -1461,7 +1461,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 "Content from hardware specification (`hwSpec`) case file."
 ----
 
-== [POST] /containers/{containerId}/cases/instances/{caseId}/caseFile/{dataId}
+== [POST] /server/containers/{containerId}/cases/instances/{caseId}/caseFile/{dataId}
 
 Adds a single data item as a case file in a specified case instance.
 
@@ -1526,7 +1526,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [POST] /containers/{containerId}/cases/instances/{caseId}/tasks
+== [POST] /server/containers/{containerId}/cases/instances/{caseId}/tasks
 
 Adds a dynamic user task or service task to the specified case instance.
 
@@ -1590,7 +1590,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [POST] /containers/{containerId}/cases/instances/{caseId}/stages/{caseStageId}/tasks
+== [POST] /server/containers/{containerId}/cases/instances/{caseId}/stages/{caseStageId}/tasks
 
 Adds a dynamic user task or service task to the specified stage in a specified case instance.
 
@@ -1659,7 +1659,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [POST] /containers/{containerId}/cases/instances/{caseId}/stages/{caseStageId}/processes/{processId}
+== [POST] /server/containers/{containerId}/cases/instances/{caseId}/stages/{caseStageId}/processes/{processId}
 
 Adds a dynamic subprocess to the specified stage in a specified case instance.
 
@@ -1726,7 +1726,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [POST] /containers/{containerId}/cases/instances/{caseId}/processes/{processId}
+== [POST] /server/containers/{containerId}/cases/instances/{caseId}/processes/{processId}
 
 Adds a dynamic subprocess to a specified case instance.
 
@@ -1788,7 +1788,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [GET] /containers/{containerId}/cases/instances/{caseId}/adhocfragments
+== [GET] /server/containers/{containerId}/cases/instances/{caseId}/adhocfragments
 
 Returns ad hoc fragments for a specified case instance.
 
@@ -1850,7 +1850,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [GET] /containers/{containerId}/cases/instances/{caseId}/processes/instances
+== [GET] /server/containers/{containerId}/cases/instances/{caseId}/processes/instances
 
 Returns process instances in a specified case instance.
 
@@ -1951,7 +1951,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [GET] /containers/{containerId}/cases/instances/{caseId}/nodes/instances
+== [GET] /server/containers/{containerId}/cases/instances/{caseId}/nodes/instances
 
 Returns node instances for a specified case instance.
 
@@ -2123,7 +2123,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [GET] /containers/{containerId}/cases/instances/{caseId}/roles
+== [GET] /server/containers/{containerId}/cases/instances/{caseId}/roles
 
 Returns role assignments for a specified case instance.
 
@@ -2176,7 +2176,7 @@ Returns role assignments for a specified case instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/cases/instances/{caseId}/roles/{caseRoleName}
+== [PUT] /server/containers/{containerId}/cases/instances/{caseId}/roles/{caseRoleName}
 
 Assigns a specified case role to a specified user and group for a specified case instance.
 
@@ -2237,7 +2237,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/itorders_1.0.0-
 }
 ----
 
-== [DELETE] /containers/{containerId}/cases/instances/{caseId}/roles/{caseRoleName}
+== [DELETE] /server/containers/{containerId}/cases/instances/{caseId}/roles/{caseRoleName}
 
 Removes an assigned case role from a specified user and group for a specified case instance.
 

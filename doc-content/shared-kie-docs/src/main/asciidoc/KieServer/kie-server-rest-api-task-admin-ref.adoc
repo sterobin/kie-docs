@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for task instance administration. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [PUT] /admin/containers/{containerId}/tasks/{taskInstanceId}/pot-owners
+== [PUT] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/pot-owners
 
 Adds users and groups as potential owners to a specified task instance.
 
@@ -67,7 +67,7 @@ Adds users and groups as potential owners to a specified task instance.
 }
 ----
 
-== [PUT] /admin/containers/{containerId}/tasks/{taskInstanceId}/exl-owners
+== [PUT] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/exl-owners
 
 Adds users and groups to be excluded from being owners for a specified task instance.
 
@@ -129,7 +129,7 @@ Adds users and groups to be excluded from being owners for a specified task inst
 }
 ----
 
-== [PUT] /admin/containers/{containerId}/tasks/{taskInstanceId}/admins
+== [PUT] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/admins
 
 Adds business administrator users or groups to a specified task instance.
 
@@ -191,7 +191,7 @@ Adds business administrator users or groups to a specified task instance.
 }
 ----
 
-== [DELETE] /admin/containers/{containerId}/tasks/{taskInstanceId}/pot-owners/users/{entityId}
+== [DELETE] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/pot-owners/users/{entityId}
 
 Deletes specified users previously added as potential owners for a specified task instance. The task must be active.
 
@@ -234,7 +234,7 @@ Deletes specified users previously added as potential owners for a specified tas
 }
 ----
 
-== [DELETE] /admin/containers/{containerId}/tasks/{taskInstanceId}/pot-owners/groups/{entityId}
+== [DELETE] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/pot-owners/groups/{entityId}
 
 Deletes specified groups previously added as potential owners for a specified task instance. The task must be active.
 
@@ -277,7 +277,7 @@ Deletes specified groups previously added as potential owners for a specified ta
 }
 ----
 
-== [DELETE] /admin/containers/{containerId}/tasks/{taskInstanceId}/exl-owners/users/{entityId}
+== [DELETE] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/exl-owners/users/{entityId}
 
 Deletes specified users previously added as excluded owners for a specified task instance. The task must be active.
 
@@ -320,7 +320,7 @@ Deletes specified users previously added as excluded owners for a specified task
 }
 ----
 
-== [DELETE] /admin/containers/{containerId}/tasks/{taskInstanceId}/exl-owners/groups/{entityId}
+== [DELETE] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/exl-owners/groups/{entityId}
 
 Deletes specified groups previously added as excluded owners for a specified task instance. The task must be active.
 
@@ -363,7 +363,7 @@ Deletes specified groups previously added as excluded owners for a specified tas
 }
 ----
 
-== [DELETE] /admin/containers/{containerId}/tasks/{taskInstanceId}/admins/users/{entityId}
+== [DELETE] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/admins/users/{entityId}
 
 Deletes specified users previously added as business administrators for a specified task instance. The task must be active.
 
@@ -406,7 +406,7 @@ Deletes specified users previously added as business administrators for a specif
 }
 ----
 
-== [DELETE] /admin/containers/{containerId}/tasks/{taskInstanceId}/admins/groups/{entityId}
+== [DELETE] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/admins/groups/{entityId}
 
 Deletes specified groups previously added as business administrators for a specified task instance. The task must be active.
 
@@ -449,7 +449,7 @@ Deletes specified groups previously added as business administrators for a speci
 }
 ----
 
-== [PUT] /admin/containers/{containerId}/tasks/{taskInstanceId}/contents/input
+== [PUT] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/contents/input
 
 Adds input data to a specified task instance.
 
@@ -506,7 +506,7 @@ Adds input data to a specified task instance.
 }
 ----
 
-== [DELETE] /admin/containers/{containerId}/tasks/{taskInstanceId}/contents/input
+== [DELETE] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/contents/input
 
 Deletes input data by parameter name from a specified task instance.
 
@@ -555,7 +555,7 @@ http://localhost:8080/kie-server/services/rest/server/admin/containers/evaluatio
 }
 ----
 
-== [DELETE] /admin/containers/{containerId}/tasks/{taskInstanceId}/contents/output
+== [DELETE] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/contents/output
 
 Deletes output data by parameter name from a specified task instance.
 
@@ -604,7 +604,7 @@ http://localhost:8080/kie-server/services/rest/server/admin/containers/evaluatio
 }
 ----
 
-== [GET] /admin/containers/{containerId}/tasks/{taskInstanceId}/reassignments
+== [GET] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/reassignments
 
 Returns task reassignments for a specified task instance.
 
@@ -654,7 +654,7 @@ Returns task reassignments for a specified task instance.
 }
 ----
 
-== [POST] /admin/containers/{containerId}/tasks/{taskInstanceId}/reassignments
+== [POST] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/reassignments
 
 Schedules a specified task instance to be reassigned to specified users or groups and returns the ID of the reassignment.
 
@@ -724,7 +724,7 @@ Schedules a specified task instance to be reassigned to specified users or group
 }
 ----
 
-== [DELETE] /admin/containers/{containerId}/tasks/{taskInstanceId}/reassignments/{reassignmentId}
+== [DELETE] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/reassignments/{reassignmentId}
 
 Deletes a specified reassignment for a specified task instance.
 
@@ -767,7 +767,7 @@ Deletes a specified reassignment for a specified task instance.
 }
 ----
 
-== [GET] /admin/containers/{containerId}/tasks/{taskInstanceId}/notifications
+== [GET] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/notifications
 
 Returns notifications created for a specified task instance.
 
@@ -818,7 +818,7 @@ Returns notifications created for a specified task instance.
 }
 ----
 
-== [POST] /admin/containers/{containerId}/tasks/{taskInstanceId}/notifications
+== [POST] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/notifications
 
 Creates an email notification for the specified task instance and returns the ID of the new notification.
 
@@ -890,7 +890,7 @@ Creates an email notification for the specified task instance and returns the ID
 }
 ----
 
-== [Delete] /admin/containers/{containerId}/tasks/{taskInstanceId}/notifications/{notificationId}
+== [Delete] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/notifications/{notificationId}
 
 Deletes a specified email notification from a specified task instance.
 
@@ -933,7 +933,7 @@ Deletes a specified email notification from a specified task instance.
 }
 ----
 
-== [GET] /admin/containers/{containerId}/tasks/errors
+== [GET] /server/admin/containers/{containerId}/tasks/errors
 
 Returns all task execution errors for a specified KIE container.
 
@@ -1033,7 +1033,7 @@ http://localhost:8080/kie-server/services/rest/server/admin/containers/evaluatio
 }
 ----
 
-== [GET] /admin/containers/{containerId}/tasks/{taskInstanceId}/errors
+== [GET] /server/admin/containers/{containerId}/tasks/{taskInstanceId}/errors
 
 Returns task execution errors for a specified task instance.
 
@@ -1112,7 +1112,7 @@ http://localhost:8080/kie-server/services/rest/server/admin/containers/evaluatio
 }
 ----
 
-== [PUT] /admin/containers/{containerId}/tasks/errors
+== [PUT] /server/admin/containers/{containerId}/tasks/errors
 
 Acknowledges one or more task execution errors in a specified KIE container.
 
@@ -1156,7 +1156,7 @@ http://localhost:8080/kie-server/services/rest/server/admin/containers/evaluatio
 }
 ----
 
-== [GET] /admin/containers/{containerId}/tasks/errors/{errorId}
+== [GET] /server/admin/containers/{containerId}/tasks/errors/{errorId}
 
 Returns information about a specified task execution error.
 
@@ -1200,7 +1200,7 @@ Returns information about a specified task execution error.
 }
 ----
 
-== [PUT] /admin/containers/{containerId}/tasks/errors/{errorId}
+== [PUT] /server/admin/containers/{containerId}/tasks/errors/{errorId}
 
 Acknowledges a specified task execution error.
 

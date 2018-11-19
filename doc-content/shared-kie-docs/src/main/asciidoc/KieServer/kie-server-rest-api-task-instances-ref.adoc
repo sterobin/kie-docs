@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for managing task instances. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/activated
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/activated
 
 Activates a specified task instance to be progressed.
 
@@ -48,7 +48,7 @@ Activates a specified task instance to be progressed.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/claimed
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/claimed
 
 Claims (reserves) a specified task instance for the user sending the request.
 
@@ -91,7 +91,7 @@ Claims (reserves) a specified task instance for the user sending the request.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/started
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/started
 
 Starts a specified task instance.
 
@@ -134,7 +134,7 @@ Starts a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/stopped
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/stopped
 
 Stops a specified task instance.
 
@@ -177,7 +177,7 @@ Stops a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/completed
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/completed
 
 Completes a specified task instance.
 
@@ -243,7 +243,7 @@ Completes a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/released
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/released
 
 Releases a specified task instance from being claimed by the task owner.
 
@@ -286,7 +286,7 @@ Releases a specified task instance from being claimed by the task owner.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/delegated
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/delegated
 
 Delegates a specified task instance to a specified target user as the new task owner.
 
@@ -334,7 +334,7 @@ Delegates a specified task instance to a specified target user as the new task o
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/forwarded
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/forwarded
 
 Forwards a specified task instance to a specified target user for review or for suggested delegation.
 
@@ -382,7 +382,7 @@ Forwards a specified task instance to a specified target user for review or for 
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/nominated
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/nominated
 
 Nominates one or more potential owners to whom the task instance should be assigned.
 
@@ -430,7 +430,7 @@ Nominates one or more potential owners to whom the task instance should be assig
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/exited
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/exited
 
 Exits a specified task instance.
 
@@ -473,7 +473,7 @@ Exits a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/failed
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/failed
 
 Fails a specified task instance.
 
@@ -534,7 +534,7 @@ Fails a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/skipped
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/skipped
 
 Skips a specified task instance within the sequence of tasks in the process instance
 
@@ -577,7 +577,7 @@ Skips a specified task instance within the sequence of tasks in the process inst
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/suspended
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/suspended
 
 Suspends a specified task instance.
 
@@ -620,7 +620,7 @@ Suspends a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/states/resumed
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/states/resumed
 
 Resumes a specified task instance.
 
@@ -663,7 +663,7 @@ Resumes a specified task instance.
 }
 ----
 
-== [GET] /containers/{containerId}/tasks/{taskInstanceId}
+== [GET] /server/containers/{containerId}/tasks/{taskInstanceId}
 
 Returns information about a specified task instance.
 
@@ -748,7 +748,7 @@ http://localhost:8080/kie-server/services/rest/server/containers/evaluation_1.0.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}
 
 Updates information in a specified task instance.
 
@@ -808,7 +808,7 @@ Updates information in a specified task instance.
 }
 ----
 
-== [GET] /containers/{containerId}/tasks/{taskInstanceId}/attachments
+== [GET] /server/containers/{containerId}/tasks/{taskInstanceId}/attachments
 
 Returns all attachments for a specified task instance.
 
@@ -862,7 +862,7 @@ Returns all attachments for a specified task instance.
 }
 ----
 
-== [POST] /containers/{containerId}/tasks/{taskInstanceId}/attachments
+== [POST] /server/containers/{containerId}/tasks/{taskInstanceId}/attachments
 
 Adds an attachment to a specified task instance and returns the ID of the new attachment.
 
@@ -925,7 +925,7 @@ Adds an attachment to a specified task instance and returns the ID of the new at
 }
 ----
 
-== [GET] /containers/{containerId}/tasks/{taskInstanceId}/attachments/{attachmentId}
+== [GET] /server/containers/{containerId}/tasks/{taskInstanceId}/attachments/{attachmentId}
 
 Returns information about a specified attachment for a specified task instance.
 
@@ -973,7 +973,7 @@ Returns information about a specified attachment for a specified task instance.
 }
 ----
 
-== [DELETE] /containers/{containerId}/tasks/{taskInstanceId}/attachments/{attachmentId}
+== [DELETE] /server/containers/{containerId}/tasks/{taskInstanceId}/attachments/{attachmentId}
 
 Deletes a specified attachment from a specified task instance.
 
@@ -1016,7 +1016,7 @@ Deletes a specified attachment from a specified task instance.
 }
 ----
 
-== [GET] /containers/{containerId}/tasks/{taskInstanceId}/attachments/{attachmentId}/content
+== [GET] /server/containers/{containerId}/tasks/{taskInstanceId}/attachments/{attachmentId}/content
 
 Returns the content of a specified attachment for a specified task instance.
 
@@ -1054,7 +1054,7 @@ Returns the content of a specified attachment for a specified task instance.
 }
 ----
 
-== [GET] /containers/{containerId}/tasks/{taskInstanceId}/comments
+== [GET] /server/containers/{containerId}/tasks/{taskInstanceId}/comments
 
 Returns all comments in a specified task instance.
 
@@ -1102,7 +1102,7 @@ Returns all comments in a specified task instance.
 }
 ----
 
-== [GET] /containers/{containerId}/tasks/{taskInstanceId}/comments/{commentId}
+== [GET] /server/containers/{containerId}/tasks/{taskInstanceId}/comments/{commentId}
 
 Returns a specified comment from a specified task instance.
 
@@ -1143,7 +1143,7 @@ Returns a specified comment from a specified task instance.
 }
 ----
 
-== [POST] /containers/{containerId}/tasks/{taskInstanceId}/comments
+== [POST] /server/containers/{containerId}/tasks/{taskInstanceId}/comments
 
 Adds a comment to a specified task instance and returns the ID of the new comment.
 
@@ -1198,7 +1198,7 @@ Adds a comment to a specified task instance and returns the ID of the new commen
 }
 ----
 
-== [DELETE] /containers/{containerId}/tasks/{taskInstanceId}/comments/{commentId}
+== [DELETE] /server/containers/{containerId}/tasks/{taskInstanceId}/comments/{commentId}
 
 Deletes a specified comment from a specified task instance.
 
@@ -1241,7 +1241,7 @@ Deletes a specified comment from a specified task instance.
 }
 ----
 
-== [GET] /containers/{containerId}/tasks/{taskInstanceId}/contents/input
+== [GET] /server/containers/{containerId}/tasks/{taskInstanceId}/contents/input
 
 Returns input data for a specified task instance.
 
@@ -1278,7 +1278,7 @@ Returns input data for a specified task instance.
 }
 ----
 
-== [GET] /containers/{containerId}/tasks/{taskInstanceId}/contents/output
+== [GET] /server/containers/{containerId}/tasks/{taskInstanceId}/contents/output
 
 Returns output data for a specified task instance.
 
@@ -1312,7 +1312,7 @@ Returns output data for a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/contents/output
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/contents/output
 
 Adds output data to a specified task instance and returns the ID of the new output content.
 
@@ -1366,7 +1366,7 @@ Adds output data to a specified task instance and returns the ID of the new outp
 }
 ----
 
-== [DELETE] /containers/{containerId}/tasks/{taskInstanceId}/contents/{contentId}
+== [DELETE] /server/containers/{containerId}/tasks/{taskInstanceId}/contents/{contentId}
 
 Deletes output data by content ID from a specified task instance.
 
@@ -1409,7 +1409,7 @@ Deletes output data by content ID from a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/description
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/description
 
 Updates the description of a specified task instance.
 
@@ -1458,7 +1458,7 @@ Updates the description of a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/expiration
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/expiration
 
 Updates the expiration date for a specified task instance.
 
@@ -1509,7 +1509,7 @@ Updates the expiration date for a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/name
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/name
 
 Updates the name of a specified task instance.
 
@@ -1558,7 +1558,7 @@ Updates the name of a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/priority
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/priority
 
 Updates the priority of a specified task instance.
 
@@ -1607,7 +1607,7 @@ Updates the priority of a specified task instance.
 }
 ----
 
-== [PUT] /containers/{containerId}/tasks/{taskInstanceId}/skipable
+== [PUT] /server/containers/{containerId}/tasks/{taskInstanceId}/skipable
 
 *<@Maciej/@Tiho: Is it possible/reasonable to update "skipable" (misspelled) to "skippable" in this endpoint in the server, and to change "task-is-skipable" property to "task-is-skippable"? Everywhere else it's spelled correctly, except this endpoint and in this property, which appears in server responses throughout.>*
 
@@ -1658,7 +1658,7 @@ true
 }
 ----
 
-== [GET] /containers/{containerId}/tasks/{taskInstanceId}/events
+== [GET] /server/containers/{containerId}/tasks/{taskInstanceId}/events
 
 Returns all events for a specified task instance.
 

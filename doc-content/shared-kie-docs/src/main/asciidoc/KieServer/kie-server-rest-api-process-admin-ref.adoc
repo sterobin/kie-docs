@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for process instance administration. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] /admin/containers/{containerId}/processes/errors
+== [GET] /server/admin/containers/{containerId}/processes/errors
 
 Returns all process execution errors for a specified KIE container.
 
@@ -95,7 +95,7 @@ http://localhost:8080/kie-server/services/rest/server/admin/containers/mortgage-
 }
 ----
 
-== [GET] /admin/containers/{containerId}/processes/errors/{errorId}
+== [GET] /server/admin/containers/{containerId}/processes/errors/{errorId}
 
 Returns information about a specified process execution error.
 
@@ -139,7 +139,7 @@ Returns information about a specified process execution error.
 }
 ----
 
-== [PUT] /admin/containers/{containerId}/processes/errors/{errorId}
+== [PUT] /server/admin/containers/{containerId}/processes/errors/{errorId}
 
 Acknowledges a specified process execution error (sets `acknowledged` to `true` for the error).
 
@@ -177,7 +177,7 @@ Acknowledges a specified process execution error (sets `acknowledged` to `true` 
 }
 ----
 
-== [PUT] /admin/containers/{containerId}/processes/errors
+== [PUT] /server/admin/containers/{containerId}/processes/errors
 
 Acknowledges multiple process execution errors (sets `acknowledged` to `true` for the errors).
 
@@ -215,7 +215,7 @@ Acknowledges multiple process execution errors (sets `acknowledged` to `true` fo
 }
 ----
 
-== [GET] /admin/containers/{containerId}/processes/instances/{processInstanceId}/errors
+== [GET] /server/admin/containers/{containerId}/processes/instances/{processInstanceId}/errors
 
 Returns all process execution errors for a specified process instance.
 
@@ -315,7 +315,7 @@ http://localhost:8080/kie-server/services/rest/server/admin/containers/mortgage-
 }
 ----
 
-== [PUT] /admin/containers/{containerId}/processes/instances/{processInstanceId}
+== [PUT] /server/admin/containers/{containerId}/processes/instances/{processInstanceId}
 
 Migrates a specified process instance to a process definition in another KIE container.
 
@@ -375,7 +375,7 @@ Migrates a specified process instance to a process definition in another KIE con
 }
 ----
 
-== [PUT] /admin/containers/{containerId}/processes/instances
+== [PUT] /server/admin/containers/{containerId}/processes/instances
 
 Migrates multiple process instances to process definition in another KIE container.
 
@@ -449,7 +449,7 @@ Migrates multiple process instances to process definition in another KIE contain
 }
 ----
 
-== [GET] /admin/containers/{containerId}/processes/instances/{processInstanceId}/nodes
+== [GET] /server/admin/containers/{containerId}/processes/instances/{processInstanceId}/nodes
 
 Returns all nodes in a specified process instance.
 
@@ -565,7 +565,7 @@ Returns all nodes in a specified process instance.
 }
 ----
 
-== [POST] /admin/containers/{containerId}/processes/instances/{processInstanceId}/nodes/{nodeId}
+== [POST] /server/admin/containers/{containerId}/processes/instances/{processInstanceId}/nodes/{nodeId}
 
 Triggers a specified node for a specified process instance. If the node is not active in the process instance, it becomes active upon triggering.
 
@@ -608,7 +608,7 @@ Triggers a specified node for a specified process instance. If the node is not a
 }
 ----
 
-== [GET] /admin/containers/{containerId}/processes/instances/{processInstanceId}/nodeinstances
+== [GET] /server/admin/containers/{containerId}/processes/instances/{processInstanceId}/nodeinstances
 
 Returns all the active node instances in a specified process instance.
 
@@ -657,7 +657,7 @@ Returns all the active node instances in a specified process instance.
 }
 ----
 
-== [PUT] /admin/containers/{containerId}/processes/instances/{processInstanceId}/nodes/{nodeInstanceId}
+== [PUT] /server/admin/containers/{containerId}/processes/instances/{processInstanceId}/nodes/{nodeInstanceId}
 
 Re-triggers a specified node instance for a specified process instance. If the node is not active in the process instance, it becomes active upon re-triggering.
 
@@ -700,7 +700,7 @@ Re-triggers a specified node instance for a specified process instance. If the n
 }
 ----
 
-== [DELETE] /admin/containers/{containerId}/processes/instances/{processInstanceId}/nodeinstances/{nodeInstanceId}
+== [DELETE] /server/admin/containers/{containerId}/processes/instances/{processInstanceId}/nodeinstances/{nodeInstanceId}
 
 Aborts a specified node instance within a specified process instance.
 
@@ -743,7 +743,7 @@ Aborts a specified node instance within a specified process instance.
 }
 ----
 
-== [GET] /admin/containers/{containerId}/processes/instances/{processInstanceId}/timers
+== [GET] /server/admin/containers/{containerId}/processes/instances/{processInstanceId}/timers
 
 Returns all timers for a specified process instance.
 
@@ -787,7 +787,7 @@ Returns all timers for a specified process instance.
 }
 ----
 
-== [PUT] /admin/containers/{containerId}/processes/instances/{processInstanceId}/timers/{timerId}
+== [PUT] /server/admin/containers/{containerId}/processes/instances/{processInstanceId}/timers/{timerId}
 
 Updates a specified timer for a specified process instance.
 

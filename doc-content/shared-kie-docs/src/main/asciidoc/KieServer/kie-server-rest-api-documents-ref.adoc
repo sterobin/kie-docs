@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for managing documents. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] /documents
+== [GET] /server/documents
 
 Returns all documents from {KIE_SERVER}.
 
@@ -67,7 +67,7 @@ Returns all documents from {KIE_SERVER}.
 }
 ----
 
-== [GET] /documents/{documentId}
+== [GET] /server/documents/{documentId}
 
 Returns information about a specified document.
 
@@ -100,7 +100,7 @@ Returns information about a specified document.
 }
 ----
 
-== [GET] /documents/{documentId}/content
+== [GET] /server/documents/{documentId}/content
 
 Returns the content of the specified document or a link to download the document locally.
 
@@ -127,7 +127,7 @@ This is the document, which contains the following content...
 .Example server response (OCTET-STREAM)
 link:blob:http://localhost:8080/8574e227-02eb-454b-a585-5b5dbd81e126[Download file]
 
-== [POST] /documents
+== [POST] /server/documents
 
 Uploads a new document to {KIE_SERVER}.
 
@@ -176,7 +176,7 @@ Uploads a new document to {KIE_SERVER}.
 }
 ----
 
-== [PUT] /documents/{documentId}
+== [PUT] /server/documents/{documentId}
 
 Updates a specified document in {KIE_SERVER}.
 
@@ -228,7 +228,7 @@ Updates a specified document in {KIE_SERVER}.
 }
 ----
 
-== [DELETE] /documents/{documentId}
+== [DELETE] /server/documents/{documentId}
 
 Deletes a specified document from {KIE_SERVER}.
 

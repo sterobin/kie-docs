@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for querying case definitions and case instances. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] /queries/cases
+== [GET] /server/queries/cases
 
 Returns a specified case definition from all KIE containers.
 
@@ -190,7 +190,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/cases/processes?fi
 }
 ----
 
-== [GET] /queries/cases/processes
+== [GET] /server/queries/cases/processes
 
 Returns a specified process associated with case definitions from all KIE containers.
 
@@ -291,7 +291,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/cases/processes?fi
 }
 ----
 
-== [GET] /queries/cases/{containerId}/processes
+== [GET] /server/queries/cases/{containerId}/processes
 
 Returns processes associated with case definitions in a specified KIE container.
 
@@ -356,7 +356,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/cases/itorders_1.0
 }
 ----
 
-== [GET] /queries/cases/instances
+== [GET] /server/queries/cases/instances
 
 Returns cases instances with authentication checks.
 
@@ -509,7 +509,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/cases/instances?ow
 }
 ----
 
-== [GET] /queries/cases/{caseRoleName}/instances
+== [GET] /server/queries/cases/{caseRoleName}/instances
 
 Returns cases instances that involve the querying user in a specified role.
 
@@ -584,7 +584,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/cases/supplier/ins
 }
 ----
 
-== [GET] /queries/cases/instances/{caseId}/caseFile
+== [GET] /server/queries/cases/instances/{caseId}/caseFile
 
 Returns case file data items for a specified case instance.
 
@@ -653,7 +653,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/cases/instances/IT
 }
 ----
 
-== [GET] /queries/cases/instances/{caseId}/caseFile
+== [GET] /server/queries/cases/instances/{caseId}/caseFile
 
 Returns case file data items for a specified case instance.
 
@@ -722,7 +722,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/cases/instances/IT
 }
 ----
 
-== [GET] /queries/cases/instances/{caseId}/tasks/instances/admins
+== [GET] /server/queries/cases/instances/{caseId}/tasks/instances/admins
 
 Returns tasks for business administrators in a specified case instance.
 
@@ -807,7 +807,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/cases/instances/IT
 }
 ----
 
-== [GET] /queries/cases/instances/{caseId}/tasks/instances/stakeholders
+== [GET] /server/queries/cases/instances/{caseId}/tasks/instances/stakeholders
 
 Returns tasks for stakeholders in a specified case instance.
 
@@ -892,7 +892,7 @@ http://localhost:8080/kie-server/services/rest/server/queries/cases/instances/IT
 }
 ----
 
-== [GET] /queries/cases/instances/{caseId}/tasks/instances/pot-owners
+== [GET] /server/queries/cases/instances/{caseId}/tasks/instances/pot-owners
 
 Returns tasks for potential owners in a specified case instance.
 

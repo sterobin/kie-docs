@@ -5,7 +5,7 @@
 
 // The {KIE_SERVER} REST API supports the following endpoints for managing jobs and job execution. The {KIE_SERVER} REST API base URL is `\http://SERVER:PORT/kie-server/services/rest/`. All requests require HTTP Basic authentication or token-based authentication for the `kie-server` user role.
 
-== [GET] /jobs
+== [GET] /server/jobs
 
 Returns jobs by job status.
 
@@ -80,7 +80,7 @@ http://localhost:8080/kie-server/services/rest/server/jobs?status=DONE&page=0&pa
 }
 ----
 
-== [POST] /jobs
+== [POST] /server/jobs
 
 Schedules a job and returns the ID for the new job.
 
@@ -134,7 +134,7 @@ NOTE: For a list of supported job commands in {PRODUCT}, download and extract th
 }
 ----
 
-== [POST] /jobs/{jobId}/data
+== [POST] /server/jobs/{jobId}/data
 
 Updates parameters for job commands, if used, such as a job type `org.jbpm.executor.commands.LogCleanupCommand`.
 
@@ -188,7 +188,7 @@ NOTE: For a list of supported job commands in {PRODUCT}, download and extract th
 }
 ----
 
-== [GET] /jobs/commands/{commandName}
+== [GET] /server/jobs/commands/{commandName}
 
 Returns jobs configured to run job commands, such as a job type `org.jbpm.executor.commands.LogCleanupCommand`.
 
@@ -270,7 +270,7 @@ http://localhost:8080/kie-server/services/rest/server/jobs/commands/org.jbpm.exe
 }
 ----
 
-== [GET] /jobs/{jobId}
+== [GET] /server/jobs/{jobId}
 
 Returns information about a specified job.
 
@@ -340,7 +340,7 @@ http://localhost:8080/kie-server/services/rest/server/jobs/6?withErrors=true&wit
 }
 ----
 
-== [PUT] /jobs/{jobId}
+== [PUT] /server/jobs/{jobId}
 
 Re-queues a specified job.
 
@@ -373,7 +373,7 @@ Re-queues a specified job.
 }
 ----
 
-== [DELETE] /jobs/{jobId}
+== [DELETE] /server/jobs/{jobId}
 
 Deletes a specified job.
 
@@ -406,7 +406,7 @@ Deletes a specified job.
 }
 ----
 
-== [GET] /jobs/keys/{businessKey}
+== [GET] /server/jobs/keys/{businessKey}
 
 Returns information about a job with a specified business key.
 
@@ -486,7 +486,7 @@ http://localhost:8080/kie-server/services/rest/server/jobs/keys/job6?page=0&page
 }
 ----
 
-== [GET] /jobs/containers/{containerId}
+== [GET] /server/jobs/containers/{containerId}
 
 Returns jobs for specified KIE container.
 
@@ -566,7 +566,7 @@ http://localhost:8080/kie-server/services/rest/server/jobs/containers/evaluation
 }
 ----
 
-== [GET] /jobs/processes/instances/{processInstanceId}
+== [GET] /server/jobs/processes/instances/{processInstanceId}
 
 Returns jobs for specified process instance.
 
