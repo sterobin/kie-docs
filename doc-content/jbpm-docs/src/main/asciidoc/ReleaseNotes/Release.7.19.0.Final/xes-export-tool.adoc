@@ -1,0 +1,9 @@
+= jBPM XES Export
+
+This release includes a new tool that aims to facilitate exporting XES based logs from the jBPM runtime.
+These logs can then be consumed by different process mining tools to analyse different aspects from the process runtime
+execution such as conformance, performance, deviations, process discovery and more.
+eXtensible Event Stream (XES) is an xml based standard that unifies the interchange event data information between
+information systems on one side and analysis tools on the other side.
+For more information regarding the XES standard, please visit: http://www.xes-standard.org/.
+To get started using the export tool, please check instructions in: https://github.com/kiegroup/jbpm/tree/master/jbpm-xes.

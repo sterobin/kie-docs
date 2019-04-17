@@ -1,0 +1,13 @@
+[[_jbpmreleasenotes7190]]
+
+= New and Noteworthy in jBPM 7.19.0
+
+The following features were added to jBPM 7.19
+
+include::access-to-task-and-process-variables.adoc[leveloffset=+1]
+
+include::predefined-task-process-filters.adoc[leveloffset=+1]
+
+include::xes-export-tool.adoc[leveloffset=+1]
+
+include::color-configs-process-instance-diagrams.adoc[leveloffset=+1]

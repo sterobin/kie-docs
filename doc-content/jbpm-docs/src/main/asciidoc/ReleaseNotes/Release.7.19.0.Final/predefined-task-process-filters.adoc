@@ -1,0 +1,4 @@
+= New predefined filters for process instances and tasks
+
+In this release, a new set of quick-search filters has been created to allow you to easily filter relevant data of process instances and tasks.
+These new filters include *SLA Compliance* and *Deployment Id*.

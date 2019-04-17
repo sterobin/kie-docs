@@ -1,0 +1,10 @@
+= Added color configurations for process instance diagrams
+
+The following new properties were added in *Settings -> Process Administration* in {CENTRAL} to enable you to
+change the node colors used in process instance diagrams:
+
+* Completed node color
+* Completed node border color
+* Active node border color
+
+When you modify these configurations, the change is applied to all process instance diagrams in {CENTRAL}.
