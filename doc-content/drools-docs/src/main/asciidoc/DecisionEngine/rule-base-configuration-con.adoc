@@ -1,0 +1,70 @@
+[id='rule-base-configuration-con_{context}']
+
+= Rule base configuration
+
+{PRODUCT} contains a `RuleBaseConfiguration.java` object that you can use to configure exception handler settings, multithreaded execution, and sequential mode in the {DECISION_ENGINE}.
+
+For the rule base configuration options,
+ifdef::DM,PAM[]
+download the *{PRODUCT} [VERSION] Source Distribution* ZIP file from the https://access.redhat.com/jbossnetwork/restricted/listSoftware.html[Red Hat Customer Portal] and navigate to `~/{PRODUCT_FILE}-sources/src/drools-$VERSION/drools-core/src/main/java/org/drools/core/RuleBaseConfiguration.java`.
+endif::[]
+ifdef::DROOLS,JBPM,OP[]
+see the {PRODUCT} https://github.com/kiegroup/drools/blob/7.11.x/drools-core/src/main/java/org/drools/core/RuleBaseConfiguration.java[RuleBaseConfiguration.java] page on GitHub.
+endif::[]
+
+The following rule base configuration options are available for the {DECISION_ENGINE}:
+
+drools.consequenceExceptionHandler::
+When configured, this property defines the class that manages the exceptions thrown by rule consequences. You can use this property to specify a custom exception handler for rule evaluation in the {DECISION_ENGINE}.
++
+--
+Default value: `org.drools.core.runtime.rule.impl.DefaultConsequenceExceptionHandler`
+
+[source]
+----
+drools.consequenceExceptionHandler=org.drools.core.runtime.rule.impl.MyCustomConsequenceExceptionHandler
+----
+--
+
+drools.multithreadEvaluation::
+When enabled, this property enables the {DECISION_ENGINE} to evaluate rules in parallel by dividing the Rete and Phreak pattern-matching algorithms (if applicable) in independent partitions and evaluating them in parallel. You can use this property if you have retained both Rete and Phreak algorithm functionality in your {PRODUCT} distribution.
++
+--
+Default value: `false`
+
+You can enable multithreaded evaluation using one of the following options:
+
+* Enable multithreaded evaluation with `KieBaseConfiguration`:
++
+[source]
+----
+KieServices ks = KieServices.Factory.get();
+KieBaseConfiguration kieBaseConf = ks.newKieBaseConfiguration();
+kieBaseConf.setOption(MultithreadEvaluationOption.YES);
+KieBase kieBase = kieContainer.newKieBase(kieBaseConf);
+----
+
+* Enable the multithreaded evaluation system property:
++
+[source]
+----
+drools.multithreadEvaluation=true
+----
+
+[WARNING]
+====
+Rules using queries, salience, or agenda groups are currently not supported by the parallel {DECISION_ENGINE}. If these rule elements are present in the KIE base, the compiler emits a warning and automatically switches back to single-threaded evaluation. However, in some cases, the {DECISION_ENGINE} might not detect the unsupported rule elements and rules might be evaluated incorrectly. For example, the {DECISION_ENGINE} might not detect when rules rely on implicit salience given by rule ordering inside the DRL file, resulting in incorrect evaluation due to the unsupported salience attribute.
+====
+--
+
+drools.sequential::
+When enabled, this property enables sequential mode in the {DECISION_ENGINE} so that rules in a stateless KIE session can access the data modified by the `modify` or `update` statements of previous rules. You can use this property if you use stateless KIE sessions but you want rules to be influenced by the execution of other rules for a more intuitive and holistic rule evaluation. Sequential mode applies to stateless KIE sessions only.
++
+--
+Default value: `false`
+
+[source]
+----
+drools.sequential=true
+----
+--
