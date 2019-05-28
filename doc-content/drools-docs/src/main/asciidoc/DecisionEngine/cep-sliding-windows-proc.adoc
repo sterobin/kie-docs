@@ -7,7 +7,7 @@ You can declare a sliding window of time (flow of time) or length (number of occ
 .Procedure
 In the DRL rule file, specify `over window:<time_or_length>(<value>)` for the inserted fact.
 
-For example, the following two DRL rules sound a fire alarm based on an average temperate. However, the first rule uses a sliding time window to calculate the average over the last ten minutes while the second rule uses a sliding length window to calculate the average over the last one hundred temperature readings.
+For example, the following two DRL rules activate a fire alarm based on an average temperate. However, the first rule uses a sliding time window to calculate the average over the last 10 minutes while the second rule uses a sliding length window to calculate the average over the last one hundred temperature readings.
 
 .Average temperature over sliding time window
 [source]
@@ -37,6 +37,6 @@ then
 end
 ----
 
-The {DECISION_ENGINE} discards any `SensorReading` events that are more than ten minutes old or that are not part of the last one hundred readings, and continues recalculating the average as minutes or readings "slide" forward.
+The {DECISION_ENGINE} discards any `SensorReading` events that are more than 10 minutes old or that are not part of the last one hundred readings, and continues recalculating the average as the minutes or readings "slide" forward in real time.
 
 The {DECISION_ENGINE} does not automatically remove outdated events from the KIE session because other rules without sliding window declarations might depend on those events. The {DECISION_ENGINE} stores events in the KIE session until the events expire either by explicit rule declarations or by implicit reasoning within the {DECISION_ENGINE} based on inferred data in the KIE base.

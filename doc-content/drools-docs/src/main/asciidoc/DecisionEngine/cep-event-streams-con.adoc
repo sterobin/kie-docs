@@ -2,7 +2,7 @@
 
 = Event streams and entry points
 
-The {DECISION_ENGINE} can process high volumes of events in the form of event streams. In DRL rule declarations, a stream is also known as an entry point. When you declare an entry point in a DRL rule or Java application, the {DECISION_ENGINE}, at compile time, identifies and creates the proper internal structures to use data from only that entry point to evaluate that rule.
+The {DECISION_ENGINE} can process high volumes of events in the form of event streams. In DRL rule declarations, a stream is also known as an _entry point_. When you declare an entry point in a DRL rule or Java application, the {DECISION_ENGINE}, at compile time, identifies and creates the proper internal structures to use data from only that entry point to evaluate that rule.
 
 Facts from one entry point, or stream, can join facts from any other entry point in addition to facts already in the working memory of the {DECISION_ENGINE}. Facts always remain associated with the entry point through which they entered the {DECISION_ENGINE}. Facts of the same type can enter the {DECISION_ENGINE} through several entry points, but facts that enter the {DECISION_ENGINE} through entry point A can never match a pattern from entry point B.
 

@@ -10,8 +10,8 @@ CEP use cases share several requirements and goals with business rule use cases.
 
 From a business perspective, business rule definitions are often defined based on the occurrence of scenarios triggered by events. In the following examples, events form the basis of business rules:
 
-* On an algorithmic trading application: Perform an action if the security price increases by X percent above the day opening price. The price increases are denoted by events on a stock trade application.
-* On a monitoring application: Perform an action if the temperature in the server room increases X degrees in Y minutes. The sensor readings are denoted by events.
+* In an algorithmic trading application, a rule performs an action if the security price increases by X percent above the day opening price. The price increases are denoted by events on a stock trade application.
+* In a monitoring application, a rule performs an action if the temperature in the server room increases X degrees in Y minutes. The sensor readings are denoted by events.
 
 From a technical perspective, business rule evaluation and CEP have the following key similarities:
 
@@ -20,16 +20,16 @@ From a technical perspective, business rule evaluation and CEP have the followin
 
 CEP scenarios have the following key characteristics:
 
-* Scenarios usually process large numbers of events, but only a small percentage of the events are of interest
+* Scenarios usually process large numbers of events, but only a small percentage of the events are relevant.
 * Events are usually immutable and represent a record of change in state.
 * Rules and queries run against events and must react to detected event patterns.
 * Related events usually have a strong temporal relationship.
-* Individual events are not prioritized. The system prioritizes patterns of related events and the relationships between them.
+* Individual events are not prioritized. The CEP system prioritizes patterns of related events and the relationships between them.
 * Events usually need to be composed and aggregated.
 
 Given these common CEP scenario characteristics, the CEP system in {PRODUCT} supports the following features and functions to optimize event processing:
 
-* Events with their proper semantics
+* Event processing with proper semantics
 * Event detection, correlation, aggregation, and composition
 * Event stream processing
 * Temporal constraints to model the temporal relationships between events

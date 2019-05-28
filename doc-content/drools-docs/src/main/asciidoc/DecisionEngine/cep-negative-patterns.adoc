@@ -2,7 +2,7 @@
 
 = Negative patterns in {DECISION_ENGINE} stream mode
 
-A negative pattern is a pattern for conditions that are not met. For example, the following DRL rule sounds a fire alarm if a fire is detected and the sprinkler is not activated:
+A negative pattern is a pattern for conditions that are not met. For example, the following DRL rule activates a fire alarm if a fire is detected and the sprinkler is not activated:
 
 .Fire alarm rule with a negative pattern
 [source]

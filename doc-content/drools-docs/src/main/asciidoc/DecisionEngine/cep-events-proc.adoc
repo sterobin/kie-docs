@@ -28,7 +28,7 @@ If `StockPoint` is a fact type declared in the DRL rule file instead of in a pre
 [source]
 ----
 declare StockPoint
-  @role(event)
+  @role( event )
 
   datetime : java.util.Date
   symbol : String

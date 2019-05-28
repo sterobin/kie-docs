@@ -4,7 +4,7 @@
 
 A stateful KIE session is a session that uses inference to make iterative changes to facts over time. In a stateful KIE session, data from a previous invocation of the KIE session (the previous session state) is retained between session invocations, whereas in a stateless KIE session, that data is discarded.
 
-WARNING: Ensure that you call the `dispose()` method after running a stateful KIE session so that no memory leaks occur between session invocations. KIE bases obtain references to stateful KIE sessions when each session is created, so
+WARNING: Ensure that you call the `dispose()` method after running a stateful KIE session so that no memory leaks occur between session invocations.
 
 Stateful KIE sessions are commonly used for the following use cases:
 
@@ -76,9 +76,9 @@ then
 end
 ----
 
-For the `When there is a fire turn on the sprinkler` rule, when a fire occurs, the instances of the `Fire` class is created for that room and inserted into the KIE session. The rule adds a binding to the `room` field of the `Fire` class to constrain matches so that only the sprinkler for that room is checked. When this rule fires and the consequence executes, the sprinkler activates. The other sample rules determine when the alarm is activated or deactivated accordingly.
+For the `When there is a fire turn on the sprinkler` rule, when a fire occurs, the instances of the `Fire` class are created for that room and inserted into the KIE session. The rule adds a binding to the `room` field of the `Fire` class to constrain matches so that only the sprinkler for that room is checked. When this rule is executed, the sprinkler activates. The other sample rules determine when the alarm is activated or deactivated accordingly.
 
-Whereas a stateless KIE session relies on standard Java syntax to modify a field, a stateful KIE session relies on the `modify` statement in rules to notify the {DECISION_ENGINE} of changes. The {DECISION_ENGINE} then reasons over the changes and assesses impact on subsequent KIE sessions. This process is part of a {DECISION_ENGINE} capability called _inference_ and is essential in stateful KIE sessions.
+Whereas a stateless KIE session relies on standard Java syntax to modify a field, a stateful KIE session relies on the `modify` statement in rules to notify the {DECISION_ENGINE} of changes. The {DECISION_ENGINE} then reasons over the changes and assesses impact on subsequent KIE sessions. This process is part of the {DECISION_ENGINE} ability to use _inference_ and _truth maintenance_ and is essential in stateful KIE sessions.
 
 In this example, the sample rules and all other files in the `~/resources` folder of the {PRODUCT} Maven project are built with the following configuration:
 
@@ -116,9 +116,9 @@ ksession.fireAllRules();
 > Everything is ok
 ----
 
-With the data added, the {DECISION_ENGINE} completes all matching but no rules have fired, so the configured verification message appears. As new data triggers rule conditions, the {DECISION_ENGINE} executes rules to activate the alarm and later to cancel the alarm that has been activated:
+With the data added, the {DECISION_ENGINE} completes all pattern matching but no rules have been executed, so the configured verification message appears. As new data triggers rule conditions, the {DECISION_ENGINE} executes rules to activate the alarm and later to cancel the alarm that has been activated:
 
-.Enter new data to trigger rules differently
+.Enter new data to trigger rules
 [source,java]
 ----
 Fire kitchenFire = new Fire( name2room.get( "kitchen" ) );

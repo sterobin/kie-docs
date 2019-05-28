@@ -25,12 +25,12 @@ $p : Person()
 IsAdult(person == $p)
 ----
 
-In many cases, new data in a rule system is the result of other rule executions, and this new data can affect the execution of other rules. If the {DECISION_ENGINE} asserts data as a result of executing a rule, the {DECISION_ENGINE} uses truth maintenance to justify the assertion and enforce truthfulness when applying inferred information to the rule. Truth maintenance also helps to identify inconsistencies and to handle contradictions. For example, if two rules are executed and result in a contradictory action, the {DECISION_ENGINE} chooses the action based on assumptions from previously calculated conclusions.
+In many cases, new data in a rule system is the result of other rule executions, and this new data can affect the execution of other rules. If the {DECISION_ENGINE} asserts data as a result of executing a rule, the {DECISION_ENGINE} uses truth maintenance to justify the assertion and enforce truthfulness when applying inferred information to other rules. Truth maintenance also helps to identify inconsistencies and to handle contradictions. For example, if two rules are executed and result in a contradictory action, the {DECISION_ENGINE} chooses the action based on assumptions from previously calculated conclusions.
 
 The {DECISION_ENGINE} inserts facts using either stated or logical insertions:
 
 * *Stated insertions:* Defined with `insert()`. After stated insertions, facts are generally retracted explicitly.
-* *Logical insertions:* Defined with `insertLogical()`. After logical insertions, the facts that were inserted are automatically retracted when the conditions that inserted the facts are no longer true. The facts are retracted when there is no single condition that supports the logical insertion.
+* *Logical insertions:* Defined with `insertLogical()`. After logical insertions, the facts that were inserted are automatically retracted when the conditions that inserted the facts are no longer true. The facts are retracted when no condition supports the logical insertion.
 
 The following flowcharts illustrate the life cycle of stated and logical insertions:
 
@@ -40,7 +40,7 @@ image::HybridReasoning/7165.png[]
 .Logical insertion
 image::HybridReasoning/7166.png[]
 
-IMPORTANT: For logical insertions, your fact objects must override the `equals` and `hashCode` methods from `java.lang.Object` according to the Java standard. Two objects are equal if their `equals` methods return `true` for each other and if their `hashCode` methods return the same values. For more information, see the Java API documentation for your Java version.
+IMPORTANT: For logical insertions, your fact objects must override the `equals` and `hashCode` methods from the `java.lang.Object` object according to the Java standard. Two objects are equal if their `equals` methods return `true` for each other and if their `hashCode` methods return the same values. For more information, see the Java API documentation for your Java version.
 
 For example, the following sample DRL rules use stated fact insertion to determine the age requirements for issuing a child bus pass or an adult bus pass:
 
@@ -84,7 +84,7 @@ then
 end
 ----
 
-When the condition in the rule is false, the fact is automatically retracted. This behavior is helpful in this example because the two rules are mutually exclusive. In this example, if the person is younger than 16 years old, the rule logically inserts an `IsChild` fact. Once the person is 16 years old or older, the `IsChild` fact is automatically retracted and the `IsAdult` fact inserted.
+When the condition in the rule is false, the fact is automatically retracted. This behavior is helpful in this example because the two rules are mutually exclusive. In this example, if the person is younger than 18 years old, the rule logically inserts an `IsChild` fact. After the person is 18 years old or older, the `IsChild` fact is automatically retracted and the `IsAdult` fact is inserted.
 
 The following DRL rules then determine whether to issue a child bus pass or an adult bus pass and logically insert the `ChildBusPass` and `AdultBusPass` facts. This rule configuration is possible because the truth maintenance system in the {DECISION_ENGINE} supports chaining of logical insertions for a cascading set of retracts.
 
@@ -101,14 +101,14 @@ end
 
 rule "Issue Adult Bus Pass"
 when
-  $p : Person(age >= 16)
+  $p : Person()
     IsAdult(person =$p)
 then
   insertLogical(new AdultBusPass($p));
 end
 ----
 
-When a person turns 16 years old, the `IsChild` fact and the person's `ChildBusPass` fact is retracted. To these set of conditions, you can relate another rule that states that a person must return the child pass after turning 16 years old. When the {DECISION_ENGINE} automatically retracts the `ChildBusPass` object, this following is executed and sends a request to the person:
+When a person turns 18 years old, the `IsChild` fact and the person's `ChildBusPass` fact is retracted. To these set of conditions, you can relate another rule that states that a person must return the child pass after turning 18 years old. When the {DECISION_ENGINE} automatically retracts the `ChildBusPass` object, the following rule is executed to send a request to the person:
 
 .Rule to notify bus pass holder of new pass
 [source]
@@ -127,7 +127,7 @@ ifdef::Drools,JBPM,OP[]
 
 So now we know what inference is, and have a basic example, how does this facilitate good rule design and maintenance?
 
-Let's take a government department that are responsible for issuing ID cards when children become adults, henceforth referred to as ID department.
+Consider a government ID department that is responsible for issuing ID cards when children become adults.
 They might have a decision table that includes logic like this, which says when an adult living in London is 18 or over, issue the card:
 
 

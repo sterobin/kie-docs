@@ -31,18 +31,18 @@ This tag determines whether a given fact type is handled as a regular fact or an
 --
 Default parameter: `fact`
 
-Supported parameters: `fact`,`event`
+Supported parameters: `fact`, `event`
 
 [source]
 ----
-@role(<fact_or_event>)
+@role( <fact_or_event> )
 ----
 
 .Example: Declare VoiceCall as event type
 [source]
 ----
 declare VoiceCall
-  @role(event)
+  @role( event )
 end
 ----
 --
@@ -57,15 +57,15 @@ Supported parameters: Session clock time or custom time stamp attribute
 
 [source]
 ----
-@timestamp(<attributeName>)
+@timestamp( <attributeName> )
 ----
 
 .Example: Declare VoiceCall timestamp attribute
 [source]
 ----
 declare VoiceCall
-  @role(event)
-  @timestamp(callDateTime)
+  @role( event )
+  @timestamp( callDateTime )
 end
 ----
 --
@@ -80,41 +80,42 @@ Supported parameters: Custom duration attribute
 
 [source]
 ----
-@duration(<attributeName>)
+@duration( <attributeName> )
 ----
 
 .Example: Declare VoiceCall duration attribute
 [source]
 ----
 declare VoiceCall
-  @role(event)
-  @timestamp(callDateTime)
-  @duration(callDuration)
+  @role( event )
+  @timestamp( callDateTime )
+  @duration( callDuration )
 end
 ----
 --
 
 @expires::
-This tag determines the time duration before an event expires in the working memory of the {DECISION_ENGINE}. By default, an event expires when the event can no longer match and activate any of the current rules. You can define an amount of time after which an event should expire. This tag is available only when the {DECIION_ENGINE} is running in stream mode.
+This tag determines the time duration before an event expires in the working memory of the {DECISION_ENGINE}. By default, an event expires when the event can no longer match and activate any of the current rules. You can define an amount of time after which an event should expire. This tag is available only when the {DECISION_ENGINE} is running in stream mode.
 +
 --
 Default parameter: null (event expires after event can no longer match and activate rules)
 
-Supported parameters: Custom `timeOffset` attribute in the format `[#d][#h][#m][#s][#[ms]]`
+Supported parameters: Custom `timeOffset` attribute in the format `[##d][#h][#m][#s][#[ms]]`
+// I had to put two #'s above for it to render only one. Otherwise removed the # from [d]. (Stetson, 28 May 2019)
 
 [source]
 ----
-@expires(<timeOffset>)
+@expires( <timeOffset> )
 ----
 
 .Example: Declare expiration offset for VoiceCall events
 [source]
 ----
 declare VoiceCall
-  @role(event)
-  @timestamp(callDateTime)
-  @duration(callDuration)
-  @expires(1h35m)
+  @role( event )
+  @timestamp( callDateTime )
+  @duration( callDuration )
+  @expires( 1h35m )
 end
 ----
 --

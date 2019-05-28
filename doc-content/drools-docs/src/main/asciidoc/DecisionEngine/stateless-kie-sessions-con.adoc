@@ -2,7 +2,7 @@
 
 = Stateless KIE sessions
 
-A stateless KIE session is a session without inference. In a stateless KIE session, data from a previous invocation of the KIE session (the previous session state) is discarded between session invocations. In a stateful KIE session, that data is retained. A stateless KIE session can be called like a function in that you can use it to pass data and then receive the result back.
+A stateless KIE session is a session without inference. In a stateless KIE session, data from a previous invocation of the KIE session (the previous session state) is discarded between session invocations, whereas in a stateful KIE session, that data is retained. A stateless KIE session can be called like a function in that you can use it to pass data and then receive the result back.
 
 Stateless KIE sessions are commonly used for the following use cases:
 
@@ -40,7 +40,7 @@ The `Is of valid age` rule disqualifies any applicant younger than 18 years old.
 
 [NOTE]
 ====
-Use of the dollar sign (`$`) is optional and helps to differentiate between variable names and field names.
+The dollar sign (`$`) is optional and helps to differentiate between variable names and field names.
 ====
 
 In this example, the sample rule and all other files in the `~/resources` folder of the {PRODUCT} Maven project are built with the following configuration:
@@ -73,7 +73,7 @@ assertFalse(applicant.isValid());
 
 In a stateless KIE session configuration, the `StatelessKieSession` object wraps the `KieSession` object instead of extending it, so you do not need to call `fireAllRules()` or call `dispose()` after session invocation. With a stateless KIE session, the `execute()` call acts as a combination method that instantiates the `KieSession` object, adds all the user data and executes user commands, calls `fireAllRules()`, and then calls `dispose()`.
 
-In this case, the specified applicant is under the age of eighteen, so the application is declined.
+In this case, the specified applicant is under the age of 18, so the application is declined.
 
 For a more complex use case, see the following example. This example uses a stateless KIE session and executes rules against an iterable list of objects, such as a collection.
 
@@ -136,6 +136,6 @@ BatchExecutionResults results = ksession.execute(CommandFactory.newBatchExecutio
 assertEquals(new Person("Mr John Smith"), results.getValue("mrSmith"));
 ----
 
-<1> The JDK converter implements the iterable interface, and this method executes rules against an iterable list of objects contained in the element `Arrays.asList()`. Every collection element is inserted before any matched rules are fired. The `execute(Object object)` and `execute(Iterable objects)` methods are wrappers around the `execute(Command command)` method that comes from the `BatchExecutor` interface.
+<1> The JDK converter implements the iterable interface, and this method executes rules against an iterable list of objects contained in the `Arrays.asList()` element. Every collection element is inserted before any matched rules are executed. The `execute(Object object)` and `execute(Iterable objects)` methods are wrappers around the `execute(Command command)` method that comes from the `BatchExecutor` interface.
 <2> The `CommandFactory` interface instructions equivalent to `execute(Iterable it)`.
 <3> The `BatchExecutor` and `CommandFactory` configurations for working with many different commands or result output identifiers. The `CommandFactory` interface supports other commands that you can use in the `BatchExecutor`, such as `StartProcess`, `Query`, and `SetGlobal`.

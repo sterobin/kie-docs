@@ -21,9 +21,9 @@ In stream mode, the {DECISION_ENGINE} supports the following temporal operators 
 after::
 +
 --
-This operator defines an amount of time after which the current event can follow the correlated event, or a delimiting time range during which current event can follow the correlated event.
+This operator defines an amount of time after which the current event can follow the correlated event, or a delimiting time range during which the current event can follow the correlated event.
 
-For example, the following pattern matches if `$eventA` starts between three minutes and thirty seconds and four minutes after `$eventB` finishes. If `$eventA` starts earlier than three minutes and thirty seconds after `$eventB` finishes, or later than four minutes after `$eventB` finishes, then the pattern is not matched.
+For example, the following pattern matches if `$eventA` starts between 3 minutes and 30 seconds and 4 minutes after `$eventB` finishes. If `$eventA` starts earlier than 3 minutes and 30 seconds after `$eventB` finishes, or later than 4 minutes after `$eventB` finishes, then the pattern is not matched.
 
 [source]
 ----
@@ -39,11 +39,11 @@ You can also express this operator in the following way:
 
 The `after` operator supports up to two parameter values:
 
-* If two values are defined, the interval starts on the first value (three minutes and thirty seconds in the example) and ends on the second value (four minutes in the example).
+* If two values are defined, the interval starts on the first value (3 minutes and 30 seconds in the example) and ends on the second value (4 minutes in the example).
 * If only one value is defined, the interval starts on the provided value and runs indefinitely with no end time.
-* If no value is defined, the interval starts at one millisecond and runs indefinitely with no end time.
+* If no value is defined, the interval starts at 1 millisecond and runs indefinitely with no end time.
 
-The `after` operator also accepts negative time ranges:
+The `after` operator also supports negative time ranges:
 
 [source]
 ----
@@ -60,10 +60,10 @@ $eventA : EventA(this after[-2m, -3m30s] $eventB)
 --
 
 before::
-This operator defines an amount of time after which the current event can precede the correlated, or a delimiting time range during which the current event can precede the correlated event.
+This operator defines an amount of time after which the current event can precede the correlated event, or a delimiting time range during which the current event can precede the correlated event.
 +
 --
-For example, the following pattern matches if `$eventB` starts between three minutes and thirty seconds and four minutes after `$eventA` finishes. If `$eventB` starts earlier than three minutes and thirty seconds after `$eventA` finishes, or later than four minutes after `$eventA` finishes, then the pattern is not matched.
+For example, the following pattern matches if `$eventB` starts between 3 minutes and 30 seconds and 4 minutes after `$eventA` finishes. If `$eventB` starts earlier than 3 minutes and 30 seconds after `$eventA` finishes, or later than 4 minutes after `$eventA` finishes, then the pattern is not matched.
 
 [source]
 ----
@@ -79,11 +79,11 @@ You can also express this operator in the following way:
 
 The `before` operator supports up to two parameter values:
 
-* If two values are defined, the interval starts on the first value (three minutes and thirty seconds in the example) and ends on the second value (four minutes in the example).
+* If two values are defined, the interval starts on the first value (3 minutes and 30 seconds in the example) and ends on the second value (4 minutes in the example).
 * If only one value is defined, the interval starts on the provided value and runs indefinitely with no end time.
-* If no value is defined, the interval starts at one millisecond and runs indefinitely with no end time.
+* If no value is defined, the interval starts at 1 millisecond and runs indefinitely with no end time.
 
-The `before` operator also accepts negative time ranges:
+The `before` operator also supports negative time ranges:
 
 [source]
 ----
@@ -110,9 +110,7 @@ For example, the following pattern matches if both the start and end time stamps
 $eventA : EventA(this coincides $eventB)
 ----
 
-The `coincides` operator accepts optional thresholds for the distance between the event start and end times so that events do not have to start or end at exactly the same time, but they must be within the provided thresholds.
-
-The following rules apply when defining thresholds for the `coincides` operator:
+The `coincides` operator supports up to two parameter values for the distance between the event start and end times, if they are not identical:
 
 * If only one parameter is given, the parameter is used to set the threshold for both the start and end times of both events.
 * If two parameters are given, the first is used as a threshold for the start time and the second is used as a threshold for the end time.
@@ -133,12 +131,12 @@ abs($eventA.startTimestamp - $eventB.startTimestamp) <= 15s
 abs($eventA.endTimestamp - $eventB.endTimestamp) <= 10s
 ----
 
-WARNING: The {DECISION_ENGINE} does not support negative intervals for the `coincides` operator. If you use negative intervals, the {DECISION_ENGINE} generates an exception error.
+WARNING: The {DECISION_ENGINE} does not support negative intervals for the `coincides` operator. If you use negative intervals, the {DECISION_ENGINE} generates an error.
 
 --
 
 during::
-This operator specifies if the current event occurs within the time frame of when the correlated event occurs.
+This operator specifies if the current event occurs within the time frame of when the correlated event starts and ends. The current event must start after the correlated event starts and must end before the correlated event ends. (With the `coincides` operator, the start and end times are the same or nearly the same.)
 +
 --
 For example, the following pattern matches if `$eventA` starts after `$eventB` starts and ends before `$eventB` ends:
@@ -155,20 +153,20 @@ You can also express this operator in the following way:
 $eventB.startTimestamp < $eventA.startTimestamp <= $eventA.endTimestamp < $eventB.endTimestamp
 ----
 
-The `during` operator accepts one, two, or four optional parameters:
+The `during` operator supports one, two, or four optional parameters:
 
 * If one value is defined, this value is the maximum distance between the start times of the two events and the maximum distance between the end times of the two events.
 * If two values are defined, these values are a threshold between which the current event start time and end time must occur in relation to the correlated event start and end times.
 +
-For example, if the values are `5s` and `10s`, the current event must start between five and ten seconds after the correlated event starts, and similarly the current event must end between five and ten seconds before the correlated event starts.
+For example, if the values are `5s` and `10s`, the current event must start between 5 and 10 seconds after the correlated event starts and must end between 5 and 10 seconds before the correlated event ends.
 * If four values are defined, the first and second values are the minimum and maximum distances between the start times of the events, and the third and fourth values are the minimum and maximum distances between the end times of the two events.
 --
 
 includes::
-This operator specifies if the correlated event occurs within the time frame of when the current event occurs. (The behavior of this operator is the reverse of the `during` operator behavior.)
+This operator specifies if the correlated event occurs within the time frame of when the current event occurs. The correlated event must start after the current event starts and must end before the current event ends. (The behavior of this operator is the reverse of the `during` operator behavior.)
 +
 --
-For example, the following pattern matches if `$eventB` starts after `$eventA` and ends before `$eventA` ends:
+For example, the following pattern matches if `$eventB` starts after `$eventA` starts and ends before `$eventA` ends:
 
 [source]
 ----
@@ -182,12 +180,12 @@ You can also express this operator in the following way:
 $eventA.startTimestamp < $eventB.startTimestamp <= $eventB.endTimestamp < $eventA.endTimestamp
 ----
 
-The `includes` operator accepts one, two, or four optional parameters:
+The `includes` operator supports one, two, or four optional parameters:
 
 * If one value is defined, this value is the maximum distance between the start times of the two events and the maximum distance between the end times of the two events.
 * If two values are defined, these values are a threshold between which the correlated event start time and end time must occur in relation to the current event start and end times.
 +
-For example, if the values are `5s` and `10s`, the correlated event must start between five and ten seconds after the current event starts, and similarly the correlated event must end between five and ten seconds before the current event ends.
+For example, if the values are `5s` and `10s`, the correlated event must start between 5 and 10 seconds after the current event starts and must end between 5 and 10 seconds before the current event ends.
 * If four values are defined, the first and second values are the minimum and maximum distances between the start times of the events, and the third and fourth values are the minimum and maximum distances between the end times of the two events.
 --
 
@@ -212,9 +210,7 @@ $eventB.startTimestamp < $eventA.startTimestamp
 $eventA.endTimestamp == $eventB.endTimestamp
 ----
 
-The `finishes` operator accepts one optional parameter that sets the maximum time allowed between the end times of the two events.
-
-The following pattern uses an optional threshold between event end times:
+The `finishes` operator supports one optional parameter that sets the maximum time allowed between the end times of the two events:
 
 [source]
 ----
@@ -230,15 +226,15 @@ $eventB.startTimestamp < $eventA.startTimestamp
 abs($eventA.endTimestamp - $eventB.endTimestamp) <= 5s
 ----
 
-WARNING: The {DECISION_ENGINE} does not support negative intervals for the `finishes` operator. If you use negative intervals, the {DECISION_ENGINE} generates an exception error.
+WARNING: The {DECISION_ENGINE} does not support negative intervals for the `finishes` operator. If you use negative intervals, the {DECISION_ENGINE} generates an error.
 
 --
 
 finished by::
-This operator specifies if the current event starts before the correlated event but both events end at the same time. (The behavior of this operator is the reverse of the `finishes` operator behavior.)
+This operator specifies if the correlated event starts after the current event but both events end at the same time. (The behavior of this operator is the reverse of the `finishes` operator behavior.)
 +
 --
-For example, the following pattern matches if `$eventA` starts before `$eventB` starts and ends at the same time when `$eventB` ends:
+For example, the following pattern matches if `$eventB` starts after `$eventA` starts and ends at the same time when `$eventA` ends:
 
 [source]
 ----
@@ -254,9 +250,7 @@ $eventA.startTimestamp < $eventB.startTimestamp
 $eventA.endTimestamp == $eventB.endTimestamp
 ----
 
-The `finishedby` operator accepts one optional parameter that sets the maximum time allowed between the end times of the two events.
-
-The following pattern uses an optional threshold between event end times:
+The `finished by` operator supports one optional parameter that sets the maximum time allowed between the end times of the two events:
 
 [source]
 ----
@@ -272,7 +266,7 @@ $eventA.startTimestamp < $eventB.startTimestamp
 abs($eventA.endTimestamp - $eventB.endTimestamp) <= 5s
 ----
 
-WARNING: The {DECISION_ENGINE} does not support negative intervals for the `finished by` operator. If you use negative intervals, the {DECISION_ENGINE} generates an exception error.
+WARNING: The {DECISION_ENGINE} does not support negative intervals for the `finished by` operator. If you use negative intervals, the {DECISION_ENGINE} generates an error.
 
 --
 
@@ -294,7 +288,7 @@ You can also express this operator in the following way:
 abs($eventB.startTimestamp - $eventA.endTimestamp) == 0
 ----
 
-The `meets` operator accepts one optional parameter that sets the maximum time allowed between the end time of the current event and the start time of the correlated event:
+The `meets` operator supports one optional parameter that sets the maximum time allowed between the end time of the current event and the start time of the correlated event:
 
 [source]
 ----
@@ -308,7 +302,7 @@ This pattern matches if these conditions are met:
 abs($eventB.startTimestamp - $eventA.endTimestamp) <= 5s
 ----
 
-WARNING: The {DECISION_ENGINE} does not support negative intervals for the `meets` operator. If you use negative intervals, the {DECISION_ENGINE} generates an exception error.
+WARNING: The {DECISION_ENGINE} does not support negative intervals for the `meets` operator. If you use negative intervals, the {DECISION_ENGINE} generates an error.
 
 --
 
@@ -330,7 +324,7 @@ You can also express this operator in the following way:
 abs($eventA.startTimestamp - $eventB.endTimestamp) == 0
 ----
 
-The `metby` operator accepts one optional parameter that sets the maximum distance between the end time of the correlated event and the start time of the current event:
+The `met by` operator supports one optional parameter that sets the maximum distance between the end time of the correlated event and the start time of the current event:
 
 [source]
 ----
@@ -344,12 +338,12 @@ This pattern matches if these conditions are met:
 abs($eventA.startTimestamp - $eventB.endTimestamp) <= 5s
 ----
 
-WARNING: The {DECISION_ENGINE} does not support negative intervals for the `met by` operator. If you use negative intervals, the {DECISION_ENGINE} generates an exception error.
+WARNING: The {DECISION_ENGINE} does not support negative intervals for the `met by` operator. If you use negative intervals, the {DECISION_ENGINE} generates an error.
 
 --
 
 overlaps::
-This operator specifies if the current event starts before the correlated event starts and ends during the time frame that the correlated event occurs.
+This operator specifies if the current event starts before the correlated event starts and it ends during the time frame that the correlated event occurs. The current event must end between the start and end times of the correlated event.
 +
 --
 For example, the following pattern matches if `$eventA` starts before `$eventB` starts and then ends while `$eventB` occurs, before `$eventB` ends:
@@ -359,14 +353,14 @@ For example, the following pattern matches if `$eventA` starts before `$eventB` 
 $eventA : EventA(this overlaps $eventB)
 ----
 
-The `overlaps` operator accepts up to two parameters:
+The `overlaps` operator supports up to two parameters:
 
-* If one parameter is defined, the value defines the maximum distance between the start time of the correlated event and the end time of the current event.
-* If two parameters are defined, the values define the minimum distance (first value) and the maximum distance (second value) between the start time of the correlated event and the end time of the current event.
+* If one parameter is defined, the value is the maximum distance between the start time of the correlated event and the end time of the current event.
+* If two parameters are defined, the values are the minimum distance (first value) and the maximum distance (second value) between the start time of the correlated event and the end time of the current event.
 --
 
 overlapped by::
-This operator specifies if the correlated event starts before the current event starts and ends during the time frame that the current event occurs. (The behavior of this operator is the reverse of the `overlaps` operator behavior.)
+This operator specifies if the correlated event starts before the current event starts and it ends during the time frame that the current event occurs. The correlated event must end between the start and end times of the current event. (The behavior of this operator is the reverse of the `overlaps` operator behavior.)
 +
 --
 For example, the following pattern matches if `$eventB` starts before `$eventA` starts and then ends while `$eventA` occurs, before `$eventA` ends:
@@ -376,10 +370,10 @@ For example, the following pattern matches if `$eventB` starts before `$eventA` 
 $eventA : EventA(this overlappedby $eventB)
 ----
 
-The `overlapped by` operator accepts up to two parameters:
+The `overlapped by` operator supports up to two parameters:
 
-* If one parameter is defined, the value defines the maximum distance between the start time of the current event and the end time of the correlated event.
-* If two parameters are defined, the values define the minimum distance (first value) and the maximum distance (second value) between the start time of the current event and the end time of the correlated event.
+* If one parameter is defined, the value is the maximum distance between the start time of the current event and the end time of the correlated event.
+* If two parameters are defined, the values are the minimum distance (first value) and the maximum distance (second value) between the start time of the current event and the end time of the correlated event.
 --
 
 starts::
@@ -402,7 +396,7 @@ $eventA.startTimestamp == $eventB.startTimestamp
 $eventA.endTimestamp < $eventB.endTimestamp
 ----
 
-The `starts` operator accepts one optional parameter that sets the maximum distance between the start times of the two events:
+The `starts` operator supports one optional parameter that sets the maximum distance between the start times of the two events:
 
 [source]
 ----
@@ -418,7 +412,7 @@ abs($eventA.startTimestamp - $eventB.startTimestamp) <= 5s
 $eventA.endTimestamp < $eventB.endTimestamp
 ----
 
-WARNING: The {DECISION_ENGINE} does not support negative intervals for the `starts` operator. If you use negative intervals, the {DECISION_ENGINE} generates an exception error.
+WARNING: The {DECISION_ENGINE} does not support negative intervals for the `starts` operator. If you use negative intervals, the {DECISION_ENGINE} generates an error.
 
 --
 
@@ -442,7 +436,7 @@ $eventA.startTimestamp == $eventB.startTimestamp
 $eventA.endTimestamp > $eventB.endTimestamp
 ----
 
-The `startedby` operator accepts one optional parameter that sets the maximum distance between the start times of the two events:
+The `started by` operator supports one optional parameter that sets the maximum distance between the start times of the two events:
 
 [source]
 ----
@@ -458,6 +452,6 @@ abs( $eventA.startTimestamp - $eventB.startTimestamp ) <= 5s
 $eventA.endTimestamp > $eventB.endTimestamp
 ----
 
-WARNING: The {DECISION_ENGINE} does not support negative intervals for the `startedby` operator. If you use negative intervals, the {DECISION_ENGINE} generates an exception error.
+WARNING: The {DECISION_ENGINE} does not support negative intervals for the `started by` operator. If you use negative intervals, the {DECISION_ENGINE} generates an error.
 
 --

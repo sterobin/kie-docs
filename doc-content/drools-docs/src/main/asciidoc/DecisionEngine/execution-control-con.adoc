@@ -44,20 +44,20 @@ then
 end
 ----
 
-The `RuleB` rule is listed second, but it has a higher salience value than the `RuleA` rule and is there executed first.
+The `RuleB` rule is listed second, but it has a higher salience value than the `RuleA` rule and is therefore executed first.
 
 == Agenda groups for rules
 
-An agenda group is a set of rules bound together by the same `agenda-group` rule attribute. Agenda groups partition rules on the {DECISION_ENGINE} agenda. At any one time, only one group has a "focus" that gives that group of rules priority for execution before rules in other agenda groups. You determine the focus with a `setFocus()` call for the agenda group. You can also define rules with an `auto-focus` attribute so that the next time the rule is activated, the focus is automatically given to the agenda group to which the rule is assigned.
+An agenda group is a set of rules bound together by the same `agenda-group` rule attribute. Agenda groups partition rules on the {DECISION_ENGINE} agenda. At any one time, only one group has a _focus_ that gives that group of rules priority for execution before rules in other agenda groups. You determine the focus with a `setFocus()` call for the agenda group. You can also define rules with an `auto-focus` attribute so that the next time the rule is activated, the focus is automatically given to the entire agenda group to which the rule is assigned.
 
 Each time the `setFocus()` call is made in a Java application, the {DECISION_ENGINE} adds the specified agenda group to the top of the rule stack. The default agenda group `"MAIN"` contains all rules that do not belong to a specified agenda group and is executed first in the stack unless another group has the focus.
 
-For example, the following sample DRL rules belong to the specified agenda groups and are listed in the {DECISION_ENGINE} stack in the order shown:
+For example, the following sample DRL rules belong to specified agenda groups and are listed in the {DECISION_ENGINE} stack in the order shown:
 
-.Sample DRL rules for banking
+.Sample DRL rules for banking application
 [source]
 ----
-rule "increase balance for credits"
+rule "Increase balance for credits"
   agenda-group "calculation"
 when
   ap : AccountPeriod()
@@ -84,7 +84,7 @@ then
 end
 ----
 
-For this example, the rules in the `"report"` agenda group must always be executed first and the rules in the `"calculation"` agenda group must always be executed second. Any remaining rules in other agenda groups can then be executed. Therefore, the `"report"` and `"calculation"` groups receive the focus to be executed in that order, before other rules can be executed:
+For this example, the rules in the `"report"` agenda group must always be executed first and the rules in the `"calculation"` agenda group must always be executed second. Any remaining rules in other agenda groups can then be executed. Therefore, the `"report"` and `"calculation"` groups must receive the focus to be executed in that order, before other rules can be executed:
 
 .Set the focus for the order of agenda group execution
 [source,java]
@@ -136,7 +136,7 @@ then
 end
 ----
 
-For this example, if the first rule in the `"report"` activation group is executed, the second rule in the group and all other executable rules on the agenda must be removed from the agenda. Therefore, the `"report"` group receives the focus to be executed first and only among other rules on the agenda, if the rule conditions are met:
+For this example, if the first rule in the `"report"` activation group is executed, the second rule in the group and all other executable rules on the agenda must be removed from the agenda. Therefore, the `"report"` group must receive the focus to be executed first, and only, among other rules on the agenda if the rule conditions are met:
 
 .Set the focus for activation group execution
 [source,java]

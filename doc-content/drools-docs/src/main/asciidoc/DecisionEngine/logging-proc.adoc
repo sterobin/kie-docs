@@ -10,9 +10,7 @@ The {DECISION_ENGINE} uses the Java logging API SLF4J for system logging. You ca
 * `java.util.logging` package
 
 .Procedure
-For the logging utility that you want to use, add the relevant dependency to your Maven project or save the relevant XML configuration file in the `org.drools` package of your {PRODUCT} distribution.
-
-Example dependency and configuration files:
+For the logging utility that you want to use, add the relevant dependency to your Maven project or save the relevant XML configuration file in the `org.drools` package of your {PRODUCT} distribution:
 
 .Example Maven dependency for Logback
 [source,xml]
