@@ -10,7 +10,7 @@ include::_artifacts/document-attributes.adoc[]
 include::_artifacts/author-group.adoc[]
 
 // Purpose statement for the assembly
-As a business rules developer, your understanding of the {DECISION_ENGINE} in {PRODUCT} can help you design more effective business assets and a more scalable decision management architecture. The {DECISION_ENGINE} is the {PRODUCT} component that stores, processes, and evaluates data to execute business rules and to reach the decisions that you define. This document describes basic concepts and functions of the {DECISION_ENGINE} to consider as you create your business rule system and decision services in {PRODUCT}. 
+As a business rules developer, your understanding of the {DECISION_ENGINE} in {PRODUCT} can help you design more effective business assets and a more scalable decision management architecture. The {DECISION_ENGINE} is the {PRODUCT} component that stores, processes, and evaluates data to execute business rules and to reach the decisions that you define. This document describes basic concepts and functions of the {DECISION_ENGINE} to consider as you create your business rule system and decision services in {PRODUCT}.
 
 // Modules - concepts, procedures, refs, etc.
 include::{drools-dir}/DecisionEngine/phreak-algorithm-con.adoc[leveloffset=+1]
@@ -62,6 +62,8 @@ include::{drools-dir}/DecisionEngine/cep-sliding-windows-con.adoc[leveloffset=+2
 include::{drools-dir}/DecisionEngine/cep-sliding-windows-proc.adoc[leveloffset=+3]
 
 include::{drools-dir}/DecisionEngine/cep-memory-management-con.adoc[leveloffset=+2]
+
+*<@Luca, @Edoardo, @Mario: You can ignore everything after this, which is reused from existing already-reviewed content and not new.>*
 
 include::{drools-dir}/Examples/decision-examples-IDE-con.adoc[leveloffset=+1]
 
