@@ -35,10 +35,10 @@ The {DECISION_ENGINE} inserts facts using either stated or logical insertions:
 The following flowcharts illustrate the life cycle of stated and logical insertions:
 
 .Stated insertion
-image::HybridReasoning/7165.png[]
+image::HybridReasoning/Stated_Assertion.png[]
 
 .Logical insertion
-image::HybridReasoning/7166.png[]
+image::HybridReasoning/Logical_Assertion.png[]
 
 IMPORTANT: For logical insertions, your fact objects must override the `equals` and `hashCode` methods from the `java.lang.Object` object according to the Java standard. Two objects are equal if their `equals` methods return `true` for each other and if their `hashCode` methods return the same values. For more information, see the Java API documentation for your Java version.
 
