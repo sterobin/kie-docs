@@ -4,15 +4,13 @@
 
 When new rule data enters the working memory of the {DECISION_ENGINE}, rules may become fully matched and eligible for execution. A single working memory action can result in multiple eligible rule executions. When a rule is fully matched, the {DECISION_ENGINE} creates an activation instance, referencing the rule and the matched facts, and adds the activation onto the {DECISION_ENGINE} agenda. The agenda controls the execution order of these rule activations using a conflict resolution strategy.
 
-The {DECISION_ENGINE} cycles repeatedly through two phases to perform actions from rule execution:
+After the first call of `fireAllRules()` in the Java application, the {DECISION_ENGINE} cycles repeatedly through two phases:
 
-* *Working memory actions.* In this phase, the {DECISION_ENGINE} performs the actions of rule consequences (the `then` portion of the rule) or follows the main Java application process. After a consequence action is complete or the main Java application process calls `fireAllRules()`, the {DECISION_ENGINE} moves to the agenda evaluation phase to assess rules.
-* *Agenda evaluation.* In this phase, the {DECISION_ENGINE} selects a rule to execute. If no executable rules exist, the execution cycle ends. If an executable rule is found, the {DECISION_ENGINE} executes the rule and returns to the working memory actions phase to perform the actions of the rule consequence or to follow the Java application process.
+* *Agenda evaluation.* In this phase, the {DECISION_ENGINE} selects all rules that can be executed. If no executable rules exist, the execution cycle ends. If an executable rule is found, the {DECISION_ENGINE} registers the activation in the agenda and then moves on to the working memory actions phase to perform rule consequence actions.
+* *Working memory actions.* In this phase, the {DECISION_ENGINE} performs the rule consequence actions (the `then` portion of each rule) for all activated rules previously registered in the agenda. After all the consequence actions are complete or the main Java application process calls `fireAllRules()` again, the {DECISION_ENGINE} returns to the agenda evaluation phase to reassess rules.
 
 .Two-phase execution process in the {DECISION_ENGINE}
 image::HybridReasoning/Two_Phase.png[align="center"]
-
-This process repeats until the agenda is clear, and then the calling application again has control over the rule execution. When working memory actions are occurring, no rules are executed.
 
 When multiple rules exist on the agenda, the execution of one rule may cause another rule to be removed from the agenda. To avoid this, you can define how and when rules are executed in the {DECISION_ENGINE}. Some common methods for defining rule execution order are by using rule salience, agenda groups, and activation groups for rules.
 
@@ -136,12 +134,4 @@ then
 end
 ----
 
-For this example, if the first rule in the `"report"` activation group is executed, the second rule in the group and all other executable rules on the agenda must be removed from the agenda. Therefore, the `"report"` group must receive the focus to be executed first, and only, among other rules on the agenda if the rule conditions are met:
-
-.Set the focus for activation group execution
-[source,java]
-----
-Agenda agenda = ksession.getAgenda();
-agenda.getActivationGroup( "report" ).setFocus();
-ksession.fireAllRules();
-----
+For this example, if the first rule in the `"report"` activation group is executed, the second rule in the group and all other executable rules on the agenda are removed from the agenda.

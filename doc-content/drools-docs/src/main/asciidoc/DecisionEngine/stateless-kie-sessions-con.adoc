@@ -2,7 +2,7 @@
 
 = Stateless KIE sessions
 
-A stateless KIE session is a session without inference. In a stateless KIE session, data from a previous invocation of the KIE session (the previous session state) is discarded between session invocations, whereas in a stateful KIE session, that data is retained. A stateless KIE session can be called like a function in that you can use it to pass data and then receive the result back.
+A stateless KIE session is a session without inference. In a stateless KIE session, data from a previous invocation of the KIE session (the previous session state) is discarded between session invocations, whereas in a stateful KIE session, that data is retained. A stateless KIE session behaves similarly to a function in that the results that it produces are determined by the contents of the KIE base and by the data that is passed into the KIE session for execution at a specific point in time. The KIE session has no memory of any data that was passed into the KIE session previously.
 
 Stateless KIE sessions are commonly used for the following use cases:
 
@@ -43,7 +43,7 @@ The `Is of valid age` rule disqualifies any applicant younger than 18 years old.
 The dollar sign (`$`) is optional and helps to differentiate between variable names and field names.
 ====
 
-In this example, the sample rule and all other files in the `~/resources` folder of the {PRODUCT} Maven project are built with the following configuration:
+In this example, the sample rule and all other files in the `~/resources` folder of the {PRODUCT} Maven project are built with the following code:
 
 .Create the KIE container
 [source,java]
@@ -53,7 +53,7 @@ KieServices kieServices = KieServices.Factory.get();
 KieContainer kContainer = kieServices.getKieClasspathContainer();
 ----
 
-This configuration compiles all the rule files found on the classpath and adds the result of this compilation, a `KieModule` object, in the `KieContainer`.
+This code compiles all the rule files found on the class path and adds the result of this compilation, a `KieModule` object, in the `KieContainer`.
 
 Finally, the `StatelessKieSession` object is instantiated from the `KieContainer` and is executed against specified data:
 
@@ -71,7 +71,7 @@ ksession.execute(applicant);
 assertFalse(applicant.isValid());
 ----
 
-In a stateless KIE session configuration, the `StatelessKieSession` object wraps the `KieSession` object instead of extending it, so you do not need to call `fireAllRules()` or call `dispose()` after session invocation. With a stateless KIE session, the `execute()` call acts as a combination method that instantiates the `KieSession` object, adds all the user data and executes user commands, calls `fireAllRules()`, and then calls `dispose()`.
+In a stateless KIE session configuration, you do not need to call `fireAllRules()` or call `dispose()` after session invocation. With a stateless KIE session, the `execute()` call acts as a combination method that instantiates the `KieSession` object, adds all the user data and executes user commands, calls `fireAllRules()`, and then calls `dispose()`.
 
 In this case, the specified applicant is under the age of 18, so the application is declined.
 

@@ -78,9 +78,9 @@ end
 
 For the `When there is a fire turn on the sprinkler` rule, when a fire occurs, the instances of the `Fire` class are created for that room and inserted into the KIE session. The rule adds a binding to the `room` field of the `Fire` class to constrain matches so that only the sprinkler for that room is checked. When this rule is executed, the sprinkler activates. The other sample rules determine when the alarm is activated or deactivated accordingly.
 
-Whereas a stateless KIE session relies on standard Java syntax to modify a field, a stateful KIE session relies on the `modify` statement in rules to notify the {DECISION_ENGINE} of changes. The {DECISION_ENGINE} then reasons over the changes and assesses impact on subsequent KIE sessions. This process is part of the {DECISION_ENGINE} ability to use _inference_ and _truth maintenance_ and is essential in stateful KIE sessions.
+Whereas a stateless KIE session relies on standard Java syntax to modify a field, a stateful KIE session relies on the `modify` statement in rules to notify the {DECISION_ENGINE} of changes. The {DECISION_ENGINE} then reasons over the changes and assesses impact on subsequent rule executions. This process is part of the {DECISION_ENGINE} ability to use _inference_ and _truth maintenance_ and is essential in stateful KIE sessions.
 
-In this example, the sample rules and all other files in the `~/resources` folder of the {PRODUCT} Maven project are built with the following configuration:
+In this example, the sample rules and all other files in the `~/resources` folder of the {PRODUCT} Maven project are built with the following code:
 
 .Create the KIE container
 [source,java]
@@ -89,7 +89,7 @@ KieServices kieServices = KieServices.Factory.get();
 KieContainer kContainer = kieServices.getKieClasspathContainer();
 ----
 
-This configuration compiles all the rule files found on the classpath and adds the result of this compilation, a `KieModule` object, in the `KieContainer`.
+This code compiles all the rule files found on the class path and adds the result of this compilation, a `KieModule` object, in the `KieContainer`.
 
 Finally, the `KieSession` object is instantiated from the `KieContainer` and is executed against specified data:
 
@@ -111,6 +111,7 @@ for( String name: names ){
 ksession.fireAllRules();
 ----
 
+.Console output
 [source]
 ----
 > Everything is ok
@@ -130,6 +131,7 @@ FactHandle officeFireHandle = ksession.insert( officeFire );
 ksession.fireAllRules();
 ----
 
+.Console output
 [source]
 ----
 > Raise the alarm
@@ -145,6 +147,7 @@ ksession.delete( officeFireHandle );
 ksession.fireAllRules();
 ----
 
+.Console output
 [source]
 ----
 > Cancel the alarm
@@ -152,5 +155,7 @@ ksession.fireAllRules();
 > Turn off the sprinkler for room kitchen
 > Everything is ok
 ----
+
+In this case, a reference is kept for the returned `FactHandle` object. A fact handle is an internal engine reference to the inserted instance and enables instances to be retracted or modified later.
 
 As this example illustrates, the data and results from previous stateful KIE sessions (the activated alarm) affect the invocation of subsequent sessions (alarm cancellation).

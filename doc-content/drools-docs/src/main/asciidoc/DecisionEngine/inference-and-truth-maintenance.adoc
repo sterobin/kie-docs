@@ -2,7 +2,7 @@
 
 = Inference and truth maintenance in the {DECISION_ENGINE}
 
-The basic function of the {DECISION_ENGINE} is to match production facts and data to rules and determine whether and how rules are executed. To ensure that relevant data is applied to the appropriate rules, the {DECISION_ENGINE} makes inferences based on existing knowledge and performs the actions based on the inferred information.
+The basic function of the {DECISION_ENGINE} is to match data to rules and determine whether and how rules are executed. To ensure that relevant data is applied to the appropriate rules, the {DECISION_ENGINE} makes inferences based on existing knowledge and performs the actions based on the inferred information.
 
 For example, the following DRL rule determines the age requirements for adults, such as in a bus pass policy:
 
@@ -29,18 +29,8 @@ In many cases, new data in a rule system is the result of other rule executions,
 
 The {DECISION_ENGINE} inserts facts using either stated or logical insertions:
 
-* *Stated insertions:* Defined with `insert()`. After stated insertions, facts are generally retracted explicitly.
+* *Stated insertions:* Defined with `insert()`. After stated insertions, facts are generally retracted explicitly. Any insertion that is unqualified (defined with `insert()`) is a stated insertion by default.
 * *Logical insertions:* Defined with `insertLogical()`. After logical insertions, the facts that were inserted are automatically retracted when the conditions that inserted the facts are no longer true. The facts are retracted when no condition supports the logical insertion.
-
-The following flowcharts illustrate the life cycle of stated and logical insertions:
-
-.Stated insertion
-image::HybridReasoning/Stated_Assertion.png[]
-
-.Logical insertion
-image::HybridReasoning/Logical_Assertion.png[]
-
-IMPORTANT: For logical insertions, your fact objects must override the `equals` and `hashCode` methods from the `java.lang.Object` object according to the Java standard. Two objects are equal if their `equals` methods return `true` for each other and if their `hashCode` methods return the same values. For more information, see the Java API documentation for your Java version.
 
 For example, the following sample DRL rules use stated fact insertion to determine the age requirements for issuing a child bus pass or an adult bus pass:
 
@@ -84,6 +74,8 @@ then
 end
 ----
 
+IMPORTANT: For logical insertions, your fact objects must override the `equals` and `hashCode` methods from the `java.lang.Object` object according to the Java standard. Two objects are equal if their `equals` methods return `true` for each other and if their `hashCode` methods return the same values. For more information, see the Java API documentation for your Java version.
+
 When the condition in the rule is false, the fact is automatically retracted. This behavior is helpful in this example because the two rules are mutually exclusive. In this example, if the person is younger than 18 years old, the rule logically inserts an `IsChild` fact. After the person is 18 years old or older, the `IsChild` fact is automatically retracted and the `IsAdult` fact is inserted.
 
 The following DRL rules then determine whether to issue a child bus pass or an adult bus pass and logically insert the `ChildBusPass` and `AdultBusPass` facts. This rule configuration is possible because the truth maintenance system in the {DECISION_ENGINE} supports chaining of logical insertions for a cascading set of retracts.
@@ -121,6 +113,16 @@ then
   requestChildBusPass($p);
 end
 ----
+
+The following flowcharts illustrate the life cycle of stated and logical insertions:
+
+.Stated insertion
+image::HybridReasoning/Stated_Assertion.png[]
+
+.Logical insertion
+image::HybridReasoning/Logical_Assertion.png[]
+
+The {DECISION_ENGINE} uses a `HashMap` and a counter to track how many times an object equality is stated (how many different instances are equal). When the {DECISION_ENGINE} logically inserts an object during a rule execution, the {DECISION_ENGINE} _justifies_ the object by executing the rule. For each logical insertion, only one equal object can exist, and each subsequent equal logical insertion increases the justification counter for that logical insertion. A justification is removed when the conditions of the rule become untrue, and the counter is decreased accordingly. When no more justifications exist, the logical object is automatically retracted.
 
 ifdef::Drools,JBPM,OP[]
 == Government ID example

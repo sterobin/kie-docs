@@ -18,25 +18,12 @@ end
 
 In cloud mode, the {DECISION_ENGINE} assumes all facts (regular facts and events) are known in advance and evaluates negative patterns immediately. In stream mode, the {DECISION_ENGINE} can support temporal constraints on facts to wait for a set time before activating a rule.
 
-The same example rule in stream mode activates the fire alarm as usual, but applies a 10-second delay. The `duration()` tag in the rule is optional.
+The same example rule in stream mode activates the fire alarm as usual, but applies a 10-second delay.
 
 .Fire alarm rule with a negative pattern and time delay (stream mode only)
 [source]
 ----
 rule "Sound the alarm"
-when
-  $f : FireDetected()
-  not(SprinklerActivated(this after[0s,10s] $f))
-then
-  // Sound the alarm.
-end
-----
-
-.Fire alarm rule with a negative pattern, duration parameter, and time delay (stream mode only)
-[source]
-----
-rule "Sound the alarm"
-  duration(10s)
 when
   $f : FireDetected()
   not(SprinklerActivated(this after[0s,10s] $f))

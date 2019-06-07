@@ -5,7 +5,7 @@
 The {DECISION_ENGINE} runs in either cloud mode or stream mode. In cloud mode, the {DECISION_ENGINE} processes facts as facts with no temporal constraints, independent of time, and in no particular order. In stream mode, the {DECISION_ENGINE} processes facts as events with strong temporal constraints, in real time or near real time. Stream mode uses synchronization to make event processing possible in {PRODUCT}.
 
 Cloud mode::
-Cloud mode is the default operating mode of the {DECISION_ENGINE}. In cloud mode, the {DECISION_ENGINE} uses a many-to-many pattern-matching algorithm, which treats the events as an unordered cloud. Events still have time stamps, but the {DECISION_ENGINE} running in cloud mode cannot draw relevance from the time stamp because cloud mode ignores the present time. This mode uses the rule constraints to find the matching tuples to activate and execute rules.
+Cloud mode is the default operating mode of the {DECISION_ENGINE}. In cloud mode, the {DECISION_ENGINE} treats events as an unordered cloud. Events still have time stamps, but the {DECISION_ENGINE} running in cloud mode cannot draw relevance from the time stamp because cloud mode ignores the present time. This mode uses the rule constraints to find the matching tuples to activate and execute rules.
 +
 --
 Cloud mode does not impose any kind of additional requirements on facts. However, because the {DECISION_ENGINE} in this mode has no concept of time, it cannot use temporal features such as sliding windows or automatic life-cycle management. In cloud mode, events must be explicitly retracted when they are no longer needed.

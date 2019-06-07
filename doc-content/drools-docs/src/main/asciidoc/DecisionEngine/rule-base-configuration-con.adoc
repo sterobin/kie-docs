@@ -58,7 +58,7 @@ Rules that use queries, salience, or agenda groups are currently not supported b
 --
 
 drools.sequential::
-When enabled, this property enables sequential mode in the {DECISION_ENGINE} so that rules in a stateless KIE session can access the data modified by the `modify` or `update` statements of previous rules. You can use this property if you use stateless KIE sessions but you want rules to be influenced by the execution of other rules for a more intuitive and holistic rule evaluation. Sequential mode applies to stateless KIE sessions only.
+When enabled, this property enables sequential mode in the {DECISION_ENGINE} so that rules in a stateless KIE session can access the data modified by the `modify` or `update` statements of previous rules. You can use this property if you use stateless KIE sessions but you want rules to be influenced by the execution of other rules. Sequential mode applies to stateless KIE sessions only.
 +
 --
 Default value: `false`
