@@ -1,8 +1,5 @@
-[[drools.DecisionEngine]]
 
-= {DECISION_ENGINE}
-
-As a business rules developer, your understanding of the {DECISION_ENGINE} can help you design more effective business assets in {PRODUCT} and a more scalable decision management architecture. The {DECISION_ENGINE} is the {PRODUCT} component that stores, processes, and evaluates data to execute business rules and to reach the decisions that you define. This chapter describes basic concepts and functions of the {DECISION_ENGINE} to consider as you create your business rule system and decision services in {PRODUCT}.
+include::DecisionEngine/decision-engine-con.adoc[]
 
 include::DecisionEngine/phreak-algorithm-con.adoc[leveloffset=+1]
 

@@ -71,7 +71,7 @@ ksession.execute(applicant);
 assertFalse(applicant.isValid());
 ----
 
-In a stateless KIE session configuration, you do not need to call `fireAllRules()` or call `dispose()` after session invocation. With a stateless KIE session, the `execute()` call acts as a combination method that instantiates the `KieSession` object, adds all the user data and executes user commands, calls `fireAllRules()`, and then calls `dispose()`.
+In a stateless KIE session configuration, the `execute()` call acts as a combination method that instantiates the `KieSession` object, adds all the user data and executes user commands, calls `fireAllRules()`, and then calls `dispose()`. Therefore, with a stateless KIE session, you do not need to call `fireAllRules()` or call `dispose()` after session invocation as you do with a stateful KIE session.
 
 In this case, the specified applicant is under the age of 18, so the application is declined.
 
