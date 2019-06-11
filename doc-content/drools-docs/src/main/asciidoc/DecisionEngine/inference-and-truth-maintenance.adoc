@@ -2,7 +2,7 @@
 
 = Inference and truth maintenance in the {DECISION_ENGINE}
 
-The basic function of the {DECISION_ENGINE} is to match data to business rules and determine whether and how to execute rules. To ensure that relevant data is applied to the appropriate rules, the {DECISION_ENGINE} makes inferences based on existing knowledge and performs the actions based on the inferred information.
+The basic function of the {DECISION_ENGINE} is to match data to business rules and determine whether and how to execute rules. To ensure that relevant data is applied to the appropriate rules, the {DECISION_ENGINE} makes _inferences_ based on existing knowledge and performs the actions based on the inferred information.
 
 For example, the following DRL rule determines the age requirements for adults, such as in a bus pass policy:
 
