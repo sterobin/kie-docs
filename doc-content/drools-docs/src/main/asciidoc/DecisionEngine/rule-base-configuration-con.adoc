@@ -34,21 +34,21 @@ Default value: `false`
 
 You can enable multithreaded evaluation using one of the following options:
 
-* Enable multithreaded evaluation with `KieBaseConfiguration`:
-+
-[source]
-----
-KieServices ks = KieServices.Factory.get();
-KieBaseConfiguration kieBaseConf = ks.newKieBaseConfiguration();
-kieBaseConf.setOption(MultithreadEvaluationOption.YES);
-KieBase kieBase = kieContainer.newKieBase(kieBaseConf);
-----
-
 * Enable the multithreaded evaluation system property:
 +
 [source]
 ----
 drools.multithreadEvaluation=true
+----
+
+* Enable multithreaded evaluation while creating the KIE base programatically:
++
+[source,java]
+----
+KieServices ks = KieServices.Factory.get();
+KieBaseConfiguration kieBaseConf = ks.newKieBaseConfiguration();
+kieBaseConf.setOption(MultithreadEvaluationOption.YES);
+KieBase kieBase = kieContainer.newKieBase(kieBaseConf);
 ----
 
 [WARNING]
@@ -63,8 +63,22 @@ When enabled, this property enables sequential mode in the {DECISION_ENGINE}. In
 --
 Default value: `false`
 
+You can enable sequential mode using one of the following options:
+
+* Enable the sequential mode system property:
++
 [source]
 ----
 drools.sequential=true
+----
+
+* Enable sequential mode while creating the KIE base programatically:
++
+[source,java]
+----
+KieServices ks = KieServices.Factory.get();
+KieBaseConfiguration kieBaseConf = ks.newKieBaseConfiguration();
+kieBaseConf.setOption(SequentialOption.YES);
+KieBase kieBase = kieContainer.newKieBase(kieBaseConf);
 ----
 --

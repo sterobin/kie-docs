@@ -13,14 +13,12 @@ import org.kie.api.runtime.StatelessKieSession;
 
 StatelessKieSession ksession = kbase.newStatelessKieSession();
 
-// Set a global `hbnSession` that can be used for database interactions in the rules.
+// Set a global `myGlobal` that can be used in the rules.
+ksession.setGlobal("myGlobal", "I am a global");
 
-ksession.setGlobal("hbnSession", hibernateSession);
-
-// Execute while resolving the `hbnSession` identifier.
+// Execute while resolving the `myGlobal` identifier.
 ksession.execute(collection);
 ----
-
 
 * *Delegate globals:* For delegate globals, you can assign a value to a global (with `setGlobal(String, Object)`) so that the value is stored in an internal collection that maps identifiers to values. Identifiers in this internal collection have priority over any supplied delegate. If an identifier cannot be found in this internal collection, the delegate global (if any) is used.
 

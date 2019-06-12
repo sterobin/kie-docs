@@ -9,33 +9,27 @@ Sequential mode applies to only stateless KIE sessions because stateful KIE sess
 To enable sequential mode, use one of the following options:
 
 * Set the system property `drools.sequential` to `true`.
-* Enable sequential mode while creating the KIE base in the client code:
+* Enable sequential mode while creating the KIE base programatically:
 +
 [source,java]
 ----
-KieServices services = KieServices.Factory.get();
-KieContainer container = services.newKieContainer(releaseId);
-
-KieBaseConfiguration conf = KieServices.Factory.get().newKieBaseConfiguration();
-conf.setOption(SequentialOption.YES);
-
-KieBase kieBase = kc.newKieBase(conf);
+KieServices ks = KieServices.Factory.get();
+KieBaseConfiguration kieBaseConf = ks.newKieBaseConfiguration();
+kieBaseConf.setOption(SequentialOption.YES);
+KieBase kieBase = kieContainer.newKieBase(kieBaseConf);
 ----
 
 To configure sequential mode to use a dynamic agenda, use one of the following options:
 
 * Set the system property `drools.sequential.agenda` to `dynamic`.
-* Set the sequential agenda option while creating the KIE base in the client code:
+* Set the sequential agenda option while creating the KIE base programatically:
 +
 [source,java]
 ----
-KieServices services = KieServices.Factory.get();
-KieContainer container = services.newKieContainer(releaseId);
-
-KieBaseConfiguration conf = KieServices.Factory.get().newKieBaseConfiguration();
-conf.setOption(SequentialAgendaOption.DYNAMIC);
-
-KieBase kieBase = kc.newKieBase(conf);
+KieServices ks = KieServices.Factory.get();
+KieBaseConfiguration kieBaseConf = ks.newKieBaseConfiguration();
+kieBaseConf.setOption(SequentialAgendaOption.DYNAMIC);
+KieBase kieBase = kieContainer.newKieBase(kieBaseConf);
 ----
 
 When you enable sequential mode, the {DECISION_ENGINE} evaluates rules in the following way:
@@ -57,27 +51,3 @@ The agenda with a priority queue to schedule the tuples is replaced by an elemen
 When the network is constructed, each `RuleTerminalNode` node receives a sequence number based on its salience number and the order in which it was added to the network.
 
 The right-input node memories are typically hash maps for fast object deletion. Because object deletions are not supported, Phreak uses an object list when the values of the object are not indexed. For a large number of objects, indexed hash maps provide a performance increase. If an object has only a few instances, Phreak uses an object list instead of an index.
-
-Unlike Phreak, the ReteOO algorithm that preceded Phreak does not support sequential mode for data modified by the `modify` or `update` statements of previous rules. For example, with the following rules in a stateless KIE session, when you insert a `MyFact` object with the value `field1==false`, the ReteOO algorithm executes only `Rule1` while the Phreak algorithm uses sequential mode to execute both `Rule1` and `Rule2`.
-
-[source]
-----
-rule "Rule1"
-salience 100
-when
-   $fact : MyFact( field1 == false )
-then
-   System.out.println("Rule1 : " + $fact);
-   $fact.setField1(true);
-   update($fact);
-end
-
-rule "Rule2"
-salience 95
-when
-    $fact : MyFact( field1 == true )
-then
-    System.out.println("Rule2 : " + $fact);
-    update($fact);
-end
-----

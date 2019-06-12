@@ -76,11 +76,11 @@ then
 end
 ----
 
-For the `When there is a fire turn on the sprinkler` rule, when a fire occurs, the instances of the `Fire` class are created for that room and inserted into the KIE session. The rule adds a binding to the `room` field of the `Fire` class to constrain matches so that only the sprinkler for that room is checked. When this rule is executed, the sprinkler activates. The other sample rules determine when the alarm is activated or deactivated accordingly.
+For the `When there is a fire turn on the sprinkler` rule, when a fire occurs, the instances of the `Fire` class are created for that room and inserted into the KIE session. The rule adds a constraint for the specific `room` matched in the `Fire` instance so that only the sprinkler for that room is checked. When this rule is executed, the sprinkler activates. The other sample rules determine when the alarm is activated or deactivated accordingly.
 
 Whereas a stateless KIE session relies on standard Java syntax to modify a field, a stateful KIE session relies on the `modify` statement in rules to notify the {DECISION_ENGINE} of changes. The {DECISION_ENGINE} then reasons over the changes and assesses impact on subsequent rule executions. This process is part of the {DECISION_ENGINE} ability to use _inference_ and _truth maintenance_ and is essential in stateful KIE sessions.
 
-In this example, the sample rules and all other files in the `~/resources` folder of the {PRODUCT} Maven project are built with the following code:
+In this example, the sample rules and all other files in the `~/resources` folder of the {PRODUCT} project are built with the following code:
 
 .Create the KIE container
 [source,java]

@@ -11,7 +11,7 @@ The {DECISION_ENGINE} is the rules engine in {PRODUCT}. The {DECISION_ENGINE} st
 
 The {DECISION_ENGINE} operates using the following basic components:
 
-* *Rules:* Business rules or DMN decisions that you define. All rules must contain at minimum the conditions (`when`) that trigger the rule and the actions (`then`) that the rule dictates.
+* *Rules:* Business rules or DMN decisions that you define. All rules must contain at minimum the conditions that trigger the rule and the actions that the rule dictates.
 * *Facts:* Data that enters or changes in the {DECISION_ENGINE} that the {DECISION_ENGINE} matches to rule conditions to execute applicable rules.
 * *Production memory:* Location where rules are stored in the {DECISION_ENGINE}.
 * *Working memory:* Location where facts are stored in the {DECISION_ENGINE}.

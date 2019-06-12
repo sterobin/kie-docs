@@ -43,7 +43,7 @@ The `Is of valid age` rule disqualifies any applicant younger than 18 years old.
 The dollar sign (`$`) is optional and helps to differentiate between variable names and field names.
 ====
 
-In this example, the sample rule and all other files in the `~/resources` folder of the {PRODUCT} Maven project are built with the following code:
+In this example, the sample rule and all other files in the `~/resources` folder of the {PRODUCT} project are built with the following code:
 
 .Create the KIE container
 [source,java]
@@ -136,6 +136,6 @@ BatchExecutionResults results = ksession.execute(CommandFactory.newBatchExecutio
 assertEquals(new Person("Mr John Smith"), results.getValue("mrSmith"));
 ----
 
-<1> The JDK converter implements the iterable interface, and this method executes rules against an iterable list of objects contained in the `Arrays.asList()` element. Every collection element is inserted before any matched rules are executed. The `execute(Object object)` and `execute(Iterable objects)` methods are wrappers around the `execute(Command command)` method that comes from the `BatchExecutor` interface.
-<2> The `CommandFactory` interface instructions equivalent to `execute(Iterable it)`.
-<3> The `BatchExecutor` and `CommandFactory` configurations for working with many different commands or result output identifiers. The `CommandFactory` interface supports other commands that you can use in the `BatchExecutor`, such as `StartProcess`, `Query`, and `SetGlobal`.
+<1> Method for executing rules against an iterable collection of objects produced by the `Arrays.asList()` method. Every collection element is inserted before any matched rules are executed. The `execute(Object object)` and `execute(Iterable objects)` methods are wrappers around the `execute(Command command)` method that comes from the `BatchExecutor` interface.
+<2> Execution of the iterable collection of objects using the `CommandFactory` interface.
+<3> `BatchExecutor` and `CommandFactory` configurations for working with many different commands or result output identifiers. The `CommandFactory` interface supports other commands that you can use in the `BatchExecutor`, such as `StartProcess`, `Query`, and `SetGlobal`.
