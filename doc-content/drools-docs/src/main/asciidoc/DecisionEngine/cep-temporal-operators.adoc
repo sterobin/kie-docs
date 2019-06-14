@@ -10,7 +10,7 @@ In stream mode, the {DECISION_ENGINE} supports the following temporal operators 
 * `during`
 * `includes`
 * `finishes`
-* `finishes by`
+* `finished by`
 * `meets`
 * `met by`
 * `overlaps`
@@ -21,7 +21,7 @@ In stream mode, the {DECISION_ENGINE} supports the following temporal operators 
 after::
 +
 --
-This operator defines an amount of time after which the current event can follow the correlated event, or a delimiting time range during which the current event can follow the correlated event.
+This operator specifies if the current event occurs after the correlated event. This operator can also define an amount of time after which the current event can follow the correlated event, or a delimiting time range during which the current event can follow the correlated event.
 
 For example, the following pattern matches if `$eventA` starts between 3 minutes and 30 seconds and 4 minutes after `$eventB` finishes. If `$eventA` starts earlier than 3 minutes and 30 seconds after `$eventB` finishes, or later than 4 minutes after `$eventB` finishes, then the pattern is not matched.
 
@@ -60,10 +60,10 @@ $eventA : EventA(this after[-2m, -3m30s] $eventB)
 --
 
 before::
-This operator defines an amount of time after which the current event can precede the correlated event, or a delimiting time range during which the current event can precede the correlated event.
+This operator specifies if the current event occurs before the correlated event. This operator can also define an amount of time before which the current event can precede the correlated event, or a delimiting time range during which the current event can precede the correlated event.
 +
 --
-For example, the following pattern matches if `$eventB` starts between 3 minutes and 30 seconds and 4 minutes after `$eventA` finishes. If `$eventB` starts earlier than 3 minutes and 30 seconds after `$eventA` finishes, or later than 4 minutes after `$eventA` finishes, then the pattern is not matched.
+For example, the following pattern matches if `$eventA` finishes between 3 minutes and 30 seconds and 4 minutes before `$eventB` starts. If `$eventA` finishes earlier than 3 minutes and 30 seconds before `$eventB` starts, or later than 4 minutes before `$eventB` starts, then the pattern is not matched.
 
 [source]
 ----
