@@ -4,7 +4,7 @@
 
 The `StatelessKieSession` object supports global variables (globals) that you can configure to be resolved as session-scoped globals, delegate globals, or execution-scoped globals.
 
-* *Session-scoped globals:* For session-scoped globals, you can use the method `getGlobals()` to return a `Globals` instance that provides access to the KIE session globals. These globals are shared for all execution calls. Use caution with mutable globals because execution calls can be executing simultaneously in different threads.
+* *Session-scoped globals:* For session-scoped globals, you can use the method `getGlobals()` to return a `Globals` instance that provides access to the KIE session globals. These globals are used for all execution calls. Use caution with mutable globals because execution calls can be executing simultaneously in different threads.
 +
 .Session-scoped global
 [source,java]

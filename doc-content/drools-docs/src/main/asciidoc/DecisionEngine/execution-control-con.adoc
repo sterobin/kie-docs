@@ -16,7 +16,7 @@ When multiple rules exist on the agenda, the execution of one rule may cause ano
 
 == Salience for rules
 
-Each rule has an integer `salience` attribute that determines order of execution. Rules with a higher salience value are given higher priority when ordered in the activation queue. The default salience value for rules is zero, but the salience can be negative or positive.
+Each rule has an integer `salience` attribute that determines the order of execution. Rules with a higher salience value are given higher priority when ordered in the activation queue. The default salience value for rules is zero, but the salience can be negative or positive.
 
 For example, the following sample DRL rules are listed in the {DECISION_ENGINE} stack in the order shown:
 

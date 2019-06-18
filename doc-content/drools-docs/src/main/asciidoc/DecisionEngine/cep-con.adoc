@@ -10,7 +10,7 @@ CEP use cases share several requirements and goals with business rule use cases.
 
 From a business perspective, business rule definitions are often defined based on the occurrence of scenarios triggered by events. In the following examples, events form the basis of business rules:
 
-* In an algorithmic trading application, a rule performs an action if the security price increases by X percent above the day opening price. The price increases are denoted by events on a stock trade application.
+* In an algorithmic trading application, a rule performs an action if the security price increases by X percent above the day opening price. The price increases are denoted by events on a stock trading application.
 * In a monitoring application, a rule performs an action if the temperature in the server room increases X degrees in Y minutes. The sensor readings are denoted by events.
 
 From a technical perspective, business rule evaluation and CEP have the following key similarities:
@@ -35,6 +35,6 @@ Given these common CEP scenario characteristics, the CEP system in {PRODUCT} sup
 * Temporal constraints to model the temporal relationships between events
 * Sliding windows of significant events
 * Session-scoped unified clock
-* Required volumes of events for complex event processing use cases
+* Required volumes of events for CEP use cases
 * Reactive rules
 * Adapters for event input into the {DECISION_ENGINE} (pipeline)
