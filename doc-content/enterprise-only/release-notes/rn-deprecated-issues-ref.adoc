@@ -1,7 +1,0 @@
-[id='rn-deprecated-issues-ref']
-= Deprecated components
-
-The components listed in this section have been deprecated or removed.
-
-
-//== Installation
