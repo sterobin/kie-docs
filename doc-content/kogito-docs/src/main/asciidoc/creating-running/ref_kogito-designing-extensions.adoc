@@ -1,0 +1,8 @@
+[id='ref_kogito-designing-extensions']
+
+= Supported extensions for designing {PRODUCT} services
+
+The following extensions can help you design your {PRODUCT} services using graphical editors directly in your existing development environment. This list is updated as {PRODUCT} provides additional extensions and editor support.
+
+* *VSCode*: (Recommended) Use the {PRODUCT} https://github.com/kiegroup/kogito-tooling/releases[VSCode Extension] for BPMN 2.0 and DMN modeling support. To install the extension, download the latest version of the `vscode_extension_kogito_kie_editors_VERSION.vsix` file from the https://github.com/kiegroup/kogito-tooling/releases[kogito-tooling] page in GitHub, and in your VSCode IDE, go to *Extensions* -> *More actions* -> *Install from VSIX* and select the downloaded extension file. When the extension appears in the extension list in VSCode, select it and click *Enable*, if needed.
+*  *Eclipse*: Use the BPMN2 Modeler plugin with jBPM Runtime Extension for BPMN 2.0 modeling support. To install the plugin, in your Eclipse IDE, go to *Help* -> *Eclipse Marketplace*, search for and then select *Eclipse BPMN2 Modeler*, and click *Install*. When prompted during installation, select the *BPMN2 Modeler - jBPM Runtime Extension Feature* option, complete the installation, and restart Eclipse.
