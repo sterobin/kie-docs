@@ -15,13 +15,13 @@ endif::[]
 * You have OpenShift permissions to create resources in a given namespace.
 
 .Procedure
-. Download the latest version of the https://github.com/kiegroup/kogito-cloud-operator/releases[Kogito Operator distribution] from GitHub.
+. Download the latest version of the https://github.com/kiegroup/kogito-cloud-operator/releases[{PRODUCT} CLI distribution] from GitHub.
 . Extract the `{PRODUCT_INIT}-RELEASE` binary file:
 +
 --
 * On Linux: In a command terminal, navigate to the directory where you downloaded the `{PRODUCT_INIT}-RELEASE` binary file and run the following command to extract the contents:
 +
-.Extract the {PRODUCT} Operator distribution
+.Extract the {PRODUCT} CLI distribution
 [source]
 ----
 tar -xvf kogito-RELEASE.tar.gz

@@ -24,7 +24,7 @@ The applications expose REST API endpoints that are generated from the Business 
 .Prerequisites
 * https://code.visualstudio.com/[VSCode] IDE is installed.
 * The {PRODUCT} https://github.com/kiegroup/kogito-tooling/releases[VSCode Extension] is installed and enabled in your VSCode IDE.
-* {OPENSHIFT} 4.1 or later is installed.
+* {OPENSHIFT} 4.2 or later is installed.
 * The `oc` OpenShift CLI is installed. For `oc` installation instructions, see the
 ifdef::KOGITO[]
 https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/cli_tools/openshift-cli-oc[OpenShift documentation].
@@ -33,7 +33,7 @@ ifdef::KOGITO-COMM[]
 https://docs.okd.io/latest/cli_reference/get_started_cli.html#cli-reference-get-started-cli[OpenShift documentation].
 endif::[]
 * You have access to the OpenShift web console with `cluster-admin` permissions.
-* The {PRODUCT} command-line interface (CLI) is installed from the latest https://github.com/kiegroup/kogito-cloud-operator/releases[Kogito Operator distribution].
+* The {PRODUCT} command-line interface (CLI) is installed from the latest https://github.com/kiegroup/kogito-cloud-operator/releases[{PRODUCT} CLI distribution].
 * Git is installed.
 * JDK 11 or later is installed.
 * Apache Maven 3.5.3 or later is installed.
