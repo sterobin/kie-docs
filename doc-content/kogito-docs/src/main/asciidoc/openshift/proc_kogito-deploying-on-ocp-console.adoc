@@ -48,8 +48,13 @@ spec:
       uri: 'https://github.com/kiegroup/kogito-examples'  # Git repository containing application
       contextDir: jbpm-quarkus-example  # Git folder location of application
     imageVersion: 0.8.0-rc1  # {PRODUCT} Operator version
-    # Maven mirror to download artifacts and shorten build time
-    mavenMirrorURL: http://nexus3-nexus.apps-crc.testing/repository/maven-public/
+----
+
+NOTE: If you have an internal Maven repository, you can use it as a Maven mirror service and specify the Maven mirror URL in your {PRODUCT} service definition to substantially shorten build time:
+
+[source,yaml]
+----
+mavenMirrorURL: http://nexus3-nexus.apps-crc.testing/repository/maven-public/
 ----
 --
 . After you define your application data, click *Create* to generate the {PRODUCT} service.

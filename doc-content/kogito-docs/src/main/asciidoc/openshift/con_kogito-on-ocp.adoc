@@ -2,7 +2,7 @@
 
 = {PRODUCT} on {OPENSHIFT}
 
-You can deploy {PRODUCT} services on {OPENSHIFT} for cloud implementation. In this solution, {PRODUCT} services are deployed as OpenShift pods that you can scale up and down individually to provide as few or as many containers as required for a particular service. You can use standard OpenShift methods to manage the pods and balance the load.
+You can deploy {PRODUCT} services on {OPENSHIFT} for cloud implementation. In this architecture, {PRODUCT} services are deployed as OpenShift pods that you can scale up and down individually to provide as few or as many containers as required for a particular service. You can use standard OpenShift methods to manage the pods and balance the load.
 
 To help you deploy your services on OpenShift, {PRODUCT} provides the following resources:
 
