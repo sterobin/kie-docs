@@ -38,6 +38,10 @@ include::CreatingRunning-chapter.adoc[leveloffset=+1]
 //OpenShift
 include::DeployingOnOCP-chapter.adoc[leveloffset=+1]
 
+//Developing decision services
+include::chap_kogito-developing-decision-services.adoc[leveloffset=+1]
+
+
 [discrete]
 = {PRODUCT} Release Notes
 
