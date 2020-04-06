@@ -105,7 +105,7 @@ This tag determines the time duration before an event expires in the working mem
 Default parameter: Null (event expires after event can no longer match and activate rules)
 
 Supported parameters: Custom `timeOffset` attribute in the format `[##d][#h][#m][#s][#[ms]]`
-// I had to put two #'s above for it to render only one. Otherwise removed the # from [d]. (Stetson, 28 May 2019)
+// @comment: I had to put two #'s above for it to render only one. Otherwise removed the # from [d]. (Stetson, 28 May 2019)
 
 [source,subs="+quotes"]
 ----

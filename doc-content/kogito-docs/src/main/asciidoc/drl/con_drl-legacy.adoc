@@ -1,0 +1,78 @@
+[id='con_drl-legacy_{context}']
+
+= Legacy DRL conventions
+
+= Legacy functions in DRL
+
+ifdef::KOGITO-COMM[]
+.Function
+image::kogito/drl/function.png[align="center"]
+endif::[]
+
+Functions in DRL files put semantic code in your rule source file instead of in Java classes. Functions are especially useful if an action (`then`) part of a rule is used repeatedly and only the parameters differ for each rule. Above the rules in the DRL file, you can declare the function or import a static method from a helper class as a function, and then use the function by name in an action (`then`) part of the rule.
+
+The following examples illustrate a function that is either declared or imported in a DRL file:
+
+.Example function declaration with a rule (option 1)
+[source]
+----
+function String hello(String applicantName) {
+    return "Hello " + applicantName + "!";
+}
+
+rule "Using a function"
+  when
+    // Empty
+  then
+    System.out.println( hello( "James" ) );
+end
+----
+
+.Example function import with a rule (option 2)
+[source]
+----
+import function my.package.applicant.hello;
+
+rule "Using a function"
+  when
+    // Empty
+  then
+    System.out.println( hello( "James" ) );
+end
+----
+
+== Legacy Attributes
+
+The following attributes were used in earlier version of the engine to provide grouping of rules across a rule base. They are effectively supersed by rule units, and are only currently available for backwards compatibility reasons. If you need to group your rules, rule units offer a clearer and simpler way to do so.
+
+[cols="30%,70%", options="header"]
+|===
+|Attribute
+|Value
+
+|`agenda-group`
+|A string identifying an agenda group to which you want to assign the rule. Agenda groups allow you to partition the agenda to provide more execution control over groups of rules. Only rules in an agenda group that has acquired a focus are able to be activated.
+
+Example: `agenda-group "GroupName"`
+
+|`activation-group`
+|A string identifying an activation (or XOR) group to which you want to assign the rule. In activation groups, only one rule can be activated. The first rule to fire will cancel all pending activations of all rules in the activation group.
+|===
+
+== Legacy rule condition syntax
+
+People familiar with Drools, will remember the pattern matching syntax. For legacy use cases, it is still possible to rewrite rules using pattern matching. In this case, you will have to explicitly indicate the data source using the `from` clause:
+
+.Example rule unit declaration in a DRL file using traditional notation
+[source]
+----
+package com.acme
+unit MonitoringService
+
+rule tooHot
+when
+    temp : Temperature( value >= 80 ) from temperature
+then
+    alertData.add(new Alert("HIGH", "Temperature exceeds threshold: " + temp.value));
+end
+----
