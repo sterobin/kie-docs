@@ -46,7 +46,7 @@ rule "Using a rule unit with a declared type"
   then   // Insert Mark, who is a customer of James.
     Person mark = new Person();
     mark.setName( "Mark" );
-    person.add( mark );
+    person.append( mark );
 end
 ----
 
@@ -81,7 +81,7 @@ To define DRL rules that pattern-match against `Temperature` values, the example
 
 The `DataStream` data source is an append-only store for incoming data, similar to a queue. This type of data source is logical for both sources in this example because the temperature data is coming from an external source (the sensor) and the service publishes the alerts externally as they are produced.
 
-The example service uses the following `MonitoringService.drl` file in the same `src/main/resources/org/acme` folder of the {PRODUCT} project to declare the rule unit with the associated data sources and define the rules:
+The example service uses the following `MonitoringService.drl` file in the same `src/main/resources/com/acme` folder of the {PRODUCT} project to declare the rule unit with the associated data sources and define the rules:
 
 .Example DRL rule unit rule file
 [source]

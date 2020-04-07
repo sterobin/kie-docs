@@ -95,7 +95,7 @@ rule "Using a declared type"
   then   // Insert Mark, who is a customer of James.
     Person mark = new Person();
     mark.setName( "Mark" );
-    person.add( mark );
+    person.append( mark );
 end
 ----
 
@@ -132,7 +132,7 @@ rule "Using a rule unit with a declared type"
   then   // Insert Mark, who is a customer of James.
     Person mark = new Person();
     mark.setName( "Mark" );
-    person.add( mark );
+    person.append( mark );
 end
 ----
 --
@@ -156,8 +156,8 @@ end
 rule "Underage"
   salience 15
   when
-    $application : /loanApplication
-    /applicant[ age < 21 ]
+    /applicant[ applicantName : name, age < 21 ]
+    $application : /loanApplication[ applicant == applicantName ]
   then
     $application.setApproved( false );
     $application.setExplanation( "Underage" );
@@ -172,17 +172,20 @@ The following example is a complete DRL rule unit set in a loan application deci
 package org.mortgages;
 
 declare Bankruptcy
-    yearOfOccurrence: double
+    name: String
+    yearOfOccurrence: int
     amountOwed: double
 end
 
 declare Applicant
-    age: double
+    name: String
+    age: int
 end
 
 declare LoanApplication
+  applicant: String
   setApproved: boolean
-  setExplanation: string
+  setExplanation: String
 end
 ----
 
@@ -196,16 +199,16 @@ import org.kie.kogito.rules.DataSource;
 import org.kie.kogito.rules.DataStream;
 
 declare MortgageRules extends RuleUnitData
-  bankruptcy: DataStream<Bankruptcy> = DataSource.createStream()
-  applicant: DataStream<Applicant> = DataSource.createStream()
-  application: DataStream<LoanApplication> = DataSource.createStream()
+  bankruptcy: DataStore<Bankruptcy> = DataSource.createStore()
+  applicant: DataStore<Applicant> = DataSource.createStore()
+  application: DataStore<LoanApplication> = DataSource.createStore()
 end
 
 rule "Bankruptcy history"
 	salience 10
 	when
-		$a : /loanApplication
-		exists (/bankruptcy[ yearOfOccurrence > 1990 || amountOwed > 10000 ])
+		$a : /loanApplication[ applicantName: applicant ]
+		exists (/bankruptcy[ name == applicantName, yearOfOccurrence > 1990 || amountOwed > 10000 ])
 	then
 		$a.setApproved( false );
 		$a.setExplanation( "has been bankrupt" );
@@ -215,8 +218,8 @@ end
 rule "Underage"
 	salience 15
 	when
-		$application : /loanApplication
-		/applicant[ age < 21 ]
+        /applicant[ applicantName : name, age < 21 ]
+        $application : /loanApplication[ applicant == applicantName ]
 	then
 		$application.setApproved( false );
 		$application.setExplanation( "Underage" );
