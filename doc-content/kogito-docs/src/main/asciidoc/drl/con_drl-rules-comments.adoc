@@ -10,8 +10,8 @@ DRL supports single-line comments prefixed with a double forward slash `//` and 
 rule "Underage"
   // This is a single-line comment.
   when
-    $application : LoanApplication()  // This is an in-line comment.
-    Applicant( age < 21 )
+    $application : /loanApplication  // This is an in-line comment.
+    /applicant[ age < 21 ]
   then
     /* This is a multi-line comment
     in the rule actions. */

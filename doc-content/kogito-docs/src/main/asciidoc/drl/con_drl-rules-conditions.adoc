@@ -1,4 +1,3 @@
-
 [id='con_drl-rules-conditions_{context}']
 = Rule conditions in DRL
 
@@ -10,9 +9,9 @@ image::kogito/drl/rule.png[align="center"]
 image::kogito/drl/lhs.png[align="center"]
 endif::[]
 
-The `when` part of a DRL rule (also known as the _Left Hand Side (LHS)_ of the rule) contains the conditions that must be met to execute an action. Conditions consist of a series of stated _OOPath expressions_ and _constraints_, with optional _bindings_ and supported rule condition elements (keywords), based on the available data objects in the package. OOPath is an object-oriented syntax extension to XPath for navigating through related elements while handling collections and filtering constraints, and is specifically useful for browsing graphs of objects in DRL rule condition constraints.
+The `when` part of a DRL rule (also known as the _Left Hand Side (LHS)_ of the rule) contains the conditions that must be met to execute an action. Conditions consist of a series of stated OOPath expressions of patterns and constraints, with optional bindings and supported rule condition elements (keywords), based on the available data objects in the package. OOPath is an object-oriented syntax extension to XPath for navigating through related elements while handling collections and filtering constraints. OOPath is specifically useful for browsing graphs of objects in DRL rule condition constraints.
 
-For example, consider a control system that raises alerts when temperature exceeds some the 80 degrees threshold; then the `when` condition of a rule `tooHot` would read `/temperature[value >= 80]`.
+For example, in a decision service that raises alerts when the temperature reaches or exceeds 80 degrees, a rule `tooHot` contains the `when` condition `/temperature[value >= 80]`.
 
 NOTE: DRL uses `when` instead of `if` because `if` is typically part of a procedural execution flow during which a condition is checked at a specific point in time. In contrast, `when` indicates that the condition evaluation is not limited to a specific evaluation sequence or point in time, but instead occurs continually at any time. Whenever the condition is met, the actions are executed.
 
@@ -23,7 +22,7 @@ The following example rule uses empty conditions to insert a fact every time the
 .Example rule without conditions
 [source]
 ----
-rule startup
+rule "start-up"
   when
     // Empty
   then   // Actions to be executed once
@@ -40,12 +39,11 @@ OOPExpr = [ID ( ":" | ":=" )] ( "/" | "?/" ) OOPSegment { ( "/" | "?/" | "." ) O
 OOPSegment = ID ["#" ID] ["[" ( Number | Constraints ) "]"]
 ----
 
-
 == OOPath expressions and constraints
 
-A _OOPath Expression_ in a DRL rule condition is the segment to be matched by the {DECISION_ENGINE}. An OOPath expression can potentially match each fact that is inserted into the working memory of the {DECISION_ENGINE}. It can also contain _constraints_ to further define the facts to be matched.
+An _OOPath expression_ of a pattern in a DRL rule condition is the segment to be matched by the {DECISION_ENGINE}. An OOPath expression can potentially match each fact that is inserted into the working memory of the {DECISION_ENGINE}. It can also contain constraints to further define the facts to be matched.
 
-In the simplest form, with no constraints, a an OOPath expression matches a fact in the given data source. In the following example, consider a `DataSource<Person>` named `person`; the expression will match against all `Person` objects in the data source of the {DECISION_ENGINE}:
+In the simplest form, with no constraints, an OOPath expression matches a fact in the given data source. In the following example with a `DataSource<Person>` named `person`, the expression matches against all `Person` objects in the data source of the {DECISION_ENGINE}:
 
 .Example expression for a single fact type
 [source]
@@ -53,7 +51,7 @@ In the simplest form, with no constraints, a an OOPath expression matches a fact
 /person
 ----
 
-Patterns can also refer to superclasses or even interfaces, potentially matching facts from many different classes. For example, the following pattern matches all `Student` subtypes of `Person`:
+Patterns can also refer to superclasses or even interfaces, potentially matching facts from many different classes. For example, the following pattern matches all `Student` subtypes of the `Person` object:
 
 .Example pattern for subtypes
 [source]
@@ -61,7 +59,7 @@ Patterns can also refer to superclasses or even interfaces, potentially matching
 /person # Student
 ----
 
-The parentheses of a pattern enclose the constraints, such as the following constraint on the person's age:
+Square brackets in a pattern enclose the constraints, such as the following constraint on the person's age:
 
 .Example pattern with a constraint
 [source]
@@ -78,12 +76,12 @@ Any JavaBeans property can be accessed directly from pattern constraints. A bean
 ----
 /person[ age == 50 ]
 
-// This is the same as the following getter format:
+// This is equivalent to the following getter format:
 
 /person[ getAge() == 50 ]
 ----
 
-{PRODUCT} uses the standard JDK `Introspector` class to achieve this mapping, so it follows the standard JavaBeans specification. For optimal {DECISION_ENGINE} performance, use the property access format, such as `age`, instead of using getters explicitly, such as `getAge()`.
+{PRODUCT} uses the standard JDK `Introspector` class to achieve this mapping and follows the standard JavaBeans specification. For optimal {DECISION_ENGINE} performance, use the property access format, such as `age`, instead of using getters explicitly, such as `getAge()`.
 
 [WARNING]
 ====
@@ -130,7 +128,7 @@ You can also nest access properties in patterns, as shown in the following examp
 ----
 /person[ address.houseNumber == 50 ]
 
-// this is equivalent to the following
+// This is equivalent to the following expression:
 
 /person[ getAddress().getHouseNumber() == 50 ]
 ----
@@ -181,9 +179,9 @@ For example, do not use a pattern constraint in the following ways:
 
 Standard Java operator precedence applies to constraint operators in DRL, and DRL operators follow standard Java semantics except for the `==` and `!=` operators.
 
-The `==` operator uses null-safe `equals()` semantics instead of the usual `same` semantics. For example, the pattern `Person( firstName == "John" )` is similar to `java.util.Objects.equals(person.getFirstName(), "John")`, and because `"John"` is not null, the pattern is also similar to `"John".equals(person.getFirstName())`.
+The `==` operator uses null-safe `equals()` semantics instead of the usual `same` semantics. For example, the pattern `/person[ firstName == "John" ]` is similar to `java.util.Objects.equals(person.getFirstName(), "John")`, and because `"John"` is not null, the pattern is also similar to `"John".equals(person.getFirstName())`.
 
-The `!=` operator uses null-safe `!equals()` semantics instead of the usual `not same` semantics. For example, the pattern `Person( firstName != "John" )` is similar to `!java.util.Objects.equals(person.getFirstName(), "John")`.
+The `!=` operator uses null-safe `!equals()` semantics instead of the usual `not same` semantics. For example, the pattern `/person[ firstName != "John" ]` is similar to `!java.util.Objects.equals(person.getFirstName(), "John")`.
 
 If the field and the value of a constraint are of different types, the {DECISION_ENGINE} uses type coercion to resolve the conflict and reduce compilation errors. For instance, if `"ten"` is provided as a string in a numeric evaluator, a compilation error occurs, whereas `"10"` is coerced to a numeric 10. In coercion, the field type always takes precedence over the value type:
 
@@ -221,18 +219,18 @@ You cannot embed a comma operator in a composite constraint expression, such as 
 
 == Bound variables in patterns and constraints
 
-You can bind variables to patterns and constraints to refer to matched objects in other portions of a rule. Bound variables can help you define rules more efficiently or more consistently with how you annotate facts in your data model.
+You can bind variables to OOPath expressions of patterns and constraints to refer to matched objects in other portions of a rule. Bound variables can help you define rules more efficiently or more consistently with how you annotate facts in your data model.
 // evacchi: I think the "new" convention is to drop $ sign
 // To differentiate more easily between variables and fields in a rule, use the standard format `$__VARIABLE__` for variables, especially in complex rules. This convention is helpful but not required in DRL.
 
-For example, the following DRL rule uses the variable `p` for a OOPath expression with the `Person` fact:
+For example, the following DRL rule uses the variable `$p` for an OOPath expression with the `Person` fact:
 
 .Pattern with a bound variable
 [source]
 ----
 rule "simple rule"
   when
-    p : /person
+    $p : /person
   then
     System.out.println( "Person " + p );
 end
@@ -325,7 +323,7 @@ These example patterns cast `Address` to `LongAddress`, and additionally to `Det
 
 == Date literal in constraints
 
-By default, the {DECISION_ENGINE} supports the date format `dd-mmm-yyyy`. You can customize the date format, including a time format mask if needed, by providing an alternative format mask with the system property `drools.dateformat="dd-mmm-yyyy hh:mm"`. You can also customize the date format by changing the language locale with the `drools.defaultlanguage` and `drools.defaultcountry` system properties (for example, the locale of Thailand is set as `drools.defaultlanguage=th` and `drools.defaultcountry=TH`).
+By default, the {DECISION_ENGINE} supports the date format `dd-mmm-yyyy`. You can customize the date format, including a time format mask if needed, by providing an alternative format mask with the system property `drools.dateformat="dd-mmm-yyyy hh:mm"`. You can also customize the date format by changing the language locale with the `drools.defaultlanguage` and `drools.defaultcountry` system properties. For example, the locale of Thailand is set as `drools.defaultlanguage=th` and `drools.defaultcountry=TH`.
 
 .Example pattern with a date literal restriction
 [source]

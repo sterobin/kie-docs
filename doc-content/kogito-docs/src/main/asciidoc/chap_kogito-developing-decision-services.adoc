@@ -64,9 +64,6 @@ include::creating-running/con_kogito-service-execution.adoc[leveloffset=+1]
 As a developer of business decisions, you can define business rules using Drools Rule Language (DRL) directly in free-form `.drl` text files. A DRL file can contain one or more rules that define at a minimum the rule conditions (`when`) and actions (`then`).
 
 include::drl/con_drl.adoc[leveloffset=+1]
-
-include::drl/con_drl-rules-oopath.adoc[leveloffset=+2]
-
 include::drl/con_drl-packages.adoc[leveloffset=+2]
 include::drl/con_drl-rule-units.adoc[leveloffset=+2]
 include::drl/con_drl-imports.adoc[leveloffset=+2]
@@ -91,17 +88,10 @@ ifdef::KOGITO-COMM[]
 include::drl/ref_drl-rules-conditions-elements-diagrams.adoc[leveloffset=+3]
 endif::[]
 include::drl/con_drl-rules-actions.adoc[leveloffset=+2]
-include::drl/ref_drl-rules-actions-methods.adoc[leveloffset=+3]
-include::drl/ref_drl-rules-actions-methods-variables.adoc[leveloffset=+3]
-include::drl/con_drl-rules-actions-advanced.adoc[leveloffset=+3]
 include::drl/con_drl-rules-comments.adoc[leveloffset=+2]
 include::drl/ref_drl-rules-errors.adoc[leveloffset=+2]
 include::drl/con_drl-legacy.adoc[leveloffset=+2]
-
-
 include::drl/proc_drl-rules-create.adoc[leveloffset=+1]
-include::drl/proc_drl-rules-conditions.adoc[leveloffset=+2]
-include::drl/proc_drl-rules-actions.adoc[leveloffset=+2]
 include::creating-running/con_kogito-service-execution.adoc[leveloffset=+1]
 
 = Using spreadsheet decision tables in {PRODUCT} services

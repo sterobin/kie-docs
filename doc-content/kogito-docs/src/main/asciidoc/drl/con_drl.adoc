@@ -38,11 +38,11 @@ The following example DRL rule determines the age limit in a loan application de
 ----
 rule "Underage"
   when
-    application : /loanApplication
+    $application : /loanApplication
     /applicant[ age < 21 ]
   then
-    application.setApproved( false );
-    application.setExplanation( "Underage" );
+    $application.setApproved( false );
+    $application.setExplanation( "Underage" );
 end
 ----
 

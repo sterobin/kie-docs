@@ -2,7 +2,7 @@
 
 = Rule units in DRL
 
-A rule unit is both a module for rules and a unit of execution. A rule unit collects a set of rules with the declaration of the type of facts that the rules act on. A rule unit also serves as a unique namespace for each group of rules. A single rule base can contain multiple rule units. You typically store all the rules for a unit in the same file as the unit declaration so that the unit is self-contained.
+A DRL rule unit is a module for rules and a unit of execution. A rule unit collects a set of rules with the declaration of the type of facts that the rules act on. A rule unit also serves as a unique namespace for each group of rules. A single rule base can contain multiple rule units. You typically store all the rules for a unit in the same file as the unit declaration so that the unit is self-contained.
 
 The following example is a rule unit designated in a DRL file in a mortgage application decision service:
 
@@ -33,8 +33,8 @@ end
 package org.mortgages;
 unit MortgageRules;
 
-import org.kie.kogito.rules.DataSource
-import org.kie.kogito.rules.DataStream
+import org.kie.kogito.rules.DataSource;
+import org.kie.kogito.rules.DataStream;
 
 declare MortgageRules extends RuleUnitData
   person: DataStream<Person> = DataSource.createStream()
@@ -65,7 +65,7 @@ This example service uses the following `types.drl` file in the `src/main/resour
 .Example DRL rule unit class to define declarations
 [source]
 ----
-package com.acme
+package com.acme;
 
 declare Temperature
   value: double
@@ -86,11 +86,11 @@ The example service uses the following `MonitoringService.drl` file in the same 
 .Example DRL rule unit rule file
 [source]
 ----
-package com.acme
-unit MonitoringService
+package com.acme;
+unit MonitoringService;
 
-import org.kie.kogito.rules.DataSource
-import org.kie.kogito.rules.DataStream
+import org.kie.kogito.rules.DataSource;
+import org.kie.kogito.rules.DataStream;
 
 declare MonitoringService extends RuleUnitData
   temperature: DataStream<Temperature> = DataSource.createStream()
@@ -99,15 +99,15 @@ end
 
 rule "tooHot"
 when
-    temp : /temperature[value >= 80]
+    $temp : /temperature[value >= 80]
 then
     alertData.append(new Alert("HIGH", "Temperature exceeds threshold: " + temp.value));
 end
 ----
 
-The rule unit implements the required `RuleUnitData` interface and identifies the previously declared data sources. The sample rule raises an alert when the sensor temperature reaches 80 degrees or higher.
+The rule unit implements the required `RuleUnitData` interface and identifies the previously declared data sources. The sample rule raises an alert when the temperature reaches or exceeds 80 degrees.
 
-== Data sources for rule units
+== Data sources for DRL rule units
 
 Data sources are typed sources of data that rule units can subscribe to for updates. You interact with the rule unit through the data sources it exposes.
 
@@ -133,12 +133,12 @@ endif::[]
 ----
 DataStore<Temperature> temperature = DataSource.createStore();
 Temperature temp = new Temperature(100);
-// Add value t and notify all subscribers
+// Add value `t` and notify all subscribers
 DataHandle t = temperature.add(temp);
 temp.setValue(50);
-// notify all subscribers that the value referenced by `t` has changed
+// Notify all subscribers that the value referenced by `t` has changed
 temperature.update(t, temp);
-// remove value referenced by t and notify all subscribers
+// Remove value referenced by `t` and notify all subscribers
 temperature.remove(t);
 ----
 
@@ -152,20 +152,20 @@ endif::[]
 ----
 SingletonStore<Temperature> temperature = DataSource.createSingleton();
 Temperature temp = new Temperature(100);
-// add value temp and notify all subscribers
+// Add value `temp` and notify all subscribers
 temperature.set(temp);
 temp.setValue(50);
-// notify all subscribers that the value has changed
+// Notify all subscribers that the value has changed
 temperature.update();
 
 Temperature temp2 = new Temperature(200);
-// overwrite contained value with temp2 and notify all subscribers
+// Overwrite contained value with `temp2` and notify all subscribers
 temperature.set(temp2);
 temp2.setValue(150);
-// notify all subscribers that the value has changed
+// Notify all subscribers that the value has changed
 temperature.update();
 
-// clear store and notify all subscribers
+// Clear store and notify all subscribers
 temperature.clear();
 ----
 
@@ -183,7 +183,7 @@ public interface DataProcessor<T> {
 
 The `DataHandle` method is an internal reference to an object of a data source. Each callaback method might or might not be invoked, depending on whether the corresponding data source implements the capability. For example, a `DataStream` source invokes only the `insert` callback, whereas a `SingletonStore` source invokes the `insert` callback on `set` and the `delete` callback on `clear` or before an overwriting `set`.
 
-== Rule unit declaration using Java
+== DRL rule unit declaration using Java
 
 As an alternative to declaring fact types and rule units in DRL files that function as classes, you can also declare types and units using Java classes. In this case, you add the source code to the `src/main/java` folder of your {PRODUCT} project instead of `src/main/resources`.
 
@@ -239,18 +239,18 @@ In this scenario, the DRL rules files then stand alone in the `src/main/resource
 .Example rule unit declaration in a DRL file
 [source]
 ----
-package com.acme
-unit MonitoringService
+package com.acme;
+unit MonitoringService;
 
-rule tooHot
+rule "tooHot"
 when
-    temp : /temperature[value >= 80]
+    $temp : /temperature[value >= 80]
 then
     alertData.append(new Alert("HIGH", "Temperature exceeds threshold: " + temp.value));
 end
 ----
 
-== Rule units with BPMN processes
+== DRL rule units with BPMN processes
 
 If you use a DRL rule unit as part of a business rule task in a Business Process Model and Notation (BPMN) process in your {PRODUCT} project, you do not need to create an explicit rule unit class that implements the `RuleUnitData` interface. Instead, you designate the rule unit in the DRL file as usual and specify the rule unit in the format `unit:__PACKAGE_NAME__.__UNIT_NAME__` in the implementation details for the business rule task in the BPMN process. When you build the project, the business process implicitly declares the rule unit as part of the business rule task to execute the DRL file.
 
@@ -259,12 +259,12 @@ For example, the following is a DRL file with a rule unit designation:
 .Example rule unit declaration in a DRL file
 [source]
 ----
-package com.acme
-unit MonitoringService
+package com.acme;
+unit MonitoringService;
 
-rule tooHot
+rule "tooHot"
 when
-    temp : Temperature( value >= 80 ) from temperature
+    $temp : Temperature( value >= 80 ) from temperature
 then
     alertData.add(new Alert("HIGH", "Temperature exceeds threshold: " + temp.value));
 end
