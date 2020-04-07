@@ -227,6 +227,6 @@ end
 . After you define all components of the rule, save the file in `.drl` format.
 
 .Additional resources
-* xref:con_drl-rules-actions_drl-rules[]
+* xref:con_drl-rule-units_drl-rules[]
 * xref:con_drl-rules-conditions_drl-rules[]
 * xref:con_drl-rules-actions_drl-rules[]

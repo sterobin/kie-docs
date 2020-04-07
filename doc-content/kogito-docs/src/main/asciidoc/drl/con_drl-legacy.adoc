@@ -2,7 +2,9 @@
 
 = Legacy DRL conventions
 
-= Legacy functions in DRL
+The following Drools Rule Language (DRL) conventions are no longer applicable or optimal in {PRODUCT} but might be available for backward compatibility.
+
+== Legacy functions in DRL
 
 ifdef::KOGITO-COMM[]
 .Function
@@ -41,10 +43,11 @@ rule "Using a function"
 end
 ----
 
-== Legacy Attributes
+== Legacy rule attributes
 
-The following attributes were used in earlier version of the engine to provide grouping of rules across a rule base. They are effectively supersed by rule units, and are only currently available for backwards compatibility reasons. If you need to group your rules, rule units offer a clearer and simpler way to do so.
+The following attributes were used in earlier versions of the {DECISION_ENGINE} to provide grouping of rules across a rule base. These attributes are superseded by DRL rule units and are only available for backward compatibility reasons. If you need to group your rules, DRL rule units offer a clearer and simpler way to group and execute rules.
 
+.Legacy rule attributes
 [cols="30%,70%", options="header"]
 |===
 |Attribute
@@ -57,28 +60,53 @@ Example: `agenda-group "GroupName"`
 
 |`activation-group`
 |A string identifying an activation (or XOR) group to which you want to assign the rule. In activation groups, only one rule can be activated. The first rule to fire will cancel all pending activations of all rules in the activation group.
+
+Example: `activation-group "GroupName"`
 |===
 
 == Legacy DRL rule condition syntax
 
-People familiar with Drools, will remember the pattern matching syntax. For legacy use cases, it is still possible to rewrite rules using pattern matching. In this case, you will have to explicitly indicate the data source using the `from` clause:
+In {PRODUCT}, the preferred syntax for DRL rule conditions is through OOPath expressions. For legacy use cases, you can still write rules using pattern matching. In this case, you must explicitly indicate the data source using the `from` clause, as shown in the following comparative examples:
 
-.Example rule unit declaration in a DRL file using traditional notation
+.Example person DRL file using OOPath notation
 [source]
 ----
-package com.acme
-unit MonitoringService
+package org.acme
+unit PersonRules;
 
-rule tooHot
-when
-    temp : Temperature( value >= 80 ) from temperature
-then
-    alertData.add(new Alert("HIGH", "Temperature exceeds threshold: " + temp.value));
+import org.acme.Person;
+
+rule isAdult
+	when
+		$person: /person[ age > 18 ]
+	then
+    modify($person) {
+    	setAdult(true)
+    };
+end
+----
+
+.Example person DRL file using traditional notation
+[source]
+----
+package org.acme
+unit PersonRules;
+
+import org.acme.Person;
+
+rule isAdult
+	when
+		$person: Person(age > 18) from person
+	then
+    modify($person) {
+    	setAdult(true)
+    };
 end
 ----
 
 == Legacy DRL rule condition elements
 
+The following rule condition elements (keywords) are obsolete in {PRODUCT}:
 
 `from`::
 (Obsolete with OOPath notation.)
@@ -262,6 +290,7 @@ rule "Send a message to all parents"
     // Send a message to all parents.
 end
 ----
+--
 
 ifdef::KOGITO-COMM[]
 `accumulate` alternate syntax for a single function with return type::

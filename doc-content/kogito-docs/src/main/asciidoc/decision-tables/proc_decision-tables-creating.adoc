@@ -12,7 +12,7 @@ image::kogito/decision-tables/decision-table-example-02.png[Decision table examp
 
 .Prerequisites
 * You have added the following dependency to the `pom.xml` file of your {PRODUCT} project to enable decision tables for decision services:
-
++
 .Dependency to enable decision tables for decision services
 ----
 <dependency>

@@ -121,18 +121,23 @@ include::decision-engine/kie-sessions-stateless-globals-con.adoc[leveloffset=+3]
 include::decision-engine/kie-sessions-stateful-con.adoc[leveloffset=+2]
 include::decision-engine/kie-sessions-pools-con.adoc[leveloffset=+2]
 ////
-include::decision-engine/con_inference-and-truth-maintenance.adoc[leveloffset=+1]
-include::decision-engine/con_fact-equality-modes.adoc[leveloffset=+2]
+//@comment evacchi not totally sure how to make it "flow" with OOPath @MarkP ?
+//include::decision-engine/con_inference-and-truth-maintenance.adoc[leveloffset=+1]
+//@comment evacchi equality mode currently defaults to identity and there is really no real way to override. So I'd just leave this out for now
+//include::decision-engine/con_fact-equality-modes.adoc[leveloffset=+2]
 include::decision-engine/con_execution-control.adoc[leveloffset=+1]
-include::decision-engine/con_rule-execution-modes.adoc[leveloffset=+2]
-include::decision-engine/con_fact-propagation-modes.adoc[leveloffset=+2]
-include::decision-engine/con_agenda-filters.adoc[leveloffset=+2]
-include::drl/con_drl-rule-units.adoc[leveloffset=+2]
+//@comment Currently TBD for Kogito. (Stetson 7 Apr 2020)
+//include::decision-engine/con_rule-execution-modes.adoc[leveloffset=+2]
+//include::decision-engine/con_fact-propagation-modes.adoc[leveloffset=+2]
+//include::decision-engine/con_agenda-filters.adoc[leveloffset=+2]
+//@comment Rule units seem no longer portrayed for execution control but for general strategy. Will see. (Stetson 7 Apr 2020)
+//include::drl/con_drl-rule-units.adoc[leveloffset=+2]
 include::decision-engine/con_phreak-algorithm.adoc[leveloffset=+1]
 include::decision-engine/con_phreak-rule-evaluation.adoc[leveloffset=+2]
 include::decision-engine/con_forward-and-backward-chaining.adoc[leveloffset=+3]
-include::decision-engine/con_rule-base-configuration.adoc[leveloffset=+2]
-include::decision-engine/con_phreak-sequential-mode.adoc[leveloffset=+2]
+//@comment Currently TBD for Kogito (Stetson 7 Apr 2020)
+//include::decision-engine/con_rule-base-configuration.adoc[leveloffset=+2]
+//include::decision-engine/con_phreak-sequential-mode.adoc[leveloffset=+2]
 include::decision-engine/con_property-change-listeners.adoc[leveloffset=+2]
 ////
 //Excluded for now, not yet supported in Kogito. (9 Mar 2020)
@@ -149,7 +154,7 @@ include::decision-engine/cep-event-streams-proc.adoc[leveloffset=+3]
 include::decision-engine/cep-sliding-windows-con.adoc[leveloffset=+2]
 include::decision-engine/cep-sliding-windows-proc.adoc[leveloffset=+3]
 include::decision-engine/cep-memory-management-con.adoc[leveloffset=+2]
-////
 include::decision-engine/con_engine-queries.adoc[leveloffset=+1]
+////
 include::decision-engine/con_engine-event-listeners.adoc[leveloffset=+1]
-include::decision-engine/proc_logging-decision-engine.adoc[leveloffset=+2]
+//include::decision-engine/proc_logging-decision-engine.adoc[leveloffset=+2]

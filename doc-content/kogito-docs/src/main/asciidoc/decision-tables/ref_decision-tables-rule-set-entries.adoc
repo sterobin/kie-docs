@@ -38,14 +38,6 @@ The following table lists the supported labels and values for `RuleSet` definiti
 |A comma-separated list of Java classes to import from another package.
 |Optional, may be used repeatedly.
 
-|`Variables`
-|Declarations of DRL globals (a type followed by a variable name). Multiple global definitions must be separated by commas.
-|Optional, may be used repeatedly.
-
-|`Functions`
-|One or more function definitions, according to DRL syntax.
-|Optional, may be used repeatedly.
-
 |`Queries`
 |One or more query definitions, according to DRL syntax.
 |Optional, may be used repeatedly.
@@ -54,5 +46,16 @@ The following table lists the supported labels and values for `RuleSet` definiti
 |One or more declarative types, according to DRL syntax.
 |Optional, may be used repeatedly.
 |===
+
+//@comment Excluded because uncertain in Kogito at the moment. (Stetson 7 Apr 2020)
+////
+|`Variables`
+|Declarations of DRL globals (a type followed by a variable name). Multiple global definitions must be separated by commas.
+|Optional, may be used repeatedly.
+
+|`Functions`
+|One or more function definitions, according to DRL syntax.
+|Optional, may be used repeatedly.
+////
 
 WARNING: In some cases, Microsoft Office, LibreOffice, and OpenOffice might encode a double quotation mark differently, causing a compilation error. For example, `"`A`"` fails, but `"A"` succeeds.
