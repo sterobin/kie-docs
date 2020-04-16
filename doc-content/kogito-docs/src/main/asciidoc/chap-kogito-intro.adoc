@@ -7,7 +7,7 @@ include::creating-running/con-kogito-quarkus-springboot.adoc[leveloffset=+2]
 ////
 
 [id='con-kogito-automation_{context}']
-= {PRODUCT} business automation
+== {PRODUCT} business automation
 
 {PRODUCT} is a cloud-native business automation technology for building cloud-ready business applications. The name _Kogito_ derives from the Latin "Cogito", as in "Cogito, ergo sum" ("I think, therefore I am"), and is pronounced `[ˈkoː.d͡ʒi.to]` (_KO-jee-to_). The letter _K_ has reference to Kubernetes, the base for {OPENSHIFT} as the target cloud platform for {PRODUCT}, and to the Knowledge Is Everything (KIE) open source business automation project from which {PRODUCT} originates.
 
@@ -23,7 +23,7 @@ When you are using {PRODUCT}, you are building a cloud-native application as a s
 
 {PRODUCT} includes components that are based on well-known business automation KIE projects, specifically https://drools.org[Drools], https://jbpm.org[jBPM], and https://optaplanner.org[OptaPlanner], to offer dependable, open source solutions for business rules, business processes, and constraint solving.
 
-== Cloud-first priority
+=== Cloud-first priority
 
 {PRODUCT} is designed to run and scale on a cloud infrastructure. You can use {PRODUCT} with the latest cloud-based technologies, such as Quarkus, Knative, and Apache Kafka, to get fast boot times and instant scaling on container application platforms, such as {OPENSHIFT}.
 
@@ -42,7 +42,7 @@ endif::[]
 * *Prometheus* and *Grafana* are compatible with {PRODUCT} services for monitoring and analytics with optional extensions.
 * *Kafka*, *Infinispan*, and *Keycloak* are also some of the middleware technologies that {PRODUCT} supports for messaging, persistence, and security.
 
-== Domain-specific flexibility
+=== Domain-specific flexibility
 
 {PRODUCT} adapts to your business domain instead of forcing you to modify your domain to work with {PRODUCT}. You can expose your {PRODUCT} services with domain-specific APIs, based on the processes and decisions that you have defined. Domain-specific APIs for {PRODUCT} services do not require third-party or internal APIs.
 
@@ -53,7 +53,7 @@ image::kogito/creating-running/kogito-domain-api-endpoints-example.png[Image of 
 
 You can also expose domain-specific data through events or in a data index so that the data can be consumed and queried by other services.
 
-== Developer-centered experience
+=== Developer-centered experience
 
 Another focus of {PRODUCT} is optimal developer experience. You can use much or all of your existing tooling and workflow to develop, build, and deploy {PRODUCT} services, whether locally for testing or into the cloud. Quarkus offers development mode features to help with local testing, such as live reload of your processes and decisions in your running applications for advanced debugging.
 
@@ -65,7 +65,7 @@ image::kogito/creating-running/kogito-run-quarkus-devmode-demo.gif[Demo of {PROD
 To deploy your services into the cloud, you can use the {PRODUCT} Operator, which guides you through every step. The {PRODUCT} Operator uses the https://github.com/operator-framework[Operator Framework] to automate and manage many of the deployment steps for you. For example, when you give the operator a link to the Git repository that contains your application, the operator can automatically configure the components required to build your project from source and deploy the resulting services. {PRODUCT} also offers a command-line interface (CLI) to simplify some of these deployment tasks.
 
 [id='con-kogito-quarkus-springboot_{context}']
-= {PRODUCT} on Quarkus and Spring Boot
+=== {PRODUCT} on Quarkus and Spring Boot
 
 The primary Java frameworks that {PRODUCT} supports are Quarkus (recommended) and Spring Boot.
 

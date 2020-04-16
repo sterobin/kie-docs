@@ -24,7 +24,7 @@ include::creating-running/proc-kogito-interacting-app.adoc[leveloffset=+1]
 ////
 
 [id='ref-kogito-app-examples_{context}']
-= Example applications with {PRODUCT} services
+== Example applications with {PRODUCT} services
 
 {PRODUCT} includes example applications in the https://github.com/kiegroup/kogito-examples[`kogito-examples`] repository in GitHub. These example applications contain various types of {PRODUCT} services on Quarkus or Spring Boot to help you develop your own applications. The services use one or more Business Process Model and Notation (BPMN) process models, Decision Model and Notation (DMN) decision models, Drools Rule Language (DRL) rule units, XLS spreadsheet decision tables, or Java classes to define the service logic.
 
@@ -44,7 +44,7 @@ The following list describes some of the examples provided with {PRODUCT}:
 
 
 [id='proc-kogito-app-examples-running_{context}']
-= Running the {PRODUCT} example applications
+=== Running the {PRODUCT} example applications
 
 To get started quickly with {PRODUCT}, you can run any of the example applications in the https://github.com/kiegroup/kogito-examples[`kogito-examples`] repository in GitHub and experiment with the {PRODUCT} services.
 
@@ -227,7 +227,7 @@ curl -X DELETE http://localhost:8080/orders/6b53c227-6d5e-40b7-8c8c-a541a2a47d58
 --
 
 [id='con-kogito-modelers_{context}']
-= {PRODUCT} BPMN and DMN modelers
+== {PRODUCT} BPMN and DMN modelers
 
 {PRODUCT} provides the following extensions or applications that you can use to design Business Process Model and Notation (BPMN) process models and Decision Model and Notation (DMN) decision models for your {PRODUCT} services using graphical modelers.
 
@@ -245,7 +245,7 @@ To run the {PRODUCT} Business Modeler desktop application without the {PRODUCT} 
 * *Business Modeler online viewer*: Enables you to view and design BPMN and DMN models online at `https://kiegroup.github.io/kogito-online/`. The online modeler supports the `.new` format, so you can also enter `bpmn.new` or `dmn.new` in a web browser to start designing a new BPMN or DMN model in the online modeler.
 
 [id='proc-kogito-modelers_{context}']
-= Installing and using the {PRODUCT} Business Modeler Hub
+=== Installing and using the {PRODUCT} Business Modeler Hub
 
 {PRODUCT} provides a https://kiegroup.github.io/kogito-online/#/download[Business Modeler Hub] desktop application with all {PRODUCT} extensions or applications for modeling Business Process Model and Notation (BPMN) process models and Decision Model and Notation (DMN) decision models in {PRODUCT} services. {PRODUCT} currently provides extensions for VSCode (recommended) and GitHub modelers, a desktop application for offline modeling, and an online modeler.
 
@@ -287,7 +287,7 @@ Use the {PRODUCT} Business Modeler Hub to install, launch, or uninstall the avai
 --
 
 [id='proc-kogito-vscode-extension_{context}']
-= Enabling the {PRODUCT} VSCode extension without the {PRODUCT} Business Modeler Hub
+=== Enabling the {PRODUCT} VSCode extension without the {PRODUCT} Business Modeler Hub
 
 Visual Studio Code (VSCode) is the preferred integrated development environment (IDE) for developing {PRODUCT} services. {PRODUCT} provides a https://github.com/kiegroup/kogito-tooling/releases[VSCode extension] that enables you to design Business Process Model and Notation (BPMN) 2.0 business processes and Decision Model and Notation (DMN) decision models directly in VSCode.
 
@@ -326,7 +326,7 @@ If the {PRODUCT} BPMN or DMN modelers open only the XML source of a BPMN or DMN 
 NOTE: For new BPMN or DMN models, you can also enter `bpmn.new` or `dmn.new` in a web browser to design your BPMN or DMN model in the {PRODUCT} online modeler. When you finish creating your model, you can click *Download* in the online modeler page to import your BPMN or DMN file into your {PRODUCT} project in VSCode.
 
 [id='proc-kogito-creating-project_{context}']
-= Creating a Maven project for a {PRODUCT} service
+== Creating a Maven project for a {PRODUCT} service
 
 Before you can begin developing {PRODUCT} services, you need to create a Maven project where you can build your {PRODUCT} assets and any other related resources for your application.
 
@@ -365,7 +365,7 @@ This command generates a `sample-kogito` Maven project and imports the {PRODUCT}
 . Open or import the project in your VSCode IDE to view the contents.
 
 [id='proc-kogito-designing-app_{context}']
-= Designing the application logic for a {PRODUCT} service using DMN and BPMN
+== Designing the application logic for a {PRODUCT} service using DMN and BPMN
 
 After you create your {PRODUCT} project, you can create or import Business Process Model and Notation (BPMN) 2.0 business processes, Decision Model and Notation (DMN) decision models, Drools Rule Language (DRL) business rules, XLS or XLSX decision tables, and other assets in the `src/main/resources` folder of your project. You can also include Java classes in the `src/main/java` folder of your project that act as Java services or that provide implementations that you call from your business processes or decisions.
 
@@ -882,7 +882,7 @@ To create this example BPMN process in VSCode using the {PRODUCT} BPMN modeler, 
 --
 
 [id='proc-kogito-designing-app-rule-units_{context}']
-= Using DRL rule units as an alternative decision service
+=== Using DRL rule units as an alternative decision service
 
 As an alternative to using Decision Model and Notation (DMN) to define this example decision service, you can also use a Drools Rule Language (DRL) file implemented as a rule unit.
 
@@ -954,7 +954,7 @@ This rule unit syntax in the *Rule Flow Group* field specifies that you are usin
 . Save the process file to update the model.
 
 [id='proc-kogito-running-app_{context}']
-= Running a {PRODUCT} service
+== Running a {PRODUCT} service
 
 After you design the business decisions and processes for your {PRODUCT} service, you can run your Quarkus or Spring Boot application in one of the following modes:
 
@@ -1006,7 +1006,7 @@ mvn clean package -Dnative
 endif::[]
 
 [id='proc-kogito-interacting-app_{context}']
-= Interacting with a running {PRODUCT} service
+== Interacting with a running {PRODUCT} service
 
 After your {PRODUCT} service is running, you can send REST API requests to interact with your application and execute your services according to how you set up the application.
 
