@@ -30,8 +30,7 @@ endif::[]
 ====
 
 //Intro
-include::creating-running/con-kogito-automation.adoc[leveloffset=+1]
-include::creating-running/con-kogito-quarkus-springboot.adoc[leveloffset=+2]
+include::chap-kogito-intro.adoc[leveloffset=+1]
 
 //Getting started
 include::chap-kogito-creating-running.adoc[leveloffset=+1]
