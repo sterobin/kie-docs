@@ -2,14 +2,13 @@
 
 ifdef::KOGITO-ENT[]
 include::_artifacts/document-attributes.adoc[]
-:doctype: book
-:imagesdir: _images
 endif::[]
 
 = Developing decision services with {PRODUCT}
 :context: kogito-developing-decision-services
-
 ifdef::KOGITO-ENT[]
+:doctype: book
+:imagesdir: _images
 include::_artifacts/author-group.adoc[]
 endif::[]
 

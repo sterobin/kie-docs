@@ -2,14 +2,13 @@
 
 ifdef::KOGITO-ENT[]
 include::_artifacts/document-attributes.adoc[]
-:doctype: book
-:imagesdir: _images
 endif::[]
 
 = Creating and running your first {PRODUCT} services
 :context: kogito-creating-running
-
 ifdef::KOGITO-ENT[]
+:doctype: book
+:imagesdir: _images
 include::_artifacts/author-group.adoc[]
 endif::[]
 
