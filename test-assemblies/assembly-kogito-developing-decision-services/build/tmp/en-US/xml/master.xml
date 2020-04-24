@@ -1,0 +1,4225 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE book [
+<!ENTITY % BOOK_ENTITIES SYSTEM "master.ent">
+%BOOK_ENTITIES;
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % DOCBOOK_ENTS PUBLIC "-//OASIS//ENTITIES DocBook Character Entities V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+%DOCBOOK_ENTS;
+]>
+<book version="5.0" xml:lang="en-US" xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<?asciidoc-toc ?><?asciidoc-numbered ?>
+	<info>
+		<title>Developing decision services with Kogito</title>
+		<subtitle></subtitle>
+		 <date>2020-04-24</date>
+		<productname>Kogito</productname>
+		<productnumber>0.9</productnumber>
+		<abstract>
+			<para>
+				This document describes how to create and run a basic business application that uses Kogito services.
+			</para>
+		</abstract>
+		<xi:include href="Common_Content/Legal_Notice.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+	</info>
+	<preface>
+		<title>Preface</title>
+		<simpara>
+			As a developer of business decisions, you can use Kogito business automation to develop decision services using Decision Model and Notation (DMN) models, Drools Rule Language (DRL) rules, XLS or XLSX spreadsheet decision tables, or a combination of all three methods.
+		</simpara>
+	</preface>
+	<chapter xml:id="ref-decision-authoring-assets_kogito-developing-decision-services">
+		<title>Decision-authoring assets in Kogito</title>
+		<simpara>
+			Kogito supports several assets that you can use to define business decisions for your decision service. Each decision-authoring asset has different advantages, and you might prefer to use one or a combination of multiple assets depending on your goals and needs.
+		</simpara>
+		<simpara>
+			The following table highlights the main decision-authoring assets supported in Kogito projects to help you decide or confirm the best method for defining decisions in your decision service.
+		</simpara>
+		<table colsep="1" frame="all" rowsep="1">
+			<title>Decision-authoring assets supported in Kogito</title>
+			<tgroup cols="4">
+				<colspec colname="col_1" colwidth="20*"></colspec>
+				<colspec colname="col_2" colwidth="40*"></colspec>
+				<colspec colname="col_3" colwidth="20*"></colspec>
+				<colspec colname="col_4" colwidth="20*"></colspec>
+				<thead>
+					<row>
+						<entry align="left" valign="top">Asset</entry>
+						<entry align="left" valign="top">Highlights</entry>
+						<entry align="left" valign="top">Authoring tools</entry>
+						<entry align="left" valign="top">Documentation</entry>
+					</row>
+				</thead>
+				<tbody>
+					<row>
+						<entry align="left" valign="top">
+						<simpara>
+							Decision Model and Notation (DMN) models
+						</simpara>
+						</entry>
+						<entry align="left" valign="top">
+						<itemizedlist>
+							<listitem>
+								<simpara>
+									Are decision models based on a notation standard defined by the Object Management Group (OMG)
+								</simpara>
+							</listitem>
+							<listitem>
+								<simpara>
+									Use graphical decision requirements diagrams (DRDs) with one or more decision requirements graphs (DRGs) to trace business decision flows
+								</simpara>
+							</listitem>
+							<listitem>
+								<simpara>
+									Use an XML schema that allows the DMN models to be shared between DMN-compliant platforms
+								</simpara>
+							</listitem>
+							<listitem>
+								<simpara>
+									Support Friendly Enough Expression Language (FEEL) to define decision logic in DMN decision tables and other DMN boxed expressions
+								</simpara>
+							</listitem>
+							<listitem>
+								<simpara>
+									Can be integrated efficiently with Business Process Model and Notation (BPMN) process models
+								</simpara>
+							</listitem>
+							<listitem>
+								<simpara>
+									Are optimal for creating comprehensive, illustrative, and stable decision flows
+								</simpara>
+							</listitem>
+						</itemizedlist>
+						</entry>
+						<entry align="left" valign="top">
+						<simpara>
+							Kogito DMN modeler in VSCode or other DMN-compliant editor
+						</simpara>
+						</entry>
+						<entry align="left" valign="top">
+						<simpara>
+							<xref linkend="con-dmn_dmn-models" />
+						</simpara>
+						</entry>
+					</row>
+					<row>
+						<entry align="left" valign="top">
+						<simpara>
+							DRL rules
+						</simpara>
+						</entry>
+						<entry align="left" valign="top">
+						<itemizedlist>
+							<listitem>
+								<simpara>
+									Are individual rules that you define directly in <literal>.drl</literal> text files
+								</simpara>
+							</listitem>
+							<listitem>
+								<simpara>
+									Provide the most flexibility for defining rules and other technicalities of rule behavior
+								</simpara>
+							</listitem>
+							<listitem>
+								<simpara>
+									Are optimal for creating rules that require advanced DRL options, such as rule units
+								</simpara>
+							</listitem>
+							<listitem>
+								<simpara>
+									Have strict syntax requirements for rules to be compiled properly
+								</simpara>
+							</listitem>
+						</itemizedlist>
+						</entry>
+						<entry align="left" valign="top">
+						<simpara>
+							Any integrated development environment (IDE)
+						</simpara>
+						</entry>
+						<entry align="left" valign="top">
+						<simpara>
+							<xref linkend="con-drl_drl-rules" />
+						</simpara>
+						</entry>
+					</row>
+					<row>
+						<entry align="left" valign="top">
+						<simpara>
+							Spreadsheet decision tables
+						</simpara>
+						</entry>
+						<entry align="left" valign="top">
+						<itemizedlist>
+							<listitem>
+								<simpara>
+									Are tabular sets of rules that you define in <literal>.xls</literal> or <literal>.xlsx</literal> spreadsheet files
+								</simpara>
+							</listitem>
+							<listitem>
+								<simpara>
+									Support template keys and values for creating rule templates
+								</simpara>
+							</listitem>
+							<listitem>
+								<simpara>
+									Are optimal for business environments that already rely on decision tables for rules
+								</simpara>
+							</listitem>
+							<listitem>
+								<simpara>
+									Have strict syntax requirements for rules to be compiled properly when used in Kogito
+								</simpara>
+							</listitem>
+						</itemizedlist>
+						</entry>
+						<entry align="left" valign="top">
+						<simpara>
+							Spreadsheet editor
+						</simpara>
+						</entry>
+						<entry align="left" valign="top">
+						<simpara>
+							<xref linkend="con-decision-tables_decision-tables" />
+						</simpara>
+						</entry>
+					</row>
+				</tbody>
+			</tgroup>
+		</table>
+	</chapter>
+	<chapter xml:id="ref-kogito-app-examples_kogito-developing-decision-services">
+		<title>Example applications with Kogito services</title>
+		<simpara>
+			Kogito includes example applications in the <link xlink:href="https://github.com/kiegroup/kogito-examples"><literal>kogito-examples</literal></link> repository in GitHub. These example applications contain various types of Kogito services on Quarkus or Spring Boot to help you develop your own applications. The services use one or more Business Process Model and Notation (BPMN) process models, Decision Model and Notation (DMN) decision models, Drools Rule Language (DRL) rule units, XLS spreadsheet decision tables, or Java classes to define the service logic.
+		</simpara>
+		<simpara>
+			For information about each example application and instructions for using them, see the <literal>README</literal> file in the relevant application folder.
+		</simpara>
+		<note>
+			<simpara>
+				In the <link xlink:href="https://github.com/kiegroup/kogito-examples"><literal>kogito-examples</literal></link> repository in GitHub, the example applications in the default <literal>stable</literal> branch use the latest version of Kogito.
+			</simpara>
+		</note>
+		<simpara>
+			The following list describes some of the examples provided with Kogito:
+		</simpara>
+		<itemizedlist>
+			<listitem>
+				<simpara>
+					<literal>dmn-quarkus-example</literal> and <literal>dmn-springboot-example</literal>: A decision service (on Quarkus or Spring Boot) that uses DMN to determine driver penalty and suspension based on traffic violations
+				</simpara>
+			</listitem>
+			<listitem>
+				<simpara>
+					<literal>rules-quarkus-helloworld</literal>: A Hello World decision service on Quarkus with a single DRL rule unit
+				</simpara>
+			</listitem>
+			<listitem>
+				<simpara>
+					<literal>ruleunit-quarkus-example</literal> and <literal>ruleunit-springboot-example</literal>: A decision service (on Quarkus or Spring Boot) that uses DRL with rule units to validate a loan application and that exposes REST operations to view application status
+				</simpara>
+			</listitem>
+			<listitem>
+				<simpara>
+					<literal>process-quarkus-helloworld</literal>: A Hello World process service on Quarkus with a single BPMN model
+				</simpara>
+			</listitem>
+			<listitem>
+				<simpara>
+					<literal>process-quarkus-example</literal> and <literal>process-springboot-example</literal>: A process service (on Quarkus or Spring Boot) for ordering items and that exposes REST operations to create new orders or to list and delete active orders
+				</simpara>
+			</listitem>
+			<listitem>
+				<simpara>
+					<literal>onboarding-example</literal>: A combination of a process service and two decision services that use DMN and DRL for onboarding new employees
+				</simpara>
+			</listitem>
+			<listitem>
+				<simpara>
+					<literal>kogito-travel-agency</literal>: A combination of process services and decision services that use DRL and XLS for travel booking, intended for deployment on Red Hat OpenShift Container Platform
+				</simpara>
+			</listitem>
+		</itemizedlist>
+	</chapter>
+	<part xml:id="chap-kogito-using-dmn-models">
+		<title>Using DMN models in Kogito services</title>
+		<partintro>
+			<simpara>
+				As a developer of business decisions, you can use Decision Model and Notation (DMN) to model a decision service graphically in a decision requirements diagram (DRD). This diagram consists of one or more decision requirements graphs (DRGs) that trace business decisions from start to finish, with each decision node using logic defined in DMN boxed expressions such as decision tables.
+			</simpara>
+			<simpara>
+				Kogito provides design and runtime support for DMN 1.2 models at conformance level 3, and runtime-only support for DMN 1.1 and 1.3 models at conformance level 3. You can design your DMN models with the Kogito DMN modeler in VSCode or import existing DMN models into your Kogito projects for deployment and execution. Any DMN 1.1 models that you import into your Kogito project, open in the DMN modeler, and save are converted to DMN 1.2 models. DMN 1.3 models are not supported in the Kogito DMN modeler.
+			</simpara>
+			<simpara>
+				For more information about DMN, see the Object Management Group (OMG) <link xlink:href="https://www.omg.org/spec/DMN">Decision Model and Notation specification</link>.
+			</simpara>
+		</partintro>
+		<chapter xml:id="con-dmn_dmn-models">
+			<title>Decision Model and Notation (DMN)</title>
+			<simpara>
+				Decision Model and Notation (DMN) is a standard established by the <link xlink:href="https://www.omg.org/">Object Management Group (OMG)</link> for describing and modeling operational decisions. DMN defines an XML schema that enables DMN models to be shared between DMN-compliant platforms and across organizations so that business analysts and business rules developers can collaborate in designing and implementing DMN decision services. The DMN standard is similar to and can be used together with the Business Process Model and Notation (BPMN) standard for designing and modeling business processes.
+			</simpara>
+			<simpara>
+				For more information about the background and applications of DMN, see the OMG <link xlink:href="https://www.omg.org/spec/DMN">Decision Model and Notation specification</link>.
+			</simpara>
+			<section xml:id="con-dmn-conformance-levels_dmn-models">
+				<title>DMN conformance levels</title>
+				<simpara>
+					The DMN specification defines three incremental levels of conformance in a software implementation. A product that claims compliance at one level must also be compliant with any preceding levels. For example, a conformance level 3 implementation must also include the supported components in conformance levels 1 and 2. For the formal definitions of each conformance level, see the OMG <link xlink:href="https://www.omg.org/spec/DMN">Decision Model and Notation specification</link>.
+				</simpara>
+				<simpara>
+					The following list summarizes the three DMN conformance levels:
+				</simpara>
+				<variablelist>
+					<varlistentry>
+						<term>Conformance level 1</term>
+						<listitem>
+							<simpara>
+								A DMN conformance level 1 implementation supports decision requirement diagrams (DRDs), decision logic, and decision tables, but decision models are not executable. Any language can be used to define the expressions, including natural, unstructured languages.
+							</simpara>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Conformance level 2</term>
+						<listitem>
+							<simpara>
+								A DMN conformance level 2 implementation includes the requirements in conformance level 1, and supports Simplified Friendly Enough Expression Language (S-FEEL) expressions and fully executable decision models.
+							</simpara>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Conformance level 3</term>
+						<listitem>
+							<simpara>
+								A DMN conformance level 3 implementation includes the requirements in conformance levels 1 and 2, and supports Friendly Enough Expression Language (FEEL) expressions, the full set of boxed expressions, and fully executable decision models.
+							</simpara>
+						</listitem>
+					</varlistentry>
+				</variablelist>
+				<simpara>
+					Kogito provides design and runtime support for DMN 1.2 models at conformance level 3, and runtime-only support for DMN 1.1 and 1.3 models at conformance level 3. You can design your DMN models with the Kogito DMN modeler in VSCode or import existing DMN models into your Kogito projects for deployment and execution. Any DMN 1.1 models that you import into your Kogito project, open in the DMN modeler, and save are converted to DMN 1.2 models. DMN 1.3 models are not supported in the Kogito DMN modeler.
+				</simpara>
+			</section>
+			<section xml:id="ref-dmn-drd-components-ref-dmn-models">
+				<title>DMN decision requirements diagram (DRD) components</title>
+				<simpara>
+					A decision requirements diagram (DRD) is a visual representation of your DMN model. This diagram consists of one or more decision requirements graphs (DRGs) that represent a particular domain of an overall DRD. The DRGs trace business decisions using decision nodes, business knowledge models, sources of business knowledge, input data, and decision services.
+				</simpara>
+				<simpara>
+					The following table summarizes the components in a DRD:
+				</simpara>
+				<table colsep="1" frame="all" rowsep="1">
+					<title>DRD components</title>
+					<tgroup cols="4">
+						<colspec colname="col_1" colwidth="20*"></colspec>
+						<colspec colname="col_2" colwidth="20*"></colspec>
+						<colspec colname="col_3" colwidth="40*"></colspec>
+						<colspec colname="col_4" colwidth="20*"></colspec>
+						<thead>
+							<row>
+								<entry align="left" nameend="col_2" namest="col_1" valign="top">Component</entry>
+								<entry align="left" valign="top">Description</entry>
+								<entry align="left" valign="top">Notation</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry align="left" morerows="4" valign="top">
+								<simpara>
+									Elements
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Decision
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Node where one or more input elements determine an output based on defined decision logic.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-decision-node.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn decision node</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Business knowledge model
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Reusable function with one or more decision elements. Decisions that have the same logic but depend on different sub-input data or sub-decisions use business knowledge models to determine which procedure to follow.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-bkm-node.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn bkm node</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Knowledge source
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									External authorities, documents, committees, or policies that regulate a decision or business knowledge model. Knowledge sources are references to real-world factors rather than executable business rules.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-knowledge-source-node.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn knowledge source node</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Input data
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Information used in a decision node or a business knowledge model. Input data usually includes business-level concepts or objects relevant to the business, such as loan applicant data used in a lending strategy.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-input-data-node.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn input data node</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Decision service
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Top-level decision containing a set of reusable decisions published as a service for invocation. A decision service can be invoked from an external application or a BPMN business process.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-decision-service-node.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn decision service node</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" morerows="2" valign="top">
+								<simpara>
+									Requirement connectors
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Information requirement
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Connection from an input data node or decision node to another decision node that requires the information.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-info-connector.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn info connector</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Knowledge requirement
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Connection from a business knowledge model to a decision node or to another business knowledge model that invokes the decision logic.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-knowledge-connector.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn knowledge connector</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Authority requirement
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Connection from an input data node or a decision node to a dependent knowledge source or from a knowledge source to a decision node, business knowledge model, or another knowledge source.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-authority-connector.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn authority connector</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" morerows="1" valign="top">
+								<simpara>
+									Artifacts
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Text annotation
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Explanatory note associated with an input data node, decision node, business knowledge model, or knowledge source.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-annotation-node.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn annotation node</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Association
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Connection from an input data node, decision node, business knowledge model, or knowledge source to a text annotation.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-association-connector.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn association connector</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+				<simpara>
+					The following table summarizes the permitted connectors between DRD elements:
+				</simpara>
+				<table colsep="1" frame="all" rowsep="1">
+					<title>DRD connector rules</title>
+					<tgroup cols="4">
+						<colspec colname="col_1" colwidth="20*"></colspec>
+						<colspec colname="col_2" colwidth="20*"></colspec>
+						<colspec colname="col_3" colwidth="20*"></colspec>
+						<colspec colname="col_4" colwidth="40*"></colspec>
+						<thead>
+							<row>
+								<entry align="left" valign="top">Starts from</entry>
+								<entry align="left" valign="top">Connects to</entry>
+								<entry align="left" valign="top">Connection type</entry>
+								<entry align="left" valign="top">Example</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Decision
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Decision
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Information requirement
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-decision-to-decision.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn decision to decision</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" morerows="1" valign="top">
+								<simpara>
+									Business knowledge model
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Decision
+								</simpara>
+								</entry>
+								<entry align="left" morerows="1" valign="top">
+								<simpara>
+									Knowledge requirement
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-bkm-to-decision.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn bkm to decision</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Business knowledge model
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-bkm-to-bkm.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn bkm to bkm</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" morerows="1" valign="top">
+								<simpara>
+									Decision service
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Decision
+								</simpara>
+								</entry>
+								<entry align="left" morerows="1" valign="top">
+								<simpara>
+									Knowledge requirement
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-decision-service-to-decision.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn decision service to decision</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Business knowledge model
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-decision-service-to-bkm.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn decision service to bkm</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" morerows="1" valign="top">
+								<simpara>
+									Input data
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Decision
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Information requirement
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-input-to-decision.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn input to decision</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Knowledge source
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Authority requirement
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-input-to-knowledge-source.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn input to knowledge source</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" morerows="2" valign="top">
+								<simpara>
+									Knowledge source
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Decision
+								</simpara>
+								</entry>
+								<entry align="left" morerows="2" valign="top">
+								<simpara>
+									Authority requirement
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-knowledge-source-to-decision.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn knowledge source to decision</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Business knowledge model
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-knowledge-source-to-bkm.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn knowledge source to bkm</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Knowledge source
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-knowledge-source-to-knowledge-source.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn knowledge source to knowledge source</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Decision
+								</simpara>
+								</entry>
+								<entry align="left" morerows="3" valign="top">
+								<simpara>
+									Text annotation
+								</simpara>
+								</entry>
+								<entry align="left" morerows="3" valign="top">
+								<simpara>
+									Association
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-decision-to-annotation.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn decision to annotation</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Business knowledge model
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-bkm-to-annotation.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn bkm to annotation</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Knowledge source
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-knowledge-source-to-annotation.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn knowledge source to annotation</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									Input data
+								</simpara>
+								</entry>
+								<entry align="left" valign="top"><informalfigure>
+								<mediaobject>
+									<imageobject>
+										<imagedata fileref="images/_images/kogito/dmn/dmn-input-to-annotation.png" format="PNG" />
+									</imageobject>
+									<textobject>
+										<phrase>dmn input to annotation</phrase>
+									</textobject>
+								</mediaobject>
+								</informalfigure></entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+				<simpara>
+					The following example DRD illustrates some of these DMN components in practice:
+				</simpara>
+				<figure>
+					<title>Example DRD: Loan prequalification</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/_images/kogito/dmn/dmn-example-drd.png" format="PNG" />
+						</imageobject>
+						<textobject>
+							<phrase>dmn example drd</phrase>
+						</textobject>
+					</mediaobject>
+				</figure>
+				<simpara>
+					The following example DRD illustrates DMN components that are part of a reusable decision service:
+				</simpara>
+				<figure>
+					<title>Example DRD: Phone call handling as a decision service</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata contentwidth="90%" fileref="images/_images/kogito/dmn/dmn-example-drd3.png" format="PNG" />
+						</imageobject>
+						<textobject>
+							<phrase>dmn example drd3</phrase>
+						</textobject>
+					</mediaobject>
+				</figure>
+				<simpara>
+					In a DMN decision service node, the decision nodes in the bottom segment incorporate input data from outside of the decision service to arrive at a final decision in the top segment of the decision service node. The resulting top-level decisions from the decision service are then implemented in any subsequent decisions or business knowledge requirements of the DMN model. You can reuse DMN decision services in other DMN models to apply the same decision logic with different input data and different outgoing connections.
+				</simpara>
+			</section>
+		</chapter>
+		<chapter xml:id="proc-dmn-model-creating_dmn-models">
+			<title>Creating and editing DMN models in the Kogito DMN modeler</title>
+			<simpara>
+				You can use the Kogito DMN modeler in VSCode to design DMN decision requirements diagrams (DRDs) and define decision logic for a complete and functional DMN decision model. Kogito provides design and runtime support for DMN 1.2 models at conformance level 3, and includes enhancements and fixes to FEEL and DMN model components to optimize the experience of implementing DMN decision services with Kogito. Kogito also provides runtime-only support for DMN 1.1 and 1.3 models at conformance level 3, but any DMN 1.1 models that you import into your Kogito project, open in the DMN modeler, and save are converted to DMN 1.2 models. DMN 1.3 models are not supported in the Kogito DMN modeler.
+			</simpara>
+			<itemizedlist>
+				<title>Prerequisites</title>
+				<listitem>
+					<simpara>
+						<link xlink:href="https://code.visualstudio.com/">VSCode</link> 1.43.0 or later is installed.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						The Kogito <link xlink:href="https://github.com/kiegroup/kogito-tooling/releases">VSCode extension</link> is installed and enabled in your VSCode IDE. For information about enabling the VSCode extension, see <link xlink:href="https://access.redhat.com/documentation/en-us/kogito/0.9/html-single/creating_and_running_your_first_kogito_services#proc-kogito-vscode-extension_kogito-creating-running"><emphasis>Creating and running your first Kogito services</emphasis></link>.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						You have created a Kogito project and have included any Java objects required for your Kogito service. For information about creating a project, see <link xlink:href="https://access.redhat.com/documentation/en-us/kogito/0.9/html-single/creating_and_running_your_first_kogito_services"><emphasis>Creating and running your first Kogito services</emphasis></link>.
+					</simpara>
+				</listitem>
+			</itemizedlist>
+			<orderedlist numeration="arabic">
+				<title>Procedure</title>
+				<listitem>
+					<simpara>
+						In your VSCode IDE, create or import a DMN file in the relevant folder of your Kogito project, typically in <literal>src/main/resources</literal>.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						Open the new or imported DMN file to view the decision requirements diagram (DRD) in the Kogito DMN modeler.
+					</simpara>
+					<simpara>
+						If the DRD does not open in the Kogito DMN modeler, ensure that you have installed and enabled the Kogito <link xlink:href="https://github.com/kiegroup/kogito-tooling/releases">VSCode extension</link>.
+					</simpara>
+					<simpara>
+						If the Kogito DMN modeler opens only the XML source of the DMN file and displays an error message, review the reported errors and the DMN model file to ensure that all DMN elements are correctly defined.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						Begin adding components to your new or imported DRD by clicking and dragging one of the DMN nodes from the left toolbar:
+					</simpara>
+					<figure>
+						<title>Adding DRD components</title>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/_images/kogito/dmn/dmn-drag-decision-node.png" format="PNG" />
+							</imageobject>
+							<textobject>
+								<phrase>dmn drag decision node</phrase>
+							</textobject>
+						</mediaobject>
+					</figure>
+					<simpara>
+						The following DRD components are available:
+					</simpara>
+					<itemizedlist>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Decision</emphasis>: Use this node for a DMN decision, where one or more input elements determine an output based on defined decision logic.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Business knowledge model</emphasis>: Use this node for reusable functions with one or more decision elements. Decisions that have the same logic but depend on different sub-input data or sub-decisions use business knowledge models to determine which procedure to follow.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Knowledge source</emphasis>: Use this node for external authorities, documents, committees, or policies that regulate a decision or business knowledge model. Knowledge sources are references to real-world factors rather than executable business rules.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Input data</emphasis>: Use this node for information used in a decision node or a business knowledge model. Input data usually includes business-level concepts or objects relevant to the business, such as loan applicant data used in a lending strategy.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Text annotation</emphasis>: Use this node for explanatory notes associated with an input data node, decision node, business knowledge model, or knowledge source.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Decision service</emphasis>: Use this node to enclose a set of reusable decisions implemented as a decision service for invocation. A decision service can be used in other DMN models and can be invoked from an external application or a BPMN business process.
+							</simpara>
+						</listitem>
+					</itemizedlist>
+				</listitem>
+				<listitem>
+					<simpara>
+						In the DMN modeler canvas, double-click the new DRD node to enter an informative node name.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						If the node is a decision or business knowledge model, select the node to display the node options and click the <emphasis role="strong">Edit</emphasis> icon to open the DMN boxed expression editor to define the decision logic for the node:
+					</simpara>
+					<figure>
+						<title>Opening a new decision node boxed expression</title>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/_images/kogito/dmn/dmn-decision-edit.png" format="PNG" />
+							</imageobject>
+							<textobject>
+								<phrase>dmn decision edit</phrase>
+							</textobject>
+						</mediaobject>
+					</figure>
+					<figure>
+						<title>Opening a new business knowledge model boxed expression</title>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/_images/kogito/dmn/dmn-bkm-edit.png" format="PNG" />
+							</imageobject>
+							<textobject>
+								<phrase>dmn bkm edit</phrase>
+							</textobject>
+						</mediaobject>
+					</figure>
+					<simpara>
+						By default, all business knowledge models are defined as boxed function expressions containing a literal FEEL expression, a nested context expression of an external JAVA or PMML function, or a nested boxed expression of any type.
+					</simpara>
+					<simpara>
+						For decision nodes, you click the undefined table to select the type of boxed expression you want to use, such as a boxed literal expression, boxed context expression, decision table, or other DMN boxed expression.
+					</simpara>
+					<figure>
+						<title>Selecting the logic type for a decision node</title>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/_images/kogito/dmn/dmn-decision-boxed-expression-options.png" format="PNG" />
+							</imageobject>
+							<textobject>
+								<phrase>dmn decision boxed expression options</phrase>
+							</textobject>
+						</mediaobject>
+					</figure>
+					<simpara>
+						For business knowledge models, you click the top-left function cell to select the function type, or right-click the function value cell, select <emphasis role="strong">Clear</emphasis>, and select a boxed expression of another type.
+					</simpara>
+					<figure>
+						<title>Selecting the function or other logic type for a business knowledge model</title>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/_images/kogito/dmn/dmn-bkm-define.png" format="PNG" />
+							</imageobject>
+							<textobject>
+								<phrase>dmn bkm define</phrase>
+							</textobject>
+						</mediaobject>
+					</figure>
+				</listitem>
+				<listitem>
+					<simpara>
+						In the selected boxed expression editor for either a decision node (any expression type) or business knowledge model (function expression), click the applicable table cells to define the table name, variable data types, variable names and values, function parameters and bindings, or FEEL expressions to include in the decision logic.
+					</simpara>
+					<simpara>
+						You can right-click cells for additional actions where applicable, such as inserting or removing table rows and columns or clearing table contents.
+					</simpara>
+					<simpara>
+						The following is an example decision table for a decision node that determines credit score ratings based on a defined range of a loan applicant’s credit score:
+					</simpara>
+					<figure>
+						<title>Decision node decision table for credit score rating</title>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/_images/kogito/dmn/dmn-decision-table-example1a.png" format="PNG" />
+							</imageobject>
+							<textobject>
+								<phrase>dmn decision table example1a</phrase>
+							</textobject>
+						</mediaobject>
+					</figure>
+					<simpara>
+						The following is an example boxed function expression for a business knowledge model that calculates mortgage payments based on principal, interest, taxes, and insurance (PITI) as a literal expression:
+					</simpara>
+					<figure>
+						<title>Business knowledge model function for PITI calculation</title>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/_images/kogito/dmn/dmn-function-expression-example4.png" format="PNG" />
+							</imageobject>
+							<textobject>
+								<phrase>dmn function expression example4</phrase>
+							</textobject>
+						</mediaobject>
+					</figure>
+				</listitem>
+				<listitem>
+					<simpara>
+						After you define the decision logic for the selected node, click <emphasis role="strong">Back to <emphasis>MODEL_NAME</emphasis></emphasis> to return to the DRD view.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						For the selected DRD node, use the available connection options to create and connect to the next node in the DRD, or click and drag a new node onto the DRD canvas from the left toolbar.
+					</simpara>
+					<simpara>
+						The node type determines which connection options are supported. For example, an <emphasis role="strong">Input data</emphasis> node can connect to a decision node, knowledge source, or text annotation using the applicable connection type, whereas a <emphasis role="strong">Knowledge source</emphasis> node can connect to any DRD element. A <emphasis role="strong">Decision</emphasis> node can connect only to another decision or a text annotation.
+					</simpara>
+					<simpara>
+						The following connection types are available, depending on the node type:
+					</simpara>
+					<itemizedlist>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Information requirement</emphasis>: Use this connection from an input data node or decision node to another decision node that requires the information.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Knowledge requirement</emphasis>: Use this connection from a business knowledge model to a decision node or to another business knowledge model that invokes the decision logic.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Authority requirement</emphasis>: Use this connection from an input data node or a decision node to a dependent knowledge source or from a knowledge source to a decision node, business knowledge model, or another knowledge source.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Association</emphasis>: Use this connection from an input data node, decision node, business knowledge model, or knowledge source to a text annotation.
+							</simpara>
+						</listitem>
+					</itemizedlist>
+					<figure>
+						<title>Connecting credit score input to the credit score rating decision</title>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/_images/kogito/dmn/dmn-input-connection-example.png" format="PNG" />
+							</imageobject>
+							<textobject>
+								<phrase>dmn input connection example</phrase>
+							</textobject>
+						</mediaobject>
+					</figure>
+					<informalfigure>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/_images/kogito/dmn/dmn-input-connection-example2.png" format="PNG" />
+						</imageobject>
+						<textobject>
+							<phrase>dmn input connection example2</phrase>
+						</textobject>
+					</mediaobject>
+					</informalfigure>
+				</listitem>
+				<listitem>
+					<simpara>
+						Continue adding and defining the remaining DRD components of your decision model and save the completed DRD.
+					</simpara>
+					<simpara>
+						The following is an example DRD for a loan prequalification decision model:
+					</simpara>
+					<figure>
+						<title>Completed DRD for loan prequalification</title>
+						<mediaobject>
+							<imageobject>
+								<imagedata fileref="images/_images/kogito/dmn/dmn-example-drd.png" format="PNG" />
+							</imageobject>
+							<textobject>
+								<phrase>dmn example drd</phrase>
+							</textobject>
+						</mediaobject>
+					</figure>
+					<simpara>
+						The following is an example DRD for a phone call handling decision model using a reusable decision service:
+					</simpara>
+					<figure>
+						<title>Completed DRD for phone call handling with a decision service</title>
+						<mediaobject>
+							<imageobject>
+								<imagedata contentwidth="90%" fileref="images/_images/kogito/dmn/dmn-example-drd3.png" format="PNG" />
+							</imageobject>
+							<textobject>
+								<phrase>dmn example drd3</phrase>
+							</textobject>
+						</mediaobject>
+					</figure>
+					<simpara>
+						In a DMN decision service node, the decision nodes in the bottom segment incorporate input data from outside of the decision service to arrive at a final decision in the top segment of the decision service node. The resulting top-level decisions from the decision service are then implemented in any subsequent decisions or business knowledge requirements of the DMN model. You can reuse DMN decision services in other DMN models to apply the same decision logic with different input data and different outgoing connections.
+					</simpara>
+				</listitem>
+			</orderedlist>
+		</chapter>
+		<chapter xml:id="con-kogito-service-execution_dmn-models">
+			<title>Kogito service execution</title>
+			<simpara>
+				After you design your Kogito service, you can build and run your application and then send REST API requests to the application to execute your services. The exact REST API requests that you can use depend on how you set up the application.
+			</simpara>
+			<simpara>
+				For example, consider a Kogito service that is set up to generate a <literal>/persons</literal> REST API endpoint and determines whether a specified customer is an adult or is underage. In this example, you can send the following <literal>POST</literal> request using a REST client or curl utility to add an adult and execute the service:
+			</simpara>
+			<formalpara>
+				<title>Example POST request body to add an adult (JSON)</title>
+				<para>
+					
+<programlisting language="json" linenumbering="unnumbered">{
+  "person": {
+    "name": "John Quark",
+    "age": 20
+  }
+}</programlisting>
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Example curl command to add an adult</title>
+				<para>
+					
+<screen>curl -X POST http://localhost:8080/persons -H 'content-type: application/json' -H 'accept: application/json' -d '{"person": {"name":"John Quark", "age": 20}}'</screen>
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Example response (JSON)</title>
+				<para>
+					
+<programlisting language="json" linenumbering="unnumbered">{
+  "id": "3af806dd-8819-4734-a934-728f4c819682",
+  "person": {
+    "name": "John Quark",
+    "age": 20,
+    "adult": false
+  },
+  "isAdult": true
+}</programlisting>
+				</para>
+			</formalpara>
+			<simpara>
+				For information about creating, running, and testing an example application with Kogito services, see
+			</simpara>
+			<simpara>
+				For information about deploying your Kogito service to Red Hat OpenShift Container Platform, see
+			</simpara>
+		</chapter>
+	</part>
+	<part xml:id="chap-kogito-using-drl-rules">
+		<title>Using DRL rules in Kogito services</title>
+		<partintro>
+			<simpara>
+				As a developer of business decisions, you can define business rules using Drools Rule Language (DRL) directly in free-form <literal>.drl</literal> text files. A DRL file can contain one or more rules that define at a minimum the rule conditions (<literal>when</literal>) and actions (<literal>then</literal>).
+			</simpara>
+		</partintro>
+		<chapter xml:id="con-drl_drl-rules">
+			<title>Drools Rule Language (DRL)</title>
+			<simpara>
+				Drools Rule Language (DRL) is a notation established by the <link xlink:href="https://www.drools.org/">Drools</link> open source business automation project for defining and describing business rules. You define DRL rules in <literal>.drl</literal> text files. A DRL file can contain one or more rules that define at a minimum the rule conditions (<literal>when</literal>) and actions (<literal>then</literal>).
+			</simpara>
+			<simpara>
+				DRL files consist of the following components:
+			</simpara>
+			<formalpara>
+				<title>Components in a DRL file</title>
+				<para>
+					
+<screen>package
+unit
+
+import
+
+declare   // Optional
+
+query  // Optional
+
+rule "rule name"
+    // Attributes
+    when
+        // Conditions
+    then
+        // Actions
+end
+
+rule "rule2 name"
+
+...</screen>
+				</para>
+			</formalpara>
+			<simpara>
+				The following example DRL rule determines the age limit in a loan application decision service:
+			</simpara>
+			<formalpara>
+				<title>Example rule for loan application age limit</title>
+				<para>
+					
+<screen>rule "Underage"
+  when
+    /applicant[ applicantName : name, age &lt; 21 ]
+    $application : /loanApplication[ applicant == applicantName ]
+  then
+    $application.setApproved( false );
+    $application.setExplanation( "Underage" );
+end</screen>
+				</para>
+			</formalpara>
+			<simpara>
+				A DRL file can contain single or multiple rules and queries, and can define resource declarations and attributes that are assigned and used by your rules and queries. The components in a DRL file are grouped in a defined rule unit that serves as a unique namespace for each group of rules. The DRL package followed by the rule unit definition must be listed at the top of a DRL file, and the rules are typically listed last. All other DRL components can follow any order.
+			</simpara>
+			<simpara>
+				Each rule must have a unique name within the rule unit. If you use the same rule name more than once in any DRL file in the unit, the rules fail to compile. Rule names generally must follow standard Java identifier conventions. However, you can enclose rule names with double quotation marks (<literal>rule "rule name"</literal>) to prevent possible compilation errors, especially if you use spaces in rule names.
+			</simpara>
+		</chapter>
+		<chapter xml:id="con-drl-packages_drl-rules">
+			<title>Packages in DRL</title>
+			<simpara>
+				A package is a folder of related assets in Kogito, such as data objects, DRL files, decision tables, and other asset types. A package also serves as a unique namespace for each group of rules. A single rule base can contain multiple packages. You typically store all the rules for a package in the same file as the package declaration so that the package is self-contained. However, you can import objects from other packages that you want to use in the rules.
+			</simpara>
+			<simpara>
+				The following example is a package name and namespace for a DRL file in a mortgage application decision service:
+			</simpara>
+			<formalpara>
+				<title>Example package definition in a DRL file</title>
+				<para>
+					
+<screen>package org.mortgages;</screen>
+				</para>
+			</formalpara>
+		</chapter>
+		<chapter xml:id="con-drl-imports_drl-rules">
+			<title>Import statements in DRL</title>
+			<simpara>
+				Similar to import statements in Java, imports in DRL files identify the fully qualified paths and type names for any objects that you want to use in the rules. You specify the package and data object in the format <literal>packageName.objectName</literal>, with multiple imports on separate lines. The decision engine automatically imports classes from the Java package with the same name as the DRL package and from the package <literal>java.lang</literal>.
+			</simpara>
+			<simpara>
+				The following example is an import statement for a loan application object in a mortgage application decision service:
+			</simpara>
+			<formalpara>
+				<title>Example import statement in a DRL file</title>
+				<para>
+					
+<screen>import org.mortgages.LoanApplication;</screen>
+				</para>
+			</formalpara>
+		</chapter>
+		<chapter xml:id="con-drl-rule-units_drl-rules">
+			<title>Rule units in DRL</title>
+			<simpara>
+				A DRL rule unit is a module for rules and a unit of execution. A rule unit collects a set of rules with the declaration of the type of facts that the rules act on. A rule unit also serves as a unique namespace for each group of rules. A single rule base can contain multiple rule units. You typically store all the rules for a unit in the same file as the unit declaration so that the unit is self-contained.
+			</simpara>
+			<simpara>
+				The following example is a rule unit designated in a DRL file in a mortgage application decision service:
+			</simpara>
+			<formalpara>
+				<title>Example package definition and rule unit designation in a DRL file</title>
+				<para>
+					
+<screen>package org.mortgages;
+unit MortgageRules;</screen>
+				</para>
+			</formalpara>
+			<simpara>
+				To define a rule unit, you declare the relevant fact types and declare the data sources for the types by implementing the <literal>RuleUnitData</literal> interface, and then define the rules in the unit:
+			</simpara>
+			<formalpara>
+				<title>Example DRL rule unit file</title>
+				<para>
+					
+<screen>package org.mortgages;
+unit MortgageRules;
+
+import org.kie.kogito.rules.DataSource;
+import org.kie.kogito.rules.DataStream;
+
+declare Person
+    name : String
+    dateOfBirth : Date
+    address : Address
+end
+
+declare MortgageRules extends RuleUnitData
+  person: DataStream&lt;Person&gt; = DataSource.createStream()
+end
+
+rule "Using a rule unit with a declared type"
+  when
+    $p : /person[ name == "James" ]
+  then   // Insert Mark, who is a customer of James.
+    Person mark = new Person();
+    mark.setName( "Mark" );
+    person.append( mark );
+end</screen>
+				</para>
+			</formalpara>
+			<simpara>
+				To separate the fact types from the rule unit for use with other DRL rules, you can declare the types in a separate DRL file and then use the DRL rule file to declare the data sources by using the <literal>RuleUnitData</literal> interface implementation:
+			</simpara>
+			<formalpara>
+				<title>Example DRL type declaration as a separate file</title>
+				<para>
+					
+<screen>package org.mortgages;
+
+declare Person
+    name : String
+    dateOfBirth : Date
+    address : Address
+end</screen>
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Example DRL rule unit file without explicitly defined types</title>
+				<para>
+					
+<screen>package org.mortgages;
+unit MortgageRules;
+
+import org.kie.kogito.rules.DataSource;
+import org.kie.kogito.rules.DataStream;
+
+declare MortgageRules extends RuleUnitData
+  person: DataStream&lt;Person&gt; = DataSource.createStream()
+end
+
+rule "Using a rule unit with a declared type"
+  when
+    $p : /person[ name == "James" ]
+  then   // Insert Mark, who is a customer of James.
+    Person mark = new Person();
+    mark.setName( "Mark" );
+    person.append( mark );
+end</screen>
+				</para>
+			</formalpara>
+			<simpara>
+				In this example, <literal>persons</literal> is a <literal>DataStream</literal> data source for facts of type <literal>Person</literal>. Data sources are typed sources of data that rule units can subscribe to for updates. You interact with the rule unit through the data sources it exposes. A data source can be a <literal>DataStream</literal> source for append-only storage, a <literal>DataStore</literal> source for writable storage to add or remove data, or a <literal>SingletonStore</literal> source for writable storage to set and clear a single element.
+			</simpara>
+			<simpara>
+				As part of your data source declaration, you also import <literal>org.kie.kogito.rules.DataSource</literal> and the relevant data source support, such as <literal>import org.kie.kogito.rules.DataStream</literal> in this example.
+			</simpara>
+			<simpara>
+				You can add several rules to the same DRL file, or further break down the rule set and type declarations by creating more files. However you construct your rule sets, ensure that all DRL rule files exist in the same directory and start with the correct <literal>package</literal> and <literal>unit</literal> declarations.
+			</simpara>
+			<section remap="_rule_unit_use_case" xml:id="rule_unit_use_case">
+				<title>Rule unit use case</title>
+				<simpara>
+					As an additional rule unit use case, consider the following example decision service that evaluates incoming data from a heat sensor for temperature measurements and produces alerts when the temperature is above a specified threshold.
+				</simpara>
+				<simpara>
+					This example service uses the following <literal>types.drl</literal> file in the <literal>src/main/resources/org/acme</literal> folder of the Kogito project to declare the <literal>Temperature</literal> and the <literal>Alert</literal> fact types:
+				</simpara>
+				<formalpara>
+					<title>Example DRL type declarations</title>
+					<para>
+						
+<screen>package com.acme;
+
+declare Temperature
+  value: double
+end
+
+declare Alert
+    severity: String
+    message: String
+end</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					To define DRL rules that pattern-match against <literal>Temperature</literal> values, the example service must expose an entry point for the incoming data to the decision engine and publish alerts on a separate channel. To establish this data source for decision data, the example service uses a rule unit with <literal>DataStream</literal> data sources for <literal>Temperature</literal> objects and for <literal>Alert</literal> objects.
+				</simpara>
+				<simpara>
+					The <literal>DataStream</literal> data source is an append-only store for incoming data, similar to a queue. This type of data source is logical for both sources in this example because the temperature data is coming from an external source (the sensor) and the service publishes the alerts externally as they are produced.
+				</simpara>
+				<simpara>
+					The example service uses the following <literal>MonitoringService.drl</literal> file in the same <literal>src/main/resources/com/acme</literal> folder of the Kogito project to declare the data sources for the fact types and defines the rules for the rule unit:
+				</simpara>
+				<formalpara>
+					<title>Example DRL rule unit file</title>
+					<para>
+						
+<screen>package com.acme;
+unit MonitoringService;
+
+import org.kie.kogito.rules.DataSource;
+import org.kie.kogito.rules.DataStream;
+
+declare MonitoringService extends RuleUnitData
+  temperature: DataStream&lt;Temperature&gt; = DataSource.createStream()
+  alertData: DataStream&lt;Alert&gt; = DataSource.createStream()
+end
+
+rule "tooHot"
+when
+    $temp : /temperature[value &gt;= 80]
+then
+    alertData.append(new Alert("HIGH", "Temperature exceeds threshold: " + temp.value));
+end</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					The rule unit implements the required <literal>RuleUnitData</literal> interface and declares the data sources for the previously defined types. The sample rule raises an alert when the temperature reaches or exceeds 80 degrees.
+				</simpara>
+			</section>
+			<section remap="_data_sources_for_drl_rule_units" xml:id="data_sources_for_drl_rule_units">
+				<title>Data sources for DRL rule units</title>
+				<simpara>
+					Data sources are typed sources of data that rule units can subscribe to for updates. You interact with the rule unit through the data sources it exposes.
+				</simpara>
+				<simpara>
+					Kogito supports the following types of data sources. When you declare data sources in DRL rule files, the sources are internally rendered as shown in these examples.
+				</simpara>
+				<itemizedlist>
+					<listitem>
+						<simpara>
+							<literal>DataStream</literal>: An append-only storage option. Use this storage option when you want to publish or share data values. You can use the notation <literal>DataSource.createStream()</literal> to return a <literal>DataStream&lt;T&gt;</literal> object and use the method <literal>append(T)</literal> to add more data.
+						</simpara>
+						<formalpara>
+							<title>Example DataStream data source definition</title>
+							<para>
+								
+<programlisting language="java" linenumbering="unnumbered">DataStream&lt;Temperature&gt; temperature = DataSource.createStream();
+// Append value and notify all subscribers
+temperature.append(new Temperature(100));</programlisting>
+							</para>
+						</formalpara>
+					</listitem>
+					<listitem>
+						<simpara>
+							<literal>DataStore</literal>: A writable storage option for adding or removing data and then notifying all subscribers that mutable data has been modified. Rules can pattern-match against incoming values and update or remove available values.
+						</simpara>
+						<formalpara>
+							<title>Example DataStore data source definition</title>
+							<para>
+								
+<programlisting language="java" linenumbering="unnumbered">DataStore&lt;Temperature&gt; temperature = DataSource.createStore();
+Temperature temp = new Temperature(100);
+// Add value `t` and notify all subscribers
+DataHandle t = temperature.add(temp);
+temp.setValue(50);
+// Notify all subscribers that the value referenced by `t` has changed
+temperature.update(t, temp);
+// Remove value referenced by `t` and notify all subscribers
+temperature.remove(t);</programlisting>
+							</para>
+						</formalpara>
+					</listitem>
+					<listitem>
+						<simpara>
+							<literal>SingletonStore</literal>: A writable storage option for setting or clearing a single element and then notifying all subscribers that the element has been modified. Rules can pattern-match against the value and update or clear available values.
+						</simpara>
+						<formalpara>
+							<title>Example SingletonStore data source definition</title>
+							<para>
+								
+<programlisting language="java" linenumbering="unnumbered">SingletonStore&lt;Temperature&gt; temperature = DataSource.createSingleton();
+Temperature temp = new Temperature(100);
+// Add value `temp` and notify all subscribers
+temperature.set(temp);
+temp.setValue(50);
+// Notify all subscribers that the value has changed
+temperature.update();
+
+Temperature temp2 = new Temperature(200);
+// Overwrite contained value with `temp2` and notify all subscribers
+temperature.set(temp2);
+temp2.setValue(150);
+// Notify all subscribers that the value has changed
+temperature.update();
+
+// Clear store and notify all subscribers
+temperature.clear();</programlisting>
+							</para>
+						</formalpara>
+					</listitem>
+				</itemizedlist>
+				<simpara>
+					Subscribers to a data source are known as <emphasis>data processors</emphasis>. A data processor implements the <literal>DataProcessor&lt;T&gt;</literal> interface. This interface contains callbacks to all the events that a subscribed data source can trigger.
+				</simpara>
+				<formalpara>
+					<title>Example DataStream data processor</title>
+					<para>
+						
+<programlisting language="java" linenumbering="unnumbered">public interface DataProcessor&lt;T&gt; {
+    void insert(DataHandle handle, T object);
+    void update(DataHandle handle, T object);
+    void delete(DataHandle handle);
+}</programlisting>
+					</para>
+				</formalpara>
+				<simpara>
+					The <literal>DataHandle</literal> method is an internal reference to an object of a data source. Each callaback method might or might not be invoked, depending on whether the corresponding data source implements the capability. For example, a <literal>DataStream</literal> source invokes only the <literal>insert</literal> callback, whereas a <literal>SingletonStore</literal> source invokes the <literal>insert</literal> callback on <literal>set</literal> and the <literal>delete</literal> callback on <literal>clear</literal> or before an overwriting <literal>set</literal>.
+				</simpara>
+			</section>
+			<section remap="_drl_rule_unit_declaration_using_java" xml:id="drl_rule_unit_declaration_using_java">
+				<title>DRL rule unit declaration using Java</title>
+				<simpara>
+					As an alternative to declaring fact types and rule units in DRL files, you can also declare types and units using Java classes. In this case, you add the source code to the <literal>src/main/java</literal> folder of your Kogito project instead of <literal>src/main/resources</literal>.
+				</simpara>
+				<simpara>
+					For example, the following Java classes define the type and rule unit declarations for the example temperature monitoring service:
+				</simpara>
+				<formalpara>
+					<title>Example Temperature class</title>
+					<para>
+						
+<programlisting language="java" linenumbering="unnumbered">package com.acme;
+
+public class Temperature {
+    private final double value;
+    public Temperature(double value) { this.value = value; }
+    public double getValue() { return value; }
+}</programlisting>
+					</para>
+				</formalpara>
+				<formalpara>
+					<title>Example Alert class</title>
+					<para>
+						
+<programlisting language="java" linenumbering="unnumbered">package com.acme;
+
+public class Alert {
+    private final String severity
+    private final String message;
+    public Temperature(String severity, String message) {
+        this.severity = severity;
+        this.message = message;
+    }
+    public String getSeverity() { return severity; }
+    public String getMessage() { return message; }
+}</programlisting>
+					</para>
+				</formalpara>
+				<formalpara>
+					<title>Example rule unit class</title>
+					<para>
+						
+<programlisting language="java" linenumbering="unnumbered">package com.acme;
+
+import org.kie.kogito.rules.DataSource;
+import org.kie.kogito.rules.DataStream;
+
+public class MonitoringService implements RuleUnitData {
+    private DataStream&lt;Temperature&gt; temperature = DataSource.createStream();
+    private DataStream&lt;Alert&gt; alertData = DataSource.createStream();
+    public DataStream&lt;Temperature&gt; getTemperature() { return temperature; }
+    public DataStream&lt;Alert&gt; getAlertData() { return alertData; }
+}</programlisting>
+					</para>
+				</formalpara>
+				<simpara>
+					In this scenario, the DRL rule files then stand alone in the <literal>src/main/resources</literal> folder and consist of the <literal>unit</literal> and the rules, with no direct declarations, as shown in the following example:
+				</simpara>
+				<formalpara>
+					<title>Example DRL rule unit file without declarations</title>
+					<para>
+						
+<screen>package com.acme;
+unit MonitoringService;
+
+rule "tooHot"
+  when
+    $temp : /temperature[value &gt;= 80]
+  then
+    alertData.append(new Alert("HIGH", "Temperature exceeds threshold: " + temp.value));
+end</screen>
+					</para>
+				</formalpara>
+			</section>
+			<section remap="_drl_rule_units_with_bpmn_processes" xml:id="drl_rule_units_with_bpmn_processes">
+				<title>DRL rule units with BPMN processes</title>
+				<simpara>
+					If you use a DRL rule unit as part of a business rule task in a Business Process Model and Notation (BPMN) process in your Kogito project, you do not need to create an explicit data type declaration or a rule unit class that implements the <literal>RuleUnitData</literal> interface. Instead, you designate the rule unit in the DRL file as usual and specify the rule unit in the format <literal>unit:<emphasis>PACKAGE_NAME</emphasis>.<emphasis>UNIT_NAME</emphasis></literal> in the implementation details for the business rule task in the BPMN process. When you build the project, the business process implicitly declares the rule unit as part of the business rule task to execute the DRL file.
+				</simpara>
+				<simpara>
+					For example, the following is a DRL file with a rule unit designation:
+				</simpara>
+				<formalpara>
+					<title>Example DRL rule unit file</title>
+					<para>
+						
+<screen>package com.acme;
+unit MonitoringService;
+
+rule "tooHot"
+  when
+    $temp : Temperature( value &gt;= 80 ) from temperature
+  then
+    alertData.add(new Alert("HIGH", "Temperature exceeds threshold: " + temp.value));
+end</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					In the relevant business process in a BPMN 2.0 process modeler, you select the business rule task and for the <emphasis role="strong">Implementation/Execution</emphasis> property, you set the rule language to <literal>DRL</literal> and the rule flow group to <literal>unit:com.acme.MonitoringService</literal>.
+				</simpara>
+				<simpara>
+					This rule unit syntax specifies that you are using the <literal>com.acme.MonitoringService</literal> rule unit instead of a traditional rule flow group. This is the rule unit that you referenced in the example DRL file. When you build the project, the business process implicitly declares the rule unit as part of the business rule task to execute the DRL file.
+				</simpara>
+			</section>
+		</chapter>
+		<chapter xml:id="con-drl-rules-conditions_drl-rules">
+			<title>Rule conditions in DRL</title>
+			<simpara>
+				The <literal>when</literal> part of a DRL rule (also known as the <emphasis>Left Hand Side (LHS)</emphasis> of the rule) contains the conditions that must be met to execute an action. Conditions consist of a series of stated OOPath expressions of patterns and constraints, with optional bindings and supported rule condition elements (keywords), based on the available data objects in the package. OOPath is an object-oriented syntax extension to XPath for navigating through related elements while handling collections and filtering constraints.
+			</simpara>
+			<simpara>
+				For example, in a decision service that raises alerts when the temperature reaches or exceeds 80 degrees, a rule <literal>tooHot</literal> contains the <literal>when</literal> condition <literal>/temperature[value &gt;= 80]</literal>.
+			</simpara>
+			<note>
+				<simpara>
+					DRL uses <literal>when</literal> instead of <literal>if</literal> because <literal>if</literal> is typically part of a procedural execution flow during which a condition is checked at a specific point in time. In contrast, <literal>when</literal> indicates that the condition evaluation is not limited to a specific evaluation sequence or point in time, but instead occurs continually at any time. Whenever the condition is met, the actions are executed.
+				</simpara>
+			</note>
+			<simpara>
+				If the <literal>when</literal> section is empty, then the conditions are considered to be true and the actions in the <literal>then</literal> section are executed the first time the rules are fired. This is useful if you want to use rules to set up the decision engine state.
+			</simpara>
+			<simpara>
+				The following example rule uses empty conditions to insert a fact every time the rule is executed:
+			</simpara>
+			<formalpara>
+				<title>Example rule without conditions</title>
+				<para>
+					
+<screen>rule "start-up"
+  when
+    // Empty
+  then   // Actions to be executed once
+    alerts.add( new Alert("INFO", "System started") );
+end</screen>
+				</para>
+			</formalpara>
+			<simpara>
+				Formally, the core grammar of an OOPath expression is defined in extended Backus-Naur form (EBNF) notation in the following way:
+			</simpara>
+			<formalpara>
+				<title>EBNF notation for OOPath expressions</title>
+				<para>
+					
+<screen>OOPExpr = [ID ( ":" | ":=" )] ( "/" | "?/" ) OOPSegment { ( "/" | "?/" | "." ) OOPSegment } ;
+OOPSegment = ID ["#" ID] ["[" ( Number | Constraints ) "]"]</screen>
+				</para>
+			</formalpara>
+			<section remap="_oopath_expressions_and_constraints" xml:id="oopath_expressions_and_constraints">
+				<title>OOPath expressions and constraints</title>
+				<simpara>
+					An <emphasis>OOPath expression</emphasis> of a pattern in a DRL rule condition is the segment to be matched by the decision engine. An OOPath expression can potentially match each fact that is inserted into the working memory of the decision engine. It can also contain constraints to further define the facts to be matched.
+				</simpara>
+				<simpara>
+					In the simplest form, with no constraints, an OOPath expression matches a fact in the given data source. In the following example with a <literal>DataSource&lt;Person&gt;</literal> named <literal>person</literal>, the expression matches against all <literal>Person</literal> objects in the data source of the decision engine:
+				</simpara>
+				<formalpara>
+					<title>Example expression for a single fact type</title>
+					<para>
+						
+<screen>/person</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					Patterns can also refer to superclasses or even interfaces, potentially matching facts from many different classes. For example, the following pattern matches all <literal>Student</literal> subtypes of the <literal>Person</literal> object:
+				</simpara>
+				<formalpara>
+					<title>Example pattern for subtypes</title>
+					<para>
+						
+<screen>/person # Student</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					Square brackets in a pattern enclose the constraints, such as the following constraint on the person’s age:
+				</simpara>
+				<formalpara>
+					<title>Example pattern with a constraint</title>
+					<para>
+						
+<screen>/person[ age == 50 ]</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					A <emphasis>constraint</emphasis> is an expression that returns <literal>true</literal> or <literal>false</literal>. Constraints in DRL are essentially Java expressions with some enhancements, such as property access, and some differences, such as <literal>equals()</literal> and <literal>!equals()</literal> semantics for <literal>==</literal> and <literal>!=</literal> (instead of the usual <literal>same</literal> and <literal>not same</literal> semantics).
+				</simpara>
+				<simpara>
+					Any JavaBeans property can be accessed directly from pattern constraints. A JavaBeans property is exposed internally using a standard JavaBeans getter that takes no arguments and returns something. For example, the <literal>age</literal> property is written as <literal>age</literal> in DRL instead of the getter <literal>getAge()</literal>:
+				</simpara>
+				<formalpara>
+					<title>DRL constraint syntax with JavaBeans properties</title>
+					<para>
+						
+<screen>/person[ age == 50 ]
+
+// This is equivalent to the following getter format:
+
+/person[ getAge() == 50 ]</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					Kogito uses the standard JDK <literal>Introspector</literal> class to achieve this mapping and follows the standard JavaBeans specification. For optimal decision engine performance, use the property access format, such as <literal>age</literal>, instead of using getters explicitly, such as <literal>getAge()</literal>.
+				</simpara>
+				<warning>
+					<simpara>
+						Do not use property accessors to change the state of the object in a way that might affect the rules because the decision engine caches the results of the match between invocations for higher efficiency.
+					</simpara>
+					<simpara>
+						For example, do not use property accessors in the following ways:
+					</simpara>
+					
+<programlisting language="java" linenumbering="unnumbered">public int getAge() {
+    age++; // Do not do this.
+    return age;
+}</programlisting>
+					
+<programlisting language="java" linenumbering="unnumbered">public int getAge() {
+    Date now = DateUtil.now(); // Do not do this.
+    return DateUtil.differenceInYears(now, birthday);
+}</programlisting>
+					<simpara>
+						Instead of following the second example, insert a fact that wraps the current date in the working memory and update that fact between rule executions as needed.
+					</simpara>
+				</warning>
+				<simpara>
+					However, if the getter of a property cannot be found, the compiler uses the property name as a fallback method name, without arguments:
+				</simpara>
+				<formalpara>
+					<title>Fallback method if object is not found</title>
+					<para>
+						
+<screen>/person[ age == 50 ]
+
+// If `Person.getAge()` does not exist, the compiler uses the following syntax:
+
+/person[ age() == 50 ]</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					You can also nest access properties in patterns, as shown in the following example. Nested properties are indexed by the decision engine.
+				</simpara>
+				<formalpara>
+					<title>Example pattern with nested property access</title>
+					<para>
+						
+<screen>/person[ address.houseNumber == 50 ]
+
+// This is equivalent to the following expression:
+
+/person[ getAddress().getHouseNumber() == 50 ]</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					You can use any Java expression that returns a <literal>boolean</literal> value as a constraint inside the parentheses of a pattern. Java expressions can be mixed with other expression enhancements, such as property access:
+				</simpara>
+				<formalpara>
+					<title>Example pattern with a constraint using property access and Java expression</title>
+					<para>
+						
+<screen>/person[ age == 50 ]</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					You can change the evaluation priority by using parentheses, as in any logical or mathematical expression:
+				</simpara>
+				<formalpara>
+					<title>Example evaluation order of constraints</title>
+					<para>
+						
+<screen>/person[ age &gt; 100 &amp;&amp; ( age % 10 == 0 ) ]</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					You can also reuse Java methods in constraints, as shown in the following example:
+				</simpara>
+				<formalpara>
+					<title>Example constraints with reused Java methods</title>
+					<para>
+						
+<screen>/person[ Math.round( weight / ( height * height ) ) &lt; 25.0 ]</screen>
+					</para>
+				</formalpara>
+				<warning>
+					<simpara>
+						Do not use constraints to change the state of the object in a way that might affect the rules because the decision engine caches the results of the match between invocations for higher efficiency. Any method that is executed on a fact in the rule conditions must be a read-only method. Also, the state of a fact should not change between rule invocations unless those facts are marked as updated in the working memory on every change.
+					</simpara>
+					<simpara>
+						For example, do not use a pattern constraint in the following ways:
+					</simpara>
+					
+<screen>/person[ incrementAndGetAge() == 10 ] // Do not do this.</screen>
+					
+<screen>/person[ System.currentTimeMillis() % 1000 == 0 ] // Do not do this.</screen>
+				</warning>
+				<simpara>
+					Standard Java operator precedence applies to constraint operators in DRL, and DRL operators follow standard Java semantics except for the <literal>==</literal> and <literal>!=</literal> operators.
+				</simpara>
+				<simpara>
+					The <literal>==</literal> operator uses null-safe <literal>equals()</literal> semantics instead of the usual <literal>same</literal> semantics. For example, the pattern <literal>/person[ firstName == "John" ]</literal> is similar to <literal>java.util.Objects.equals(person.getFirstName(), "John")</literal>, and because <literal>"John"</literal> is not null, the pattern is also similar to <literal>"John".equals(person.getFirstName())</literal>.
+				</simpara>
+				<simpara>
+					The <literal>!=</literal> operator uses null-safe <literal>!equals()</literal> semantics instead of the usual <literal>not same</literal> semantics. For example, the pattern <literal>/person[ firstName != "John" ]</literal> is similar to <literal>!java.util.Objects.equals(person.getFirstName(), "John")</literal>.
+				</simpara>
+				<simpara>
+					If the field and the value of a constraint are of different types, the decision engine uses type coercion to resolve the conflict and reduce compilation errors. For instance, if <literal>"ten"</literal> is provided as a string in a numeric evaluator, a compilation error occurs, whereas <literal>"10"</literal> is coerced to a numeric 10. In coercion, the field type always takes precedence over the value type:
+				</simpara>
+				<formalpara>
+					<title>Example constraint with a value that is coerced</title>
+					<para>
+						
+<screen>/person[ age == "10" ] // "10" is coerced to 10</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					For groups of constraints, you can use a delimiting comma <literal>,</literal> to use implicit <literal>and</literal> connective semantics:
+				</simpara>
+				<formalpara>
+					<title>Example patterns with multiple constraints</title>
+					<para>
+						
+<screen>// Person is at least 50 years old and weighs at least 80 kilograms:
+/person[ age &gt; 50, weight &gt; 80 ]
+
+// Person is at least 50 years old, weighs at least 80 kilograms, and is taller than 2 meters:
+/person[ age &gt; 50, weight &gt; 80, height &gt; 2 ]</screen>
+					</para>
+				</formalpara>
+				<note>
+					<simpara>
+						Although the <literal>&amp;&amp;</literal> and <literal>,</literal> operators have the same semantics, they are resolved with different priorities. The <literal>&amp;&amp;</literal> operator precedes the <literal>||</literal> operator, and both the <literal>&amp;&amp;</literal> and <literal>||</literal> operators together precede the <literal>,</literal> operator. Use the comma operator at the top-level constraint for optimal decision engine performance and human readability.
+					</simpara>
+				</note>
+				<simpara>
+					You cannot embed a comma operator in a composite constraint expression, such as in parentheses:
+				</simpara>
+				<formalpara>
+					<title>Example of misused comma in composite constraint expression</title>
+					<para>
+						
+<screen>// Do not use the following format:
+/person[ ( age &gt; 50, weight &gt; 80 ) || height &gt; 2 ]
+
+// Use the following format instead:
+/person[ ( age &gt; 50 &amp;&amp; weight &gt; 80 ) || height &gt; 2 ]</screen>
+					</para>
+				</formalpara>
+			</section>
+			<section remap="_bound_variables_in_patterns_and_constraints" xml:id="bound_variables_in_patterns_and_constraints">
+				<title>Bound variables in patterns and constraints</title>
+				<simpara>
+					You can bind variables to OOPath expressions of patterns and constraints to refer to matched objects in other portions of a rule. Bound variables can help you define rules more efficiently or more consistently with how you annotate facts in your data model.
+				</simpara>
+				<simpara>
+					For example, the following DRL rule uses the variable <literal>$p</literal> for an OOPath expression with the <literal>Person</literal> fact:
+				</simpara>
+				<formalpara>
+					<title>Pattern with a bound variable</title>
+					<para>
+						
+<screen>rule "simple rule"
+  when
+    $p : /person
+  then
+    System.out.println( "Person " + p );
+end</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					Similarly, you can also bind variables to nested properties, as shown in the following example:
+				</simpara>
+				
+<screen>// Two persons of the same age:
+/person[ firstAge : age ]  // Binding
+and
+/person[ age == firstAge ] // Constraint expression</screen>
+				<note>
+					<simpara>
+						Ensure that you separate constraint bindings and constraint expressions for clearer and more efficient rule definitions. Although mixed bindings and expressions are supported, they can complicate patterns and affect evaluation efficiency.
+					</simpara>
+					
+<screen>// Do not use the following format:
+/person[ age : age * 2 &lt; 100 ]
+
+// Use the following format instead:
+/person[ age * 2 &lt; 100, $age : age ]</screen>
+				</note>
+			</section>
+			<section remap="_nested_constraints_and_inline_casts" xml:id="nested_constraints_and_inline_casts">
+				<title>Nested constraints and inline casts</title>
+				<simpara>
+					In some cases, you might need to access multiple properties of a nested object, as shown in the following example:
+				</simpara>
+				<formalpara>
+					<title>Example pattern to access multiple properties</title>
+					<para>
+						
+<screen>/person[ name == "mark", address.city == "london", address.country == "uk" ]</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					You can group these property accessors to nested objects for more readable rules, as shown in the following example:
+				</simpara>
+				<formalpara>
+					<title>Example pattern with grouped constraints</title>
+					<para>
+						
+<screen>/person[ name == "mark"]/address[ city == "london", country == "uk" ]</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					When you work with nested objects, you can use the syntax <literal><emphasis>TYPE</emphasis>#<emphasis>SUB_TYPE</emphasis></literal> to cast to a subtype and make the getters from the parent type available to the subtype. You can use either the object name or fully qualified class name, and you can cast to one or multiple subtypes, as shown in the following examples:
+				</simpara>
+				<formalpara>
+					<title>Example patterns with inline casting to a subtype</title>
+					<para>
+						
+<screen>// Inline casting with subtype name:
+/person[ name == "mark"]/address#LongAddress[ country == "uk" ]
+
+// Inline casting with fully qualified class name:
+/person[ name == "mark"]/address#org.domain.LongAddress[ country == "uk" ]
+
+// Multiple inline casts:
+/person[ name == "mark" ]/address#LongAddress/country#DetailedCountry[ population &gt; 10000000 ]</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					These example patterns cast <literal>Address</literal> to <literal>LongAddress</literal>, and additionally to <literal>DetailedCountry</literal> in the last example, making the parent getters available to the subtypes in each case.
+				</simpara>
+			</section>
+			<section remap="_date_literal_in_constraints" xml:id="date_literal_in_constraints">
+				<title>Date literal in constraints</title>
+				<simpara>
+					By default, the decision engine supports the date format <literal>dd-mmm-yyyy</literal>. You can customize the date format, including a time format mask if needed, by providing an alternative format mask with the system property <literal>drools.dateformat="dd-mmm-yyyy hh:mm"</literal>. You can also customize the date format by changing the language locale with the <literal>drools.defaultlanguage</literal> and <literal>drools.defaultcountry</literal> system properties. For example, the locale of Thailand is set as <literal>drools.defaultlanguage=th</literal> and <literal>drools.defaultcountry=TH</literal>.
+				</simpara>
+				<formalpara>
+					<title>Example pattern with a date literal restriction</title>
+					<para>
+						
+<screen>/person[ bornBefore &lt; "27-Oct-2009" ]</screen>
+					</para>
+				</formalpara>
+			</section>
+		</chapter>
+		<chapter xml:id="con-drl-rules-actions_drl-rules">
+			<title>Rule actions in DRL</title>
+			<simpara>
+				The <literal>then</literal> part of the rule (also known as the <emphasis>Right Hand Side (RHS)</emphasis> of the rule) contains the actions to be performed when the conditional part of the rule has been met. Rule actions are typically determined by one or more <emphasis>data sources</emphasis> that you define as part of your DRL rule unit. For example, if a bank requires loan applicants to have over 21 years of age (with a rule condition <literal>/applicant[ applicantName : name, age &lt; 21 ]</literal>) and a loan applicant is under 21 years old, the <literal>then</literal> action of an <literal>"Underage"</literal> rule would be <literal>setApproved( false )</literal> based on a defined data source, declining the loan because the applicant is under age.
+			</simpara>
+			<simpara>
+				The main purpose of rule actions is to to insert, delete, or modify data in the working memory of the decision engine. Effective rule actions are small, declarative, and readable. If you need to use imperative or conditional code in rule actions, then divide the rule into multiple smaller and more declarative rules.
+			</simpara>
+			<formalpara>
+				<title>Example rule for loan application age limit</title>
+				<para>
+					
+<screen>rule "Underage"
+  when
+    /applicant[ applicantName : name, age &lt; 21 ]
+    $application : /loanApplication[ applicant == applicantName ]
+  then
+    $application.setApproved( false );
+    $application.setExplanation( "Underage" );
+end</screen>
+				</para>
+			</formalpara>
+			<simpara>
+				For more information about using data sources for rule actions, see <xref linkend="con-drl-rule-units_drl-rules" />.
+			</simpara>
+		</chapter>
+		<chapter xml:id="con-property-change-listeners_drl-rules">
+			<title>Property-change settings and listeners for fact types</title>
+			<simpara>
+				By default, the decision engine does not re-evaluate all fact patterns for fact types each time a rule is triggered, but instead reacts only to modified properties that are constrained or bound inside a given pattern. For example, if a rule calls <literal>modify()</literal> on a fact as part of the rule actions, this modification does not automatically trigger the re-evaluation of all patterns referring to the modified type. Only the patterns constrained on the changed properties of that fact are re-evaluated. This property reactivity behavior prevents unwanted recursions and results in more efficient rule evaluation. This behavior also avoids the need of using the <literal>no-loop</literal> rule attribute to prevent infinite recursion.
+			</simpara>
+			<simpara>
+				You can modify or disable this property reactivity behavior with the following options, and then use a property-change setting in your Java class or DRL files to fine-tune property reactivity as needed:
+			</simpara>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						<literal>ALWAYS</literal>: (Default) All types are property reactive, but you can disable property reactivity for a specific type by using the <literal>@classReactive</literal> property-change setting.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>ALLOWED</literal>: No types are property reactive, but you can enable property reactivity for a specific type by using the <literal>@propertyReactive</literal> property-change setting.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>DISABLED</literal>: No types are property reactive. All property-change listeners are ignored.
+					</simpara>
+				</listitem>
+			</itemizedlist>
+			<simpara>
+				To set the property reactivity behavior, update the <literal>drools.propertySpecific</literal> system property in the <literal>application.properties</literal> file of your Kogito project:
+			</simpara>
+			<formalpara>
+				<title>Example property reactivity setting in system properties</title>
+				<para>
+					
+<screen>drools.propertySpecific=ALLOWED</screen>
+				</para>
+			</formalpara>
+			<simpara>
+				The decision engine supports the following property-change settings and listeners for fact classes or declared DRL fact types:
+			</simpara>
+			<variablelist>
+				<varlistentry>
+					<term>@classReactive</term>
+					<listitem>
+						<simpara>
+							If property reactivity is set to <literal>ALWAYS</literal> in the decision engine (all types are property reactive), this tag disables the default property reactivity behavior for a specific Java class or a declared DRL fact type. You can use this tag if you want the decision engine to re-evaluate all fact patterns for the specified fact type each time the rule is triggered, instead of reacting only to modified properties that are constrained or bound inside a given pattern.
+						</simpara>
+						<formalpara>
+							<title>Example: Disable default property reactivity in a DRL type declaration</title>
+							<para>
+								
+<screen>declare Person
+  @classReactive
+    firstName : String
+    lastName : String
+end</screen>
+							</para>
+						</formalpara>
+						<formalpara>
+							<title>Example: Disable default property reactivity in a Java class</title>
+							<para>
+								
+<programlisting language="java" linenumbering="unnumbered">@classReactive
+public static class Person {
+    private String firstName;
+    private String lastName;
+}</programlisting>
+							</para>
+						</formalpara>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>@propertyReactive</term>
+					<listitem>
+						<simpara>
+							If property reactivity is set to <literal>ALLOWED</literal> in the decision engine (no types are property reactive unless specified), this tag enables property reactivity for a specific Java class or a declared DRL fact type. You can use this tag if you want the decision engine to react only to modified properties that are constrained or bound inside a given pattern for the specified fact type, instead of re-evaluating all fact patterns for the fact each time the rule is triggered.
+						</simpara>
+						<formalpara>
+							<title>Example: Enable property reactivity in a DRL type declaration (when reactivity is disabled globally)</title>
+							<para>
+								
+<screen>declare Person
+  @propertyReactive
+    firstName : String
+    lastName : String
+end</screen>
+							</para>
+						</formalpara>
+						<formalpara>
+							<title>Example: Enable property reactivity in a Java class (when reactivity is disabled globally)</title>
+							<para>
+								
+<programlisting language="java" linenumbering="unnumbered">@propertyReactive
+public static class Person {
+    private String firstName;
+    private String lastName;
+}</programlisting>
+							</para>
+						</formalpara>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+			<variablelist>
+				<varlistentry>
+					<term>@propertyChangeSupport</term>
+					<listitem>
+						<simpara>
+							For facts that implement support for property changes as defined in the <link xlink:href="https://download.oracle.com/otndocs/jcp/7224-javabeans-1.01-fr-spec-oth-JSpec/">JavaBeans Specification</link>, this tag enables the decision engine to monitor changes in the fact properties.
+						</simpara>
+						<formalpara>
+							<title>Example: Declare property change support in JavaBeans object</title>
+							<para>
+								
+<screen>declare Person
+    @propertyChangeSupport
+end</screen>
+							</para>
+						</formalpara>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</chapter>
+		<chapter xml:id="proc-drl-rules-central-create_drl-rules">
+			<title>Creating DRL rules for your Kogito project</title>
+			<simpara>
+				You can create and manage DRL rules for your Kogito project in your integrated development environment (IDE). For Kogito service, VSCode is the preferred IDE. In each DRL rule file, you define rule conditions, actions, and other components related to the rule, based on the data objects you create or import in the package.
+			</simpara>
+			<simpara>
+				In Kogito, you typically define DRL rules in rule units. A DRL rule unit is a module for rules and a unit of execution. A rule unit collects a set of rules with the declaration of the type of facts that the rules act on. A rule unit also serves as a unique namespace for each group of rules. A single rule base can contain multiple rule units. You typically store all the rules for a unit in the same file as the unit declaration so that the unit is self-contained.
+			</simpara>
+			<simpara>
+				For this procedure, create the following example DRL type declarations and DRL rule unit to define DRL rules in a decision service for a loan application:
+			</simpara>
+			<formalpara>
+				<title>Example DRL type declarations for a loan application</title>
+				<para>
+					
+<screen>package org.mortgages;
+
+declare Bankruptcy
+    name: String
+    yearOfOccurrence: int
+end
+
+declare Applicant
+    name: String
+    age: int
+end
+
+declare LoanApplication
+    applicant: String
+    approved: boolean
+    explanation: String
+end</screen>
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Example DRL rule unit file for a loan application</title>
+				<para>
+					
+<screen>package org.mortgages;
+unit MortgageRules;
+
+import org.kie.kogito.rules.DataSource;
+import org.kie.kogito.rules.DataStream;
+
+declare MortgageRules extends RuleUnitData
+  bankruptcy: DataStore&lt;Bankruptcy&gt; = DataSource.createStore()
+  applicant: DataStore&lt;Applicant&gt; = DataSource.createStore()
+  application: DataStore&lt;LoanApplication&gt; = DataSource.createStore()
+end
+
+rule "Bankruptcy history"
+	salience 10
+	when
+    $a : /loanApplication[ applicantName: applicant ]
+    exists (/bankruptcy[ name == applicantName, yearOfOccurrence &gt; 1990 || amountOwed &gt; 100000 ])
+	then
+		$a.setApproved( false );
+		$a.setExplanation( "has been bankrupt" );
+		loanApplication.remove( $a );
+end
+
+rule "Underage"
+	salience 15
+	when
+    /applicant[ applicantName : name, age &lt; 21 ]
+    $application : /loanApplication[ applicant == applicantName ]
+	then
+		$application.setApproved( false );
+		$application.setExplanation( "Underage" );
+		loanApplication.remove( $a );
+end</screen>
+				</para>
+			</formalpara>
+			<itemizedlist>
+				<title>Prerequisites</title>
+				<listitem>
+					<simpara>
+						You have created a Kogito project and have included any Java data objects required for your Kogito service. For information about creating a project, see <link xlink:href="https://access.redhat.com/documentation/en-us/kogito/0.9/html-single/creating_and_running_your_first_kogito_services"><emphasis>Creating and running your first Kogito services</emphasis></link>.
+					</simpara>
+				</listitem>
+			</itemizedlist>
+			<orderedlist numeration="arabic">
+				<title>Procedure</title>
+				<listitem>
+					<simpara>
+						In your VSCode IDE, open your Kogito project and create a <literal>src/main/resources/org/mortgages</literal> folder. This folder serves as the package for your DRL files in this example.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						In your new <literal>src/main/resources/org/mortgages</literal> folder, add the following <literal>ApplicationTypes.drl</literal> file to define the fact types for the loan application service:
+					</simpara>
+					<formalpara>
+						<title>Example DRL type declarations for a loan application</title>
+						<para>
+							
+<screen>package org.mortgages;
+
+declare Bankruptcy
+    name: String
+    yearOfOccurrence: int
+end
+
+declare Applicant
+    name: String
+    age: int
+end
+
+declare LoanApplication
+    applicant: String
+    approved: boolean
+    explanation: String
+end</screen>
+						</para>
+					</formalpara>
+					<simpara>
+						This DRL file defines the fact types that you can declare in any rule units in the same package for the decision service. Declarations in DRL files define new fact types or metadata for fact types to be used by rules in a DRL files. If you declare these types directly in the DRL rule unit file, you cannot declare them in any other rule units.
+					</simpara>
+					<simpara>
+						This example defines the following fact types:
+					</simpara>
+					<itemizedlist>
+						<listitem>
+							<simpara>
+								<literal>Bankruptcy</literal>: Provides data for bankruptcy status, if applicable
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<literal>Applicant</literal>: Provides data about the loan applicant
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<literal>LoanApplication</literal>: Provides data about loan approval status for a specified applicant, with an explanation if needed
+							</simpara>
+						</listitem>
+					</itemizedlist>
+				</listitem>
+				<listitem>
+					<simpara>
+						In the same <literal>src/main/resources/org/mortgages</literal> folder of your Kogito project, create the following <literal>LoanApplication.drl</literal> file to declare the DRL rule unit and data sources:
+					</simpara>
+					<formalpara>
+						<title>Example DRL file with rule unit and data sources</title>
+						<para>
+							
+<screen>package org.mortgages;
+unit MortgageRules;
+
+import org.kie.kogito.rules.DataSource;
+import org.kie.kogito.rules.DataStore;
+
+declare MortgageRules extends RuleUnitData
+  bankruptcy: DataStore&lt;Bankruptcy&gt; = DataSource.createStore()
+  applicant: DataStore&lt;Applicant&gt; = DataSource.createStore()
+  application: DataStore&lt;LoanApplication&gt; = DataSource.createStore()
+end
+...</screen>
+						</para>
+					</formalpara>
+					<simpara>
+						In this example, the rule unit is named <literal>MortgageRules</literal> and the previously defined fact types are declared as <literal>DataStore</literal> data sources.
+					</simpara>
+					<simpara>
+						Data sources are typed sources of data that rule units can subscribe to for updates. You interact with the rule unit through the data sources it exposes. A data source can be a <literal>DataStream</literal> source for append-only storage, a <literal>DataStore</literal> source for writable storage to add or remove data, or a <literal>SingletonStore</literal> source for writable storage to set and clear a single element.
+					</simpara>
+					<simpara>
+						This example uses the <literal>DataStore</literal> data source to enable application data to be added or removed as part of the decision service.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						To complete the DRL rule unit file, add the following rules for <literal>"Bankruptcy history"</literal> and <literal>"Underage"</literal> logic:
+					</simpara>
+					<formalpara>
+						<title>Example DRL rule unit file for a loan application</title>
+						<para>
+							
+<screen>package org.mortgages;
+unit MortgageRules;
+
+import org.kie.kogito.rules.DataSource;
+import org.kie.kogito.rules.DataStream;
+
+declare MortgageRules extends RuleUnitData
+  bankruptcy: DataStore&lt;Bankruptcy&gt; = DataSource.createStore()
+  applicant: DataStore&lt;Applicant&gt; = DataSource.createStore()
+  application: DataStore&lt;LoanApplication&gt; = DataSource.createStore()
+end
+
+rule "Bankruptcy history"
+	salience 10
+	when
+    $a : /loanApplication[ applicantName: applicant ]
+    exists (/bankruptcy[ name == applicantName, yearOfOccurrence &gt; 1990 || amountOwed &gt; 100000 ])
+	then
+		$a.setApproved( false );
+		$a.setExplanation( "has been bankrupt" );
+		loanApplication.remove( $a );
+end
+
+rule "Underage"
+	salience 15
+	when
+    /applicant[ applicantName : name, age &lt; 21 ]
+    $application : /loanApplication[ applicant == applicantName ]
+	then
+		$application.setApproved( false );
+		$application.setExplanation( "Underage" );
+		loanApplication.remove( $a );
+end</screen>
+						</para>
+					</formalpara>
+					<simpara>
+						The example rules consist of the following rule components:
+					</simpara>
+					<itemizedlist>
+						<listitem>
+							<simpara>
+								<literal>rule</literal>: Use this segment to define each rule in the DRL file. Rules consist of a rule name in the format <literal>rule "rule name"</literal>, followed by optional attributes that define rule behavior, such as <literal>salience</literal> or <literal>no-loop</literal>, followed by <literal>when</literal> and <literal>then</literal> definitions. Each rule must have a unique name within the rule package.
+							</simpara>
+							<simpara>
+								In this example, the <literal>"Bankruptcy history"</literal> rule has a defined salience of <literal>10</literal> and the <literal>"Underage"</literal> rule has a defined salience of <literal>15</literal>. These values ensure that the <literal>"Bankruptcy history"</literal> rule is executed first.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<literal>when</literal> and <literal>then</literal>: Use the <literal>when</literal> portion to define the condition patterns and constraints in OOPath syntax and use the <literal>then</literal> portion to define the actions to be executed when the conditions are met.
+							</simpara>
+							<simpara>
+								In this example, the <literal>"Bankruptcy history"</literal> rule states that if an applicant has owed more than 100,000 USD of unresolved debt since 1990 (beginning 1991), then the applicant is considered to have been bankrupt and is not approved for a loan. The application is removed from memory.
+							</simpara>
+							<simpara>
+								If the applicant passes the bankruptcy check, then the <literal>"Underage"</literal> rule states that if the applicant is younger than 21 years old, then the applicant is not approved for the loan. The application is removed from memory.
+							</simpara>
+							<simpara>
+								If the applicant passes both checks, then the loan is approved.
+							</simpara>
+						</listitem>
+					</itemizedlist>
+				</listitem>
+				<listitem>
+					<simpara>
+						After you define all components of the data sources and rules, save all DRL files.
+					</simpara>
+				</listitem>
+			</orderedlist>
+			<itemizedlist>
+				<title>Additional resources</title>
+				<listitem>
+					<simpara>
+						<xref linkend="con-drl-rule-units_drl-rules" />
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<xref linkend="con-drl-rules-conditions_drl-rules" />
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<xref linkend="con-drl-rules-actions_drl-rules" />
+					</simpara>
+				</listitem>
+			</itemizedlist>
+		</chapter>
+		<chapter xml:id="con-kogito-service-execution_drl-rules">
+			<title>Kogito service execution</title>
+			<simpara>
+				After you design your Kogito service, you can build and run your application and then send REST API requests to the application to execute your services. The exact REST API requests that you can use depend on how you set up the application.
+			</simpara>
+			<simpara>
+				For example, consider a Kogito service that is set up to generate a <literal>/persons</literal> REST API endpoint and determines whether a specified customer is an adult or is underage. In this example, you can send the following <literal>POST</literal> request using a REST client or curl utility to add an adult and execute the service:
+			</simpara>
+			<formalpara>
+				<title>Example POST request body to add an adult (JSON)</title>
+				<para>
+					
+<programlisting language="json" linenumbering="unnumbered">{
+  "person": {
+    "name": "John Quark",
+    "age": 20
+  }
+}</programlisting>
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Example curl command to add an adult</title>
+				<para>
+					
+<screen>curl -X POST http://localhost:8080/persons -H 'content-type: application/json' -H 'accept: application/json' -d '{"person": {"name":"John Quark", "age": 20}}'</screen>
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Example response (JSON)</title>
+				<para>
+					
+<programlisting language="json" linenumbering="unnumbered">{
+  "id": "3af806dd-8819-4734-a934-728f4c819682",
+  "person": {
+    "name": "John Quark",
+    "age": 20,
+    "adult": false
+  },
+  "isAdult": true
+}</programlisting>
+				</para>
+			</formalpara>
+			<simpara>
+				For information about creating, running, and testing an example application with Kogito services, see
+			</simpara>
+			<simpara>
+				For information about deploying your Kogito service to Red Hat OpenShift Container Platform, see
+			</simpara>
+		</chapter>
+	</part>
+	<part xml:id="chap-kogito-using-spreadsheet-decision-tables">
+		<title>Using spreadsheet decision tables in Kogito services</title>
+		<partintro>
+			<simpara>
+				As a developer of business decisions, you can define business rules in a tabular format in spreadsheet decision tables and then include the spreadsheet file in your Kogito project. These rules are compiled into Drools Rule Language (DRL) for the decision service in your project.
+			</simpara>
+		</partintro>
+		<chapter xml:id="con-decision-tables_decision-tables">
+			<title>Spreadsheet decision tables</title>
+			<simpara>
+				Spreadsheet decision tables are XLS or XLSX spreadsheet files that contain business rules defined in a tabular format. You can include spreadsheet decision tables as part of your Kogito project. Each row in a decision table is a rule, and each column is a condition, an action, or another rule attribute. After you create and include your spreadsheet decision tables in your project, the rules you defined are compiled into Drools Rule Language (DRL) rules for the decision service.
+			</simpara>
+		</chapter>
+		<chapter xml:id="con-decision-tables-use-case_decision-tables">
+			<title>Decision table use case</title>
+			<simpara>
+				An online shopping site lists the shipping charges for ordered items. The site provides free shipping under the following conditions:
+			</simpara>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						The number of items ordered is 4 or more and the checkout total is $300 or more.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						Standard shipping is selected (4 or 5 business days from the date of purchase).
+					</simpara>
+				</listitem>
+			</itemizedlist>
+			<simpara>
+				The following are the shipping rates under these conditions:
+			</simpara>
+			<table colsep="1" frame="all" rowsep="1">
+				<title>For orders less than $300</title>
+				<tgroup cols="3">
+					<colspec colname="col_1" colwidth="33*"></colspec>
+					<colspec colname="col_2" colwidth="33*"></colspec>
+					<colspec colname="col_3" colwidth="33*"></colspec>
+					<thead>
+						<row>
+							<entry align="left" valign="top">Number of items</entry>
+							<entry align="left" valign="top">Delivery day</entry>
+							<entry align="left" valign="top">Shipping charge in USD, N = Number of items</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								3 or fewer
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Next day
+							</simpara>
+							<simpara>
+								2nd day
+							</simpara>
+							<simpara>
+								Standard
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								35
+							</simpara>
+							<simpara>
+								15
+							</simpara>
+							<simpara>
+								10
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								4 or more
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Next day
+							</simpara>
+							<simpara>
+								2nd day
+							</simpara>
+							<simpara>
+								Standard
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								N*7.50
+							</simpara>
+							<simpara>
+								N*3.50
+							</simpara>
+							<simpara>
+								N*2.50
+							</simpara>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			<table colsep="1" frame="all" rowsep="1">
+				<title>For orders more than $300</title>
+				<tgroup cols="3">
+					<colspec colname="col_1" colwidth="33*"></colspec>
+					<colspec colname="col_2" colwidth="33*"></colspec>
+					<colspec colname="col_3" colwidth="33*"></colspec>
+					<thead>
+						<row>
+							<entry align="left" valign="top">Number of items</entry>
+							<entry align="left" valign="top">Delivery day</entry>
+							<entry align="left" valign="top">Shipping charge in USD, N = Number of items</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								3 or fewer
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Next day
+							</simpara>
+							<simpara>
+								2nd day
+							</simpara>
+							<simpara>
+								Standard
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								25
+							</simpara>
+							<simpara>
+								10
+							</simpara>
+							<simpara>
+								N*1.50
+							</simpara>
+							</entry>
+						</row>
+						<row>
+							<entry align="left" valign="top">
+							<simpara>
+								4 or more
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								Next day
+							</simpara>
+							<simpara>
+								2nd day
+							</simpara>
+							<simpara>
+								Standard
+							</simpara>
+							</entry>
+							<entry align="left" valign="top">
+							<simpara>
+								N*5
+							</simpara>
+							<simpara>
+								N*2
+							</simpara>
+							<simpara>
+								FREE
+							</simpara>
+							</entry>
+						</row>
+					</tbody>
+				</tgroup>
+			</table>
+			<simpara>
+				These conditions and rates are shown in the following example spreadsheet decision table:
+			</simpara>
+			<figure>
+				<title>Decision table for shipping charges</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/_images/kogito/decision-tables/decision-table-example-02.png" format="PNG" />
+					</imageobject>
+					<textobject>
+						<phrase>Decision table example</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+			<simpara>
+				In order for a decision table to be compiled in your Kogito project, the table must comply with certain structure and syntax requirements within an XLS or XLSX spreadsheet, as shown in this example. For more information, see <xref linkend="proc-decision-tables-creating_decision-tables" />.
+			</simpara>
+		</chapter>
+		<chapter xml:id="proc-decision-tables-creating_decision-tables">
+			<title>Creating spreadsheet decision tables for your Kogito project</title>
+			<simpara>
+				Spreadsheet decision tables (XLS or XLSX) require two key areas that define rule data: a <literal>RuleSet</literal> area and a <literal>RuleTable</literal> area. The <literal>RuleSet</literal> area of the spreadsheet defines elements that you want to apply globally to all rules in the same package (not only the spreadsheet), such as a rule set name or universal rule attributes. The <literal>RuleTable</literal> area defines the actual rules (rows) and the conditions, actions, and other rule attributes (columns) that constitute that rule table within the specified rule set. A spreadsheet of decision tables can contain multiple <literal>RuleTable</literal> areas, but only one <literal>RuleSet</literal> area.
+			</simpara>
+			<important>
+				<simpara>
+					For each Kogito project, try to include only one spreadsheet of decision tables, containing all necessary <literal>RuleTable</literal> definitions. Although you can include separate decision table spreadsheets, including multiple spreadsheets in the same project package can cause compilation errors from conflicting <literal>RuleSet</literal> or <literal>RuleTable</literal> attributes and is therefore not recommended.
+				</simpara>
+			</important>
+			<simpara>
+				Refer to the following sample spreadsheet as you define your decision table:
+			</simpara>
+			<figure>
+				<title>Sample spreadsheet decision table for shipping charges</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata fileref="images/_images/kogito/decision-tables/decision-table-example-02.png" format="PNG" />
+					</imageobject>
+					<textobject>
+						<phrase>Decision table example</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+			<itemizedlist>
+				<title>Prerequisites</title>
+				<listitem>
+					<simpara>
+						You have added the following dependency to the <literal>pom.xml</literal> file of your Kogito project to enable decision tables for decision services:
+					</simpara>
+					<formalpara>
+						<title>Dependency to enable decision tables for decision services</title>
+						<para>
+							
+<screen>&lt;dependency&gt;
+    &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+    &lt;artifactId&gt;drools-decisiontables&lt;/artifactId&gt;
+&lt;/dependency&gt;</screen>
+						</para>
+					</formalpara>
+				</listitem>
+			</itemizedlist>
+			<orderedlist numeration="arabic">
+				<title>Procedure</title>
+				<listitem>
+					<simpara>
+						In a new XLS or XLSX spreadsheet, go to the second or third column and label a cell <literal>RuleSet</literal> (row 1 in example). Reserve the column or columns to the left for descriptive metadata (optional).
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						In the next cell to the right, enter a name for the <literal>RuleSet</literal>. This named rule set will contain all <literal>RuleTable</literal> rules defined in the rule package.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						Under the <literal>RuleSet</literal> cell, define any rule attributes (one per cell) that you want to apply globally to all rule tables in the package. Specify attribute values in the cells to the right. For example, you can enter an <literal>Import</literal> label and in the cell to the right, specify relevant data objects from other packages that you want to import into the package for the decision table (in the format <literal>package.name.object.name</literal>). For supported cell labels and values, see <xref linkend="ref-decision-tables-rule-set-entries_decision-tables" />.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						Below the <literal>RuleSet</literal> area and in the same column as the <literal>RuleSet</literal> cell, skip a row and label a new cell <literal>RuleTable</literal> (row 7 in example) and enter a table name in the same cell. The name is used as the initial part of the name for all rules derived from this rule table, with the row number appended for distinction. You can override this automatic naming by inserting a <literal>NAME</literal> attribute column.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						Use the next four rows to define the following elements as needed (rows 8-11 in example):
+					</simpara>
+					<itemizedlist>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Rule attributes:</emphasis> Conditions, actions, or other attributes. For supported cell labels and values, see <xref linkend="ref-decision-tables-rule-table-entries_decision-tables" />.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Object types:</emphasis> The data objects to which the rule attributes apply. If the same object type applies to multiple columns, merge the object cells into one cell across multiple columns (as shown in the sample decision table), instead of repeating the object type in multiple cells. When an object type is merged, all columns below the merged range will be combined into one set of constraints within a single pattern for matching a single fact at a time. When an object is repeated in separate columns, the separate columns can create different patterns, potentially matching different or identical facts.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Constraints:</emphasis> Constraints on the object types.
+							</simpara>
+						</listitem>
+						<listitem>
+							<simpara>
+								<emphasis role="strong">Column label:</emphasis> (Optional) Any descriptive label for the column, as a visual aid. Leave blank if unused.
+							</simpara>
+							<note>
+								<simpara>
+									As an alternative to populating both the object type and constraint cells, you can leave the object type cell or cells empty and enter the full expression in the corresponding constraint cell or cells. For example, instead of <literal>Order</literal> as the object type and <literal>itemsCount &gt; $1</literal> as a constraint (separate cells), you can leave the object type cell empty and enter <literal>Order( itemsCount &gt; $1 )</literal> in the constraint cell, and then do the same for other constraint cells.
+								</simpara>
+							</note>
+						</listitem>
+					</itemizedlist>
+				</listitem>
+				<listitem>
+					<simpara>
+						After you have defined all necessary rule attributes (columns), enter values for each column as needed, row by row, to generate rules (rows 12-17 in example). Cells with no data are ignored (such as when a condition or action does not apply).
+					</simpara>
+					<simpara>
+						If you need to add more rule tables to this decision table spreadsheet, skip a row after the last rule in the previous table, label another <literal>RuleTable</literal> cell in the same column as the previous <literal>RuleTable</literal> and <literal>RuleSet</literal> cells, and create the new table following the same steps in this section (rows 19-29 in example).
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						Save your XLS or XLSX spreadsheet to finish.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						In your VSCode IDE, import the XLS or XLSX spreadsheet file in the relevant folder of your Kogito project, typically in <literal>src/main/resources</literal>.
+					</simpara>
+				</listitem>
+			</orderedlist>
+			<note>
+				<simpara>
+					Only the first worksheet in a spreadsheet workbook is processed as a decision table when you include the spreadsheet in your Kogito project. Each <literal>RuleSet</literal> name combined with the <literal>RuleTable</literal> name must be unique across all decision table files in the same package.
+				</simpara>
+			</note>
+			<simpara>
+				After you include the decision table in your Kogito project, the rules are rendered as DRL rules like the following example, from the sample spreadsheet:
+			</simpara>
+			
+<screen>//row 12
+rule "Basic_12"
+salience 10
+  when
+    $order : /orders[ itemsCount &gt; 0, itemsCount &lt;= 3, deliverInDays == 1 ]
+  then
+    insert( new Charge( 35 ) );
+end</screen>
+			<note>
+				<title>Enabling white space used in cell values</title>
+				<simpara>
+					By default, any white space before or after values in decision table cells is removed before the decision table is processed by the decision engine. To retain white space that you use intentionally before or after values in cells, set the <literal>drools.trimCellsInDTable</literal> system property to <literal>false</literal> in the <literal>application.properties</literal> file of your Kogito project:
+				</simpara>
+				<formalpara>
+					<title>Enable white space in <literal>application.properties</literal></title>
+					<para>
+						
+<screen>drools.trimCellsInDTable=false</screen>
+					</para>
+				</formalpara>
+				<simpara>
+					You can also set this property as a start-up option when you build your Kogito project:
+				</simpara>
+				<formalpara>
+					<title>On Quarkus</title>
+					<para>
+						
+<screen>mvn compile quarkus:dev -Ddrools.trimCellsInDTable=false</screen>
+					</para>
+				</formalpara>
+				<formalpara>
+					<title>On Spring Boot</title>
+					<para>
+						
+<screen>mvn spring-boot:run -Ddrools.trimCellsInDTable=false</screen>
+					</para>
+				</formalpara>
+			</note>
+			<section xml:id="ref-decision-tables-rule-set-entries_decision-tables">
+				<title>RuleSet definitions</title>
+				<simpara>
+					Entries in the <literal>RuleSet</literal> area of a decision table define DRL constructs and rule attributes that you want to apply to all rules in a package (not only in the spreadsheet). Entries must be in a vertically stacked sequence of cell pairs, where the first cell contains a label and the cell to the right contains the value. A decision table spreadsheet can have only one <literal>RuleSet</literal> area.
+				</simpara>
+				<simpara>
+					The following table lists the supported labels and values for <literal>RuleSet</literal> definitions:
+				</simpara>
+				<table colsep="1" frame="all" rowsep="1">
+					<title>Supported <literal>RuleSet</literal> definitions</title>
+					<tgroup cols="3">
+						<colspec colname="col_1" colwidth="30*"></colspec>
+						<colspec colname="col_2" colwidth="40*"></colspec>
+						<colspec colname="col_3" colwidth="30*"></colspec>
+						<thead>
+							<row>
+								<entry align="left" valign="top">Label</entry>
+								<entry align="left" valign="top">Value</entry>
+								<entry align="left" valign="top">Usage</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>RuleSet</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									The package name for the generated DRL file. Optional, the default is <literal>rule_table</literal>.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Must be the first entry.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>Unit</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									The name of the rule unit for the generated DRL file.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Recommended for optimal rule grouping and execution.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>Sequential</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>true</literal> or <literal>false</literal>. If <literal>true</literal>, then salience is used to ensure that rules fire from the top down.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Optional, at most once. If omitted, no firing order is imposed.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>SequentialMaxPriority</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Integer numeric value.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Optional, at most once. In sequential mode, this option is used to set the start value of the salience. If omitted, the default value is <literal>65535</literal>.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>SequentialMinPriority</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Integer numeric value.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Optional, at most once. In sequential mode, this option is used to check if this minimum salience value is not violated. If omitted, the default value is <literal>0</literal>.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>EscapeQuotes</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>true</literal> or <literal>false</literal>. If <literal>true</literal>, then quotation marks are escaped so that they appear literally in the DRL.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Optional, at most once. If omitted, quotation marks are escaped.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>Import</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									A comma-separated list of Java classes to import from another package.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Optional, may be used repeatedly.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>Queries</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									One or more query definitions, according to DRL syntax.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Optional, may be used repeatedly.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>Declare</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									One or more declarative types, according to DRL syntax.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Optional, may be used repeatedly.
+								</simpara>
+								</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+				<warning>
+					<simpara>
+						In some cases, Microsoft Office, LibreOffice, and OpenOffice might encode a double quotation mark differently, causing a compilation error. For example, <literal>“A”</literal> fails, but <literal>"A"</literal> succeeds.
+					</simpara>
+				</warning>
+			</section>
+			<section xml:id="ref-decision-tables-rule-table-entries_decision-tables">
+				<title>RuleTable definitions</title>
+				<simpara>
+					Entries in the <literal>RuleTable</literal> area of a decision table define conditions, actions, and other rule attributes for the rules in that rule table. A spreadsheet of decision tables can contain multiple <literal>RuleTable</literal> areas.
+				</simpara>
+				<simpara>
+					The following table lists the supported labels (column headers) and values for <literal>RuleTable</literal> definitions. For column headers, you can use either the given labels or any custom labels that begin with the letters listed in the table.
+				</simpara>
+				<table colsep="1" frame="all" rowsep="1">
+					<title>Supported <literal>RuleTable</literal> definitions</title>
+					<tgroup cols="4">
+						<colspec colname="col_1" colwidth="25*"></colspec>
+						<colspec colname="col_2" colwidth="20*"></colspec>
+						<colspec colname="col_3" colwidth="35*"></colspec>
+						<colspec colname="col_4" colwidth="20*"></colspec>
+						<thead>
+							<row>
+								<entry align="left" valign="top">Label</entry>
+								<entry align="left" valign="top">Or custom label that begins with</entry>
+								<entry align="left" valign="top">Value</entry>
+								<entry align="left" valign="top">Usage</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>NAME</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									N
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Provides the name for the rule generated from that row. The default is constructed from the text following the <literal>RuleTable</literal> tag and the row number.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									At most one column.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>DESCRIPTION</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									I
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Results in a comment within the generated rule.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									At most one column.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>CONDITION</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									C
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Code snippet and interpolated values for constructing a constraint within a pattern in a condition.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									At least one per rule table.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>ACTION</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									A
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Code snippet and interpolated values for constructing an action for the consequence of the rule.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									At least one per rule table.
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>METADATA</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									@
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Code snippet and interpolated values for constructing a metadata entry for the rule.
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Optional, any number of columns.
+								</simpara>
+								</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+				<simpara>
+					The following sections provide more details about how condition, action, and metadata columns use cell data:
+				</simpara>
+				<variablelist>
+					<varlistentry>
+						<term>Conditions</term>
+						<listitem>
+							<simpara>
+								For columns headed <literal>CONDITION</literal>, the cells in consecutive lines result in a conditional element:
+							</simpara>
+							<itemizedlist>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">First cell:</emphasis> Text in the first cell below <literal>CONDITION</literal> develops into a pattern for the rule condition, and uses the snippet in the next line as a constraint. If the cell is merged with one or more neighboring cells, a single pattern with multiple constraints is formed. All constraints are combined into a parenthesized list and appended to the text in this cell.
+									</simpara>
+									<simpara>
+										If this cell is empty, the code snippet in the cell below it must result in a valid conditional element on its own. For example, instead of <literal>Order</literal> as the object type and <literal>itemsCount &gt; $1</literal> as a constraint (separate cells), you can leave the object type cell empty and enter <literal>Order( itemsCount &gt; $1 )</literal> in the constraint cell, and then do the same for any other constraint cells.
+									</simpara>
+									<simpara>
+										To include a pattern without constraints, you can write the pattern in front of the text of another pattern, with or without an empty pair of parentheses. You can also append a <literal>from</literal> clause to the pattern.
+									</simpara>
+									<simpara>
+										If the pattern ends with <literal>eval</literal>, code snippets produce boolean expressions for inclusion into a pair of parentheses after <literal>eval</literal>.
+									</simpara>
+								</listitem>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">Second cell:</emphasis> Text in the second cell below <literal>CONDITION</literal> is processed as a constraint on the object reference in the first cell. The code snippet in this cell is modified by interpolating values from cells farther down in the column. If you want to create a constraint consisting of a comparison using <literal>==</literal> with the value from the cells below, then the field selector alone is sufficient. Any other comparison operator must be specified as the last item within the snippet, and the value from the cells below is appended. For all other constraint forms, you must mark the position for including the contents of a cell with the symbol <literal>$param</literal>. Multiple insertions are possible if you use the symbols <literal>$1</literal>, <literal>$2</literal>, and so on, and a comma-separated list of values in the cells below. However, do not separate <literal>$1</literal>, <literal>$2</literal>, and so on, by commas, or the table will fail to process.
+									</simpara>
+									<simpara>
+										To expand a text according to the pattern <literal>forall($delimiter){$snippet}</literal>, repeat the <literal>$snippet</literal> once for each of the values of the comma-separated list in each of the cells below, insert the value in place of the symbol <literal>$</literal>, and join these expansions by the given <literal>$delimiter</literal>. Note that the <literal>forall</literal> construct may be surrounded by other text.
+									</simpara>
+									<simpara>
+										If the first cell contains an object, the completed code snippet is added to the conditional element from that cell. A pair of parentheses is provided automatically, as well as a separating comma if multiple constraints are added to a pattern in a merged cell. If the first cell is empty, the code snippet in this cell must result in a valid conditional element on its own. For example, instead of <literal>Order</literal> as the object type and <literal>itemsCount &gt; $1</literal> as a constraint (separate cells), you can leave the object type cell empty and enter <literal>Order( itemsCount &gt; $1 )</literal> in the constraint cell, and then do the same for any other constraint cells.
+									</simpara>
+								</listitem>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">Third cell:</emphasis> Text in the third cell below <literal>CONDITION</literal> is a descriptive label that you define for the column, as a visual aid.
+									</simpara>
+								</listitem>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">Fourth cell:</emphasis> From the fourth row on, non-blank entries provide data for interpolation. A blank cell omits the condition or constraint for this rule.
+									</simpara>
+								</listitem>
+							</itemizedlist>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Actions</term>
+						<listitem>
+							<simpara>
+								For columns headed <literal>ACTION</literal>, the cells in consecutive lines result in an action statement:
+							</simpara>
+							<itemizedlist>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">First cell:</emphasis> Text in the first cell below <literal>ACTION</literal> is optional. If present, the text is interpreted as an object reference.
+									</simpara>
+								</listitem>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">Second cell:</emphasis> Text in the second cell below <literal>ACTION</literal> is a code snippet that is modified by interpolating values from cells farther down in the column. For a singular insertion, mark the position for including the contents of a cell with the symbol <literal>$param</literal>. Multiple insertions are possible if you use the symbols <literal>$1</literal>, <literal>$2</literal>, and so on, and a comma-separated list of values in the cells below. However, do not separate <literal>$1</literal>, <literal>$2</literal>, and so on, by commas, or the table will fail to process.
+									</simpara>
+									<simpara>
+										A text without any marker symbols can execute a method call without interpolation. In this case, use any non-blank entry in a row below the cell to include the statement. The <literal>forall</literal> construct is supported.
+									</simpara>
+									<simpara>
+										If the first cell contains an object, then the cell text (followed by a period), the text in the second cell, and a terminating semicolon are strung together, resulting in a method call that is added as an action statement for the consequence. If the first cell is empty, the code snippet in this cell must result in a valid action element on its own.
+									</simpara>
+								</listitem>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">Third cell:</emphasis> Text in the third cell below <literal>ACTION</literal> is a descriptive label that you define for the column, as a visual aid.
+									</simpara>
+								</listitem>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">Fourth cell:</emphasis> From the fourth row on, non-blank entries provide data for interpolation. A blank cell omits the condition or constraint for this rule.
+									</simpara>
+								</listitem>
+							</itemizedlist>
+						</listitem>
+					</varlistentry>
+					<varlistentry>
+						<term>Metadata</term>
+						<listitem>
+							<simpara>
+								For columns headed <literal>METADATA</literal>, the cells in consecutive lines result in a metadata annotation for the generated rules:
+							</simpara>
+							<itemizedlist>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">First cell:</emphasis> Text in the first cell below <literal>METADATA</literal> is ignored.
+									</simpara>
+								</listitem>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">Second cell:</emphasis> Text in the second cell below <literal>METADATA</literal> is subject to interpolation, using values from the cells in the rule rows. The metadata marker character <literal>@</literal> is prefixed automatically, so you do not need to include that character in the text for this cell.
+									</simpara>
+								</listitem>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">Third cell:</emphasis> Text in the third cell below <literal>METADATA</literal> is a descriptive label that you define for the column, as a visual aid.
+									</simpara>
+								</listitem>
+								<listitem>
+									<simpara>
+										<emphasis role="strong">Fourth cell:</emphasis> From the fourth row on, non-blank entries provide data for interpolation. A blank cell results in the omission of the metadata annotation for this rule.
+									</simpara>
+								</listitem>
+							</itemizedlist>
+						</listitem>
+					</varlistentry>
+				</variablelist>
+			</section>
+			<section xml:id="ref-decision-tables-attributes_decision-tables">
+				<title>Additional rule attributes for RuleSet or RuleTable definitions</title>
+				<simpara>
+					The <literal>RuleSet</literal> and <literal>RuleTable</literal> areas also support labels and values for other rule attributes, such as <literal>PRIORITY</literal> or <literal>NO-LOOP</literal>. Rule attributes specified in a <literal>RuleSet</literal> area will affect all rule assets in the same package (not only in the spreadsheet). Rule attributes specified in a <literal>RuleTable</literal> area will affect only the rules in that rule table. You can use each rule attribute only once in a <literal>RuleSet</literal> area and once in a <literal>RuleTable</literal> area. If the same attribute is used in both <literal>RuleSet</literal> and <literal>RuleTable</literal> areas within the spreadsheet, then <literal>RuleTable</literal> takes priority and the attribute in the <literal>RuleSet</literal> area is overridden.
+				</simpara>
+				<simpara>
+					The following table lists the supported labels (column headers) and values for additional <literal>RuleSet</literal> or <literal>RuleTable</literal> definitions. For column headers, you can use either the given labels or any custom labels that begin with the letters listed in the table.
+				</simpara>
+				<table colsep="1" frame="all" rowsep="1">
+					<title>Additional rule attributes for <literal>RuleSet</literal> or <literal>RuleTable</literal> definitions</title>
+					<tgroup cols="3">
+						<colspec colname="col_1" colwidth="25*"></colspec>
+						<colspec colname="col_2" colwidth="20*"></colspec>
+						<colspec colname="col_3" colwidth="55*"></colspec>
+						<thead>
+							<row>
+								<entry align="left" valign="top">Label</entry>
+								<entry align="left" valign="top">Or custom label that begins with</entry>
+								<entry align="left" valign="top">Value</entry>
+							</row>
+						</thead>
+						<tbody>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>PRIORITY</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									P
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									An integer defining the <literal>salience</literal> value of the rule. Rules with a higher salience value are given higher priority when ordered in the activation queue. Overridden by the <literal>Sequential</literal> flag.
+								</simpara>
+								<simpara>
+									Example: <literal>PRIORITY 10</literal>
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>DATE-EFFECTIVE</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									V
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									A string containing a date and time definition. The rule can be activated only if the current date and time is after a <literal>DATE-EFFECTIVE</literal> attribute.
+								</simpara>
+								<simpara>
+									Example: <literal>DATE-EFFECTIVE "4-Sep-2018"</literal>
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>DATE-EXPIRES</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									Z
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									A string containing a date and time definition. The rule cannot be activated if the current date and time is after the <literal>DATE-EXPIRES</literal> attribute.
+								</simpara>
+								<simpara>
+									Example: <literal>DATE-EXPIRES "4-Oct-2018"</literal>
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>NO-LOOP</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									U
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									A Boolean value. When this option is set to <literal>true</literal>, the rule cannot be reactivated (looped) if a consequence of the rule re-triggers a previously met condition.
+								</simpara>
+								<simpara>
+									Example: <literal>NO-LOOP true</literal>
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>ACTIVATION-GROUP</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									X
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									A string identifying an activation (or XOR) group to which you want to assign the rule. In activation groups, only one rule can be activated. The first rule to fire will cancel all pending activations of all rules in the activation group.
+								</simpara>
+								<simpara>
+									Example: <literal>ACTIVATION-GROUP "GroupName"</literal>
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>DURATION</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									D
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									A long integer value defining the duration of time in milliseconds after which the rule can be activated, if the rule conditions are still met.
+								</simpara>
+								<simpara>
+									Example: <literal>DURATION 10000</literal>
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>TIMER</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									T
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									A string identifying either <literal>int</literal> (interval) or <literal>cron</literal> timer definitions for scheduling the rule.
+								</simpara>
+								<simpara>
+									Example: <literal>TIMER "*/5 * * * *"</literal> (every 5 minutes)
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>CALENDAR</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									E
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									A Quartz calendar definition for scheduling the rule.
+								</simpara>
+								<simpara>
+									Example: <literal>CALENDAR "* * 0-7,18-23 ? * *"</literal> (exclude non-business hours)
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>AUTO-FOCUS</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									F
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									A Boolean value, applicable only to rules within agenda groups. When this option is set to <literal>true</literal>, the next time the rule is activated, a focus is automatically given to the agenda group to which the rule is assigned.
+								</simpara>
+								<simpara>
+									Example: <literal>AUTO-FOCUS true</literal>
+								</simpara>
+								</entry>
+							</row>
+							<row>
+								<entry align="left" valign="top">
+								<simpara>
+									<literal>LOCK-ON-ACTIVE</literal>
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									L
+								</simpara>
+								</entry>
+								<entry align="left" valign="top">
+								<simpara>
+									A Boolean value, applicable only to rules within rule flow groups or agenda groups. When this option is set to <literal>true</literal>, the next time the ruleflow group for the rule becomes active or the agenda group for the rule receives a focus, the rule cannot be activated again until the ruleflow group is no longer active or the agenda group loses the focus. This is a stronger version of the <literal>no-loop</literal> attribute, because the activation of a matching rule is discarded regardless of the origin of the update (not only by the rule itself). This attribute is ideal for calculation rules where you have a number of rules that modify a fact and you do not want any rule re-matching and firing again.
+								</simpara>
+								<simpara>
+									Example: <literal>LOCK-ON-ACTIVE true</literal>
+								</simpara>
+								</entry>
+							</row>
+						</tbody>
+					</tgroup>
+				</table>
+				<figure>
+					<title>Sample decision table spreadsheet with attribute columns</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata fileref="images/_images/kogito/decision-tables/decision-table-example-03.png" format="PNG" />
+						</imageobject>
+						<textobject>
+							<phrase>Example decision table with definitions used</phrase>
+						</textobject>
+					</mediaobject>
+				</figure>
+			</section>
+		</chapter>
+		<chapter xml:id="con-kogito-service-execution_decision-tables">
+			<title>Kogito service execution</title>
+			<simpara>
+				After you design your Kogito service, you can build and run your application and then send REST API requests to the application to execute your services. The exact REST API requests that you can use depend on how you set up the application.
+			</simpara>
+			<simpara>
+				For example, consider a Kogito service that is set up to generate a <literal>/persons</literal> REST API endpoint and determines whether a specified customer is an adult or is underage. In this example, you can send the following <literal>POST</literal> request using a REST client or curl utility to add an adult and execute the service:
+			</simpara>
+			<formalpara>
+				<title>Example POST request body to add an adult (JSON)</title>
+				<para>
+					
+<programlisting language="json" linenumbering="unnumbered">{
+  "person": {
+    "name": "John Quark",
+    "age": 20
+  }
+}</programlisting>
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Example curl command to add an adult</title>
+				<para>
+					
+<screen>curl -X POST http://localhost:8080/persons -H 'content-type: application/json' -H 'accept: application/json' -d '{"person": {"name":"John Quark", "age": 20}}'</screen>
+				</para>
+			</formalpara>
+			<formalpara>
+				<title>Example response (JSON)</title>
+				<para>
+					
+<programlisting language="json" linenumbering="unnumbered">{
+  "id": "3af806dd-8819-4734-a934-728f4c819682",
+  "person": {
+    "name": "John Quark",
+    "age": 20,
+    "adult": false
+  },
+  "isAdult": true
+}</programlisting>
+				</para>
+			</formalpara>
+			<simpara>
+				For information about creating, running, and testing an example application with Kogito services, see
+			</simpara>
+			<simpara>
+				For information about deploying your Kogito service to Red Hat OpenShift Container Platform, see
+			</simpara>
+		</chapter>
+	</part>
+	<part xml:id="chap-kogito-decision-engine">
+		<title>Decision engine in Kogito</title>
+		<partintro>
+			<simpara>
+				As a developer of business decisions, your understanding of the decision engine in Kogito can help you design more effective business assets and a more scalable decision management architecture. The decision engine is the Kogito component that stores, processes, and evaluates data to execute business rules and to reach the decisions that you define. This document describes basic concepts and functions of the decision engine to consider as you create your business rule system and decision services in Kogito.
+			</simpara>
+		</partintro>
+		<chapter xml:id="con-decision-engine_decision-engine">
+			<title>Decision engine in Kogito</title>
+			<simpara>
+				The decision engine is the rules engine in Kogito. The decision engine stores, processes, and evaluates data to execute the business rules or decision models that you define. The basic function of the decision engine is to match incoming data, or <emphasis>facts</emphasis>, to the conditions of rules and determine whether and how to execute the rules.
+			</simpara>
+			<simpara>
+				The decision engine operates using the following basic components:
+			</simpara>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						<emphasis role="strong">Rules:</emphasis> Business rules or DMN decisions that you define. All rules must contain at a minimum the conditions that trigger the rule and the actions that the rule dictates.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<emphasis role="strong">Facts:</emphasis> Data that enters or changes in the decision engine that the decision engine matches to rule conditions to execute applicable rules.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<emphasis role="strong">Production memory:</emphasis> Location where rules are stored in the decision engine.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<emphasis role="strong">Working memory:</emphasis> Location where facts are stored in the decision engine.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<emphasis role="strong">Agenda:</emphasis> Location where activated rules are registered and sorted (if applicable) in preparation for execution.
+					</simpara>
+				</listitem>
+			</itemizedlist>
+			<simpara>
+				When a business user or an automated system adds or updates rule-related information in Kogito, that information is inserted into the working memory of the decision engine in the form of one or more facts. The decision engine matches those facts to the conditions of the rules that are stored in the production memory to determine eligible rule executions. (This process of matching facts to rules is often referred to as <emphasis>pattern matching</emphasis>.) When rule conditions are met, the decision engine activates and registers rules in the agenda, where the decision engine then sorts prioritized or conflicting rules in preparation for execution.
+			</simpara>
+			<simpara>
+				The following diagram illustrates these basic components of the decision engine:
+			</simpara>
+			<figure>
+				<title>Overview of basic decision engine components</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata align="center" fileref="images/_images/kogito/decision-engine/rule-engine-inkscape_enterprise.png" format="PNG" />
+					</imageobject>
+					<textobject>
+						<phrase>rule engine inkscape enterprise</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+			<simpara>
+				These core concepts can help you to better understand other more advanced components, processes, and subprocesses of the decision engine, and as a result, to design more effective business assets in Kogito.
+			</simpara>
+		</chapter>
+		<chapter xml:id="con-execution-control_decision-engine">
+			<title>Execution control in the decision engine</title>
+			<simpara>
+				When new rule data enters the working memory of the decision engine, rules may become fully matched and eligible for execution. A single working memory action can result in multiple eligible rule executions. When a rule is fully matched, the decision engine creates an activation instance, referencing the rule and the matched facts, and adds the activation onto the decision engine agenda. The agenda controls the execution order of these rule activations using a conflict resolution strategy.
+			</simpara>
+			<simpara>
+				When rules are executed, the decision engine cycles repeatedly through two phases:
+			</simpara>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						<emphasis role="strong">Agenda evaluation.</emphasis> In this phase, the decision engine selects all rules that can be executed. If no executable rules exist, the execution cycle ends. If an executable rule is found, the decision engine registers the activation in the agenda and then moves on to the working memory actions phase to perform rule consequence actions.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<emphasis role="strong">Working memory actions.</emphasis> In this phase, the decision engine performs the rule consequence actions (the <literal>then</literal> portion of each rule) for all activated rules previously registered in the agenda. After all the consequence actions are complete or the rules are executed again, the decision engine returns to the agenda evaluation phase to reassess rules.
+					</simpara>
+				</listitem>
+			</itemizedlist>
+			<figure>
+				<title>Two-phase execution process in the decision engine</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata align="center" fileref="images/_images/kogito/decision-engine/Two_Phase_enterprise.png" format="PNG" />
+					</imageobject>
+					<textobject>
+						<phrase>Two Phase enterprise</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+			<simpara>
+				When multiple rules exist on the agenda, the execution of one rule may cause another rule to be removed from the agenda. To avoid this, you can define how and when rules are executed in the decision engine. Some common methods for defining rule execution order are by using rule salience, agenda groups, activation groups, or rule units for DRL rule sets.
+			</simpara>
+			<section remap="_salience_for_rules" xml:id="salience_for_rules">
+				<title>Salience for rules</title>
+				<simpara>
+					Each rule has an integer <literal>salience</literal> attribute that determines the order of execution. Rules with a higher salience value are given higher priority when ordered in the activation queue. The default salience value for rules is zero, but the salience can be negative or positive.
+				</simpara>
+				<simpara>
+					For example, the following sample DRL rules are listed in the decision engine stack in the order shown:
+				</simpara>
+				
+<screen>rule "RuleA"
+salience 95
+  when
+    $fact : /myFact[ field1 == true ]
+  then
+    System.out.println("Rule2 : " + $fact);
+    update($fact);
+end
+
+rule "RuleB"
+salience 100
+  when
+    $fact : /myFact[ field1 == false ]
+  then
+    System.out.println("Rule1 : " + $fact);
+    $fact.setField1(true);
+    update($fact);
+end</screen>
+				<simpara>
+					The <literal>RuleB</literal> rule is listed second, but it has a higher salience value than the <literal>RuleA</literal> rule and is therefore executed first.
+				</simpara>
+			</section>
+			<section remap="_activation_groups_for_rules" xml:id="activation_groups_for_rules">
+				<title>Activation groups for rules</title>
+				<simpara>
+					An activation group is a set of rules bound together by the same <literal>activation-group</literal> rule attribute. In this group, only one rule can be executed. After conditions are met for a rule in that group to be executed, all other pending rule executions from that activation group are removed from the agenda.
+				</simpara>
+				<simpara>
+					For example, the following sample DRL rules belong to the specified activation group and are listed in the decision engine stack in the order shown:
+				</simpara>
+				<formalpara>
+					<title>Sample DRL rules for banking</title>
+					<para>
+						
+<screen>rule "Print balance for AccountPeriod1"
+activation-group "report"
+  when
+    ap : AccountPeriod1()
+    acc : Account()
+  then
+    System.out.println( acc.accountNo +
+                      " : " + acc.balance );
+end</screen>
+					</para>
+				</formalpara>
+				
+<screen>rule "Print balance for AccountPeriod2"
+activation-group "report"
+  when
+    ap : AccountPeriod2()
+    acc : Account()
+  then
+    System.out.println( acc.accountNo +
+                      " : " + acc.balance );
+end</screen>
+				<simpara>
+					For this example, if the first rule in the <literal>"report"</literal> activation group is executed, the second rule in the group and all other executable rules on the agenda are removed from the agenda.
+				</simpara>
+			</section>
+		</chapter>
+		<chapter xml:id="con-phreak-rule-evaluation_decision-engine">
+			<title>Rule evaluation in Phreak</title>
+			<simpara>
+				When the decision engine starts, all rules are considered to be <emphasis>unlinked</emphasis> from pattern-matching data that can trigger the rules. At this stage, the Phreak algorithm in the decision engine does not evaluate the rules. The rule actions are queued, and Phreak uses a heuristic, based on the rule most likely to result in execution, to calculate and select the next rule for evaluation. When all the required input values are populated for a rule, the rule is considered to be <emphasis>linked</emphasis> to the relevant pattern-matching data. Phreak then creates a goal that represents this rule and places the goal into a priority queue that is ordered by rule salience. Only the rule for which the goal was created is evaluated, and other potential rule evaluations are delayed. While individual rules are evaluated, node sharing is still achieved through the process of segmentation.
+			</simpara>
+			<simpara>
+				Unlike the tuple-oriented Rete, the Phreak propagation is collection oriented. For the rule that is being evaluated, the decision engine accesses the first node and processes all queued insert, update, and delete actions. The results are added to a set, and the set is propagated to the child node. In the child node, all queued insert, update, and delete actions are processed, adding the results to the same set. The set is then propagated to the next child node and the same process repeats until it reaches the terminal node. This cycle creates a batch process effect that can provide performance advantages for certain rule constructs.
+			</simpara>
+			<simpara>
+				The linking and unlinking of rules happens through a layered bit-mask system, based on network segmentation. When the rule network is built, segments are created for rule network nodes that are shared by the same set of rules. A rule is composed of a path of segments. In case a rule does not share any node with any other rule, it becomes a single segment.
+			</simpara>
+			<simpara>
+				A bit-mask offset is assigned to each node in the segment. Another bit mask is assigned to each segment in the path of the rule according to these requirements:
+			</simpara>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						If at least one input for a node exists, the node bit is set to the <literal>on</literal> state.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						If each node in a segment has the bit set to the <literal>on</literal> state, the segment bit is also set to the <literal>on</literal> state.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						If any node bit is set to the <literal>off</literal> state, the segment is also set to the <literal>off</literal> state.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						If each segment in the path of the rule is set to the <literal>on</literal> state, the rule is considered linked, and a goal is created to schedule the rule for evaluation.
+					</simpara>
+				</listitem>
+			</itemizedlist>
+			<simpara>
+				The same bit-mask technique is used to track modified nodes, segments, and rules. This tracking ability enables an already linked rule to be unscheduled from evaluation if it has been modified since the evaluation goal for it was created. As a result, no rules can ever evaluate partial matches.
+			</simpara>
+			<simpara>
+				This process of rule evaluation is possible in Phreak because, as opposed to a single unit of memory in Rete, Phreak has three layers of contextual memory with node, segment, and rule memory types. This layering enables much more contextual understanding during the evaluation of a rule.
+			</simpara>
+			<figure>
+				<title>Phreak three-layered memory system</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata align="center" fileref="images/_images/kogito/decision-engine/LayeredMemory_enterprise.png" format="PNG" />
+					</imageobject>
+					<textobject>
+						<phrase>LayeredMemory enterprise</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+			<simpara>
+				The following examples illustrate how rules are organized and evaluated in this three-layered memory system in Phreak.
+			</simpara>
+			<simpara>
+				<emphasis role="strong">Example 1:</emphasis> A single rule (R1) with three patterns: A, B and C. The rule forms a single segment, with bits 1, 2, and 4 for the nodes. The single segment has a bit offset of 1.
+			</simpara>
+			<figure>
+				<title>Example 1: Single rule</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata align="center" fileref="images/_images/kogito/decision-engine/segment1_enterprise.png" format="PNG" />
+					</imageobject>
+					<textobject>
+						<phrase>segment1 enterprise</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+			<simpara>
+				<emphasis role="strong">Example 2:</emphasis> Rule R2 is added and shares pattern A.
+			</simpara>
+			<figure>
+				<title>Example 2: Two rules with pattern sharing</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata align="center" fileref="images/_images/kogito/decision-engine/segment2_enterprise.png" format="PNG" />
+					</imageobject>
+					<textobject>
+						<phrase>segment2 enterprise</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+			<simpara>
+				Pattern A is placed in its own segment, resulting in two segments for each rule. Those two segments form a path for their respective rules. The first segment is shared by both paths. When pattern A is linked, the segment becomes linked. The segment then iterates over each path that the segment is shared by, setting the bit 1 to <literal>on</literal>. If patterns B and C are later turned on, the second segment for path R1 is linked, and this causes bit 2 to be turned on for R1. With bit 1 and bit 2 turned on for R1, the rule is now linked and a goal is created to schedule the rule for later evaluation and execution.
+			</simpara>
+			<simpara>
+				When a rule is evaluated, the segments enable the results of the matching to be shared. Each segment has a staging memory to queue all inserts, updates, and deletes for that segment. When R1 is evaluated, the rule processes pattern A, and this results in a set of tuples. The algorithm detects a segmentation split, creates peered tuples for each insert, update, and delete in the set, and adds them to the R2 staging memory. Those tuples are then merged with any existing staged tuples and are executed when R2 is eventually evaluated.
+			</simpara>
+			<simpara>
+				<emphasis role="strong">Example 3:</emphasis> Rules R3 and R4 are added and share patterns A and B.
+			</simpara>
+			<figure>
+				<title>Example 3: Three rules with pattern sharing</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata align="center" fileref="images/_images/kogito/decision-engine/segment3_enterprise.png" format="PNG" />
+					</imageobject>
+					<textobject>
+						<phrase>segment3 enterprise</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+			<simpara>
+				Rules R3 and R4 have three segments and R1 has two segments. Patterns A and B are shared by R1, R3, and R4, while pattern D is shared by R3 and R4.
+			</simpara>
+			<simpara>
+				<emphasis role="strong">Example 4:</emphasis> A single rule (R1) with a subnetwork and no pattern sharing.
+			</simpara>
+			<figure>
+				<title>Example 4: Single rule with a subnetwork and no pattern sharing</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata align="center" fileref="images/_images/kogito/decision-engine/segment4_enterprise.png" format="PNG" />
+					</imageobject>
+					<textobject>
+						<phrase>segment4 enterprise</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+			<simpara>
+				Subnetworks are formed when a <literal>Not</literal>, <literal>Exists</literal>, or <literal>Accumulate</literal> node contains more than one element. In this example, the element <literal>B not( C )</literal> forms the subnetwork. The element <literal>not( C )</literal> is a single element that does not require a subnetwork and is therefore merged inside of the <literal>Not</literal> node. The subnetwork uses a dedicated segment. Rule R1 still has a path of two segments and the subnetwork forms another inner path. When the subnetwork is linked, it is also linked in the outer segment.
+			</simpara>
+			<simpara>
+				<emphasis role="strong">Example 5:</emphasis> Rule R1 with a subnetwork that is shared by rule R2.
+			</simpara>
+			<figure>
+				<title>Example 5: Two rules, one with a subnetwork and pattern sharing</title>
+				<mediaobject>
+					<imageobject>
+						<imagedata align="center" fileref="images/_images/kogito/decision-engine/segment5_enterprise.png" format="PNG" />
+					</imageobject>
+					<textobject>
+						<phrase>segment5 enterprise</phrase>
+					</textobject>
+				</mediaobject>
+			</figure>
+			<simpara>
+				The subnetwork nodes in a rule can be shared by another rule that does not have a subnetwork. This sharing causes the subnetwork segment to be split into two segments.
+			</simpara>
+			<simpara>
+				Constrained <literal>Not</literal> nodes and <literal>Accumulate</literal> nodes can never unlink a segment, and are always considered to have their bits turned on.
+			</simpara>
+			<simpara>
+				The Phreak evaluation algorithm is stack based instead of method-recursion based. Rule evaluation can be paused and resumed at any time when a <literal>StackEntry</literal> is used to represent the node currently being evaluated.
+			</simpara>
+			<simpara>
+				When a rule evaluation reaches a subnetwork, a <literal>StackEntry</literal> object is created for the outer path segment and the subnetwork segment. The subnetwork segment is evaluated first, and when the set reaches the end of the subnetwork path, the segment is merged into a staging list for the outer node that the segment feeds into. The previous <literal>StackEntry</literal> object is then resumed and can now process the results of the subnetwork. This process has the added benefit, especially for <literal>Accumulate</literal> nodes, that all work is completed in a batch, before propagating to the child node.
+			</simpara>
+			<simpara>
+				The same stack system is used for efficient backward chaining. When a rule evaluation reaches a query node, the evaluation is paused and the query is added to the stack. The query is then evaluated to produce a result set, which is saved in a memory location for the resumed <literal>StackEntry</literal> object to pick up and propagate to the child node. If the query itself called other queries, the process repeats, while the current query is paused and a new evaluation is set up for the current query node.
+			</simpara>
+			<section xml:id="con-forward-and-backward-chaining_decision-engine">
+				<title>Rule evaluation with forward and backward chaining</title>
+				<simpara>
+					The decision engine in Kogito is a hybrid reasoning system that uses both forward chaining and backward chaining to evaluate rules. A forward-chaining rule system is a data-driven system that starts with a fact in the working memory of the decision engine and reacts to changes to that fact. When objects are inserted into working memory, any rule conditions that become true as a result of the change are scheduled for execution by the agenda.
+				</simpara>
+				<simpara>
+					In contrast, a backward-chaining rule system is a goal-driven system that starts with a conclusion that the decision engine attempts to satisfy, often using recursion. If the system cannot reach the conclusion or goal, it searches for subgoals, which are conclusions that complete part of the current goal. The system continues this process until either the initial conclusion is satisfied or all subgoals are satisfied.
+				</simpara>
+				<simpara>
+					The following diagram illustrates how the decision engine evaluates rules using forward chaining overall with a backward-chaining segment in the logic flow:
+				</simpara>
+				<figure>
+					<title>Rule evaluation logic using forward and backward chaining</title>
+					<mediaobject>
+						<imageobject>
+							<imagedata align="center" fileref="images/_images/kogito/decision-engine/RuleEvaluation_Enterprise.png" format="PNG" />
+						</imageobject>
+						<textobject>
+							<phrase>RuleEvaluation Enterprise</phrase>
+						</textobject>
+					</mediaobject>
+				</figure>
+			</section>
+		</chapter>
+		<chapter xml:id="con-property-change-listeners_decision-engine">
+			<title>Property-change settings and listeners for fact types</title>
+			<simpara>
+				By default, the decision engine does not re-evaluate all fact patterns for fact types each time a rule is triggered, but instead reacts only to modified properties that are constrained or bound inside a given pattern. For example, if a rule calls <literal>modify()</literal> on a fact as part of the rule actions, this modification does not automatically trigger the re-evaluation of all patterns referring to the modified type. Only the patterns constrained on the changed properties of that fact are re-evaluated. This property reactivity behavior prevents unwanted recursions and results in more efficient rule evaluation. This behavior also avoids the need of using the <literal>no-loop</literal> rule attribute to prevent infinite recursion.
+			</simpara>
+			<simpara>
+				You can modify or disable this property reactivity behavior with the following options, and then use a property-change setting in your Java class or DRL files to fine-tune property reactivity as needed:
+			</simpara>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						<literal>ALWAYS</literal>: (Default) All types are property reactive, but you can disable property reactivity for a specific type by using the <literal>@classReactive</literal> property-change setting.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>ALLOWED</literal>: No types are property reactive, but you can enable property reactivity for a specific type by using the <literal>@propertyReactive</literal> property-change setting.
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>DISABLED</literal>: No types are property reactive. All property-change listeners are ignored.
+					</simpara>
+				</listitem>
+			</itemizedlist>
+			<simpara>
+				To set the property reactivity behavior, update the <literal>drools.propertySpecific</literal> system property in the <literal>application.properties</literal> file of your Kogito project:
+			</simpara>
+			<formalpara>
+				<title>Example property reactivity setting in system properties</title>
+				<para>
+					
+<screen>drools.propertySpecific=ALLOWED</screen>
+				</para>
+			</formalpara>
+			<simpara>
+				The decision engine supports the following property-change settings and listeners for fact classes or declared DRL fact types:
+			</simpara>
+			<variablelist>
+				<varlistentry>
+					<term>@classReactive</term>
+					<listitem>
+						<simpara>
+							If property reactivity is set to <literal>ALWAYS</literal> in the decision engine (all types are property reactive), this tag disables the default property reactivity behavior for a specific Java class or a declared DRL fact type. You can use this tag if you want the decision engine to re-evaluate all fact patterns for the specified fact type each time the rule is triggered, instead of reacting only to modified properties that are constrained or bound inside a given pattern.
+						</simpara>
+						<formalpara>
+							<title>Example: Disable default property reactivity in a DRL type declaration</title>
+							<para>
+								
+<screen>declare Person
+  @classReactive
+    firstName : String
+    lastName : String
+end</screen>
+							</para>
+						</formalpara>
+						<formalpara>
+							<title>Example: Disable default property reactivity in a Java class</title>
+							<para>
+								
+<programlisting language="java" linenumbering="unnumbered">@classReactive
+public static class Person {
+    private String firstName;
+    private String lastName;
+}</programlisting>
+							</para>
+						</formalpara>
+					</listitem>
+				</varlistentry>
+				<varlistentry>
+					<term>@propertyReactive</term>
+					<listitem>
+						<simpara>
+							If property reactivity is set to <literal>ALLOWED</literal> in the decision engine (no types are property reactive unless specified), this tag enables property reactivity for a specific Java class or a declared DRL fact type. You can use this tag if you want the decision engine to react only to modified properties that are constrained or bound inside a given pattern for the specified fact type, instead of re-evaluating all fact patterns for the fact each time the rule is triggered.
+						</simpara>
+						<formalpara>
+							<title>Example: Enable property reactivity in a DRL type declaration (when reactivity is disabled globally)</title>
+							<para>
+								
+<screen>declare Person
+  @propertyReactive
+    firstName : String
+    lastName : String
+end</screen>
+							</para>
+						</formalpara>
+						<formalpara>
+							<title>Example: Enable property reactivity in a Java class (when reactivity is disabled globally)</title>
+							<para>
+								
+<programlisting language="java" linenumbering="unnumbered">@propertyReactive
+public static class Person {
+    private String firstName;
+    private String lastName;
+}</programlisting>
+							</para>
+						</formalpara>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+			<variablelist>
+				<varlistentry>
+					<term>@propertyChangeSupport</term>
+					<listitem>
+						<simpara>
+							For facts that implement support for property changes as defined in the <link xlink:href="https://download.oracle.com/otndocs/jcp/7224-javabeans-1.01-fr-spec-oth-JSpec/">JavaBeans Specification</link>, this tag enables the decision engine to monitor changes in the fact properties.
+						</simpara>
+						<formalpara>
+							<title>Example: Declare property change support in JavaBeans object</title>
+							<para>
+								
+<screen>declare Person
+    @propertyChangeSupport
+end</screen>
+							</para>
+						</formalpara>
+					</listitem>
+				</varlistentry>
+			</variablelist>
+		</chapter>
+		<chapter xml:id="con-engine-event-listeners_decision-engine">
+			<title>Decision engine event listeners and debug logging</title>
+			<warning>
+				<simpara>
+					The APIs for decision engine event listeners in Kogito are subject to change.
+				</simpara>
+			</warning>
+			<simpara>
+				In Kogito, you can add or remove listeners for decision engine events, such as fact insertions and rule executions. With decision engine event listeners, you can be notified of decision engine activity and separate your logging and auditing work from the core of your application.
+			</simpara>
+			<simpara>
+				The decision engine supports the following default event listeners for the agenda and working memory:
+			</simpara>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						<literal>AgendaEventListener</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>WorkingMemoryEventListener</literal>
+					</simpara>
+				</listitem>
+			</itemizedlist>
+			<simpara>
+				For each event listener, the decision engine also supports the following specific events that you can specify to be monitored:
+			</simpara>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						<literal>MatchCreatedEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>MatchCancelledEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>BeforeMatchFiredEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>AfterMatchFiredEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>AgendaGroupPushedEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>AgendaGroupPoppedEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>ObjectInsertEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>ObjectDeletedEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>ObjectUpdatedEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>ProcessCompletedEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>ProcessNodeLeftEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>ProcessNodeTriggeredEvent</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>ProcessStartEvent</literal>
+					</simpara>
+				</listitem>
+			</itemizedlist>
+			<simpara>
+				For example, the following code uses a <literal>DefaultAgendaEventListener</literal> listener and specifies the <literal>AfterMatchFiredEvent</literal> event to be monitored. The code prints pattern matches after the rules are executed (fired):
+			</simpara>
+			<formalpara>
+				<title>Example code to monitor and print <literal>AfterMatchFiredEvent</literal> events in the agenda</title>
+				<para>
+					
+<programlisting language="java" linenumbering="unnumbered">public class MyListener extends DefaultAgendaEventListener {
+    public void afterMatchFired(AfterMatchFiredEvent event) {
+        super.afterMatchFired( event );
+        System.out.println( event );
+    }
+}
+
+@ApplicationScoped
+public class RuleEventListenerConfig extends DefaultRuleEventListenerConfig {
+    public RuleEventListenerConfig() {
+        super(new MyListener());
+    }
+}</programlisting>
+				</para>
+			</formalpara>
+			<simpara>
+				The decision engine also supports the following agenda and working memory event listeners for debug logging:
+			</simpara>
+			<itemizedlist>
+				<listitem>
+					<simpara>
+						<literal>DebugAgendaEventListener</literal>
+					</simpara>
+				</listitem>
+				<listitem>
+					<simpara>
+						<literal>DebugRuleRuntimeEventListener</literal>
+					</simpara>
+				</listitem>
+			</itemizedlist>
+			<simpara>
+				These event listeners implement the same supported event-listener methods and include a debug print statement by default. You can add a specific supported event to be monitored and documented, or monitor all agenda or working memory activity.
+			</simpara>
+			<simpara>
+				For example, the following code uses the <literal>DebugRuleRuntimeEventListener</literal> event listener to monitor and print all working memory events:
+			</simpara>
+			<formalpara>
+				<title>Example code to monitor and print all working memory events</title>
+				<para>
+					
+<programlisting language="java" linenumbering="unnumbered">@ApplicationScoped
+public class RuleEventListenerConfig extends DefaultRuleEventListenerConfig {
+    public RuleEventListenerConfig() {
+        super(new DebugRuleRuntimeEventListener());
+    }
+}</programlisting>
+				</para>
+			</formalpara>
+		</chapter>
+	</part>
+	<appendix xml:id="versioning-information">
+		<title>Versioning information</title>
+		<simpara>
+			Documentation last updated on Tuesday, April 21, 2020.
+		</simpara>
+	</appendix>
+</book>
+

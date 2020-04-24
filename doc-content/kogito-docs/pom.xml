@@ -39,6 +39,7 @@
           <imagesDir>${project.basedir}/../../_images</imagesDir>
           <attributes>
             <artifact-dir>${project.basedir}/../../_artifacts</artifact-dir>
+            <asciidoc-dir>${project.basedir}/src/main/asciidoc</asciidoc-dir>
           </attributes>
         </configuration>
       </plugin>

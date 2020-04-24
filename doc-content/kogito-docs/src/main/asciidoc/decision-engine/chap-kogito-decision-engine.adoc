@@ -1,0 +1,488 @@
+[id='chap-kogito-decision-engine']
+= {DECISION_ENGINE_CAP} in {PRODUCT}
+:context: decision-engine
+
+As a developer of business decisions, your understanding of the {DECISION_ENGINE} in {PRODUCT} can help you design more effective business assets and a more scalable decision management architecture. The {DECISION_ENGINE} is the {PRODUCT} component that stores, processes, and evaluates data to execute business rules and to reach the decisions that you define. This document describes basic concepts and functions of the {DECISION_ENGINE} to consider as you create your business rule system and decision services in {PRODUCT}.
+
+[id='con-decision-engine_{context}']
+== {DECISION_ENGINE_CAP} in {PRODUCT}
+
+The {DECISION_ENGINE} is the rules engine in {PRODUCT}. The {DECISION_ENGINE} stores, processes, and evaluates data to execute the business rules or decision models that you define. The basic function of the {DECISION_ENGINE} is to match incoming data, or _facts_, to the conditions of rules and determine whether and how to execute the rules.
+
+The {DECISION_ENGINE} operates using the following basic components:
+
+* *Rules:* Business rules or DMN decisions that you define. All rules must contain at a minimum the conditions that trigger the rule and the actions that the rule dictates.
+* *Facts:* Data that enters or changes in the {DECISION_ENGINE} that the {DECISION_ENGINE} matches to rule conditions to execute applicable rules.
+* *Production memory:* Location where rules are stored in the {DECISION_ENGINE}.
+* *Working memory:* Location where facts are stored in the {DECISION_ENGINE}.
+* *Agenda:* Location where activated rules are registered and sorted (if applicable) in preparation for execution.
+
+When a business user or an automated system adds or updates rule-related information in {PRODUCT}, that information is inserted into the working memory of the {DECISION_ENGINE} in the form of one or more facts. The {DECISION_ENGINE} matches those facts to the conditions of the rules that are stored in the production memory to determine eligible rule executions. (This process of matching facts to rules is often referred to as _pattern matching_.) When rule conditions are met, the {DECISION_ENGINE} activates and registers rules in the agenda, where the {DECISION_ENGINE} then sorts prioritized or conflicting rules in preparation for execution.
+
+The following diagram illustrates these basic components of the {DECISION_ENGINE}:
+
+.Overview of basic {DECISION_ENGINE} components
+image::kogito/decision-engine/rule-engine-inkscape_enterprise.png[align="center"]
+
+These core concepts can help you to better understand other more advanced components, processes, and subprocesses of the {DECISION_ENGINE}, and as a result, to design more effective business assets in {PRODUCT}.
+
+[id='con-execution-control_{context}']
+== Execution control in the {DECISION_ENGINE}
+
+When new rule data enters the working memory of the {DECISION_ENGINE}, rules may become fully matched and eligible for execution. A single working memory action can result in multiple eligible rule executions. When a rule is fully matched, the {DECISION_ENGINE} creates an activation instance, referencing the rule and the matched facts, and adds the activation onto the {DECISION_ENGINE} agenda. The agenda controls the execution order of these rule activations using a conflict resolution strategy.
+
+When rules are executed, the {DECISION_ENGINE} cycles repeatedly through two phases:
+
+* *Agenda evaluation.* In this phase, the {DECISION_ENGINE} selects all rules that can be executed. If no executable rules exist, the execution cycle ends. If an executable rule is found, the {DECISION_ENGINE} registers the activation in the agenda and then moves on to the working memory actions phase to perform rule consequence actions.
+* *Working memory actions.* In this phase, the {DECISION_ENGINE} performs the rule consequence actions (the `then` portion of each rule) for all activated rules previously registered in the agenda. After all the consequence actions are complete or the rules are executed again, the {DECISION_ENGINE} returns to the agenda evaluation phase to reassess rules.
+
+.Two-phase execution process in the {DECISION_ENGINE}
+ifdef::KOGITO-COMM[]
+image::kogito/decision-engine/Two_Phase.png[align="center"]
+endif::[]
+ifdef::KOGITO-ENT[]
+image::kogito/decision-engine/Two_Phase_enterprise.png[align="center"]
+endif::[]
+
+When multiple rules exist on the agenda, the execution of one rule may cause another rule to be removed from the agenda. To avoid this, you can define how and when rules are executed in the {DECISION_ENGINE}. Some common methods for defining rule execution order are by using rule salience, agenda groups, activation groups, or rule units for DRL rule sets.
+
+=== Salience for rules
+
+Each rule has an integer `salience` attribute that determines the order of execution. Rules with a higher salience value are given higher priority when ordered in the activation queue. The default salience value for rules is zero, but the salience can be negative or positive.
+
+For example, the following sample DRL rules are listed in the {DECISION_ENGINE} stack in the order shown:
+
+[source]
+----
+rule "RuleA"
+salience 95
+  when
+    $fact : /myFact[ field1 == true ]
+  then
+    System.out.println("Rule2 : " + $fact);
+    update($fact);
+end
+
+rule "RuleB"
+salience 100
+  when
+    $fact : /myFact[ field1 == false ]
+  then
+    System.out.println("Rule1 : " + $fact);
+    $fact.setField1(true);
+    update($fact);
+end
+----
+
+The `RuleB` rule is listed second, but it has a higher salience value than the `RuleA` rule and is therefore executed first.
+
+////
+//Excluded per recommendation by Edoardo, since replaced by rule units. (Stetson, 9 Mar 2020)
+== Agenda groups for rules
+
+An agenda group is a set of rules bound together by the same `agenda-group` rule attribute. Agenda groups partition rules on the {DECISION_ENGINE} agenda. At any one time, only one group has a _focus_ that gives that group of rules priority for execution before rules in other agenda groups. You determine the focus with a `setFocus()` call for the agenda group. You can also define rules with an `auto-focus` attribute so that the next time the rule is activated, the focus is automatically given to the entire agenda group to which the rule is assigned.
+
+Each time the `setFocus()` call is made in a Java application, the {DECISION_ENGINE} adds the specified agenda group to the top of the rule stack. The default agenda group `"MAIN"` contains all rules that do not belong to a specified agenda group and is executed first in the stack unless another group has the focus.
+
+For example, the following sample DRL rules belong to specified agenda groups and are listed in the {DECISION_ENGINE} stack in the order shown:
+
+.Sample DRL rules for banking application
+[source]
+----
+rule "Increase balance for credits"
+  agenda-group "calculation"
+when
+  ap : AccountPeriod()
+  acc : Account( $accountNo : accountNo )
+  CashFlow( type == CREDIT,
+            accountNo == $accountNo,
+            date >= ap.start && <= ap.end,
+            $amount : amount )
+then
+  acc.balance  += $amount;
+end
+----
+
+[source]
+----
+rule "Print balance for AccountPeriod"
+  agenda-group "report"
+when
+  ap : AccountPeriod()
+  acc : Account()
+then
+  System.out.println( acc.accountNo +
+                      " : " + acc.balance );
+end
+----
+
+For this example, the rules in the `"report"` agenda group must always be executed first and the rules in the `"calculation"` agenda group must always be executed second. Any remaining rules in other agenda groups can then be executed. Therefore, the `"report"` and `"calculation"` groups must receive the focus to be executed in that order, before other rules can be executed:
+
+.Set the focus for the order of agenda group execution
+[source,java]
+----
+Agenda agenda = ksession.getAgenda();
+agenda.getAgendaGroup( "report" ).setFocus();
+agenda.getAgendaGroup( "calculation" ).setFocus();
+ksession.fireAllRules();
+----
+
+You can also use the `clear()` method to cancel all the activations generated by the rules belonging to a given agenda group before each has had a chance to be executed:
+
+.Cancel all other rule activations
+[source,java]
+----
+ksession.getAgenda().getAgendaGroup( "Group A" ).clear();
+----
+////
+
+=== Activation groups for rules
+
+An activation group is a set of rules bound together by the same `activation-group` rule attribute. In this group, only one rule can be executed. After conditions are met for a rule in that group to be executed, all other pending rule executions from that activation group are removed from the agenda.
+
+For example, the following sample DRL rules belong to the specified activation group and are listed in the {DECISION_ENGINE} stack in the order shown:
+
+.Sample DRL rules for banking
+[source]
+----
+rule "Print balance for AccountPeriod1"
+activation-group "report"
+  when
+    ap : AccountPeriod1()
+    acc : Account()
+  then
+    System.out.println( acc.accountNo +
+                      " : " + acc.balance );
+end
+----
+
+[source]
+----
+rule "Print balance for AccountPeriod2"
+activation-group "report"
+  when
+    ap : AccountPeriod2()
+    acc : Account()
+  then
+    System.out.println( acc.accountNo +
+                      " : " + acc.balance );
+end
+----
+
+For this example, if the first rule in the `"report"` activation group is executed, the second rule in the group and all other executable rules on the agenda are removed from the agenda.
+
+[id='con-phreak-rule-evaluation_{context}']
+== Rule evaluation in Phreak
+
+When the {DECISION_ENGINE} starts, all rules are considered to be _unlinked_ from pattern-matching data that can trigger the rules. At this stage, the Phreak algorithm in the {DECISION_ENGINE} does not evaluate the rules. The rule actions are queued, and Phreak uses a heuristic, based on the rule most likely to result in execution, to calculate and select the next rule for evaluation. When all the required input values are populated for a rule, the rule is considered to be _linked_ to the relevant pattern-matching data. Phreak then creates a goal that represents this rule and places the goal into a priority queue that is ordered by rule salience. Only the rule for which the goal was created is evaluated, and other potential rule evaluations are delayed. While individual rules are evaluated, node sharing is still achieved through the process of segmentation.
+
+Unlike the tuple-oriented Rete, the Phreak propagation is collection oriented. For the rule that is being evaluated, the {DECISION_ENGINE} accesses the first node and processes all queued insert, update, and delete actions. The results are added to a set, and the set is propagated to the child node. In the child node, all queued insert, update, and delete actions are processed, adding the results to the same set. The set is then propagated to the next child node and the same process repeats until it reaches the terminal node. This cycle creates a batch process effect that can provide performance advantages for certain rule constructs.
+
+The linking and unlinking of rules happens through a layered bit-mask system, based on network segmentation. When the rule network is built, segments are created for rule network nodes that are shared by the same set of rules. A rule is composed of a path of segments. In case a rule does not share any node with any other rule, it becomes a single segment.
+
+A bit-mask offset is assigned to each node in the segment. Another bit mask is assigned to each segment in the path of the rule according to these requirements:
+
+* If at least one input for a node exists, the node bit is set to the `on` state.
+* If each node in a segment has the bit set to the `on` state, the segment bit is also set to the `on` state.
+* If any node bit is set to the `off` state, the segment is also set to the `off` state.
+* If each segment in the path of the rule is set to the `on` state, the rule is considered linked, and a goal is created to schedule the rule for evaluation.
+
+The same bit-mask technique is used to track modified nodes, segments, and rules. This tracking ability enables an already linked rule to be unscheduled from evaluation if it has been modified since the evaluation goal for it was created. As a result, no rules can ever evaluate partial matches.
+
+This process of rule evaluation is possible in Phreak because, as opposed to a single unit of memory in Rete, Phreak has three layers of contextual memory with node, segment, and rule memory types. This layering enables much more contextual understanding during the evaluation of a rule.
+
+.Phreak three-layered memory system
+ifdef::KOGITO-COMM[]
+image::kogito/decision-engine/LayeredMemory.png[align="center"]
+endif::[]
+ifdef::KOGITO-ENT[]
+image::kogito/decision-engine/LayeredMemory_enterprise.png[align="center"]
+endif::[]
+
+The following examples illustrate how rules are organized and evaluated in this three-layered memory system in Phreak.
+
+*Example 1:* A single rule (R1) with three patterns: A, B and C. The rule forms a single segment, with bits 1, 2, and 4 for the nodes. The single segment has a bit offset of 1.
+
+.Example 1: Single rule
+ifdef::KOGITO-COMM[]
+image::kogito/decision-engine/segment1.png[align="center"]
+endif::[]
+ifdef::KOGITO-ENT[]
+image::kogito/decision-engine/segment1_enterprise.png[align="center"]
+endif::[]
+
+*Example 2:* Rule R2 is added and shares pattern A.
+
+.Example 2: Two rules with pattern sharing
+ifdef::KOGITO-COMM[]
+image::kogito/decision-engine/segment2.png[align="center"]
+endif::[]
+ifdef::KOGITO-ENT[]
+image::kogito/decision-engine/segment2_enterprise.png[align="center"]
+endif::[]
+
+Pattern A is placed in its own segment, resulting in two segments for each rule. Those two segments form a path for their respective rules. The first segment is shared by both paths. When pattern A is linked, the segment becomes linked. The segment then iterates over each path that the segment is shared by, setting the bit 1 to `on`. If patterns B and C are later turned on, the second segment for path R1 is linked, and this causes bit 2 to be turned on for R1. With bit 1 and bit 2 turned on for R1, the rule is now linked and a goal is created to schedule the rule for later evaluation and execution.
+
+When a rule is evaluated, the segments enable the results of the matching to be shared. Each segment has a staging memory to queue all inserts, updates, and deletes for that segment. When R1 is evaluated, the rule processes pattern A, and this results in a set of tuples. The algorithm detects a segmentation split, creates peered tuples for each insert, update, and delete in the set, and adds them to the R2 staging memory. Those tuples are then merged with any existing staged tuples and are executed when R2 is eventually evaluated.
+
+*Example 3:* Rules R3 and R4 are added and share patterns A and B.
+
+.Example 3: Three rules with pattern sharing
+ifdef::KOGITO-COMM[]
+image::kogito/decision-engine/segment3.png[align="center"]
+endif::[]
+ifdef::KOGITO-ENT[]
+image::kogito/decision-engine/segment3_enterprise.png[align="center"]
+endif::[]
+
+Rules R3 and R4 have three segments and R1 has two segments. Patterns A and B are shared by R1, R3, and R4, while pattern D is shared by R3 and R4.
+
+*Example 4:* A single rule (R1) with a subnetwork and no pattern sharing.
+
+.Example 4: Single rule with a subnetwork and no pattern sharing
+ifdef::KOGITO-COMM[]
+image::kogito/decision-engine/segment4.png[align="center"]
+endif::[]
+ifdef::KOGITO-ENT[]
+image::kogito/decision-engine/segment4_enterprise.png[align="center"]
+endif::[]
+
+Subnetworks are formed when a `Not`, `Exists`, or `Accumulate` node contains more than one element. In this example, the element `B not( C )` forms the subnetwork. The element `not( C )` is a single element that does not require a subnetwork and is therefore merged inside of the `Not` node. The subnetwork uses a dedicated segment. Rule R1 still has a path of two segments and the subnetwork forms another inner path. When the subnetwork is linked, it is also linked in the outer segment.
+
+*Example 5:* Rule R1 with a subnetwork that is shared by rule R2.
+
+.Example 5: Two rules, one with a subnetwork and pattern sharing
+ifdef::KOGITO-COMM[]
+image::kogito/decision-engine/segment5.png[align="center"]
+endif::[]
+ifdef::KOGITO-ENT[]
+image::kogito/decision-engine/segment5_enterprise.png[align="center"]
+endif::[]
+
+The subnetwork nodes in a rule can be shared by another rule that does not have a subnetwork. This sharing causes the subnetwork segment to be split into two segments.
+
+Constrained `Not` nodes and `Accumulate` nodes can never unlink a segment, and are always considered to have their bits turned on.
+
+The Phreak evaluation algorithm is stack based instead of method-recursion based. Rule evaluation can be paused and resumed at any time when a `StackEntry` is used to represent the node currently being evaluated.
+
+When a rule evaluation reaches a subnetwork, a `StackEntry` object is created for the outer path segment and the subnetwork segment. The subnetwork segment is evaluated first, and when the set reaches the end of the subnetwork path, the segment is merged into a staging list for the outer node that the segment feeds into. The previous `StackEntry` object is then resumed and can now process the results of the subnetwork. This process has the added benefit, especially for `Accumulate` nodes, that all work is completed in a batch, before propagating to the child node.
+
+The same stack system is used for efficient backward chaining. When a rule evaluation reaches a query node, the evaluation is paused and the query is added to the stack. The query is then evaluated to produce a result set, which is saved in a memory location for the resumed `StackEntry` object to pick up and propagate to the child node. If the query itself called other queries, the process repeats, while the current query is paused and a new evaluation is set up for the current query node.
+
+[id='con-forward-and-backward-chaining_{context}']
+=== Rule evaluation with forward and backward chaining
+
+The {DECISION_ENGINE} in {PRODUCT} is a hybrid reasoning system that uses both forward chaining and backward chaining to evaluate rules. A forward-chaining rule system is a data-driven system that starts with a fact in the working memory of the {DECISION_ENGINE} and reacts to changes to that fact. When objects are inserted into working memory, any rule conditions that become true as a result of the change are scheduled for execution by the agenda.
+
+In contrast, a backward-chaining rule system is a goal-driven system that starts with a conclusion that the {DECISION_ENGINE} attempts to satisfy, often using recursion. If the system cannot reach the conclusion or goal, it searches for subgoals, which are conclusions that complete part of the current goal. The system continues this process until either the initial conclusion is satisfied or all subgoals are satisfied.
+
+The following diagram illustrates how the {DECISION_ENGINE} evaluates rules using forward chaining overall with a backward-chaining segment in the logic flow:
+
+.Rule evaluation logic using forward and backward chaining
+ifdef::KOGITO-COMM[]
+image::kogito/decision-engine/RuleEvaluation.png[align="center"]
+endif::[]
+ifdef::KOGITO-ENT[]
+image::kogito/decision-engine/RuleEvaluation_Enterprise.png[align="center"]
+endif::[]
+
+//tag::con-property-change-listeners[]
+[id='con-property-change-listeners_{context}']
+== Property-change settings and listeners for fact types
+
+By default, the {DECISION_ENGINE} does not re-evaluate all fact patterns for fact types each time a rule is triggered, but instead reacts only to modified properties that are constrained or bound inside a given pattern. For example, if a rule calls `modify()` on a fact as part of the rule actions, this modification does not automatically trigger the re-evaluation of all patterns referring to the modified type. Only the patterns constrained on the changed properties of that fact are re-evaluated. This property reactivity behavior prevents unwanted recursions and results in more efficient rule evaluation. This behavior also avoids the need of using the `no-loop` rule attribute to prevent infinite recursion.
+
+You can modify or disable this property reactivity behavior with the following options, and then use a property-change setting in your Java class or DRL files to fine-tune property reactivity as needed:
+
+* `ALWAYS`: (Default) All types are property reactive, but you can disable property reactivity for a specific type by using the `@classReactive` property-change setting.
+* `ALLOWED`: No types are property reactive, but you can enable property reactivity for a specific type by using the `@propertyReactive` property-change setting.
+* `DISABLED`: No types are property reactive. All property-change listeners are ignored.
+
+To set the property reactivity behavior, update the `drools.propertySpecific` system property in the `application.properties` file of your {PRODUCT} project:
+
+.Example property reactivity setting in system properties
+[source]
+----
+drools.propertySpecific=ALLOWED
+----
+
+The {DECISION_ENGINE} supports the following property-change settings and listeners for fact classes or declared DRL fact types:
+
+@classReactive::
+If property reactivity is set to `ALWAYS` in the {DECISION_ENGINE} (all types are property reactive), this tag disables the default property reactivity behavior for a specific Java class or a declared DRL fact type. You can use this tag if you want the {DECISION_ENGINE} to re-evaluate all fact patterns for the specified fact type each time the rule is triggered, instead of reacting only to modified properties that are constrained or bound inside a given pattern.
++
+--
+.Example: Disable default property reactivity in a DRL type declaration
+[source]
+----
+declare Person
+  @classReactive
+    firstName : String
+    lastName : String
+end
+----
+
+.Example: Disable default property reactivity in a Java class
+[source,java]
+----
+@classReactive
+public static class Person {
+    private String firstName;
+    private String lastName;
+}
+----
+--
+
+@propertyReactive::
+If property reactivity is set to `ALLOWED` in the {DECISION_ENGINE} (no types are property reactive unless specified), this tag enables property reactivity for a specific Java class or a declared DRL fact type. You can use this tag if you want the {DECISION_ENGINE} to react only to modified properties that are constrained or bound inside a given pattern for the specified fact type, instead of re-evaluating all fact patterns for the fact each time the rule is triggered.
++
+--
+.Example: Enable property reactivity in a DRL type declaration (when reactivity is disabled globally)
+[source]
+----
+declare Person
+  @propertyReactive
+    firstName : String
+    lastName : String
+end
+----
+
+.Example: Enable property reactivity in a Java class (when reactivity is disabled globally)
+[source,java]
+----
+@propertyReactive
+public static class Person {
+    private String firstName;
+    private String lastName;
+}
+----
+--
+
+//@comment Currently TBD in Kogito, so excluding for now. (Stetson 7 Apr 2020)
+////
+@watch::
+This tag enables property reactivity for additional properties that you specify in-line in fact patterns in DRL rules. This tag is supported only if property reactivity is set to `ALWAYS` in the {DECISION_ENGINE}, or if property reactivity is set to `ALLOWED` and the relevant fact type uses the `@propertyReactive` tag. You can use this tag in DRL rules to add or exclude specific properties in fact property reactivity logic.
++
+--
+Default parameter: None
+
+Supported parameters: Property name, `\*` (all), `!` (not), `!*` (no properties)
+
+[source]
+----
+<factPattern> @watch ( <property> )
+----
+
+.Example: Enable or disable property reactivity in fact patterns
+[source]
+----
+// Listens for changes in both `firstName` (inferred) and `lastName`:
+Person(firstName == $expectedFirstName) @watch( lastName )
+
+// Listens for changes in all properties of the `Person` fact:
+Person(firstName == $expectedFirstName) @watch( * )
+
+// Listens for changes in `lastName` and explicitly excludes changes in `firstName`:
+Person(firstName == $expectedFirstName) @watch( lastName, !firstName )
+
+// Listens for changes in all properties of the `Person` fact except `age`:
+Person(firstName == $expectedFirstName) @watch( *, !age )
+
+// Excludes changes in all properties of the `Person` fact (equivalent to using `@classReactivity` tag):
+Person(firstName == $expectedFirstName) @watch( !* )
+----
+
+The {DECISION_ENGINE} generates a compilation error if you use the `@watch` tag for properties in a fact type that uses the `@classReactive` tag (disables property reactivity) or when property reactivity is set to `ALLOWED` in the {DECISION_ENGINE} and the relevant fact type does not use the `@propertyReactive` tag. Compilation errors also arise if you duplicate properties in listener annotations, such as `@watch( firstName, ! firstName )`.
+--
+////
+
+@propertyChangeSupport::
+For facts that implement support for property changes as defined in the https://download.oracle.com/otndocs/jcp/7224-javabeans-1.01-fr-spec-oth-JSpec/[JavaBeans Specification], this tag enables the {DECISION_ENGINE} to monitor changes in the fact properties.
++
+--
+.Example: Declare property change support in JavaBeans object
+[source]
+----
+declare Person
+    @propertyChangeSupport
+end
+----
+--
+// end::con-property-change-listeners[]
+
+
+[id='con-engine-event-listeners_{context}']
+== {DECISION_ENGINE_CAP} event listeners and debug logging
+
+[WARNING]
+====
+The APIs for {DECISION_ENGINE} event listeners in {PRODUCT} are subject to change.
+====
+
+In {PRODUCT}, you can add or remove listeners for {DECISION_ENGINE} events, such as fact insertions and rule executions. With {DECISION_ENGINE} event listeners, you can be notified of {DECISION_ENGINE} activity and separate your logging and auditing work from the core of your application.
+
+The {DECISION_ENGINE} supports the following default event listeners for the agenda and working memory:
+
+* `AgendaEventListener`
+* `WorkingMemoryEventListener`
+
+ifdef::KOGITO-COMM[]
+.WorkingMemoryEventManager
+image::UserGuide/WorkingMemoryEventManager.png[align="center"]
+endif::[]
+
+For each event listener, the {DECISION_ENGINE} also supports the following specific events that you can specify to be monitored:
+
+* `MatchCreatedEvent`
+* `MatchCancelledEvent`
+* `BeforeMatchFiredEvent`
+* `AfterMatchFiredEvent`
+* `AgendaGroupPushedEvent`
+* `AgendaGroupPoppedEvent`
+* `ObjectInsertEvent`
+* `ObjectDeletedEvent`
+* `ObjectUpdatedEvent`
+* `ProcessCompletedEvent`
+* `ProcessNodeLeftEvent`
+* `ProcessNodeTriggeredEvent`
+* `ProcessStartEvent`
+
+For example, the following code uses a `DefaultAgendaEventListener` listener and specifies the `AfterMatchFiredEvent` event to be monitored. The code prints pattern matches after the rules are executed (fired):
+
+.Example code to monitor and print `AfterMatchFiredEvent` events in the agenda
+[source,java]
+----
+public class MyListener extends DefaultAgendaEventListener {
+    public void afterMatchFired(AfterMatchFiredEvent event) {
+        super.afterMatchFired( event );
+        System.out.println( event );
+    }
+}
+
+@ApplicationScoped
+public class RuleEventListenerConfig extends DefaultRuleEventListenerConfig {
+    public RuleEventListenerConfig() {
+        super(new MyListener());
+    }
+}
+----
+
+The {DECISION_ENGINE} also supports the following agenda and working memory event listeners for debug logging:
+
+* `DebugAgendaEventListener`
+* `DebugRuleRuntimeEventListener`
+
+These event listeners implement the same supported event-listener methods and include a debug print statement by default. You can add a specific supported event to be monitored and documented, or monitor all agenda or working memory activity.
+
+For example, the following code uses the `DebugRuleRuntimeEventListener` event listener to monitor and print all working memory events:
+
+.Example code to monitor and print all working memory events
+[source,java]
+----
+@ApplicationScoped
+public class RuleEventListenerConfig extends DefaultRuleEventListenerConfig {
+    public RuleEventListenerConfig() {
+        super(new DebugRuleRuntimeEventListener());
+    }
+}
+----

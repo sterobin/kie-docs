@@ -30,26 +30,25 @@ endif::[]
 ====
 
 //Intro
-include::creating-running/con-kogito-automation.adoc[leveloffset=+1]
-include::creating-running/con-kogito-quarkus-springboot.adoc[leveloffset=+2]
+include::creating-running/chap-kogito-intro.adoc[leveloffset=+1]
 
 //Getting started
-include::chap-kogito-creating-running.adoc[leveloffset=+1]
+include::creating-running/chap-kogito-creating-running.adoc[leveloffset=+1]
 
 //OpenShift
-include::chap-kogito-deploying-on-openshift.adoc[leveloffset=+1]
+//include::decision-services/chap-kogito-deploying-on-openshift.adoc[leveloffset=+1]
 
 //Developing decision services
-include::chap-kogito-developing-decision-services.adoc[leveloffset=+1]
+include::decision-services/chap-kogito-developing-decision-services.adoc[leveloffset=+1]
 
 //Developing process services
-include::chap-kogito-developing-process-services.adoc[leveloffset=+1]
+include::process-services/chap-kogito-developing-process-services.adoc[leveloffset=+1]
 
 //Configuring supporting services
-include::chap-kogito-configuring.adoc[leveloffset=+1]
+include::configuration/chap-kogito-configuring.adoc[leveloffset=+1]
 
 //Glossary
-include::creating-running/ref-kogito-glossary.adoc[leveloffset=+1]
+include::creating-running/chap-kogito-glossary.adoc[leveloffset=+1]
 
 //Release notes, always last
-include::chap-kogito-release-notes.adoc[leveloffset=+1]
+//include::chap-kogito-release-notes.adoc[leveloffset=+1]
