@@ -28,7 +28,7 @@ endif::[]
 include::modules/decision-services/ref-decision-authoring-assets.adoc[leveloffset=+1]
 include::modules/creating-running/ref-kogito-app-examples.adoc[leveloffset=+1]
 
-= Designing a decision service using DMN models
+= Using DMN models in {PRODUCT} services
 :context: dmn-models
 
 As a developer of business decisions, you can use Decision Model and Notation (DMN) to model a decision service graphically in a decision requirements diagram (DRD). This diagram consists of one or more decision requirements graphs (DRGs) that trace business decisions from start to finish, with each decision node using logic defined in DMN boxed expressions such as decision tables.
@@ -76,7 +76,7 @@ include::modules/decision-services/ref-dmn-designer-nav.adoc[leveloffset=+2]
 //include::modules/decision-services/proc-dmn-execution-rest.adoc[leveloffset=+2]
 include::modules/creating-running/con-kogito-service-execution.adoc[leveloffset=+1]
 
-= Designing a decision service using DRL rules
+= Using DRL rules in {PRODUCT} services
 :context: drl-rules
 
 As a developer of business decisions, you can define business rules using Drools Rule Language (DRL) directly in free-form `.drl` text files. A DRL file can contain one or more rules that define at a minimum the rule conditions (`when`) and actions (`then`).
