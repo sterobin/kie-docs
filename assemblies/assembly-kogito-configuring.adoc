@@ -1,6 +1,6 @@
 //@Jason: During the split, the chap/assembly file needs to be renamed to `master.adoc`. This is the file that ccutil is designed to build. If the chap file is a non-assembly file, from which you're just generating modules as we discussed, then this requirement doesn't apply. Also, the first two items items below need to be modified or added: The anchor ID needs to change from 'chap-...' to 'assembly-...', and the variable `:KOGITO-ENT:` needs to be added (to activate all the enterprise conditions). Everything else is as it appears in the chap file, except that the module sections are converted to includes.
 
-[id='assembly-kogito-configuring_{context}']
+[id='assembly-kogito-configuring']
 :KOGITO-ENT:
 
 ifdef::KOGITO-ENT[]
