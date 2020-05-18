@@ -30,13 +30,14 @@ endif::[]
 ====
 
 //Intro
-include::creating-running/chap-kogito-intro.adoc[leveloffset=+1]
+include::creating-running/chap-kogito-creating-running.adoc[tags=con-kogito-automation]
+include::creating-running/chap-kogito-creating-running.adoc[tags=con-kogito-quarkus-springboot]
 
 //Getting started
 include::creating-running/chap-kogito-creating-running.adoc[leveloffset=+1]
 
 //OpenShift
-//include::decision-services/chap-kogito-deploying-on-openshift.adoc[leveloffset=+1]
+//include::openshift/chap-kogito-deploying-on-openshift.adoc[leveloffset=+1]
 
 //Developing decision services
 include::decision-services/chap-kogito-developing-decision-services.adoc[leveloffset=+1]
@@ -48,7 +49,7 @@ include::process-services/chap-kogito-developing-process-services.adoc[leveloffs
 include::configuration/chap-kogito-configuring.adoc[leveloffset=+1]
 
 //Glossary
-include::creating-running/chap-kogito-glossary.adoc[leveloffset=+1]
+include::creating-running/chap-kogito-creating-running.adoc[leveloffset=+1,tags=ref-kogito-glossary]
 
 //Release notes, always last
 //include::chap-kogito-release-notes.adoc[leveloffset=+1]
