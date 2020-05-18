@@ -1,5 +1,5 @@
 
-include::_artifacts/document-attributes.adoc[]
+//include::_artifacts/document-attributes.adoc[]
 include::assemblies/assembly-kogito-configuring.adoc[leveloffset=+1]
 
 ////
