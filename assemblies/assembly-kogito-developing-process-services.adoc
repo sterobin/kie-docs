@@ -1,5 +1,4 @@
 [id='assembly-kogito-developing-process-services_{context}']
-:KOGITO-ENT:
 
 ifdef::KOGITO-ENT[]
 include::_artifacts/document-attributes.adoc[]

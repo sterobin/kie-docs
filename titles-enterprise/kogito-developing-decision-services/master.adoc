@@ -1,1 +1,3 @@
+:KOGITO-ENT:
+
 include::assemblies/assembly-kogito-developing-decision-services.adoc[]

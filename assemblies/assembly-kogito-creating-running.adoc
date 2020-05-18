@@ -1,5 +1,4 @@
 [id='assembly-kogito-creating-running_{context}']
-:KOGITO-ENT:
 
 ifdef::KOGITO-ENT[]
 include::_artifacts/document-attributes.adoc[]
