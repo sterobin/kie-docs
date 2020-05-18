@@ -1,10 +1,3 @@
 :KOGITO-ENT:
 
-include::_artifacts/document-attributes.adoc[]
-:doctype: book
-:imagesdir: _images
-include::{kogito-dir}/configuration/chap-kogito-configuring.adoc[]
-//include::_artifacts/author-group.adoc[]
-
-// Versioning info
-include::_artifacts/versioning-information.adoc[]
+include::doc-content/kogito-docs/src/main/asciidoc/configuration/chap-kogito-configuring.adoc[]

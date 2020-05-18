@@ -1,1 +1,3 @@
-include::assemblies/assembly-kogito-creating-running.adoc[]
+:KOGITO-ENT:
+
+include::doc-content/kogito-docs/src/main/asciidoc/creating-running/chap-kogito-creating-running.adoc[]
