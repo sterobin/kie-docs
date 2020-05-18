@@ -1,0 +1,1 @@
+include::assemblies/assembly-kogito-developing-process-services.adoc[]
