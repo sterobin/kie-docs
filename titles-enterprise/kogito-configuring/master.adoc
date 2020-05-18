@@ -1,0 +1,2 @@
+
+include::assemblies/assembly-kogito-configuring.adoc[]
