@@ -1,4 +1,6 @@
-[id='assembly-kogito-creating-running_{context}']
+ifdef::context[:parent-context: {context}]
+
+[id='assembly-kogito-creating-running']
 
 ifdef::KOGITO-ENT[]
 include::_artifacts/document-attributes.adoc[]
@@ -49,3 +51,6 @@ ifdef::KOGITO-ENT[]
 // Versioning info
 include::_artifacts/versioning-information.adoc[]
 endif::[]
+
+ifdef::parent-context[:context: {parent-context}]
+ifndef::parent-context[:!context:]

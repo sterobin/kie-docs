@@ -1,6 +1,18 @@
-[id='assembly-kogito-using-drl_{context}']
+ifdef::context[:parent-context: {context}]
+
+[id='assembly-kogito-using-drl']
+
+ifdef::KOGITO-ENT[]
+include::_artifacts/document-attributes.adoc[]
+endif::[]
+
 = Using DRL rules in {PRODUCT} services
 :context: drl-rules
+ifdef::KOGITO-ENT[]
+:doctype: book
+:imagesdir: _images
+include::_artifacts/author-group.adoc[]
+endif::[]
 
 As a developer of business decisions, you can define business rules using Drools Rule Language (DRL) directly in free-form `.drl` text files. A DRL file can contain one or more rules that define at a minimum the rule conditions (`when`) and actions (`then`).
 
@@ -34,3 +46,6 @@ include::modules/decision-services/ref-drl-rules-errors.adoc[leveloffset=+2]
 include::modules/decision-services/con-drl-legacy.adoc[leveloffset=+2]
 include::modules/decision-services/proc-drl-rules-create.adoc[leveloffset=+1]
 include::modules/creating-running/con-kogito-service-execution.adoc[leveloffset=+1]
+
+ifdef::parent-context[:context: {parent-context}]
+ifndef::parent-context[:!context:]

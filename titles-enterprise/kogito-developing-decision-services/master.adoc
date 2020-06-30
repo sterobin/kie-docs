@@ -1,3 +1,7 @@
 :KOGITO-ENT:
 
 include::assemblies/assembly-kogito-developing-decision-services.adoc[]
+include::assemblies/assembly-kogito-using-dmn.adoc[leveloffset=+1]
+include::assemblies/assembly-kogito-using-drl.adoc[leveloffset=+1]
+include::assemblies/assembly-kogito-using-spreadsheet-decision-tables.adoc[leveloffset=+1]
+include::assemblies/assembly-kogito-decision-engine.adoc[leveloffset=+1]

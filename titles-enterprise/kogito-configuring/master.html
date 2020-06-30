@@ -1,0 +1,3327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<meta name="author" content="Red Hat Customer Content Services">
+<title>Configuring Kogito supporting services and runtime capabilities</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove comment around @import statement below when using as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.spread{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+*:not(pre)>code.nobreak{word-wrap:normal}
+*:not(pre)>code.nowrap{white-space:nowrap}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
+.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:initial}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px 0}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:.4em .75em 0 .75em;line-height:1;vertical-align:top}
+.colist>table tr>td:first-of-type img{max-width:initial}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+</head>
+<body id="assembly-kogito-configuring" class="book">
+<div id="header">
+<h1>Configuring Kogito supporting services and runtime capabilities</h1>
+<div class="details">
+<span id="author" class="author">Red Hat Customer Content Services</span><br>
+<span id="email" class="email"><a href="mailto:brms-docs@redhat.com">brms-docs@redhat.com</a></span><br>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>As a developer of business processes and decisions, you can configure Kogito supporting services and runtime properties for advanced use cases with your Kogito services.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="con-kogito-supporting-services-and-configuration_kogito-configuring">Kogito supporting services and runtime configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kogito supporting services consist of middleware infrastructure services and other dedicated services that help you build additional functionality in the Kogito domain-specific services that you create.</p>
+</div>
+<div class="paragraph">
+<p>Kogito supports the following key middleware infrastructure services:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Infinispan persistence</p>
+</li>
+<li>
+<p>Apache Kafka reactive messaging</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Kogito also provides the following dedicated services:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Kogito Data Index Service indexing and querying</p>
+</li>
+<li>
+<p>Kogito Jobs Service job scheduling</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Kogito runtime supports various configuration options for these supporting services and for other capabilities, such as the following examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Custom event listeners</p>
+</li>
+<li>
+<p>Prometheus metrics monitoring</p>
+</li>
+<li>
+<p>Process instance management</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These supporting services, runtime configurations, and Kogito add-on components enable you to optimize your Kogito domain-specific services for your business automation requirements.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ref-kogito-runtime-properties_kogito-configuring">Kogito runtime properties quick reference</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following table serves as a quick reference for commonly used runtime configuration properties supported by Kogito. You can define these properties in the <code>src/main/resources/application.properties</code> file of the relevant Kogito project or by using the <code>-D</code> prefix during application start-up.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Some of these properties might require accompanying dependencies in the relevant Kogito project to enable the specified capability. For more information about dependency requirements, review the sections of the Kogito configuration documentation that relate to that property.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Common runtime properties in Kogito</caption>
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 45%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Relevance</th>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Events</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kogito.events.processinstances.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Determines whether runtime events are published for process instances, either <code>enabled</code> or <code>disabled</code></p>
+</div>
+<div class="paragraph">
+<p>Default value: <code>enabled</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>kogito.events.processinstances.enabled</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>kogito.events.usertasks.enabled</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether runtime events are published for user task instances, either <code>enabled</code> or <code>disabled</code></p>
+<p class="tableblock">Default value: <code>enabled</code></p>
+<p class="tableblock">Example: <code>kogito.events.usertasks.enabled</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>kogito.messaging.as-cloudevents</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether messages (sent or received through message events) are published in CloudEvents format, either <code>true</code> of <code>false</code></p>
+<p class="tableblock">Example: <code>kogito.messaging.as-cloudevents=true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="3"><p class="tableblock">Infinispan persistence</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>quarkus.infinispan-client.server-list</code></p>
+</div>
+<div class="paragraph">
+<p>For Spring Boot: <code>infinispan.remote.server-list</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Defines the location where an Infinispan server is running, typically used to connect your application to Infinispan for persistence</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>quarkus.infinispan-client.server-list=localhost:11222</code></p>
+</div>
+<div class="paragraph">
+<p>For Spring Boot: <code>infinispan.remote.server-list=127.0.0.1:11222</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>quarkus.infinispan-client.auth-username</code></p>
+</div>
+<div class="paragraph">
+<p><code>quarkus.infinispan-client.auth-password</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identifies the Infinispan user name and password to authenticate Infinispan persistence capabilities in the relevant application, if required, such as in the Kogito Data Index Service</p>
+<p class="tableblock">Examples:</p>
+<p class="tableblock"><code>quarkus.infinispan-client.auth-username=admin</code></p>
+<p class="tableblock"><code>quarkus.infinispan-client.auth-password=admin123</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kogito.persistence.infinispan.template</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines an optional template name of the Infinispan cache configuration to be used to persist process instance data</p>
+<p class="tableblock">Example: <code>kogito.persistence.infinispan.template=MyTemplate</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kafka messaging</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Incoming:</p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.incoming.<em>MESSAGE_EVENT_NAME</em>.connector</code></p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.incoming.<em>MESSAGE_EVENT_NAME</em>.topic</code></p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.incoming.<em>MESSAGE_EVENT_NAME</em>.value.deserializer</code></p>
+</div>
+<div class="paragraph">
+<p>Outgoing:</p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.outgoing.<em>MESSAGE_EVENT_NAME</em>.connector</code></p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.outgoing.<em>MESSAGE_EVENT_NAME</em>.topic</code></p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.outgoing.<em>MESSAGE_EVENT_NAME</em>.value.serializer</code></p>
+</div>
+<div class="paragraph">
+<p>For Spring Boot: <code>kafka.bootstrapAddress</code> (messages defined separately in JavaBeans)</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Defines the connector, topic, and deserializer for the incoming and outgoing messages and channels for reactive messaging with Apache Kafka</p>
+</div>
+<div class="paragraph">
+<p>Examples for incoming:</p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.incoming.travellers.connector=smallrye-kafka</code></p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.incoming.travellers.topic=travellers</code></p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.incoming.travellers.value.deserializer=org.apache.kafka.common.serialization.StringDeserializer</code></p>
+</div>
+<div class="paragraph">
+<p>Examples for outgoing:</p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.outgoing.processedtravellers.connector=smallrye-kafka</code></p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.outgoing.processedtravellers.topic=processedtravellers</code></p>
+</div>
+<div class="paragraph">
+<p><code>mp.messaging.outgoing.processedtravellers.value.serializer=org.apache.kafka.common.serialization.StringSerializer</code></p>
+</div>
+<div class="paragraph">
+<p>For Spring Boot: <code>kafka.bootstrapAddress=localhost:9092</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="7"><p class="tableblock">Kogito Jobs Service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kogito.service.url</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>Defines the location where the Kogito service is deployed, typically used by the Jobs Service to find the source of the jobs</p>
+</div>
+<div class="paragraph">
+<p>Example: <code>kogito.service.url=http://localhost:8080</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p><code>kogito.jobs-service.url</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the callback URL that posts to a running Kogito Jobs Service</p>
+<p class="tableblock">Example: <code>kogito.jobs-service.url=http://localhost:8085</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kogito.jobs-service.persistence</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(Specified in Jobs Service) Identifies the persistence mechanism used by the Jobs Service, either <code>in-memory</code> or <code>infinispan</code></p>
+</div>
+<div class="paragraph">
+<p>Default value: <code>in-memory</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>kogito.jobs-service.persistence=in-memory</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kogito.jobs-service.backoffRetryMillis</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(Specified in Jobs Service) Defines the retry back-off time in milliseconds between job execution attempts, in case the execution fails</p>
+</div>
+<div class="paragraph">
+<p>Default value: <code>1000</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>kogito.jobs-service.backoffRetryMillis=1000</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kogito.jobs-service.maxIntervalLimitToRetryMillis</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(Specified in Jobs Service) Defines the maximum interval in milliseconds when retrying to execute jobs, in case the execution fails</p>
+</div>
+<div class="paragraph">
+<p>Default value: <code>60000</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>kogito.jobs-service.maxIntervalLimitToRetryMillis=60000</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mp.messaging.outgoing.kogito-job-service-job-status-events.bootstrap.servers</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(Specified in Jobs Service) Identifies the Kafka bootstrap server address with the port used to publish events</p>
+</div>
+<div class="paragraph">
+<p>Default value: <code>localhost:9092</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>mp.messaging.outgoing.kogito-job-service-job-status-events.bootstrap.servers=localhost:9092</code></p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mp.messaging.outgoing.kogito-job-service-job-status-events.topic</code></p></td>
+<td class="tableblock halign-left valign-top"><div><div class="paragraph">
+<p>(Specified in Jobs Service) Defines the name of the Kafka topic where the events are published</p>
+</div>
+<div class="paragraph">
+<p>Default value: <code>kogito-jobs-events</code></p>
+</div>
+<div class="paragraph">
+<p>Example: <code>mp.messaging.outgoing.kogito-job-service-job-status-events.topic=kogito-jobs-events</code></p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="con-kogito-runtime-events_kogito-configuring">Kogito runtime events</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A runtime event is record of a significant change of state in the application domain at a point in time. Kogito emits runtime events as a result of successfully executed requests, or <em>units of work</em>, in a process instance or task instance in a process. Kogito can use these events to notify third parties about changes to the BPMN process instance and its data.</p>
+</div>
+<div class="sect2">
+<h3 id="_process_instance_events">Process instance events</h3>
+<div class="paragraph">
+<p>For every executed process instance, an event is generated that contains information for that instance, such as the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Process instance metadata, such as the process definition ID, process instance ID, process instance state, and other identifying information</p>
+</li>
+<li>
+<p>Node instances that have been triggered during the execution</p>
+</li>
+<li>
+<p>Variables used and the current state of variables after the execution</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These events provide a complete view of the process instances being executed and can be consumed by an event listener, such as a <code>ProcessEventListener</code> configuration.</p>
+</div>
+<div class="paragraph">
+<p>If multiple processes are executed within a single request (unit of work), each process instance is given a dedicated event.</p>
+</div>
+<div class="paragraph">
+<p>The following event is an example process instance event generated after the request was executed successfully:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example process instance event</div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "specversion": "0.3",
+  "id": "f52af50c-4fe2-4581-9184-7ad48137fb3f",
+  "source": null,
+  "type": "ProcessInstanceEvent",
+  "time": "2019-08-05T17:47:49.019494+02:00[Europe/Warsaw]",
+  "data": {
+    "id": "c1aced49-399b-4938-9071-b2ffa3fb7045",
+    "parentInstanceId": null,
+    "rootInstanceId": null,
+    "processId": "deals",
+    "processName": "SubmitDeal",
+    "startDate": 1565020069015,
+    "endDate": null,
+    "state": 1,
+    "nodeInstances": [
+      {
+        "id": "a8fe24c4-27a5-4869-85df-16e9f170f2c4",
+        "nodeId": "2",
+        "nodeDefinitionId": "CallActivity_1",
+        "nodeName": "Call a deal",
+        "nodeType": "SubProcessNode",
+        "triggerTime": 1565020069015,
+        "leaveTime": null
+      },
+      {
+        "id": "7a3bf1b1-b167-4928-969d-20bddf16c87a",
+        "nodeId": "1",
+        "nodeDefinitionId": "StartEvent_1",
+        "nodeName": "StartProcess",
+        "nodeType": "StartNode",
+        "triggerTime": 1565020069015,
+        "leaveTime": 1565020069015
+      }
+    ],
+    "variables": {
+      "name": "my fancy deal",
+      "traveller": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "jon.doe@example.com",
+        "nationality": "American",
+        "address": {
+          "street": "main street",
+          "city": "Boston",
+          "zipCode": "10005",
+          "country": "US"
+        }
+      }
+    }
+  },
+  "kogitoProcessinstanceId": "c1aced49-399b-4938-9071-b2ffa3fb7045",
+  "kogitoParentProcessinstanceId": null,
+  "kogitoRootProcessinstanceId": null,
+  "kogitoProcessId": "deals",
+  "kogitoProcessinstanceState": "1"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The event is in <a href="https://cloudevents.io/">CloudEvents</a> format so that it can be consumed efficiently by other entities.</p>
+</div>
+<div class="paragraph">
+<p>The event data also includes the following extensions to enable event routing based on the event metadata without requiring the body of the event:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>kogitoProcessinstanceId</code></p>
+</li>
+<li>
+<p><code>kogitoParentProcessinstanceId</code></p>
+</li>
+<li>
+<p><code>kogitoRootProcessinstanceId</code></p>
+</li>
+<li>
+<p><code>kogitoProcessId</code></p>
+</li>
+<li>
+<p><code>kogitoProcessinstanceState</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_user_task_instance_events">User task instance events</h3>
+<div class="paragraph">
+<p>If an executed request (unit of work) in a process instance interacts with a user task, an event is generated for that user task and contains information for the task instance, such as the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Task metadata, such as the task description, priority, start and complete dates, and other identifying information</p>
+</li>
+<li>
+<p>Task input and output data</p>
+</li>
+<li>
+<p>Task assignments, such as the task owner, potential users and groups, business administrator and business administrator groups, or excluded users</p>
+</li>
+<li>
+<p>Task reference name that should be used to interact with the task using the Kogito service endpoints</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The following event is an example user task instance event generated after the relevant request was executed successfully:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example user task instance event</div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "data": {
+    "adminGroups": [],
+    "adminUsers": [],
+    "excludedUsers": [],
+    "id": "4d899471-19dd-485d-b7f4-b313185d430d",
+    "inputs": {
+      "Locale": "en-UK",
+      "trip": {
+        "begin": "2019-09-22T22:00:00Z[UTC]",
+        "city": "Boston",
+        "country": "US",
+        "end": "2019-09-26T22:00:00Z[UTC]",
+        "visaRequired": true
+      },
+      "TaskName": "VisaApplication",
+      "NodeName": "Apply for visa",
+      "Priority": "1",
+      "Skippable": "true",
+      "traveller": {
+        "address": {
+          "city": "Krakow",
+          "country": "Poland",
+          "street": "Polna",
+          "zipCode": "12345"
+        },
+        "email": "jan.kowalski@email.com",
+        "firstName": "Jan",
+        "lastName": "Kowalski",
+        "nationality": "Polish"
+      }
+    },
+    "outputs": {},
+    "potentialGroups": [],
+    "potentialUsers": [],
+    "processId": "travels",
+    "processInstanceId": "63c297cb-f5ac-4e20-8254-02f37bd72b80",
+    "referenceName": "VisaApplication",
+    "startDate": "2019-09-16T15:22:26.658Z[UTC]",
+    "state": "Ready",
+    "taskName": "Apply for visa",
+    "taskPriority": "1"
+  },
+  "id": "9c340cfa-c9b6-46f2-a048-e1114b077a7f",
+  "kogitoProcessId": "travels",
+  "kogitoProcessinstanceId": "63c297cb-f5ac-4e20-8254-02f37bd72b80",
+  "kogitoUserTaskinstanceId": "4d899471-19dd-485d-b7f4-b313185d430d",
+  "kogitoUserTaskinstanceState": "Ready",
+  "source": "http://localhost:8080/travels",
+  "specversion": "0.3",
+  "time": "2019-09-16T17:22:26.662592+02:00[Europe/Berlin]",
+  "type": "UserTaskInstanceEvent"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The event data also includes the following extensions to enable event routing based on the event metadata without requiring the body of the event:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>kogitoUserTaskinstanceId</code></p>
+</li>
+<li>
+<p><code>kogitoUserTaskinstanceState</code></p>
+</li>
+<li>
+<p><code>kogitoProcessinstanceId</code></p>
+</li>
+<li>
+<p><code>kogitoProcessId</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_event_publishing">Event publishing</h3>
+<div class="paragraph">
+<p>Kogito generates events only when at least one publisher is configured. A Kogito service environment can have many event publishers that publish these events into different channels.</p>
+</div>
+<div class="paragraph">
+<p>By default, Kogito includes the following message-based event publishers, depending on your application framework:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>For Quarkus</strong>: <a href="https://smallrye.io/smallrye-reactive-messaging/">Reactive Messaging</a> for sending events using Apache Kafka, Apache Camel, Advanced Message Queuing Protocol (AMQP), or MQ Telemetry Transport (MQTT)</p>
+</li>
+<li>
+<p><strong>For Spring Boot</strong>: <a href="https://spring.io/projects/spring-kafka">Spring for Apache Kafka</a> for sending events using Kafka</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To enable or disable event publishing, you can adjust the following properties in the <code>src/main/resources/application.properties</code> file in your Kogito project:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>kogito.events.processinstances.enabled</code>: Enables or disables publishing for process instance events (default: <code>enabled</code>)</p>
+</li>
+<li>
+<p><code>kogito.events.usertasks.enabled</code>: Enables or disables publishing for user task instance events (default: <code>enabled</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To develop additional event publishers, you can implement the <code>org.kie.kogito.event.EventPublisher</code> implementation and include the required annotations for JavaBeans discovery.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-messaging-enabling_kogito-configuring">Enabling Kafka messaging for Kogito services</h3>
+<div class="paragraph">
+<p>Kogito supports the <a href="https://github.com/eclipse/microprofile-reactive-messaging">MicroProfile Reactive Messaging</a> specification for messaging in your services. You can enable messaging to configure message events as either input or output of business process execution.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following process uses messaging start and end events to communicate with travelers:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kogito/bpmn/bpmn-messaging-example.png" alt="Image of message-based process">
+</div>
+<div class="title">Figure 1. Example process with messaging start and end events</div>
+</div>
+<div class="paragraph">
+<p>In this example, the message start and end events require the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Message name that maps to the channel that delivers messages</p>
+</li>
+<li>
+<p>Message payload that maps to a process instance variable</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kogito/bpmn/bpmn-messaging-start-event.png" alt="Image of message start event data">
+</div>
+<div class="title">Figure 2. Example message configuration for start event</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kogito/bpmn/bpmn-messaging-end-event.png" alt="Image of message end event data">
+</div>
+<div class="title">Figure 3. Example message configuration for end event</div>
+</div>
+<div class="paragraph">
+<p>For this procedure, the messaging is based on <a href="https://kafka.apache.org/">Apache Kafka</a> as the event publisher, so you must have Kafka installed in order to enable messaging. Your marshalling configuration depends on the messaging solution that you use.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p><a href="https://kafka.apache.org/">Apache Kafka</a> is installed and includes any required topics. For information about Kafka installation and configuration, see the <a href="https://kafka.apache.org/documentation/">Apache Kafka documentation</a>.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Add the following dependencies to the <code>pom.xml</code> file of your Kogito project:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">On Quarkus</div>
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+  &lt;artifactId&gt;quarkus-smallrye-reactive-messaging-kafka&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On Spring Boot</div>
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.springframework.kafka&lt;/groupId&gt;
+  &lt;artifactId&gt;spring-kafka&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+  &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Configure the incoming and outgoing messaging channels and properties:</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>On Quarkus</strong>: Add the following properties to the <code>src/main/resources/application.properties</code> file in your Kogito project to configure the incoming and outgoing messages and channels:</p>
+<div class="listingblock">
+<div class="title">Configure incoming and outgoing messages and channels</div>
+<div class="content">
+<pre class="highlight"><code>mp.messaging.incoming.travellers.connector=smallrye-kafka
+mp.messaging.incoming.travellers.topic=travellers
+mp.messaging.incoming.travellers.value.deserializer=org.apache.kafka.common.serialization.StringDeserializer
+mp.messaging.outgoing.processedtravellers.connector=smallrye-kafka
+mp.messaging.outgoing.processedtravellers.topic=processedtravellers
+mp.messaging.outgoing.processedtravellers.value.serializer=org.apache.kafka.common.serialization.StringSerializer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace <code>travellers</code> with the name of the message start event.
+Replace <code>processedtravellers</code> with the name of the message end event.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To prevent execution errors due to long wait times with messaging, you can also use the following property to disable waiting for message completion:</p>
+</div>
+<div class="listingblock">
+<div class="title">Disable message wait time</div>
+<div class="content">
+<pre class="highlight"><code>mp.messaging.outgoing.[channel-name].waitForWriteCompletion=false</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><strong>On Spring Boot</strong>: Add the following property to the <code>src/main/resources/application.properties</code> file in your Kogito project to configure the messaging channel, and create the JavaBeans for the incoming and outgoing messages:</p>
+<div class="listingblock">
+<div class="title">Configure messaging channel</div>
+<div class="content">
+<pre class="highlight"><code>kafka.bootstrapAddress=localhost:9092</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create JavaBeans for incoming messages</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@EnableKafka
+@Configuration
+public class KafkaConsumerConfig {
+
+    @Value(value = "${kafka.bootstrapAddress}")
+    private String bootstrapAddress;
+
+    public ConsumerFactory&lt;String, String&gt; consumerFactory() {
+        Map&lt;String, Object&gt; props = new HashMap&lt;&gt;();
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "travellers-group");
+        return new DefaultKafkaConsumerFactory&lt;&gt;(props, new StringDeserializer(), new StringDeserializer());
+    }
+
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory&lt;String, String&gt; kafkaListenerContainerFactory() {
+        ConcurrentKafkaListenerContainerFactory&lt;String, String&gt; factory = new ConcurrentKafkaListenerContainerFactory&lt;&gt;();
+        factory.setConsumerFactory(consumerFactory());
+        return factory;
+    }
+
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Create JavaBeans for outgoing messages</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@Configuration
+public class KafkaProducerConfig {
+
+    @Value(value = "${kafka.bootstrapAddress}")
+    private String bootstrapAddress;
+
+
+    @Bean
+    public ProducerFactory&lt;String, String&gt; producerFactory() {
+        Map&lt;String, Object&gt; configProps = new HashMap&lt;&gt;();
+        configProps.put(JsonSerializer.ADD_TYPE_INFO_HEADERS, false);
+        configProps.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
+        configProps.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configProps.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        return new DefaultKafkaProducerFactory&lt;&gt;(configProps);
+    }
+
+    @Bean
+    public KafkaTemplate&lt;String, String&gt; kafkaTemplate() {
+        return new KafkaTemplate&lt;&gt;(producerFactory());
+    }
+
+}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For example Kogito services with Kafka messaging, see the following example applications in GitHub:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/kiegroup/kogito-examples/tree/stable/process-kafka-quickstart-quarkus"><code>process-kafka-quickstart-quarkus</code></a>: Example on Quarkus</p>
+</li>
+<li>
+<p><a href="https://github.com/kiegroup/kogito-examples/tree/stable/process-kafka-quickstart-springboot"><code>process-kafka-quickstart-springboot</code></a>: Example on Spring Boot</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-event-listeners-registering_kogito-configuring">Registering event listeners</h3>
+<div class="paragraph">
+<p>You can register custom event listeners to detect and publish events that are not published by Kogito by default. Your custom event listener configuration must implement the relevant implementation for either processes or rules.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create an event listener configuration class for either process or rule events, such as a <code>ProcessEventListenerConfig</code> class or a <code>RuleEventListenerConfig</code> class.</p>
+</li>
+<li>
+<p>In your event listener configuration class, extend the default implementation of the configuration class as part of your listener definition:</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Implementation for process events: <code>org.kie.kogito.process.impl.DefaultProcessEventListenerConfig</code></p>
+</li>
+<li>
+<p>Implementation for rule events: <code>org.drools.core.config.DefaultRuleEventListenerConfig</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example process event listener with extended default implementation</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@ApplicationScoped
+public class ProcessEventListenerConfig extends DefaultProcessEventListenerConfig {
+
+    public ProcessEventListenerConfig() {
+        super(new CustomProcessEventListener());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example rule event listener with extended default implementation</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@ApplicationScoped
+public class RuleEventListenerConfig extends DefaultRuleEventListenerConfig {
+
+    public RuleEventListenerConfig() {
+        super(new CustomRuleEventListener());
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+These configuration classes must be injectable, so ensure that you properly annotate the classes, such as with the annotations <code>@ApplicationScoped</code> or <code>@Component</code>, so that they can be found and registered.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can implement the relevant event listener interface instead of extending the default implementation, but this approach excludes other listeners provided by Kogito.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Interface for process events: <code>org.kie.kogito.process.ProcessEventListenerConfig</code></p>
+</li>
+<li>
+<p>Interface for rule events: <code>org.kie.kogito.rules.RuleEventListenerConfig</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>After the event listener is configured, package the listener configuration class in the <code>src/main/java</code> folder of the relevant application or add it as dependency in the <code>pom.xml</code> file of the application to make the listener available.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-prometheus-metrics-monitoring_kogito-configuring">Enabling Prometheus metrics monitoring in Kogito</h3>
+<div class="paragraph">
+<p>Prometheus is an open-source systems monitoring toolkit that you can use with Kogito to collect and store metrics related to the execution of Business Process Model and Notation (BPMN) process models, business rules, and Decision Model and Notation (DMN) decision models. You can access the stored metrics through a REST API call to a configured application endpoint, through the Prometheus expression browser, or using a data-graphing tool such as Grafana.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Prometheus is installed. For information about downloading and using Prometheus, see the <a href="https://prometheus.io/docs/introduction/overview/">Prometheus documentation page</a>.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In your Kogito project, add following dependency to the <code>pom.xml</code> file to enable the Prometheus add-on:</p>
+<div class="listingblock">
+<div class="title">Add dependency for Prometheus add-on</div>
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+  &lt;artifactId&gt;monitoring-prometheus-addon&lt;/artifactId&gt;
+  &lt;version&gt;<em>KOGITO_VERSION</em>&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the <code>src/main/java</code> folder of your project, create an event listener configuration class for the following Prometheus event listeners for monitoring processes or rules, such as a <code>ProcessEventListenerConfig</code> class or a <code>RuleEventListenerConfig</code> class:</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Prometheus event listener for processes: <code>org.kie.addons.monitoring.process.PrometheusProcessEventListener</code></p>
+</li>
+<li>
+<p>Prometheus event listener for rules: <code>org.kie.addons.monitoring.rule.PrometheusMetricsDroolsListener</code></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Example process event listener for Prometheus</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@ApplicationScoped
+public class ProcessEventListenerConfig extends DefaultProcessEventListenerConfig {
+
+    public ProcessEventListenerConfig() {
+        super(new PrometheusProcessEventListener("acme-travels"));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example rule event listener for Prometheus</div>
+<div class="content">
+<pre class="highlight"><code class="language-java" data-lang="java">@ApplicationScoped
+public class RuleEventListenerConfig extends DefaultRuleEventListenerConfig {
+
+    public RuleEventListenerConfig() {
+        super(new PrometheusMetricsDroolsListener("acme-travels"));
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The argument <code>acme-travels</code> in these listener examples identifies the relevant data when the data is returned from the Kogito runtime and grouped in Prometheus metrics.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In the <code>prometheus.yaml</code> file of your Prometheus distribution, add the following settings in the <code>scrape_configs</code> section to configure Prometheus to scrape metrics from your Kogito service:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Example scrape configurations in <code>prometheus.yaml</code> file</div>
+<div class="content">
+<pre class="highlight"><code class="language-yaml" data-lang="yaml">scrape_configs:
+  job_name: 'travels'
+metrics_path: /metrics
+static_configs:
+  - targets: ["localhost:8080"]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Replace the values according to your Kogito service settings.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In a command terminal, navigate to your Kogito project and run the project using your preferred run mode, such as development mode:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">On Quarkus</div>
+<div class="content">
+<pre class="highlight"><code>mvn clean compile quarkus:dev</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On Sprint Boot</div>
+<div class="content">
+<pre class="highlight"><code>mvn clean compile spring-boot:run</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After you start your Kogito service, Prometheus begins collecting metrics and Kogito publishes the metrics to the configured REST API endpoint.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>To verify the metrics configuration, use a REST client or curl utility to send a <code>GET</code> request to the configured <code>/metrics</code> endpoint, such as <code>http://localhost:8080/metrics</code> in this example:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Example curl command to return Prometheus metrics</div>
+<div class="content">
+<pre class="highlight"><code>curl -X GET http://localhost:8080/metrics</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example response</div>
+<div class="content">
+<pre class="highlight"><code># HELP kie_process_instance_completed_total Completed Process Instances
+# TYPE kie_process_instance_completed_total counter
+# HELP kie_process_instance_started_total Started Process Instances
+# TYPE kie_process_instance_started_total counter
+kie_process_instance_started_total{app_id="acme-travels",process_id="travels",} 1.0
+# HELP kie_work_item_duration_seconds Work Items Duration
+# TYPE kie_work_item_duration_seconds summary
+# HELP drl_match_fired_nanosecond Drools Firing Time
+# TYPE drl_match_fired_nanosecond histogram
+drl_match_fired_nanosecond_bucket{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",le="1000000.0",} 1.0
+drl_match_fired_nanosecond_bucket{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",le="2000000.0",} 1.0
+drl_match_fired_nanosecond_bucket{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",le="3000000.0",} 1.0
+drl_match_fired_nanosecond_bucket{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",le="4000000.0",} 1.0
+drl_match_fired_nanosecond_bucket{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",le="5000000.0",} 1.0
+drl_match_fired_nanosecond_bucket{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",le="6000000.0",} 1.0
+drl_match_fired_nanosecond_bucket{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",le="7000000.0",} 1.0
+drl_match_fired_nanosecond_bucket{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",le="8000000.0",} 1.0
+drl_match_fired_nanosecond_bucket{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",le="9000000.0",} 1.0
+drl_match_fired_nanosecond_bucket{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",le="+Inf",} 1.0
+drl_match_fired_nanosecond_count{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",} 1.0
+drl_match_fired_nanosecond_sum{identifier="acme-travels",rule_name="Brazilian citizens require visa to Australia",} 789941.0
+# HELP kie_process_instance_sla_violated_total Process Instances SLA Violated
+# TYPE kie_process_instance_sla_violated_total counter
+# HELP kie_process_instance_duration_seconds Process Instances Duration
+# TYPE kie_process_instance_duration_seconds summary
+# HELP kie_process_instance_running_total Running Process Instances
+# TYPE kie_process_instance_running_total gauge
+kie_process_instance_running_total{app_id="acme-travels",process_id="travels",} 1.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the metrics are not available at the defined endpoint, review and verify the Kogito and Prometheus configurations described in this section.</p>
+</div>
+<div class="paragraph">
+<p>You can also interact with your collected metrics and application targets in the Prometheus expression browser at <code>http://<em>HOST:PORT</em>/graph</code> and <code>http://<em>HOST:PORT</em>/targets</code>, or integrate your Prometheus data source with a data-graphing tool such as Grafana:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kogito/configuration/prometheus-expression-browser-targets.png" alt="Image of targets in Prometheus expression browser">
+</div>
+<div class="title">Figure 4. Prometheus expression browser with Kogito service targets</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kogito/configuration/prometheus-grafana-data.png" alt="Image of application metrics in Grafana">
+</div>
+<div class="title">Figure 5. Grafana dashboard with Kogito service metrics</div>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://prometheus.io/docs/prometheus/latest/getting_started/">Getting Started with Prometheus</a></p>
+</li>
+<li>
+<p><a href="https://prometheus.io/docs/visualization/grafana/">Grafana Support for Prometheus</a></p>
+</li>
+<li>
+<p><a href="https://grafana.com/docs/grafana/latest/features/datasources/prometheus/">Using Prometheus in Grafana</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="con-persistence_kogito-configuring">Persistence in Kogito services</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kogito supports runtime persistence for preserving process data in your services across application restarts. Kogito persistence is based on <a href="https://infinispan.org/">Infinispan</a> and enables you to configure key-value storage definitions to persist data, such as active process nodes and process instance variables.</p>
+</div>
+<div class="paragraph">
+<p>Runtime persistence is intended primarily for storing data that is required to resume workflow execution for a particular process instance. Persistence applies to both public and private processes that are not yet complete. Once a process completes, persistence is no longer applied. This persistence behavior means that only the information that is required to resume execution is persisted.</p>
+</div>
+<div class="paragraph">
+<p>Node instances that are currently active or in wait states are persisted. When a process instance finishes execution but has not reached the end state (completed or aborted), the node instance data is persisted.</p>
+</div>
+<div class="sect2">
+<h3 id="_persistence_workflow_in_kogito">Persistence workflow in Kogito</h3>
+<div class="paragraph">
+<p>In Kogito, a process instance is persisted when the process reaches a wait state, where the process does not execute anymore but has not reached the end state (completed or aborted).</p>
+</div>
+<div class="paragraph">
+<p>For example, when a process reaches a user task or a catching signal event, the process instances pauses and the Kogito process engine takes a complete snapshot of the process, including the following data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Process instance metadata, such as process instance ID, process definition ID, state, description, and start date</p>
+</li>
+<li>
+<p>Process instance variables</p>
+</li>
+<li>
+<p>Active node instances, including local variables</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Process instance metadata is persisted with a predefined protobuf (<a href="https://developers.google.com/protocol-buffers/">protocol buffers</a>) schema that is aware of the metadata and supports node instances that are in wait states.</p>
+</div>
+<div class="paragraph">
+<p>Process instance and node instance variables are persisted based on the generated protobuf schema and generated marshallers. Custom data types are also persisted during execution.</p>
+</div>
+<div class="paragraph">
+<p>For straight-through process instances that do not trigger any activity, persistence is not invoked and no data is stored.</p>
+</div>
+<div class="paragraph">
+<p>Each process definition has its own cache for storing runtime information. The cache is based on the process definition ID and is named in the Infinispan server. If no process cache exists, cache is automatically created in Infinispan. This setup facilitates maintenance of process instance data and reduces concurrency on the cache instances.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_persisted_process_instance_variables_and_data_types">Persisted process instance variables and data types</h3>
+<div class="paragraph">
+<p>Persisted process variables, local variables, and other process data are stored with the process instance. The stored data is marshalled into bytes format so it can be transferred and persisted into the key-value storage definition. The marshalling and unmarshalling is implemented based on protobuf (<a href="https://developers.google.com/protocol-buffers/">protocol buffers</a>) and requires a schema and marshallers for handling a specified type of data.</p>
+</div>
+<div class="paragraph">
+<p>Kogito generates both the protobuf schema (as PROTO files) and marshallers for persisting variables. The Kogito marshallers are based on the <a href="https://github.com/infinispan/protostream">ProtoStream</a> subproject of Infinispan.</p>
+</div>
+<div class="paragraph">
+<p>When you build your Kogito project, Kogito scans all process definitions and extracts information about the data within the business assets. Based on the unique data types (regardless of how many processes reference a specified type), a PROTO file called <code>kogito-application.proto</code> is generated that builds a complete schema for the application. This file is stored in the <code>target/classes/persistence/</code> folder of your project after successful build.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example PROTO file generated by Kogito to persist process data</div>
+<div class="content">
+<pre class="highlight"><code>syntax = "proto2";
+package org.kie.kogito.examples;
+import "kogito-types.proto";
+
+message Order {
+        option java_package = "org.kie.kogito.examples.demo";
+        optional string orderNumber = 1;
+        optional bool shipped = 2;
+        optional double total = 3;
+}
+message Person {
+        option java_package = "org.kie.kogito.examples.demo";
+        optional bool adult = 1;
+        optional int32 age = 2;
+        optional string name = 3;
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Each <code>kogito-application.proto</code> file imports a <code>kogito-types.proto</code> file that automatically defines the base types managed by Kogito.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Based on the <code>kogito-application.proto</code> file, marshallers are also generated and configured in the application so that whenever a particular data type is used in a process instance, the data is successfully marshalled and unmarshalled.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_supported_data_types_for_persisted_variables">Supported data types for persisted variables</h3>
+<div class="paragraph">
+<p>For optimal persistence with process data and variables, use Java objects as data types that represent your process variables. If you use other formats for data types, your data might not be persisted or your Kogito project might fail to compile.</p>
+</div>
+<div class="paragraph">
+<p>Kogito currently supports the following data types for process variables:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Supported data types</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Data type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>java.lang.String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Basic text type</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>java.lang.Integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Basic number type</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>java.lang.Long</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extended size number type</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>java.lang.Float</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Basic floating point number type</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>java.lang.Double</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extended size floating point number type</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>java.util.Date</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Basic date type</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom data type built with multiple simple types</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java object with a Java object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom data type built with multiple simple types and includes another Java object</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Java object with a list of Java objects</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom data type built with multiple simple types and a list of Java objects, and can also contain another Java object</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="proc-persistence-enabling_kogito-configuring">Enabling Infinispan persistence for Kogito services</h3>
+<div class="paragraph">
+<p>You can enable persistence for your Kogito services to persist data, such as active process nodes and process instance variables, so that the data is preserved across application restarts. Kogito persistence is based on <a href="https://infinispan.org/">Infinispan</a>, so you must have a an Infinispan server installed and running in order to enable persistence.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p><a href="https://infinispan.org/">Infinispan server</a> 10.0 or later is installed and running. For information about Infinispan installation and configuration, see the <a href="https://infinispan.org/documentation/">Infinispan documentation</a>.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Add the following dependencies to the <code>pom.xml</code> file of your Kogito project:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">On Quarkus</div>
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;io.quarkus&lt;/groupId&gt;
+  &lt;artifactId&gt;quarkus-infinispan-client&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+  &lt;artifactId&gt;infinispan-persistence-addon&lt;/artifactId&gt;
+  &lt;version&gt;<em>KOGITO_VERSION</em>&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On Spring Boot</div>
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+  &lt;artifactId&gt;infinispan-persistence-addon&lt;/artifactId&gt;
+  &lt;version&gt;<em>KOGITO_VERSION</em>&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.infinispan&lt;/groupId&gt;
+  &lt;artifactId&gt;infinispan-spring-boot-starter-remote&lt;/artifactId&gt;
+  &lt;version&gt;<em>INFINISPAN_SPRING_BOOT_VERSION</em>&lt;/version&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Add following property to the <code>src/main/resources/application.properties</code> file in your Kogito project to configure the connection to the Infinispan server.</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>Replace the server host and port information according to your Infinispan server installation.</p>
+</div>
+<div class="listingblock">
+<div class="title">On Quarkus</div>
+<div class="content">
+<pre class="highlight"><code>quarkus.infinispan-client.server-list=localhost:11222</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On Spring Boot</div>
+<div class="content">
+<pre class="highlight"><code class="language-plain" data-lang="plain">infinispan.remote.server-list=127.0.0.1:11222</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>For example Kogito services with Infinispan persistence, see the following example applications in GitHub:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/kiegroup/kogito-examples/tree/stable/process-infinispan-persistence-quarkus"><code>process-infinispan-persistence-quarkus</code></a>: Example on Quarkus</p>
+</li>
+<li>
+<p><a href="https://github.com/kiegroup/kogito-examples/tree/stable/process-infinispan-persistence-springboot"><code>process-infinispan-persistence-springboot</code></a>: Example on Spring Boot</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="con-data-index-service_kogito-configuring">Kogito Data Index Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kogito provides a Data Index Service that stores all Kogito events related to processes, tasks, and domain data. The Data Index Service uses Apache Kafka messaging to consume <a href="https://cloudevents.io/">CloudEvents</a> messages from Kogito services, and then indexes the returned data for future GraphQL queries and stores the data in the Infinispan persistence store. The Data Index Service is at the core of all Kogito search, insight, and management capabilities.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kogito/configuration/data-index-architecture.jpg" alt="Diagram of an example Kogito service using Data Index Service">
+</div>
+<div class="title">Figure 6. Data Index Service architecture in an example Kogito service</div>
+</div>
+<div class="paragraph">
+<p>The Kogito Data Index Service has the following key attributes:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Distinct focus on domain data</p>
+</li>
+<li>
+<p>Flexible data structure</p>
+</li>
+<li>
+<p>Distributable and cloud-ready format</p>
+</li>
+<li>
+<p>Infinispan-based persistence support</p>
+</li>
+<li>
+<p>Message-based communication with Kogito runtime (Apache Kafka, cloud events )</p>
+</li>
+<li>
+<p>Powerful querying API using GraphQL</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The Kogito Data Index Service is not intended for permanent storage or audit log purposes. The Data Index Service is designed to make business domain data accessible for processes that are currently in progress.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_data_index_service_workflow_in_kogito">Data Index Service workflow in Kogito</h3>
+<div class="paragraph">
+<p>The Kogito Data Index Service is a Quarkus application, based on <a href="https://vertx.io/">Vert.x</a> with <a href="https://smallrye.io/smallrye-reactive-messaging/">Reactive Messaging</a>, that exposes a <a href="https://graphql.org">GraphQL</a> endpoint that client applications use to access business domain-specific data and other information about running process instances.</p>
+</div>
+<div class="paragraph">
+<p>The Data Index Service uses Apache Kafka messaging to consume <a href="https://cloudevents.io/">CloudEvents</a> messages from Kogito services, and then indexes the returned data for future GraphQL queries. These events contain information about units of work executed for a process.</p>
+</div>
+<div class="paragraph">
+<p>Indexed data from the Data Index Service is parsed and pushed into the following Infinispan caches:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Domain cache</strong>: Generic cache for each process definition where the process instance variables are pushed as the root content. This cache also includes some process instance metadata, which enables data correlation between domain and process instances. Data is transferred in JSON format to an Infinispan server.</p>
+</li>
+<li>
+<p><strong>Process instance cache</strong>: Cache for each process instance. This cache contains all process instance information, including all metadata and other detailed information such as executed nodes.</p>
+</li>
+<li>
+<p><strong>User task instance cache</strong>: Cache for each user task instance. This cache contains all task instance information, including all metadata and other detailed information such as data input and output.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The indexing functionality in the Data Index Service is based on <a href="https://lucene.apache.org/">Apache Lucene</a>, and storage for the Data Index Service is provided by <a href="https://infinispan.org/">Infinispan</a>. Communication between the Data Index Service and Infinispan is handled through a protobuf (<a href="https://developers.google.com/protocol-buffers/">protocol buffers</a>) schema and generated marshallers.</p>
+</div>
+<div class="paragraph">
+<p>After the data is indexed and stored in a cache, the Data Index Service inspects the process model to update the GraphQL schema and enable a type-checked query system that consumer clients can use to access the data.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+<div class="title">Infinispan indexing</div>
+<div class="paragraph">
+<p>Infinispan also supports data indexing through an embedded Apache Lucene engine. To determine which attributes must be indexed, Inifinispan requires <code>@Indexed</code> and <code>@Field</code> Hibernate Search parameters that annotate the relevant protobuf file attributes:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example indexed model in Infinispan server configuration</div>
+<div class="content">
+<pre class="highlight"><code>/* @Indexed */
+message ProcessInstanceMeta {
+    /* @Field(store = Store.YES) */
+    optional string id = 1;
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more information about Infinispan indexing, see <a href="https://infinispan.org/docs/stable/titles/developing/developing.html#enable_indexing">Indexing of protobuf encoded entries</a> in the Infinispan documentation.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-data-index-service-using_kogito-configuring">Using the Kogito Data Index Service to query application data</h3>
+<div class="paragraph">
+<p>Kogito provides a Data Index Service that stores all Kogito events related to processes, tasks, and domain data. The Data Index Service uses Kafka messaging to consume <a href="https://cloudevents.io/">CloudEvents</a> messages from Kogito services, and then indexes the returned data for future GraphQL queries and stores the data in the Infinispan persistence store. The Data Index Service is at the core of all Kogito search, insight, and management capabilities.</p>
+</div>
+<div class="paragraph">
+<p>You can use the Kogito Data Index Service to index, store, and query process data in your Kogito services.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p><a href="https://infinispan.org/">Infinispan server</a> 10.0 or later is installed and running. For information about Infinispan installation and configuration, see the <a href="https://infinispan.org/documentation/">Infinispan documentation</a>.</p>
+</li>
+<li>
+<p><a href="https://kafka.apache.org/">Apache Kafka</a> is installed, including required topics, and the Kafka messaging server is running. For information about Kafka installation and configuration, see the <a href="https://kafka.apache.org/documentation/">Apache Kafka documentation</a>.</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>For a list of configuration options for setting up the Kafka consumer, see <a href="https://kafka.apache.org/documentation/#consumerconfigs">Consumer Configs</a> in the Kafka documentation.</p>
+</div>
+<div class="paragraph">
+<p>For more information about using Kafka messaging on Quarkus, see <a href="https://quarkus.io/guides/kafka">Using Apache Kafka with reactive messaging</a> in the Quarkus documentation.</p>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Configure your Kogito project to enable Infinispan persistence and Apache Kafka messaging.</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>For instructions on enabling persistence, see <a href="#proc-persistence-enabling_kogito-configuring">Enabling Infinispan persistence for Kogito services</a>.</p>
+</div>
+<div class="paragraph">
+<p>For instructions on enabling messaging, see <a href="#proc-messaging-enabling_kogito-configuring">Enabling Kafka messaging for Kogito services</a>.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Go to the <a href="https://repository.jboss.org/org/kie/kogito/data-index-service/"><code>data-index-service</code></a> artifacts page, select the latest release of the Data Index Service, and download the <code>data-index-service-<em>VERSION</em>-runner.jar</code> file to a local directory.</p>
+</li>
+<li>
+<p>In a command terminal, navigate to the directory location of the downloaded <code>data-index-service-<em>VERSION</em>-runner.jar</code> file and enter the following command to run the Data Index Service with the required Infinispan credentials:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Running the Data Index Service</div>
+<div class="content">
+<pre class="highlight"><code>$ java  \
+  -Dquarkus.infinispan-client.auth-username=<em>INFINISPAN_USER_NAME</em> \
+  -Dquarkus.infinispan-client.auth-password=<em>INFINISPAN_PASSWORD</em> \
+  -jar data-index-service-<em>VERSION</em>-runner.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more information about Infinispan authentication on Quarkus, see <a href="https://quarkus.io/guides/infinispan-client">Infinispan client</a> in the Quarkus documentation.</p>
+</div>
+<div class="paragraph">
+<p>To change the logging level of the Data Index Service, such as for debugging, you can specify the following start-up properties as needed when you run the Data Index Service:</p>
+</div>
+<div class="listingblock">
+<div class="title">Modifying Data Index Service logging level for debugging</div>
+<div class="content">
+<pre class="highlight"><code>$ java  \
+  -Dquarkus.log.console.level=DEBUG -Dquarkus.log.category.\"org.kie.kogito\".min-level=DEBUG  \
+  -Dquarkus.log.category.\"org.kie.kogito\".level=DEBUG  \
+  -jar data-index-service-<em>VERSION</em>-runner.jar</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In a separate command terminal window, navigate to your Kogito project and run the project using your preferred run mode, such as development mode:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">On Quarkus</div>
+<div class="content">
+<pre class="highlight"><code>mvn clean compile quarkus:dev</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On Sprint Boot</div>
+<div class="content">
+<pre class="highlight"><code>mvn clean compile spring-boot:run</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the Data Index Service and your Kogito project both configured and running, the Data Index Service starts consuming messages from the defined Kafka topics, such as <code>kogito-processinstances-events</code>.</p>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In a web browser, navigate to the <code>http://<em>HOST</em>:<em>PORT</em></code> location configured for your running Kogito service, such as <code>http://localhost:8080/</code>, to explore the exposed data model.</p>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>To query the available data using the <a href="https://github.com/graphql/graphiql">GraphiQL</a> interface, navigate to <code>http://<em>HOST</em>:<em>PORT</em>/graphql</code>, such as <code>http://localhost:8080/graphql</code> in this example, and begin executing supported queries to interact with your application data.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query for process instance data</div>
+<div class="content">
+<pre class="highlight"><code>{ ProcessInstances {
+  id,
+  processId,
+  processName,
+  state,
+  nodes {
+    name,
+    type,
+    enter,
+    exit
+  }
+} }</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kogito/openshift/kogito-data-index-graphiql-process-instances.png" alt="Image of GraphQL query and response for process instances">
+</div>
+<div class="title">Figure 7. Example response</div>
+</div>
+<div class="paragraph">
+<p>For available query types, click <strong>Docs</strong> in the upper-right corner of the GraphiQL interface.</p>
+</div>
+<div class="paragraph">
+<p>For more information about supported queries with the Data Index Service, see <a href="#ref-data-index-service-queries_kogito-configuring">Supported GraphQL queries with the Data Index Service</a>.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref-data-index-service-queries_kogito-configuring">Supported GraphQL queries with the Data Index Service</h3>
+<div class="paragraph">
+<p>After you configure and run your Kogito service and the Kogito Data Index Service, you can query the available data using the <a href="https://github.com/graphql/graphiql">GraphiQL</a> interface displayed at <code>http://<em>HOST</em>:<em>PORT</em>/graphql</code>, such as <code>http://localhost:8080/graphql</code>.</p>
+</div>
+<div class="paragraph">
+<p>The Kogito Data Index Service supports GraphQL queries for process definitions (domain cache) and for process instances and task instances (instance caches).</p>
+</div>
+<div class="sect3">
+<h4 id="_graphql_queries_for_process_definitions_domain_cache">GraphQL queries for process definitions (domain cache)</h4>
+<div class="paragraph">
+<p>Use the following GraphQL queries to retrieve data about process definitions. These example queries assume that a <code>Travels</code> Business Process Model and Notation (BPMN) process model is running or has been executed.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Retrieve data from process definitions</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>You can retrieve data about a specified process definition from your Kogito service.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  Travels {
+    visaApplication {
+      duration
+    }
+    flight {
+      flightNumber
+      gate
+    }
+    hotel {
+      name
+      address {
+        city
+        country
+      }
+    }
+    traveller {
+      firstName
+      lastName
+      nationality
+      email
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Correlate data using the <code>metadata</code> parameter</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>You can use the <code>metadata</code> parameter to correlate data from process definitions (domain cache) with data from process instances and task instances (instance caches). This parameter is added to all root models that are deployed in the Data Index Service and enables you to retrieve and filter query data.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  Travels {
+    flight {
+      flightNumber
+      arrival
+      departure
+    }
+    metadata {
+      lastUpdate
+      userTasks {
+        name
+      }
+      processInstances {
+        processId
+      }
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Filter query results using the <code>where</code> and <code>metadata</code> parameters</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>You can use the <code>where</code> parameter with multiple combinations to filter query results based on process definition attributes. The attributes available for search depend on the BPMN process model that is deployed, such as a <code>Travels</code> process model in this example.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  Travels(where: {traveller: {firstName: {like: "Cri*"}}}) {
+    flight {
+      flightNumber
+      arrival
+      departure
+    }
+    traveller {
+      email
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The <code>like</code> operator is case sensitive.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>You can also use the <code>metadata</code> parameter to filter correlated query results from related process instances or tasks.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  Travels(where: {metadata: {processInstances: {id: {equal: "1aee8ab6-d943-4dfb-b6be-8ea8727fcdc5"}}}}) {
+    flight {
+      flightNumber
+      arrival
+      departure
+    }
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  Travels(where: {metadata: {userTasks: {id: {equal: "de52e538-581f-42db-be65-09e8739471a6"}}}}) {
+    flight {
+      flightNumber
+      arrival
+      departure
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Sort query results using the <code>orderBy</code> parameter</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>You can use the <code>orderBy</code> parameter to sort query results based on process definition attributes. You can also specify the direction of sorting in ascending <code>ASC</code> order or descending <code>DESC</code> order. Multiple attributes are applied to the database query in the order they are specified in the query filter.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  Travels(orderBy: {trip: {begin: ASC}}) {
+    flight {
+      flightNumber
+      arrival
+      departure
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Limit and offset query results using the <code>pagination</code> parameter</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>You can use the <code>pagination</code> parameter to specify a <code>limit</code> and <code>offset</code> for query results.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  Travels(where: {traveller: {firstName: {like: "Cri*"}}}, pagination: {offset: 0, limit: 10}) {
+    flight {
+      flightNumber
+      arrival
+      departure
+    }
+    traveller {
+      email
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_graphql_queries_for_process_instances_and_user_task_instances_instance_caches">GraphQL queries for process instances and user task instances (instance caches)</h4>
+<div class="paragraph">
+<p>Use the following GraphQL queries to retrieve data about process instances and user task instances.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Retrieve data from process instances</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>You can retrieve data about a specified process instance from your process definition.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  ProcessInstances {
+    id
+    processId
+    state
+    parentProcessInstanceId
+    rootProcessId
+    rootProcessInstanceId
+    variables
+    nodes {
+      id
+      name
+      type
+    }
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Retrieve data from user task instances</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>You can retrieve data from a specified user task instance from the process instance.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  UserTaskInstances {
+    id
+    name
+    actualOwner
+    description
+    priority
+    processId
+    processInstanceId
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Filter query results using the <code>where</code> parameter</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>You can use the <code>where</code> parameter with multiple combinations to filter query results based on process or task attributes.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  ProcessInstances(where: {state: {equal: ACTIVE}}) {
+    id
+    processId
+    processName
+    start
+    state
+    variables
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  ProcessInstances(where: {id: {equal: "d43a56b6-fb11-4066-b689-d70386b9a375"}}) {
+    id
+    processId
+    processName
+    start
+    state
+    variables
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  UserTaskInstances(where: {state: {equal: "Ready"}}) {
+    id
+    name
+    actualOwner
+    description
+    priority
+    processId
+    processInstanceId
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default, every filtered attribute is executed as an <code>AND</code> operation in queries. You can modify this behavior by combining filters with an <code>AND</code> or <code>OR</code> operator.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  ProcessInstances(where: {or: {state: {equal: ACTIVE}, rootProcessId: {isNull: false}}}) {
+    id
+    processId
+    processName
+    start
+    end
+    state
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  ProcessInstances(where: {and: {processId: {equal: "travels"}, or: {state: {equal: ACTIVE}, rootProcessId: {isNull: false}}}}) {
+    id
+    processId
+    processName
+    start
+    end
+    state
+  }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Depending on the attribute type, the following operators are also available:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>String array argument:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>contains</code> : String</p>
+</li>
+<li>
+<p><code>containsAll</code>: Array of strings</p>
+</li>
+<li>
+<p><code>containsAny</code>: Array of strings</p>
+</li>
+<li>
+<p><code>isNull</code>: Boolean (<code>true</code> or <code>false</code>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>String argument:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>in</code>: Array of strings</p>
+</li>
+<li>
+<p><code>like</code>: String</p>
+</li>
+<li>
+<p><code>isNull</code>: Boolean (<code>true</code> or <code>false</code>)</p>
+</li>
+<li>
+<p><code>equal</code>: String</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>ID argument:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>in</code>: Array of strings</p>
+</li>
+<li>
+<p><code>equal</code>: String</p>
+</li>
+<li>
+<p><code>isNull</code>: Boolean (<code>true</code> or <code>false</code>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Boolean argument:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>isNull</code>: Boolean (<code>true</code> or <code>false</code>)</p>
+</li>
+<li>
+<p><code>equal</code>: Boolean (<code>true</code> or <code>false</code>)</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Numeric argument:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>in</code>: Array of integers</p>
+</li>
+<li>
+<p><code>isNull</code>: Boolean</p>
+</li>
+<li>
+<p><code>equal</code>: Integer</p>
+</li>
+<li>
+<p><code>greaterThan</code>: Integer</p>
+</li>
+<li>
+<p><code>greaterThanEqual</code>: Integer</p>
+</li>
+<li>
+<p><code>lessThan</code>: Integer</p>
+</li>
+<li>
+<p><code>lessThanEqual</code>: Integer</p>
+</li>
+<li>
+<p><code>between</code>: Numeric range</p>
+</li>
+<li>
+<p><code>from</code>: Integer</p>
+</li>
+<li>
+<p><code>to</code>: Integer</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Date argument:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>isNull</code>: Boolean (<code>true</code> or <code>false</code>)</p>
+</li>
+<li>
+<p><code>equal</code>: Date time</p>
+</li>
+<li>
+<p><code>greaterThan</code>: Date time</p>
+</li>
+<li>
+<p><code>greaterThanEqual</code>: Date time</p>
+</li>
+<li>
+<p><code>lessThan</code>: Date time</p>
+</li>
+<li>
+<p><code>lessThanEqual</code>: Date time</p>
+</li>
+<li>
+<p><code>between</code>: Date range</p>
+</li>
+<li>
+<p><code>from</code>: Date time</p>
+</li>
+<li>
+<p><code>to</code>: Date time</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Sort query results using the <code>orderBy</code> parameter</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>You can use the <code>orderBy</code> parameter to sort query results based on process or task attributes. You can also specify the direction of sorting in ascending <code>ASC</code> order or descending <code>DESC</code> order. Multiple attributes are applied to the database query in the order they are specified in the query filter.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  ProcessInstances(where: {state: {equal: ACTIVE}}, orderBy: {start: ASC}) {
+    id
+    processId
+    processName
+    start
+    end
+    state
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  UserTaskInstances(where: {state: {equal: "Ready"}}, orderBy: {name: ASC, actualOwner: DESC}) {
+    id
+    name
+    actualOwner
+    description
+    priority
+    processId
+    processInstanceId
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Limit and offset query results using the <code>pagination</code> parameter</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p>You can use the <code>pagination</code> parameter to specify a <code>limit</code> and <code>offset</code> for query results.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example query</div>
+<div class="content">
+<pre class="highlight"><code>{
+  ProcessInstances(where: {state: {equal: ACTIVE}}, orderBy: {start: ASC}, pagination: {limit: 10, offset: 0}) {
+    id
+    processId
+    processName
+    start
+    end
+    state
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="con-jobs-service_kogito-configuring">Kogito Jobs Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kogito provides a Jobs Service for scheduling Business Process Model and Notation (BPMN) process events that are configured to be executed at a specified time. These time-based events in a process model are known as <em>jobs</em>.</p>
+</div>
+<div class="paragraph">
+<p>By default, Kogito services use an in-memory timer service to handle jobs defined in your BPMN process models. This default timer service does not cover long time intervals and is only suitable for short delays defined in the process. For advanced use cases where time intervals can be days or weeks or when additional event handling options are required, you can configure your Kogito project to use the Kogito Jobs Service as an external timer service.</p>
+</div>
+<div class="paragraph">
+<p>The Jobs Service does not execute a job, but triggers a callback that might be an HTTP request on an endpoint specified for the job request or any other configured callback. The Jobs Service receives requests for job scheduling and then sends a request at the time specified on the job request.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kogito/configuration/jobs-service-architecture.png" alt="Diagram of the Jobs Service architecture">
+</div>
+<div class="title">Figure 8. Jobs Service architecture</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+The Kogito Jobs Service currently supports only HTTP <code>POST</code> requests that are sent to an endpoint specified on the job-scheduling request. The HTTP callback information must be specified in the job-scheduling request.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The main goal of the Jobs Service is to work with only active jobs. The Jobs Service tracks only the jobs that are scheduled and that need to be executed. When a job reaches a final state, the job is removed from the Jobs Service. All job information and transition states are sent to the Kogito Data Index Service where they can be indexed and made available for GraphQL queries.</p>
+</div>
+<div class="paragraph">
+<p>The Jobs Service implementation is based on non-blocking APIs and <a href="https://smallrye.io/smallrye-reactive-messaging/">Reactive Messaging</a> on top of Quarkus, which provides effective throughput and resource utilization. The scheduling engine is implemented on top of <a href="https://vertx.io/">Vert.x</a> and the external requests are built using a non-blocking HTTP client based on Vert.x.</p>
+</div>
+<div class="sect2">
+<h3 id="_supported_job_states_in_the_kogito_jobs_service">Supported job states in the Kogito Jobs Service</h3>
+<div class="paragraph">
+<p>The Kogito Jobs Service uses an internal state control mechanism to manage the job scheduling life cycle using the following supported job states:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Scheduled</strong></p>
+</li>
+<li>
+<p><strong>Executed</strong></p>
+</li>
+<li>
+<p><strong>Canceled</strong></p>
+</li>
+<li>
+<p><strong>Retry</strong></p>
+</li>
+<li>
+<p><strong>Error</strong></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Jobs Service workflow through these states is illustrated in the following diagram:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/kogito/configuration/jobs-service-state-control.png" alt="Diagram of Jobs Service states">
+</div>
+<div class="title">Figure 9. Jobs Service state control workflow</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_supported_job_types_in_the_kogito_jobs_service">Supported job types in the Kogito Jobs Service</h3>
+<div class="paragraph">
+<p>The Kogito Jobs Service supports the following job types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Time scheduled</strong>: A job that is scheduled at a specified time and executed only once when that point in time is reached. The time must be specified on the job scheduling request and must be in the future.</p>
+</li>
+<li>
+<p><strong>Periodic scheduled</strong>: A job that is scheduled at a specified time and executed after a specified interval, and then executed repeatedly over a specified period of time until a limit of executions is reached. The execution limit and interval must be specified in the job-scheduling request.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_supported_configuration_properties_in_the_kogito_jobs_service">Supported configuration properties in the Kogito Jobs Service</h3>
+<div class="paragraph">
+<p>The Kogito Jobs Service supports the following configuration properties. You can set these properties either using the <code>-D</code> prefix during Jobs Service start-up or in the <code>src/main/resources/application.properties</code> file of the Jobs Service project.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 3. Supported configuration properties in Jobs Service</caption>
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 40%;">
+<col style="width: 15%;">
+<col style="width: 15%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kogito.jobs-service.persistence</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identifies the persistence mechanism used by the Jobs Service.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>in-memory</code>, <code>infinispan</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>in-memory</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kogito.jobs-service.backoffRetryMillis</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the retry back-off time in milliseconds between job execution attempts, in case the execution fails</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Long type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>1000</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kogito.jobs-service.maxIntervalLimitToRetryMillis</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the maximum interval in milliseconds when retrying to execute jobs, in case the execution fails</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Long type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>60000</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mp.messaging.outgoing.kogito-job-service-job-status-events.bootstrap.servers</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identifies the Kafka bootstrap server address with the port used to publish events</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>localhost:9092</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>mp.messaging.outgoing.kogito-job-service-job-status-events.topic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the name of the Kafka topic where the events are published</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kogito-jobs-events</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="proc-jobs-service-using_kogito-configuring">Using the Kogito Jobs Service as a timer service</h3>
+<div class="paragraph">
+<p>By default, Kogito services use an in-memory timer service to handle time-based events (jobs) defined in your Business Process Model and Notation (BPMN) process models. This default timer service does not cover long time intervals and is only suitable for short delays defined in the process.</p>
+</div>
+<div class="paragraph">
+<p>For advanced use cases where time intervals can be days or weeks or when additional event handling options are required, you can configure your Kogito project to use the Kogito Jobs Service as an external timer service. Whenever you need to schedule a timer as part of process instance, the timer is scheduled in the Jobs Service and the Jobs Service calls back to the Kogito service upon timer expiration.</p>
+</div>
+<div class="paragraph">
+<p>The Kogito Jobs Service also supports Infinispan persistence that you can enable when you run the Jobs Service so that job data is preserved across application restarts.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Go to the <a href="https://repository.jboss.org/org/kie/kogito/jobs-service/"><code>jobs-service</code></a> artifacts page, select the latest release of the Jobs Service, and download the <code>jobs-service-<em>VERSION</em>-runner.jar</code> file to a local directory.</p>
+</li>
+<li>
+<p>In a command terminal, navigate to the directory location of the downloaded <code>jobs-service-<em>VERSION</em>-runner.jar</code> file and enter the following command to run the Jobs Service with Infinispan persistence enabled:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Running the Jobs Service with Infinispan persistence enabled</div>
+<div class="content">
+<pre class="highlight"><code>$ java  \
+    -Dkogito.job-service.persistence=infinispan  \
+    -jar jobs-service-<em>VERSION</em>-runner.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Infinispan persistence enables the job data to be preserved across application restarts. If you do not use Infinispan persistence, the Jobs Service uses the default in-memory storage and all job information is lost between application restarts.</p>
+</div>
+<div class="paragraph">
+<p>To change the logging level of the Jobs Service, such as for debugging, you can specify the following start-up properties:</p>
+</div>
+<div class="listingblock">
+<div class="title">Modifying Jobs Service logging level for debugging</div>
+<div class="content">
+<pre class="highlight"><code>$ java  \
+  -Dquarkus.log.console.level=DEBUG -Dquarkus.log.category.\"org.kie.kogito\".min-level=DEBUG  \
+  -Dquarkus.log.category.\"org.kie.kogito\".level=DEBUG  \
+  -jar jobs-service-<em>VERSION</em>-runner.jar</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In your Kogito project, add the following dependency to the <code>pom.xml</code> file to enable the Jobs Service add-on:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">On Quarkus</div>
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+  &lt;artifactId&gt;jobs-management-quarkus-addon&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On Spring Boot</div>
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+  &lt;artifactId&gt;jobs-management-springboot-addon&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>In your Kogito project, add the following properties to the <code>src/main/resources/application.properties</code> to define the locations of the Jobs Service and the callback to be used when the timer expires:</p>
+<div class="listingblock">
+<div class="title">Configure Kogito service properties for Jobs Service</div>
+<div class="content">
+<pre class="highlight"><code>kogito.jobs-service.url=http://localhost:8085
+kogito.service.url=http://localhost:8080</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In a command terminal, navigate to your Kogito project and run the project using your preferred run mode, such as development mode:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">On Quarkus</div>
+<div class="content">
+<pre class="highlight"><code>mvn clean compile quarkus:dev</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On Sprint Boot</div>
+<div class="content">
+<pre class="highlight"><code>mvn clean compile spring-boot:run</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With the Jobs Service and your Kogito project both configured and running, the Jobs Service can receive any job-scheduling requests to function as the external timer service.</p>
+</div>
+<div class="paragraph">
+<p>By default, the implementation of the Jobs Service uses the following basic components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>An implementation of the <code>org.kie.kogito.jobs.JobsService</code> interface that is used by the service to schedule jobs</p>
+</li>
+<li>
+<p>A REST endpoint registered at the path <code>/management/jobs</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If the default REST clients used by the Jobs Service add-on do not meet your needs, you can configure custom REST clients using the relevant service implementors. The REST client depends on the application type:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On Quarkus, the Jobs Service uses a Vert.x web client: <code>io.vertx.ext.web.client.WebClient</code></p>
+</li>
+<li>
+<p>On Spring Boot, the Jobs Service uses a rest template: <code>org.springframework.web.client.RestTemplate</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In both cases, you produce an instance of the client to enable detailed setup of the client.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-jobs-service-persistence_kogito-configuring">Enabling Infinispan persistence in the Kogito Jobs Service</h3>
+<div class="paragraph">
+<p>The Kogito Jobs Service supports the following persistence mechanisms for job data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>In-memory persistence</strong>: (Default) Job data is persisted with the Jobs Service in-memory storage during the Jobs Service runtime. If the Jobs Service is restarted, all job information is lost. If no other persistence configuration is set, the Jobs Service uses this persistence mechanism.</p>
+</li>
+<li>
+<p><strong>Infinispan persistence</strong>: Job data is persisted using Infinispan storage so that the data is preserved across application restarts. If the Jobs Service is restarted, the service continues to process any previously scheduled jobs.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You can enable Infinispan persistence in the Kogito Jobs Service during application start-up and in the Jobs Service <code>application.properties</code> file.</p>
+</div>
+<div class="paragraph">
+<div class="title">Procedure</div>
+<p>Run the Jobs Service with the property <code>-Dkogito.job-service.persistence=infinispan</code>:</p>
+</div>
+<div class="listingblock">
+<div class="title">Enabling Infinispan persistence during Jobs Service start-up</div>
+<div class="content">
+<pre class="highlight"><code>$ java  \
+    -Dkogito.job-service.persistence=infinispan  \
+    -jar jobs-service-<em>VERSION</em>-runner.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can add the same property to the <code>src/main/resources/application.properties</code> file in the Jobs Service project.</p>
+</div>
+<div class="paragraph">
+<p>For more information about Infinispan configuration with Quarkus applications, see <a href="https://quarkus.io/guides/infinispan-client">Infinispan client</a> in the Quarkus documentation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="proc-jobs-service-messaging_kogito-configuring">Enabling Kafka messaging in the Kogito Jobs Service</h3>
+<div class="paragraph">
+<p>The Kogito Jobs Service supports Apache Kafka messaging to publish events for each job state transition to a defined Kafka topic. Any application can subscribe to this Kafka topic to receive information about jobs and job state transitions. For example, the Kogito Data Index Service is subscribed to the Jobs Service Kafka topic so that if you configure and run the Jobs Service, the Data Index Service can begin indexing jobs with their current state.</p>
+</div>
+<div class="paragraph">
+<p>You can enable Kafka messaging in the Kogito Jobs Service during application start-up and in the Jobs Service <code>application.properties</code> file.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>In the <code>src/main/resources/application.properties</code> file in the Jobs Service project, add the following properties to identify the Kafka bootstrap server with the port used to publish events and the Kafka topic where the events are published:</p>
+<div class="listingblock">
+<div class="title">Defining Kafka server and topic in Jobs Service <code>application.properties</code></div>
+<div class="content">
+<pre class="highlight"><code>mp.messaging.outgoing.kogito-job-service-job-status-events.bootstrap.servers=<em>SERVER_ADDRESS</em>
+mp.messaging.outgoing.kogito-job-service-job-status-events.topic=<em>TOPIC_NAME</em></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Run the Jobs Service with the property <code>-Dquarkus.profile=events-support</code>:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<div class="title">Enabling Kafka messaging during Jobs Service start-up</div>
+<div class="content">
+<pre class="highlight"><code>$ java  \
+    -Dquarkus.profile=events-support  \
+    -jar jobs-service-<em>VERSION</em>-runner.jar</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can add the environment variable <code>QUARKUS_PROFILE=events-support</code>.</p>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="con-bpmn-process-management-addon_kogito-configuring">Kogito process management add-on</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Kogito provides a <code>process-management-addon</code> add-on that enables basic REST operations that you can use to manage process instances. These REST operations are supplemental to any other specific REST operations that you have configured in your application.</p>
+</div>
+<div class="paragraph">
+<p>To configure process management REST capabilities for your Kogito services, you can add the process management add-on as a dependency in the <code>pom.xml</code> file of your Kogito project:</p>
+</div>
+<div class="listingblock">
+<div class="title">Project dependency to enable process management REST operations</div>
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.kie.kogito&lt;/groupId&gt;
+  &lt;artifactId&gt;process-management-addon&lt;/artifactId&gt;
+&lt;/dependency&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Kogito process management add-on provides REST support for the following basic operations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Process instances</strong>: Abort an active process instance</p>
+</li>
+<li>
+<p><strong>Node instances</strong>:  Cancel or re-trigger a node instance, or trigger a new node instance</p>
+</li>
+<li>
+<p><strong>Error handling</strong>: Retrieve error details for a process instance, or skip or re-trigger a failed node instance</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition to exposed REST operations, the process management add-on also provides the following REST exception mappers to generate more meaningful error messages for typical exception types:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>ProcessInstanceNotFound</code></p>
+</li>
+<li>
+<p><code>NodeInstanceNotFound</code></p>
+</li>
+<li>
+<p><code>NodeNotFound</code></p>
+</li>
+<li>
+<p><code>ProcessInstanceExecutionError</code></p>
+</li>
+<li>
+<p><code>NotAuthorized</code></p>
+</li>
+<li>
+<p><code>InvalidTransition</code> (for work items)</p>
+</li>
+<li>
+<p><code>InvalidLifeCyclePhase</code> (for work items)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These exception mappers produce a valid HTTP error code with JSON payload with the context that caused the exception.</p>
+</div>
+<div class="paragraph">
+<p>For example, the following is a <code>ProcessInstanceNotFoundException</code> error generated at runtime:</p>
+</div>
+<div class="listingblock">
+<div class="title">Example error with JSON payload at runtime</div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">HTTP code : 404
+
+{
+  "processInstanceId" : "c6862071-0f2e-4f21-9bc8-586245a76c3aa",
+  "message" : "Process instance with id c6862071-0f2e-4f21-9bc8-586245a76c3aa not found"
+}</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rest_endpoints_for_the_process_management_add_on">REST endpoints for the process management add-on</h3>
+<div class="paragraph">
+<p>After you add the <code>process-management-addon</code> dependency to your Kogito project and run your Kogito services, you can use the following REST endpoints to manage your process and node instances. These REST operations are supplemental to any other specific REST operations that you have configured in your application.</p>
+</div>
+<div class="paragraph">
+<p>For each endpoint, use a REST client, curl utility, or Swagger UI (if configured for the application) to send requests with the following components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Base URL</strong>: <code>http://<em>HOST</em>:<em>PORT</em>/management/processes/<em>PROCESS_ID</em>/instances/<em>PROCESS_INSTANCE_ID</em></code></p>
+</li>
+<li>
+<p><strong>Request parameters</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code><em>PROCESS_ID</em></code>: The string identifier of the process definition, such as <code>orders</code></p>
+</li>
+<li>
+<p><code><em>PROCESS_INSTANCE_ID</em></code>: The integer identifier of the process instance, such as <code>ec44f890-d21d-444f-a4ec-cb88589bd79</code></p>
+</li>
+<li>
+<p><code><em>NODE_ID</em></code>: The string identifier of the node, such as <code>verifyOrders</code></p>
+</li>
+<li>
+<p><code><em>NODE_INSTANCE_ID</em></code>: The integer identifier of the node instance, such as <code>6e46bec2-0273-46f6-ad7d-2ff156e55a6c</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>HTTP headers</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>accept</code>: <code>application/json</code></p>
+</li>
+<li>
+<p><code>content-type</code>: <code>application/json</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>HTTP methods</strong>: <code>GET</code>, <code>POST</code>, or <code>DELETE</code></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_process_instances">Process instances</h4>
+<div class="paragraph">
+<p>Use the following REST endpoints from the process management add-on to interact with process instances:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Return active node instances for a process instance</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><code>[GET] /management/processes/<em>PROCESS_ID</em>/instances/<em>PROCESS_INSTANCE_ID</em>/nodeInstances</code></p>
+</div>
+<div class="paragraph">
+<div class="title">Example REST endpoint</div>
+<p><code>http://localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/nodeInstances</code></p>
+</div>
+<div class="listingblock">
+<div class="title">Example curl request</div>
+<div class="content">
+<pre class="highlight"><code>curl -X GET localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/nodeInstances -H 'content-type: application/json' -H 'accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example response (JSON)</div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "id": "ec44f890-d21d-444f-a4ec-cb88589bd79a",
+  "name": "Verify order",
+  "nodeInstanceId": "6e46bec2-0273-46f6-ad7d-2ff156e55a6c",
+  "parameters": {
+    "Locale": "en-UK",
+    "TaskName": "Verify order",
+    "NodeName": "Verify order",
+    "Priority": "1",
+    "input1": {
+      "orderNumber": "12345",
+      "shipped": false,
+      "total": 0.8233575052440095
+    },
+    "Skippable": "true",
+    "ActorId": "john"
+  },
+  "phase": "active",
+  "phaseStatus": "Ready",
+  "results": {},
+  "state": 0
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Abort a process instance</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><code>[DELETE] /management/processes/<em>PROCESS_ID</em>/instances/<em>PROCESS_INSTANCE_ID</em></code></p>
+</div>
+<div class="paragraph">
+<div class="title">Example REST endpoint</div>
+<p><code>http://localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a</code></p>
+</div>
+<div class="listingblock">
+<div class="title">Example curl request</div>
+<div class="content">
+<pre class="highlight"><code>curl -X DELETE localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a -H 'content-type: application/json' -H 'accept: application/json'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_node_instances">Node instances</h4>
+<div class="paragraph">
+<p>Use the following REST endpoints from the process management add-on to interact with node instances:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Cancel a node instance within a process instance</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><code>[DELETE] /management/processes/<em>PROCESS_ID</em>/instances/<em>PROCESS_INSTANCE_ID</em>/nodeInstances/<em>NODE_INSTANCE_ID</em></code></p>
+</div>
+<div class="paragraph">
+<div class="title">Example REST endpoint</div>
+<p><code>http://localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/nodeInstances/6e46bec2-0273-46f6-ad7d-2ff156e55a6c</code></p>
+</div>
+<div class="listingblock">
+<div class="title">Example curl request</div>
+<div class="content">
+<pre class="highlight"><code>curl -X DELETE localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/nodeInstances/6e46bec2-0273-46f6-ad7d-2ff156e55a6c -H 'content-type: application/json' -H 'accept: application/json'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Re-trigger a node instance within a process instance</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><code>[POST] /management/processes/<em>PROCESS_ID</em>/instances/<em>PROCESS_INSTANCE_ID</em>/nodeInstances/<em>NODE_INSTANCE_ID</em></code></p>
+</div>
+<div class="paragraph">
+<div class="title">Example REST endpoint</div>
+<p><code>http://localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/nodeInstances/6e46bec2-0273-46f6-ad7d-2ff156e55a6c</code></p>
+</div>
+<div class="listingblock">
+<div class="title">Example curl request</div>
+<div class="content">
+<pre class="highlight"><code>curl -X POST localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/nodeInstances/6e46bec2-0273-46f6-ad7d-2ff156e55a6c -H 'content-type: application/json' -H 'accept: application/json'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Trigger a new instance of a node within a process instance</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><code>[POST] /management/processes/<em>PROCESS_ID</em>/instances/<em>PROCESS_INSTANCE_ID</em>/nodes/<em>NODE_ID</em></code></p>
+</div>
+<div class="paragraph">
+<div class="title">Example REST endpoint</div>
+<p><code>http://localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/nodes/verifyOrder</code></p>
+</div>
+<div class="listingblock">
+<div class="title">Example curl request</div>
+<div class="content">
+<pre class="highlight"><code>curl -X POST localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/nodes/verifyOrder -H 'content-type: application/json' -H 'accept: application/json'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_error_handling">Error handling</h4>
+<div class="paragraph">
+<p>Use the following REST endpoints from the process management add-on to troubleshoot errors with process and node instances:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+These endpoints function only when a process instance is in an <code>ERROR</code> state.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Return error details for a process instance</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><code>[GET] /management/processes/<em>PROCESS_ID</em>/instances/<em>PROCESS_INSTANCE_ID</em>/error</code></p>
+</div>
+<div class="paragraph">
+<div class="title">Example REST endpoint</div>
+<p><code>http://localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/error</code></p>
+</div>
+<div class="listingblock">
+<div class="title">Example curl request</div>
+<div class="content">
+<pre class="highlight"><code>curl -X GET localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/error -H 'content-type: application/json' -H 'accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Example response (JSON)</div>
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+  "processInstanceId" : "ec44f890-d21d-444f-a4ec-cb88589bd79a",
+  "message" : "Process instance with id c6862071-0f2e-4f21-9bc8-586245a76c3aa contains no input assignment"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Re-trigger any failed nodes within a process instance</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><code>[POST] /management/processes/<em>PROCESS_ID</em>/instances/<em>PROCESS_INSTANCE_ID</em>/retrigger</code></p>
+</div>
+<div class="paragraph">
+<div class="title">Example REST endpoint</div>
+<p><code>http://localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/retrigger</code></p>
+</div>
+<div class="listingblock">
+<div class="title">Example curl request</div>
+<div class="content">
+<pre class="highlight"><code>curl -X POST localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/retrigger -H 'content-type: application/json' -H 'accept: application/json'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Skip any failed nodes within a process instance</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="paragraph">
+<p><code>[POST] /management/processes/<em>PROCESS_ID</em>/instances/<em>PROCESS_INSTANCE_ID</em>/skip</code></p>
+</div>
+<div class="paragraph">
+<div class="title">Example REST endpoint</div>
+<p><code>http://localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/skip</code></p>
+</div>
+<div class="listingblock">
+<div class="title">Example curl request</div>
+<div class="content">
+<pre class="highlight"><code>curl -X POST localhost:8080/management/processes/orders/instances/ec44f890-d21d-444f-a4ec-cb88589bd79a/skip -H 'content-type: application/json' -H 'accept: application/json'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_resources">Additional resources</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://access.redhat.com/documentation/en-us/kogito/0.9/html-single/creating_and_running_your_first_kogito_services"><em>Creating and running your first Kogito services</em></a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/documentation/en-us/kogito/0.9/html-single/deploying_kogito_services_on_red_hat_openshift_container_platform"><em>Deploying Kogito services on Red Hat OpenShift Container Platform</em></a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/documentation/en-us/kogito/0.9/html-single/developing_decision_services_with_kogito"><em>Developing decision services with Kogito</em></a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/documentation/en-us/kogito/0.9/html-single/developing_process_services_with_kogito"><em>Developing process services with Kogito</em></a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="versioning-information">Appendix A: Versioning information</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Documentation last updated on Tuesday, April 21, 2020.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2020-05-18 16:19:08 EDT
+</div>
+</div>
+</body>
+</html>
