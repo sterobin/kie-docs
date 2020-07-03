@@ -1,16 +1,8 @@
+ifdef::context[:parent-context: {context}]
+
 [id='chap-kogito-creating-running_{context}']
-
-ifdef::KOGITO-ENT[]
-include::_artifacts/document-attributes.adoc[]
-endif::[]
-
 = Creating and running your first {PRODUCT} services
 :context: kogito-creating-running
-ifdef::KOGITO-ENT[]
-:doctype: book
-:imagesdir: _images
-include::_artifacts/author-group.adoc[]
-endif::[]
 
 // Purpose statement for the assembly
 
@@ -1227,7 +1219,7 @@ curl -X POST http://localhost:8080/persons/8eef502b-012b-4628-acb7-73418a089c08/
 ifdef::KOGITO-ENT[]
 //tag::ref-kogito-glossary[]
 [id='ref-kogito-glossary_{context}']
-= {PRODUCT} glossary of terms
+== {PRODUCT} glossary of terms
 
 This glossary defines terms, concepts, or components that are referenced frequently in {PRODUCT} documentation or that have a unique meaning or function in {PRODUCT}.
 
@@ -1527,7 +1519,7 @@ A Java object that contains the implementation logic for a custom task (work ite
 * {URL_DECISION_SERVICES}[_{DECISION_SERVICES}_]
 * {URL_PROCESS_SERVICES}[_{PROCESS_SERVICES}_]
 * {URL_CONFIGURING_KOGITO}[_{CONFIGURING_KOGITO}_]
-
-// Versioning info
-include::_artifacts/versioning-information.adoc[]
 endif::[]
+
+ifdef::parent-context[:context: {parent-context}]
+ifndef::parent-context[:!context:]

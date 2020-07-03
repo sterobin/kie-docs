@@ -1,16 +1,8 @@
+ifdef::context[:parent-context: {context}]
+
 [id='chap-kogito-developing-decision-services']
-
-ifdef::KOGITO-ENT[]
-include::_artifacts/document-attributes.adoc[]
-endif::[]
-
 = Developing decision services with {PRODUCT}
 :context: kogito-developing-decision-services
-ifdef::KOGITO-ENT[]
-:doctype: book
-:imagesdir: _images
-include::_artifacts/author-group.adoc[]
-endif::[]
 
 // Purpose statement for the assembly
 As a developer of business decisions, you can use {PRODUCT} business automation to develop decision services using Decision Model and Notation (DMN) models, Drools Rule Language (DRL) rules, XLS or XLSX spreadsheet decision tables, or a combination of all three methods.
@@ -65,19 +57,5 @@ a|
 //@Jason: The following `{asciidoc-dir}` functions as a symlink for both enterprise (document attribute) and community (pom.xml attribute) so that we can house chaps in subject-matter dirs and still cross-ref like this to other chaps in other folders. The docs are already doing this sort of thing for artifacts and images, so just following suite.
 include::{asciidoc-dir}/creating-running/chap-kogito-creating-running.adoc[tags=ref-kogito-app-examples]
 
-//@Jason: The following are assemblies within this mother assembly.
-include::chap-kogito-using-dmn-models.adoc[]
-include::chap-kogito-using-drl-rules.adoc[]
-include::chap-kogito-using-spreadsheet-decision-tables.adoc[]
-include::{asciidoc-dir}/decision-engine/chap-kogito-decision-engine.adoc[]
-
-ifdef::KOGITO-ENT[]
-== Additional resources
-* {URL_CREATING_RUNNING}[_{CREATING_RUNNING}_]
-* {URL_DEPLOYING_ON_OPENSHIFT}[_{DEPLOYING_ON_OPENSHIFT}_]
-* {URL_PROCESS_SERVICES}[_{PROCESS_SERVICES}_]
-* {URL_CONFIGURING_KOGITO}[_{CONFIGURING_KOGITO}_]
-
-// Versioning info
-include::_artifacts/versioning-information.adoc[]
-endif::[]
+ifdef::parent-context[:context: {parent-context}]
+ifndef::parent-context[:!context:]

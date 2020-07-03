@@ -41,6 +41,10 @@ include::creating-running/chap-kogito-creating-running.adoc[leveloffset=+1]
 
 //Developing decision services
 include::decision-services/chap-kogito-developing-decision-services.adoc[leveloffset=+1]
+include::decision-services/chap-kogito-using-dmn-models.adoc[leveloffset=+1]
+include::decision-services/chap-kogito-using-drl-rules.adoc[leveloffset=+1]
+include::decision-services/chap-kogito-using-spreadsheet-decision-tables.adoc[leveloffset=+1]
+include::decision-engine/chap-kogito-decision-engine.adoc[leveloffset=+1]
 
 //Developing process services
 include::process-services/chap-kogito-developing-process-services.adoc[leveloffset=+1]
@@ -49,7 +53,7 @@ include::process-services/chap-kogito-developing-process-services.adoc[leveloffs
 include::configuration/chap-kogito-configuring.adoc[leveloffset=+1]
 
 //Glossary
-include::creating-running/chap-kogito-creating-running.adoc[leveloffset=+1,tags=ref-kogito-glossary]
+include::creating-running/chap-kogito-creating-running.adoc[tags=ref-kogito-glossary]
 
 //Release notes, always last
 //include::chap-kogito-release-notes.adoc[leveloffset=+1]
