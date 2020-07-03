@@ -1,18 +1,8 @@
 ifdef::context[:parent-context: {context}]
 
 [id='assembly-kogito-decision-engine']
-
-ifdef::KOGITO-ENT[]
-include::_artifacts/document-attributes.adoc[]
-endif::[]
-
 = {DECISION_ENGINE_CAP} in {PRODUCT}
 :context: decision-engine
-ifdef::KOGITO-ENT[]
-:doctype: book
-:imagesdir: _images
-include::_artifacts/author-group.adoc[]
-endif::[]
 
 As a developer of business decisions, your understanding of the {DECISION_ENGINE} in {PRODUCT} can help you design more effective business assets and a more scalable decision management architecture. The {DECISION_ENGINE} is the {PRODUCT} component that stores, processes, and evaluates data to execute business rules and to reach the decisions that you define. This document describes basic concepts and functions of the {DECISION_ENGINE} to consider as you create your business rule system and decision services in {PRODUCT}.
 
