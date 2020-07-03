@@ -1,4 +1,6 @@
-[id='assembly-kogito-developing-decision-services_{context}']
+ifdef::context[:parent-context: {context}]
+
+[id='assembly-kogito-developing-decision-services']
 
 ifdef::KOGITO-ENT[]
 include::_artifacts/document-attributes.adoc[]
@@ -26,11 +28,9 @@ endif::[]
 
 include::modules/decision-services/ref-decision-authoring-assets.adoc[leveloffset=+1]
 include::modules/creating-running/ref-kogito-app-examples.adoc[leveloffset=+1]
+// ... includes continue
 
-include::assembly-kogito-using-dmn.adoc[]
-include::assembly-kogito-using-drl.adoc[]
-include::assembly-kogito-using-spreadsheet-decision-tables.adoc[]
-include::assembly-kogito-decision-engine.adoc[]
+// This assembly is followed by sub-assemblies after this point, included in `titles-enterprise/kogito-developing-decision-services/master.adoc`.
 
 ifdef::KOGITO-ENT[]
 == Additional resources
@@ -42,3 +42,6 @@ ifdef::KOGITO-ENT[]
 // Versioning info
 include::_artifacts/versioning-information.adoc[]
 endif::[]
+
+ifdef::parent-context[:context: {parent-context}]
+ifndef::parent-context[:!context:]
