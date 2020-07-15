@@ -1,7 +1,6 @@
-ifdef::context[:parent-context: {context}]
-
 [id='chap-kogito-using-dmn-models']
 = Using DMN models in {PRODUCT} services
+ifdef::context[:parent-context: {context}]
 :context: dmn-models
 
 As a developer of business decisions, you can use Decision Model and Notation (DMN) to model a decision service graphically in a decision requirements diagram (DRD). This diagram consists of one or more decision requirements graphs (DRGs) that trace business decisions from start to finish, with each decision node using logic defined in DMN boxed expressions such as decision tables.

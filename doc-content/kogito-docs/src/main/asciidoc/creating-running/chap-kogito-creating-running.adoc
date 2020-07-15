@@ -1,7 +1,6 @@
-ifdef::context[:parent-context: {context}]
-
 [id='chap-kogito-creating-running_{context}']
 = Creating and running your first {PRODUCT} services
+ifdef::context[:parent-context: {context}]
 :context: kogito-creating-running
 
 // Purpose statement for the assembly

@@ -1,7 +1,6 @@
-ifdef::context[:parent-context: {context}]
-
 [id='chap-kogito-using-spreadsheet-decision-tables']
 = Using spreadsheet decision tables in {PRODUCT} services
+ifdef::context[:parent-context: {context}]
 :context: decision-tables
 
 As a developer of business decisions, you can define business rules in a tabular format in spreadsheet decision tables and then include the spreadsheet file in your {PRODUCT} project. These rules are compiled into Drools Rule Language (DRL) for the decision service in your project.
