@@ -413,7 +413,7 @@ Example: `LOCK-ON-ACTIVE true`
 .Sample decision table spreadsheet with attribute columns
 image::kogito/decision-tables/decision-table-example-03.png[Example decision table with definitions used]
 
-include::chap-kogito-using-dmn-models.adoc[tags=con-kogito-service-execution]
+include::{asciidoc-dir}/decision-services/chap-kogito-using-dmn-models.adoc[tags=con-kogito-service-execution]
 
 ifdef::parent-context[:context: {parent-context}]
 ifndef::parent-context[:!context:]

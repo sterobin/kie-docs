@@ -7,6 +7,11 @@ ifdef::context[:parent-context: {context}]
 
 As a developer of business processes and decisions, you can use {PRODUCT} business automation to build  cloud-native applications that adapt to your business domain and tooling.
 
+[IMPORTANT]
+====
+{PRODUCT} is currently available for Development Preview. Development Preview releases contain features and APIs that might not be fully tested and that might change in the final GA version. Users are discouraged from using Development Preview software in production or for business-critical workloads.  Because this is not production-ready software, users are not able to open support tickets. To learn more about {PRODUCT}, please contact your Red Hat representative or send an email to Kogito-earlyaccess@redhat.com. Red Hat will address reported issues at its own discretion.
+====
+
 .Prerequisites
 * JDK 11 or later is installed.
 * Apache Maven 3.6.2 or later is installed.
