@@ -52,7 +52,7 @@ endif::KOGITO-COMM[]
 
 ifdef::env-github[]
 include::document-attributes-kogito-comm.adoc[]
-:imagesdir: _images
+:imagesdir: ../../../../../../_images
 endif::[]
 
 //For source includes
