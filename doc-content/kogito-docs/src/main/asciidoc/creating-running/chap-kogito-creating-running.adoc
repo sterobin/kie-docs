@@ -1,16 +1,15 @@
+ifdef::env-github[]
+include::../../../../../../_artifacts/document-attributes.adoc[]
+endif::[]
 [id='chap-kogito-creating-running_{context}']
 = Creating and running your first {PRODUCT} services
 ifdef::context[:parent-context: {context}]
 :context: kogito-creating-running
-include::../../../../../../_artifacts/document-attributes.adoc[]
 
 // Purpose statement for the assembly
 
 As a developer of business processes and decisions, you can use {PRODUCT} business automation to build  cloud-native applications that adapt to your business domain and tooling.
 
-ifdef::env-github[]
-Hello GitHub!
-endif::[]
 
 [IMPORTANT]
 ====
