@@ -8,6 +8,10 @@ include::../../../../../../_artifacts/document-attributes.adoc[]
 
 As a developer of business processes and decisions, you can use {PRODUCT} business automation to build  cloud-native applications that adapt to your business domain and tooling.
 
+ifdef::env-github[]
+Hello GitHub!
+endif::[]
+
 [IMPORTANT]
 ====
 {PRODUCT} is currently available for Development Preview.
