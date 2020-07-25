@@ -1,11 +1,11 @@
-ifdef::env-github[]
-include::../../../../../../_artifacts/document-attributes.adoc[]
-:imagesdir: ../../../../../../_images
-endif::[]
 [id='chap-kogito-creating-running_{context}']
 = Creating and running your first {PRODUCT} services
 ifdef::context[:parent-context: {context}]
 :context: kogito-creating-running
+ifdef::env-github[]
+include::../../../../../../_artifacts/document-attributes.adoc[]
+:imagesdir: ../../../../../../_images
+endif::[]
 
 // Purpose statement for the assembly
 
