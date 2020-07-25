@@ -2,6 +2,7 @@
 = Creating and running your first {PRODUCT} services
 ifdef::context[:parent-context: {context}]
 :context: kogito-creating-running
+include::_artifacts/document-attributes.adoc[]
 
 // Purpose statement for the assembly
 
@@ -9,7 +10,12 @@ As a developer of business processes and decisions, you can use {PRODUCT} busine
 
 [IMPORTANT]
 ====
-{PRODUCT} is currently available for Development Preview. Development Preview releases contain features and APIs that might not be fully tested and that might change in the final GA version. Users are discouraged from using Development Preview software in production or for business-critical workloads.  Because this is not production-ready software, users are not able to open support tickets. To learn more about {PRODUCT}, please contact your Red Hat representative or send an email to Kogito-earlyaccess@redhat.com. Red Hat will address reported issues at its own discretion.
+{PRODUCT} is currently available for Development Preview.
+Development Preview releases contain features and APIs that might not be fully tested and that might change in the final GA version.
+Users are discouraged from using Development Preview software in production or for business-critical workloads.
+Because this is not production-ready software, users are not able to open support tickets.
+To learn more about {PRODUCT}, please contact your Red Hat representative or send an email to Kogito-earlyaccess@redhat.com.
+Red Hat will address reported issues at its own discretion.
 ====
 
 .Prerequisites
@@ -24,23 +30,32 @@ ifdef::KOGITO-ENT[]
 [id='con-kogito-automation_{context}']
 == {PRODUCT} business automation
 
-{PRODUCT} is a cloud-native business automation technology for building cloud-ready business applications. The name _Kogito_ derives from the Latin "Cogito", as in "Cogito, ergo sum" ("I think, therefore I am"), and is pronounced `[ˈkoː.d͡ʒi.to]` (_KO-jee-to_). The letter _K_ has reference to Kubernetes, the base for {OPENSHIFT} as the target cloud platform for {PRODUCT}, and to the Knowledge Is Everything (KIE) open source business automation project from which {PRODUCT} originates.
+{PRODUCT} is a cloud-native business automation technology for building cloud-ready business applications.
+The name _Kogito_ derives from the Latin "Cogito", as in "Cogito, ergo sum" ("I think, therefore I am"), and is pronounced `[ˈkoː.d͡ʒi.to]` (_KO-jee-to_).
+The letter _K_ has reference to Kubernetes, the base for {OPENSHIFT} as the target cloud platform for {PRODUCT}, and to the Knowledge Is Everything (KIE) open source business automation project from which {PRODUCT} originates.
 
-{PRODUCT} is designed specifically to excel in a hybrid cloud environment and to be adaptable to your domain and tooling needs. The core objective of {PRODUCT} is to help you mold a set of business processes and decisions into your own domain-specific cloud-native set of services.
+{PRODUCT} is designed specifically to excel in a hybrid cloud environment and to be adaptable to your domain and tooling needs.
+The core objective of {PRODUCT} is to help you mold a set of business processes and decisions into your own domain-specific cloud-native set of services.
 
 .Business processes and decisions to cloud services
 image::kogito/creating-running/kogito-assets-to-cloud.png[Image of business assets moving to cloud services]
 
-When you are using {PRODUCT}, you are building a cloud-native application as a set of independent domain-specific services, collaborating to achieve some business value. The processes and decisions that you use to describe the target behavior are executed as part of the services that you create. The resulting services are highly distributed and scalable with no centralized orchestration service, and the runtime that your service uses is optimized for what your service needs.
+When you are using {PRODUCT}, you are building a cloud-native application as a set of independent domain-specific services, collaborating to achieve some business value.
+The processes and decisions that you use to describe the target behavior are executed as part of the services that you create.
+The resulting services are highly distributed and scalable with no centralized orchestration service, and the runtime that your service uses is optimized for what your service needs.
 
 // @comment: Excluding for simplicity for now (Stetson, 18 Feb 2020)
-//If you need long-lived processes, you can persist the runtime state externally in a data grid such as Infinispan. Each {PRODUCT} service also produces events that can be consumed by other services. For example, if you use Apache Kafka, events can be aggregated and indexed in a data index service, offering advanced query capabilities through GraphQL.
+//If you need long-lived processes, you can persist the runtime state externally in a data grid such as Infinispan.
+//Each {PRODUCT} service also produces events that can be consumed by other services.
+
+//For example, if you use Apache Kafka, events can be aggregated and indexed in a data index service, offering advanced query capabilities through GraphQL.
 
 {PRODUCT} includes components that are based on well-known business automation KIE projects, specifically https://drools.org[Drools], https://jbpm.org[jBPM], and https://optaplanner.org[OptaPlanner], to offer dependable, open source solutions for business rules, business processes, and constraint solving.
 
 === Cloud-first priority
 
-{PRODUCT} is designed to run and scale on a cloud infrastructure. You can use {PRODUCT} with the latest cloud-based technologies, such as Quarkus, Knative, and Apache Kafka, to get fast boot times and instant scaling on container application platforms, such as {OPENSHIFT}.
+{PRODUCT} is designed to run and scale on a cloud infrastructure.
+You can use {PRODUCT} with the latest cloud-based technologies, such as Quarkus, Knative, and Apache Kafka, to get fast boot times and instant scaling on container application platforms, such as {OPENSHIFT}.
 
 .Technologies used with {PRODUCT}
 image::kogito/creating-running/kogito-related-technolgies.png[Image of cloud-based technologies]
@@ -50,16 +65,20 @@ For example, {PRODUCT} is compatible with the following technologies:
 * *{OPENSHIFT}*, based on Kubernetes, is the target platform for building and managing containerized applications.
 * *Quarkus* is the new native Java stack for Kubernetes that you can use when you build applications with {PRODUCT} services.
 * *Spring Boot* is also supported with {PRODUCT} if you need to use the Spring Framework with {PRODUCT}.
-ifdef::KOGITO-COMM[]
-* *GraalVM* with Quarkus enables you to use native compilation with {PRODUCT}, resulting in fast start-up times and minimal footprint. For example, a native {PRODUCT} service starts in about 0.003ms, about 100 times faster than a non-native start-up. Fast start-up is almost a necessity in a cloud ecosystem, especially if you need small serverless applications.
-endif::[]
 * *Knative* enables you to build serverless applications with {PRODUCT} that you can scale up or down (to zero) as needed.
 * *Prometheus* and *Grafana* are compatible with {PRODUCT} services for monitoring and analytics with optional extensions.
 * *Kafka*, *Infinispan*, and *Keycloak* are also some of the middleware technologies that {PRODUCT} supports for messaging, persistence, and security.
+ifndef::KOGITO-ENT[]
+* *GraalVM* with Quarkus enables you to use native compilation with {PRODUCT}, resulting in fast start-up times and minimal footprint.
+  For example, a native {PRODUCT} service starts in about 0.003ms, about 100 times faster than a non-native start-up.
+  Fast start-up is almost a necessity in a cloud ecosystem, especially if you need small serverless applications.
+endif::[]
 
 === Domain-specific flexibility
 
-{PRODUCT} adapts to your business domain instead of forcing you to modify your domain to work with {PRODUCT}. You can expose your {PRODUCT} services with domain-specific APIs, based on the processes and decisions that you have defined. Domain-specific APIs for {PRODUCT} services do not require third-party or internal APIs.
+{PRODUCT} adapts to your business domain instead of forcing you to modify your domain to work with {PRODUCT}.
+You can expose your {PRODUCT} services with domain-specific APIs, based on the processes and decisions that you have defined.
+Domain-specific APIs for {PRODUCT} services do not require third-party or internal APIs.
 
 For example, a process for onboarding employees could generate remote REST API endpoints that you can use to onboard new employees or get information on their status, all using domain-specific JSON data.
 
@@ -70,14 +89,20 @@ You can also expose domain-specific data through events or in a data index so th
 
 === Developer-centered experience
 
-Another focus of {PRODUCT} is optimal developer experience. You can use much or all of your existing tooling and workflow to develop, build, and deploy {PRODUCT} services, whether locally for testing or into the cloud. Quarkus offers development mode features to help with local testing, such as live reload of your processes and decisions in your running applications for advanced debugging.
+Another focus of {PRODUCT} is optimal developer experience.
+You can use much or all of your existing tooling and workflow to develop, build, and deploy {PRODUCT} services, whether locally for testing or into the cloud.
+Quarkus offers development mode features to help with local testing, such as live reload of your processes and decisions in your running applications for advanced debugging.
 
-{PRODUCT} tooling is embeddable so that you can continue using the worklfow you already use for cloud-native services. For example, the {PRODUCT} https://github.com/kiegroup/kogito-tooling/releases[VSCode extension] enables you to edit your Business Process Model and Notation (BPMN) 2.0 business processes and Decision Model and Notation (DMN) decision models directly in your VSCode IDE, next to your other application code.
+{PRODUCT} tooling is embeddable so that you can continue using the worklfow you already use for cloud-native services.
+For example, the {PRODUCT} https://github.com/kiegroup/kogito-tooling/releases[VSCode extension] enables you to edit your Business Process Model and Notation (BPMN) 2.0 business processes and Decision Model and Notation (DMN) decision models directly in your VSCode IDE, next to your other application code.
 
 .Building a {PRODUCT} process service in VSCode
 image::kogito/creating-running/kogito-run-quarkus-devmode-demo.gif[Demo of {PRODUCT} BPMN2 extension in VSCode]
 
-To deploy your services into the cloud, you can use the {PRODUCT} Operator, which guides you through every step. The {PRODUCT} Operator uses the https://github.com/operator-framework[Operator Framework] to automate and manage many of the deployment steps for you. For example, when you give the operator a link to the Git repository that contains your application, the operator can automatically configure the components required to build your project from source and deploy the resulting services. {PRODUCT} also offers a command-line interface (CLI) to simplify some of these deployment tasks.
+To deploy your services into the cloud, you can use the {PRODUCT} Operator, which guides you through every step.
+The {PRODUCT} Operator uses the https://github.com/operator-framework[Operator Framework] to automate and manage many of the deployment steps for you.
+For example, when you give the operator a link to the Git repository that contains your application, the operator can automatically configure the components required to build your project from source and deploy the resulting services.
+{PRODUCT} also offers a command-line interface (CLI) to simplify some of these deployment tasks.
 // end::con-kogito-automation[]
 
 // tag::con-kogito-quarkus-springboot[]
@@ -86,11 +111,13 @@ To deploy your services into the cloud, you can use the {PRODUCT} Operator, whic
 
 The primary Java frameworks that {PRODUCT} supports are Quarkus (recommended) and Spring Boot.
 
-https://quarkus.io/[Quarkus] is a Kubernetes-native Java framework with a container-first approach to building Java applications, especially for Java virtual machines (JVMs) such as GraalVM and HotSpot. Quarkus optimizes Java specifically for Kubernetes by reducing the size of both the Java application and container image footprint, eliminating some of the Java programming workload from previous generations, and reducing the amount of memory required to run those images.
+https://quarkus.io/[Quarkus] is a Kubernetes-native Java framework with a container-first approach to building Java applications, especially for Java virtual machines (JVMs) such as GraalVM and HotSpot.
+Quarkus optimizes Java specifically for Kubernetes by reducing the size of both the Java application and container image footprint, eliminating some of the Java programming workload from previous generations, and reducing the amount of memory required to run those images.
 
 For {PRODUCT} services, Quarkus is the preferred framework for optimal Kubernetes compatibility and enhanced developer features, such as live reload in development mode for advanced debugging.
 
-https://spring.io/projects/spring-boot[Spring Boot] is a Java-based framework for building standalone production-ready Spring applications. Spring Boot enables you to develop Spring applications with minimal configurations and without an entire Spring configuration setup.
+https://spring.io/projects/spring-boot[Spring Boot] is a Java-based framework for building standalone production-ready Spring applications.
+Spring Boot enables you to develop Spring applications with minimal configurations and without an entire Spring configuration setup.
 
 For {PRODUCT} services, Spring Boot is supported for developers who need to use {PRODUCT} in an existing Spring Framework environment.
 // end::con-kogito-quarkus-springboot[]
@@ -100,7 +127,9 @@ endif::[]
 [id='ref-kogito-app-examples_{context}']
 == Example applications with {PRODUCT} services
 
-{PRODUCT} includes example applications in the https://github.com/kiegroup/kogito-examples[`kogito-examples`] repository in GitHub. These example applications contain various types of {PRODUCT} services on Quarkus or Spring Boot to help you develop your own applications. The services use one or more Business Process Model and Notation (BPMN) process models, Decision Model and Notation (DMN) decision models, Drools Rule Language (DRL) rule units, XLS spreadsheet decision tables, or Java classes to define the service logic.
+{PRODUCT} includes example applications in the https://github.com/kiegroup/kogito-examples[`kogito-examples`] repository in GitHub.
+These example applications contain various types of {PRODUCT} services on Quarkus or Spring Boot to help you develop your own applications.
+The services use one or more Business Process Model and Notation (BPMN) process models, Decision Model and Notation (DMN) decision models, Drools Rule Language (DRL) rule units, XLS spreadsheet decision tables, or Java classes to define the service logic.
 
 For information about each example application and instructions for using them, see the `README` file in the relevant application folder.
 
@@ -122,9 +151,11 @@ The following list describes some of the examples provided with {PRODUCT}:
 
 To get started quickly with {PRODUCT}, you can run any of the example applications in the https://github.com/kiegroup/kogito-examples[`kogito-examples`] repository in GitHub and experiment with the {PRODUCT} services.
 
-For this procedure, use the https://github.com/kiegroup/kogito-examples/tree/stable/process-quarkus-example[`process-quarkus-example`] or https://github.com/kiegroup/kogito-examples/tree/stable/process-springboot-example[`process-springboot-example`] application. You can follow similar steps with the other {PRODUCT} examples on Quarkus or Spring Boot.
+For this procedure, use the https://github.com/kiegroup/kogito-examples/tree/stable/process-quarkus-example[`process-quarkus-example`] or https://github.com/kiegroup/kogito-examples/tree/stable/process-springboot-example[`process-springboot-example`] application.
+You can follow similar steps with the other {PRODUCT} examples on Quarkus or Spring Boot.
 
-In the `process-quarkus-example` and `process-springboot-example` applications, the `orders.bpmn2` process describes the steps that need to be followed when ordering items. The process includes a script task for writing debug information and a call activity for invoking a subprocess, using a custom `Order` data object.
+In the `process-quarkus-example` and `process-springboot-example` applications, the `orders.bpmn2` process describes the steps that need to be followed when ordering items.
+The process includes a script task for writing debug information and a call activity for invoking a subprocess, using a custom `Order` data object.
 
 .Example `orders.bpmn2` process
 image::kogito/creating-running/bpmn-model-example-orders.png[Image of `orders.bpmn` example process]
@@ -148,9 +179,10 @@ Based on these processes and on application configurations, this example service
 --
 Quarkus and Spring Boot support the following run modes:
 
-* *Development mode*: For local testing. On Quarkus, development mode also offers live reload of your processes and decisions in your running applications for advanced debugging.
+* *Development mode*: For local testing.
+  On Quarkus, development mode also offers live reload of your processes and decisions in your running applications for advanced debugging.
 * *JVM mode*: For compatibility with a Java virtual machine (JVM).
-ifdef::KOGITO-COMM[]
+ifndef::KOGITO-ENT[]
 * *Native mode*: (Quarkus only, requires GraalVM) For direct binary execution as native code.
 endif::[]
 
@@ -179,7 +211,7 @@ mvn clean package
 java -jar target/sample-kogito-1.0-SNAPSHOT-runner.jar
 ----
 +
-ifdef::KOGITO-COMM[]
+ifndef::KOGITO-ENT[]
 * For native mode (requires GraalVM):
 +
 .On Quarkus only
@@ -235,13 +267,7 @@ curl -X POST http://localhost:8080/orders -H 'content-type: application/json' -H
 .Swagger UI to interact with all application endpoints (\http://localhost:8080/swagger-ui/)
 image::kogito/creating-running/kogito-swagger-example-jbpm.png[Image of Swagger UI for example application]
 
-NOTE: For the predefined {PRODUCT} example applications, the Swagger UI for interacting with service endpoints is available only on Quarkus examples that you run in
-ifdef::KOGITO-ENT[]
-development mode.
-endif::[]
-ifdef::KOGITO-COMM[]
-development mode or in native mode.
-endif::[]
+NOTE: For the predefined {PRODUCT} example applications, the Swagger UI for interacting with service endpoints is available only on Quarkus examples that you run in {DEVELOPMENT_MODE}.
 
 This example procedure uses the following curl commands for convenience:
 
@@ -307,7 +333,8 @@ curl -X DELETE http://localhost:8080/orders/6b53c227-6d5e-40b7-8c8c-a541a2a47d58
 
 For convenience, all {PRODUCT} BPMN and DMN modelers are available in the https://kiegroup.github.io/kogito-online/#/download[Business Modeler Hub] desktop application.
 
-* *{PRODUCT} VSCode extension*: (Recommended) Enables you to view and design BPMN and DMN models in Visual Studio Code. The VSCode extension in the {PRODUCT} Business Modeler Hub requires VSCode 1.43.0 or later.
+* *{PRODUCT} VSCode extension*: (Recommended) Enables you to view and design BPMN and DMN models in Visual Studio Code.
+  The VSCode extension in the {PRODUCT} Business Modeler Hub requires VSCode 1.43.0 or later.
 +
 To enable the {PRODUCT} VSCode extension without the {PRODUCT} Business Modeler Hub, you can download the `vscode_extension_kogito_kie_editors___VERSION__.vsix` file from the https://github.com/kiegroup/kogito-tooling/releases[`kogito-tooling`] releases page in GitHub and go to *Extensions* -> *More actions* -> *Install from VSIX* in VSCode to install the extension.
 * *{PRODUCT} GitHub Chrome extension*: Enables you to view and design BPMN and DMN models in GitHub repositories in Google Chrome.
@@ -316,12 +343,14 @@ To enable the {PRODUCT} GitHub Chrome extension without the {PRODUCT} Business M
 * *Business Modeler desktop application*: Enables you to view and design BPMN and DMN models locally.
 +
 To run the {PRODUCT} Business Modeler desktop application without the {PRODUCT} Business Modeler Hub, you can download and extract the `business_modeler_preview___RELEASE__.zip` file from the https://github.com/kiegroup/kogito-tooling/releases[`kogito-tooling`] releases page in GitHub, and then follow the instructions in the application `README` file to run the application on your specific operating system.
-* *Business Modeler online viewer*: Enables you to view and design BPMN and DMN models online at `https://kiegroup.github.io/kogito-online/`. The online modeler supports the `.new` format, so you can also enter `bpmn.new` or `dmn.new` in a web browser to start designing a new BPMN or DMN model in the online modeler.
+* *Business Modeler online viewer*: Enables you to view and design BPMN and DMN models online at `https://kiegroup.github.io/kogito-online/`.
+  The online modeler supports the `.new` format, so you can also enter `bpmn.new` or `dmn.new` in a web browser to start designing a new BPMN or DMN model in the online modeler.
 
 [id='proc-kogito-modelers_{context}']
 === Installing and using the {PRODUCT} Business Modeler Hub
 
-{PRODUCT} provides a https://kiegroup.github.io/kogito-online/#/download[Business Modeler Hub] desktop application with all {PRODUCT} extensions or applications for modeling Business Process Model and Notation (BPMN) process models and Decision Model and Notation (DMN) decision models in {PRODUCT} services. {PRODUCT} currently provides extensions for VSCode (recommended) and GitHub modelers, a desktop application for offline modeling, and an online modeler.
+{PRODUCT} provides a https://kiegroup.github.io/kogito-online/#/download[Business Modeler Hub] desktop application with all {PRODUCT} extensions or applications for modeling Business Process Model and Notation (BPMN) process models and Decision Model and Notation (DMN) decision models in {PRODUCT} services.
+{PRODUCT} currently provides extensions for VSCode (recommended) and GitHub modelers, a desktop application for offline modeling, and an online modeler.
 
 As you develop {PRODUCT} services, you can use the {PRODUCT} Business Modeler Hub to install, launch, or uninstall the available modeling extensions or applications as needed.
 
@@ -363,7 +392,8 @@ Use the {PRODUCT} Business Modeler Hub to install, launch, or uninstall the avai
 [id='proc-kogito-vscode-extension_{context}']
 === Enabling the {PRODUCT} VSCode extension without the {PRODUCT} Business Modeler Hub
 
-Visual Studio Code (VSCode) is the preferred integrated development environment (IDE) for developing {PRODUCT} services. {PRODUCT} provides a https://github.com/kiegroup/kogito-tooling/releases[VSCode extension] that enables you to design Business Process Model and Notation (BPMN) 2.0 business processes and Decision Model and Notation (DMN) decision models directly in VSCode.
+Visual Studio Code (VSCode) is the preferred integrated development environment (IDE) for developing {PRODUCT} services.
+{PRODUCT} provides a https://github.com/kiegroup/kogito-tooling/releases[VSCode extension] that enables you to design Business Process Model and Notation (BPMN) 2.0 business processes and Decision Model and Notation (DMN) decision models directly in VSCode.
 
 For convenience, you can install and launch the VSCode from the https://kiegroup.github.io/kogito-online/#/download[Business Modeler Hub] desktop application, along with all other available {PRODUCT} modelers.
 
@@ -390,14 +420,16 @@ $ code --enable-proposed-api kiegroup.vscode-extension-pack-kogito-kie-editors
 $ code --args --enable-proposed-api kiegroup.vscode-extension-pack-kogito-kie-editors
 ----
 
-Use this method to open VSCode each time you develop {PRODUCT} services. This set of parameters enables the Microsoft https://code.visualstudio.com/api/advanced-topics/using-proposed-api[Proposed API] for an optimal user experience with VSCode extensions.
+Use this method to open VSCode each time you develop {PRODUCT} services.
+This set of parameters enables the Microsoft https://code.visualstudio.com/api/advanced-topics/using-proposed-api[Proposed API] for an optimal user experience with VSCode extensions.
 --
 
 After you enable this VSCode extension, any `.bpmn2` and `.dmn` files that you open in VSCode are automatically displayed as graphical models.
 
 If the {PRODUCT} BPMN or DMN modelers open only the XML source of a BPMN or DMN file and displays an error message, review the reported errors and the model file to ensure that all BPMN or DMN elements are correctly defined.
 
-NOTE: For new BPMN or DMN models, you can also enter `bpmn.new` or `dmn.new` in a web browser to design your BPMN or DMN model in the {PRODUCT} online modeler. When you finish creating your model, you can click *Download* in the online modeler page to import your BPMN or DMN file into your {PRODUCT} project in VSCode.
+NOTE: For new BPMN or DMN models, you can also enter `bpmn.new` or `dmn.new` in a web browser to design your BPMN or DMN model in the {PRODUCT} online modeler.
+When you finish creating your model, you can click *Download* in the online modeler page to import your BPMN or DMN file into your {PRODUCT} project in VSCode.
 
 [id='proc-kogito-creating-project_{context}']
 == Creating a Maven project for a {PRODUCT} service
@@ -441,13 +473,20 @@ This command generates a `sample-kogito` Maven project and imports the {PRODUCT}
 [id='proc-kogito-designing-app_{context}']
 == Designing the application logic for a {PRODUCT} service using DMN and BPMN
 
-After you create your {PRODUCT} project, you can create or import Business Process Model and Notation (BPMN) 2.0 business processes, Decision Model and Notation (DMN) decision models, Drools Rule Language (DRL) business rules, XLS or XLSX decision tables, and other assets in the `src/main/resources` folder of your project. You can also include Java classes in the `src/main/java` folder of your project that act as Java services or that provide implementations that you call from your business processes or decisions.
+After you create your {PRODUCT} project, you can create or import Business Process Model and Notation (BPMN) 2.0 business processes, Decision Model and Notation (DMN) decision models, Drools Rule Language (DRL) business rules, XLS or XLSX decision tables, and other assets in the `src/main/resources` folder of your project.
+You can also include Java classes in the `src/main/java` folder of your project that act as Java services or that provide implementations that you call from your business processes or decisions.
 
-The example for this procedure is a basic {PRODUCT} service that provides a REST endpoint `/persons`. This endpoint is automatically generated based on an example `PersonProcess.bpmn2` business process that employs an example `PersonDecisions.dmn` DMN model to make decisions based on the data being processed.
+The example for this procedure is a basic {PRODUCT} service that provides a REST endpoint `/persons`.
+This endpoint is automatically generated based on an example `PersonProcess.bpmn2` business process that employs an example `PersonDecisions.dmn` DMN model to make decisions based on the data being processed.
 
-The business process contains the business logic of the {PRODUCT} service. The process provides the complete set of steps to achieve the business goal. The process is also the entry point to the service that can be consumed by other services.
+The business process contains the business logic of the {PRODUCT} service.
+The process provides the complete set of steps to achieve the business goal.
+The process is also the entry point to the service that can be consumed by other services.
 
-The business decision contains the decision logic of the {PRODUCT} service. In this example, the decision logic is invoked as part of the business process. You can define business rules and decisions in several ways, such as with DMN models, DRL rules, or XLS or XLSX decision tables. The example for this procedure uses a DMN model.
+The business decision contains the decision logic of the {PRODUCT} service.
+In this example, the decision logic is invoked as part of the business process.
+You can define business rules and decisions in several ways, such as with DMN models, DRL rules, or XLS or XLSX decision tables.
+The example for this procedure uses a DMN model.
 
 .Procedure
 . In the Maven project that you generated for your {PRODUCT} service, navigate to the `src/main/java/org/acme` folder and add the following `Person.java` file:
@@ -625,7 +664,8 @@ image::kogito/creating-running/kogito-dmn-example-person-logic.png[Image of pers
 image::kogito/creating-running/kogito-dmn-example-person-data-types.png[Image of person DMN data types]
 .. After you define the data types, select the *Editor* tab to return to the DMN modeler canvas.
 .. Select the *Person* input node, click the *Properties* icon, and under *Information item*, set the *Data type* to `tPerson`.
-.. Select the *isAdult* decision node, click the *Properties* icon, and under *Information item*, confirm that the *Data type* is still set to `boolean`. You previously set this data type when you created the decision table.
+.. Select the *isAdult* decision node, click the *Properties* icon, and under *Information item*, confirm that the *Data type* is still set to `boolean`.
+   You previously set this data type when you created the decision table.
 .. Save the DMN decision file.
 --
 . In the `src/main/resources` folder, add the following `PersonProcess.bpmn2` BPMN process model:
@@ -960,13 +1000,12 @@ To create this example BPMN process in VSCode using the {PRODUCT} BPMN modeler, 
 
 As an alternative to using Decision Model and Notation (DMN) to define this example decision service, you can also use a Drools Rule Language (DRL) file implemented as a rule unit.
 
-A DRL rule unit is a module for rules and a unit of execution. A rule unit collects a set of rules with the declaration of the type of facts that the rules act on. A rule unit also serves as a unique namespace for each group of rules. A single rule base can contain multiple rule units. You typically store all the rules for a unit in the same file as the unit declaration so that the unit is self-contained. For more information about rule units, see
-ifdef::KOGITO-ENT[]
-{URL_DECISION_SERVICES}#con-drl-rule-units_drl-rules[_{DECISION_SERVICES}_].
-endif::[]
-ifdef::KOGITO-COMM[]
-xref:con-drl-rule-units_drl-rules[].
-endif::[]
+A DRL rule unit is a module for rules and a unit of execution.
+A rule unit collects a set of rules with the declaration of the type of facts that the rules act on.
+A rule unit also serves as a unique namespace for each group of rules.
+A single rule base can contain multiple rule units.
+You typically store all the rules for a unit in the same file as the unit declaration so that the unit is self-contained.
+For more information about rule units, see {DECISION_SERVICES_LINK}.
 
 .Procedure
 . In the `src/main/resources` folder of your example {PRODUCT} project, instead of using a DMN file, add the following `PersonRules.drl` file:
@@ -990,9 +1029,13 @@ rule isAdult
 end
 ----
 
-This example rule determines that any person who is older than 18 is classified as an adult. The rule file also declares that the rule belongs to the rule unit `PersonRules`. This is the rule unit that you define as part of the business rule task in the example BPMN process. When you build the project, the rule unit is generated and associated with the DRL file.
+This example rule determines that any person who is older than 18 is classified as an adult.
+The rule file also declares that the rule belongs to the rule unit `PersonRules`.
+This is the rule unit that you define as part of the business rule task in the example BPMN process.
+When you build the project, the rule unit is generated and associated with the DRL file.
 
-The rule also defines the condition using OOPath notation. OOPath is an object-oriented syntax extension to XPath for navigating through related elements while handling collections and filtering constraints.
+The rule also defines the condition using OOPath notation.
+OOPath is an object-oriented syntax extension to XPath for navigating through related elements while handling collections and filtering constraints.
 
 You can also rewrite the same rule condition in a more explicit form using the traditional rule pattern syntax, as shown in the following example:
 
@@ -1021,8 +1064,11 @@ end
 ** *Rule Language*: `DRL` (instead of `DMN`)
 ** *Rule Flow Group*: `unit:org.acme.PersonRules`
 +
-This rule unit syntax in the *Rule Flow Group* field specifies that you are using the `org.acme.PersonRules` rule unit instead of a traditional rule flow group. This is the rule unit that you referenced in the example DRL file. When you build the project, the business process implicitly declares the rule unit as part of the business rule task to execute the DRL file.
-* *Data Assignments*: Open the assignment settings and change the data input *Name* to `person` (instead of `Person`). This accommodates the input variable syntax required by the DRL file.
+This rule unit syntax in the *Rule Flow Group* field specifies that you are using the `org.acme.PersonRules` rule unit instead of a traditional rule flow group.
+This is the rule unit that you referenced in the example DRL file.
+When you build the project, the business process implicitly declares the rule unit as part of the business rule task to execute the DRL file.
+* *Data Assignments*: Open the assignment settings and change the data input *Name* to `person` (instead of `Person`).
+  This accommodates the input variable syntax required by the DRL file.
 . Select the connector that connects the exclusive gateway to the end event and for the *Implementation/Execution* property, verify that the *Condition Expression* is set to `Java` and change the condition to `return person.isAdult();`.
 . Select the connector that connects the exclusive gateway to the user task and for the *Implementation/Execution* property, verify that the *Condition Expression* is set to `Java` and change the condition `return ! person.isAdult();`.
 . Save the process file to update the model.
@@ -1032,9 +1078,10 @@ This rule unit syntax in the *Rule Flow Group* field specifies that you are usin
 
 After you design the business decisions and processes for your {PRODUCT} service, you can run your Quarkus or Spring Boot application in one of the following modes:
 
-* *Development mode*: For local testing. On Quarkus, development mode also offers live reload of your processes and decisions in your running applications for advanced debugging.
+* *Development mode*: For local testing.
+  On Quarkus, development mode also offers live reload of your processes and decisions in your running applications for advanced debugging.
 * *JVM mode*: For compatibility with a Java virtual machine (JVM).
-ifdef::KOGITO-COMM[]
+ifndef::KOGITO-ENT[]
 * *Native mode*: (Quarkus only, requires GraalVM) For direct binary execution as native code.
 endif::[]
 
@@ -1066,7 +1113,7 @@ mvn clean package
 java -jar target/sample-kogito-1.0-SNAPSHOT-runner.jar
 ----
 --
-ifdef::KOGITO-COMM[]
+ifndef::KOGITO-ENT[]
 * For native mode (requires GraalVM):
 +
 --
@@ -1133,7 +1180,8 @@ This example procedure uses curl commands for convenience.
 .Procedure
 In a command terminal window that is separate from your running application, navigate to the project that contains your {PRODUCT} service and use any of the following curl commands with JSON requests to interact with your running service:
 
-NOTE: On Spring Boot, you might need to modify how your application exposes API endpoints in order for these example requests to function. For more information, see the `README` file included in the example Spring Boot project that you created for this tutorial.
+NOTE: On Spring Boot, you might need to modify how your application exposes API endpoints in order for these example requests to function.
+For more information, see the `README` file included in the example Spring Boot project that you created for this tutorial.
 
 * Add an adult person:
 +
@@ -1228,15 +1276,13 @@ ifdef::KOGITO-ENT[]
 This glossary defines terms, concepts, or components that are referenced frequently in {PRODUCT} documentation or that have a unique meaning or function in {PRODUCT}.
 
 BPMN model::
-A definition of a business process workflow based on the https://www.omg.org/spec/BPMN/2.0/About-BPMN[Business Process Model and Notation (BPMN) specification]. BPMN is a standard established by the Object Management Group (OMG) for describing and modeling business processes. BPMN defines an XML schema that enables BPMN models to be shared between BPMN-compliant platforms and across organizations so that business analysts and business process developers can collaborate in designing and implementing BPMN process services. The BPMN standard is similar to and can be used together with the Decision Model and Notation (DMN) standard for designing and modeling business decisions.
+A definition of a business process workflow based on the https://www.omg.org/spec/BPMN/2.0/About-BPMN[Business Process Model and Notation (BPMN) specification].
+BPMN is a standard established by the Object Management Group (OMG) for describing and modeling business processes.
+BPMN defines an XML schema that enables BPMN models to be shared between BPMN-compliant platforms and across organizations so that business analysts and business process developers can collaborate in designing and implementing BPMN process services.
+The BPMN standard is similar to and can be used together with the Decision Model and Notation (DMN) standard for designing and modeling business decisions.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_PROCESS_SERVICES}[_{PROCESS_SERVICES}_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:chap-kogito-developing-process-services[]
-endif::[]
+* {PROCESS_SERVICES_LINK}
 
 business domain API::
 An API that your business develops and implements within business applications that contain {PRODUCT} services.
@@ -1245,227 +1291,161 @@ business models::
 The collection of BPMN process models, DMN decision models, DRL rules, XLS decision tables, and any other assets that define the business logic for a {PRODUCT} service.
 
 CloudEvents format::
-A specification for describing event data in a common way. {PRODUCT} runtime events for messages, processes, tasks, and other application activities are published in https://cloudevents.io/[CloudEvents] format so that they can be consumed efficiently by other entities, such as the {PRODUCT} Data Index Service.
+A specification for describing event data in a common way.
+{PRODUCT} runtime events for messages, processes, tasks, and other application activities are published in https://cloudevents.io/[CloudEvents] format so that they can be consumed efficiently by other entities, such as the {PRODUCT} Data Index Service.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#con-kogito-runtime-events_kogito-configuring[_{PRODUCT} runtime events_]
-* {URL_CONFIGURING_KOGITO}#con-data-index-service_kogito-configuring[_{PRODUCT} Data Index Service_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-kogito-runtime-events_kogito-configuring[]
-* xref:con-data-index-service_kogito-configuring[]
-endif::[]
+* {RUNTIME_EVENTS_LINK}
+* {DATA_INDEX_SERVICE_LINK}
 
 decision table::
-A set of business rules defined in a tabular format. Each row in a decision table is a rule, and each column is a condition, an action, or another rule attribute.
+A set of business rules defined in a tabular format.
+Each row in a decision table is a rule, and each column is a condition, an action, or another rule attribute.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_DECISION_SERVICES}#con-decision-tables_decision-tables[_Designing a decision service using spreadsheet decision tables_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-decision-tables_decision-tables[]
-endif::[]
+* {DECISION_TABLES_LINK}
 
 development mode::
-A project build option that provides a fast feedback loop from code changes to a running system using hot reload. Development mode also enables debugging tools such as Swagger in {PRODUCT} runtime services.
+A project build option that provides a fast feedback loop from code changes to a running system using hot reload.
+Development mode also enables debugging tools such as Swagger in {PRODUCT} runtime services.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CREATING_RUNNING}#proc-kogito-running-app_kogito-creating-running[_Running a {PRODUCT} service_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:proc-kogito-running-app_kogito-creating-running[]
-endif::[]
+* {CREATING_RUNNING_LINK}
 * https://quarkus.io/guides/maven-tooling[_Quarkus - Building applications with Maven_]
 
 DRL rule::
-A definition of a business rule in Drools Rule Language (DRL) format. DRL is a notation established by the https://www.drools.org/[Drools] open source business automation project for defining and describing business rules.
+A definition of a business rule in Drools Rule Language (DRL) format.
+DRL is a notation established by the https://www.drools.org/[Drools] open source business automation project for defining and describing business rules.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_DECISION_SERVICES}#con-drl_drl-rules[_Designing a decision service using DRL rules_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-drl_drl-rules[]
-endif::[]
+* {DECISION_RULES_LINK}
 
 DRL rule unit::
-A module for rules and a unit of execution. A rule unit collects a set of rules with the declaration of the type of facts that the rules act on. A rule unit also serves as a unique namespace for each group of rules. A single rule base can contain multiple rule units. You typically store all the rules for a unit in the same file as the unit declaration so that the unit is self-contained.
+A module for rules and a unit of execution.
+A rule unit collects a set of rules with the declaration of the type of facts that the rules act on.
+A rule unit also serves as a unique namespace for each group of rules.
+A single rule base can contain multiple rule units.
+You typically store all the rules for a unit in the same file as the unit declaration so that the unit is self-contained.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_DECISION_SERVICES}#con-drl-rule-units_drl-rules[_Rule units in DRL_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-drl-rule-units_drl-rules[]
-endif::[]
+* {RULE_UNITS_DRL_LINK}
 
 DMN model::
-A definition of a business decision flow based on the https://www.omg.org/spec/DMN[Decision Model and Notation (DMN) specification]. DMN is a standard established by the Object Management Group (OMG) for describing and modeling operational decisions. DMN defines an XML schema that enables DMN models to be shared between DMN-compliant platforms and across organizations so that business analysts and business rules developers can collaborate in designing and implementing DMN decision services. The DMN standard is similar to and can be used together with the Business Process Model and Notation (BPMN) standard for designing and modeling business processes.
+A definition of a business decision flow based on the https://www.omg.org/spec/DMN[Decision Model and Notation (DMN) specification].
+DMN is a standard established by the Object Management Group (OMG) for describing and modeling operational decisions.
+DMN defines an XML schema that enables DMN models to be shared between DMN-compliant platforms and across organizations so that business analysts and business rules developers can collaborate in designing and implementing DMN decision services.
+The DMN standard is similar to and can be used together with the Business Process Model and Notation (BPMN) standard for designing and modeling business processes.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_DECISION_SERVICES}#con-dmn_dmn-models[_Designing a decision service using DMN models_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-dmn_dmn-models[]
-endif::[]
+* {DECISION_DMN_MODELS_LINK}
 
 event listener::
 A procedure or function in a program that reacts to a specified event, such as a completed node in a process or an executed decision.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#proc-event-listeners-registering_kogito-configuring[_Registering event listeners_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:proc-event-listeners-registering_kogito-configuring[]
-endif::[]
+* {EVENT_LISTENERS_REGISTERING_LINK}
 
 intelligent application::
 An optimized, integrated solution that uses {PRODUCT} services to implement business-domain knowledge.
 
 {PRODUCT} CLI::
-A command-line interface (CLI) that enables you to interact with the {PRODUCT} Operator for deployment tasks. The {PRODUCT} CLI also enables you to deploy {PRODUCT} services from source instead of relying on custom resources and YAML files.
+A command-line interface (CLI) that enables you to interact with the {PRODUCT} Operator for deployment tasks.
+The {PRODUCT} CLI also enables you to deploy {PRODUCT} services from source instead of relying on custom resources and YAML files.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_DEPLOYING_ON_OPENSHIFT}#proc-kogito-deploying-on-ocp-kogito-cli_kogito-deploying-on-openshift[_Deploying {PRODUCT} on {OPENSHIFT} using the {PRODUCT} CLI_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:proc-kogito-deploying-on-ocp-kogito-cli_kogito-deploying-on-openshift[]
-endif::[]
+* {DEPLOYING_ON_OPENSHIFT_CLI_LINK}
 
 ////
-//@comment: Excluding for now due to current build issues with the extension and we aren't using it at this point. (Stetson, 2 Apr 2020)
+//@comment: Excluding for now due to current build issues with the extension and we aren't using it at this point.
+(Stetson, 2 Apr 2020)
 {PRODUCT} Quarkus extension::
-An extension required to generate and build a Maven project for {PRODUCT} runtime services on the Quarkus Java framework. You can add the {PRODUCT} extension during project creation using the Quarkus Maven plugin or using the https://code.quarkus.io/[Code with Quarkus] extension manager.
+An extension required to generate and build a Maven project for {PRODUCT} runtime services on the Quarkus Java framework.
+You can add the {PRODUCT} extension during project creation using the Quarkus Maven plugin or using the https://code.quarkus.io/[Code with Quarkus] extension manager.
 ////
 
 {PRODUCT} Data Index Service::
-A dedicated service in {PRODUCT} that stores all {PRODUCT} events related to processes, tasks, and domain data. The Data Index Service uses Apache Kafka messaging to consume CloudEvents messages from {PRODUCT} services, and then indexes the returned data for future GraphQL queries and stores the data in the Infinispan persistence store. The Data Index Service is at the core of all {PRODUCT} search, insight, and management capabilities.
+A dedicated service in {PRODUCT} that stores all {PRODUCT} events related to processes, tasks, and domain data.
+The Data Index Service uses Apache Kafka messaging to consume CloudEvents messages from {PRODUCT} services, and then indexes the returned data for future GraphQL queries and stores the data in the Infinispan persistence store.
+The Data Index Service is at the core of all {PRODUCT} search, insight, and management capabilities.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#con-data-index-service_kogito-configuring[_{PRODUCT} Data Index Service_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-data-index-service_kogito-configuring[]
-endif::[]
+* {DATA_INDEX_SERVICE_LINK}
 
 {PRODUCT} domain-specific service::
-A business automation service for your business domain that you create using {PRODUCT}. You define the logic of this service using BPMN process models, DMN decision models, or other business models, and any other supported runtime configurations. In {PRODUCT} documentation, the general term for _{PRODUCT} services_ that you create refers to this type of service.
+A business automation service for your business domain that you create using {PRODUCT}.
+You define the logic of this service using BPMN process models, DMN decision models, or other business models, and any other supported runtime configurations.
+In {PRODUCT} documentation, the general term for _{PRODUCT} services_ that you create refers to this type of service.
 
 {PRODUCT} Jobs Service::
-A dedicated service in {PRODUCT} for scheduling BPMN process events that are configured to be executed at a specified time. These time-based events in a process model are known as _jobs_. The Jobs Service does not execute a job, but triggers a callback that might be an HTTP request on a given endpoint specified for the job request or any other configured callback. The Jobs Service receives requests for job scheduling and then sends a request at the time specified on the job request.
+A dedicated service in {PRODUCT} for scheduling BPMN process events that are configured to be executed at a specified time.
+These time-based events in a process model are known as _jobs_.
+The Jobs Service does not execute a job, but triggers a callback that might be an HTTP request on a given endpoint specified for the job request or any other configured callback.
+The Jobs Service receives requests for job scheduling and then sends a request at the time specified on the job request.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#con-jobs-service_kogito-configuring[_{PRODUCT} Jobs Service_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-jobs-service_kogito-configuring[]
-endif::[]
+* {JOBS_SERVICE_LINK}
 
 {PRODUCT} Management Console::
 A user interface for viewing the state of all available {PRODUCT} services and managing process instances.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_PROCESS_SERVICES}#con-management-console_kogito-developing-process-services[_{PRODUCT} Management Console_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-management-console_kogito-developing-process-services[]
-endif::[]
+* {MANAGEMENT_CONSOLE_LINK}
 
 {PRODUCT} Operator::
-An operator that deploys {PRODUCT} services and manages the required {PRODUCT} infrastructure services. The {PRODUCT} Operator uses the https://github.com/operator-framework[Operator Framework] and automates many of the deployment steps for you.
+An operator that deploys {PRODUCT} services and manages the required {PRODUCT} infrastructure services.
+The {PRODUCT} Operator uses the https://github.com/operator-framework[Operator Framework] and automates many of the deployment steps for you.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_DEPLOYING_ON_OPENSHIFT}#con-kogito-on-ocp_kogito-deploying-on-openshift[_{PRODUCT} on {OPENSHIFT}_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-kogito-on-ocp_kogito-deploying-on-openshift[]
-endif::[]
+* {DEPLOYING_ON_OPENSHIFT_LINK}
 
 {PRODUCT} runtime event::
-A record of a significant change of state in the application domain at a point in time. {PRODUCT} emits runtime events as a result of successfully executed requests, or _units of work_, in a process instance or task instance in a process. {PRODUCT} can use these events to notify third parties about changes to the BPMN process instance and its data.
+A record of a significant change of state in the application domain at a point in time.
+{PRODUCT} emits runtime events as a result of successfully executed requests, or _units of work_, in a process instance or task instance in a process.
+{PRODUCT} can use these events to notify third parties about changes to the BPMN process instance and its data.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#con-kogito-runtime-events_kogito-configuring[_{PRODUCT} runtime events_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-kogito-runtime-events_kogito-configuring[]
-endif::[]
+* {RUNTIME_EVENTS_LINK}
 
 {PRODUCT} runtime persistence::
-An optional capability for preserving {PRODUCT} process data in your services across application restarts. {PRODUCT} persistence is based on https://infinispan.org/[Infinispan] and enables you to configure key-value storage definitions to persist data, such as active process nodes and process instance variables.
+An optional capability for preserving {PRODUCT} process data in your services across application restarts.
+{PRODUCT} persistence is based on https://infinispan.org/[Infinispan] and enables you to configure key-value storage definitions to persist data, such as active process nodes and process instance variables.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#con-persistence_kogito-configuring[_Persistence in {PRODUCT}_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-persistence_kogito-configuring[]
-endif::[]
+* {PERSISTENCE_LINK}
 
 {PRODUCT} supporting services::
-The collection of middleware infrastructure services and other dedicated services that help you build additional functionality in the {PRODUCT} domain-specific services that you create. Key middleware infrastructure services in {PRODUCT} include Infinispan persistence and Apache Kafka reactive messaging. Dedicated services provided by {PRODUCT} include the {PRODUCT} Data Index Service and the {PRODUCT} Jobs Service.
+The collection of middleware infrastructure services and other dedicated services that help you build additional functionality in the {PRODUCT} domain-specific services that you create.
+Key middleware infrastructure services in {PRODUCT} include Infinispan persistence and Apache Kafka reactive messaging.
+Dedicated services provided by {PRODUCT} include the {PRODUCT} Data Index Service and the {PRODUCT} Jobs Service.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#con-data-index-service_kogito-configuring[_{PRODUCT} Data Index Service_]
-* {URL_CONFIGURING_KOGITO}#con-jobs-service_kogito-configuring[_{PRODUCT} Jobs Service_]
-* {URL_CONFIGURING_KOGITO}#proc-persistence-enabling_kogito-configuring[_Enabling persistence for {PRODUCT} services_]
-* {URL_CONFIGURING_KOGITO}#proc-messaging-enabling_kogito-configuring[_Enabling messaging for {PRODUCT} services_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-data-index-service_kogito-configuring[]
-* xref:con-jobs-service_kogito-configuring[]
-* xref:proc-persistence-enabling_kogito-configuring[]
-* xref:proc-messaging-enabling_kogito-configuring[]
-endif::[]
+* {DATA_INDEX_SERVICE_LINK}
+* {JOBS_SERVICE_LINK}
+* {ENABLING_PERSISTENCE_LINK}
+* {ENABLING_MESSAGING_LINK}
 
 message event::
-A specified point in a business process where a defined message is used as the input (received) or output (sent) as a result of the process execution. For example, a message event might be an email sent to a specified user after a task is complete.
+A specified point in a business process where a defined message is used as the input (received) or output (sent) as a result of the process execution.
+For example, a message event might be an email sent to a specified user after a task is complete.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#con-kogito-runtime-events_kogito-configuring[_{PRODUCT} runtime events_]
-* {URL_CONFIGURING_KOGITO}#proc-messaging-enabling_kogito-configuring[_Enabling messaging for {PRODUCT} services_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-kogito-runtime-events_kogito-configuring[]
-* xref:proc-messaging-enabling_kogito-configuring[]
-endif::[]
+* {RUNTIME_EVENTS_LINK}
+* {ENABLING_MESSAGING_LINK}
 
 MicroProfile Reactive Messaging::
-A specification for sending and receiving messages within and between microservices using message brokers. {PRODUCT} supports https://github.com/eclipse/microprofile-reactive-messaging[MicroProfile Reactive Messaging] for messaging in {PRODUCT} services, such as message events used as either input or output of business process execution.
+A specification for sending and receiving messages within and between microservices using message brokers.
+{PRODUCT} supports https://github.com/eclipse/microprofile-reactive-messaging[MicroProfile Reactive Messaging] for messaging in {PRODUCT} services, such as message events used as either input or output of business process execution.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#proc-messaging-enabling_kogito-configuring[_Enabling messaging for {PRODUCT} services_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:proc-messaging-enabling_kogito-configuring[]
-endif::[]
+* {ENABLING_MESSAGING_LINK}
 
 middleware infrastructure services::
-The collection of supplemental services in {PRODUCT} that provide capabilities such as persistence, messaging, and security. Key middleware infrastructure services in {PRODUCT} include Infinispan persistence and Apache Kafka reactive messaging.
+The collection of supplemental services in {PRODUCT} that provide capabilities such as persistence, messaging, and security.
+Key middleware infrastructure services in {PRODUCT} include Infinispan persistence and Apache Kafka reactive messaging.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#proc-persistence-enabling_kogito-configuring[_Enabling persistence for {PRODUCT} services_]
-* {URL_CONFIGURING_KOGITO}#proc-messaging-enabling_kogito-configuring[_Enabling messaging for {PRODUCT} services_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:proc-persistence-enabling_kogito-configuring[]
-* xref:proc-messaging-enabling_kogito-configuring[]
-endif::[]
+* {RUNTIME_EVENTS_LINK}
+* {ENABLING_MESSAGING_LINK}
 
 process definition::
 A model that defines the components, workflow, and functionality for a business process, such as a BPMN model.
@@ -1474,42 +1454,34 @@ process instance::
 An occurrence of a pending, running, or completed business process, based on the process definition.
 
 PROTO file (`.proto`)::
-A data library used for marshalling Java objects in protobuf (https://developers.google.com/protocol-buffers/[protocol buffers]) format. {PRODUCT} runtime persistence and communication with Infinispan are handled through a protobuf schema and generated marshallers.
+A data library used for marshalling Java objects in protobuf (https://developers.google.com/protocol-buffers/[protocol buffers]) format.
+{PRODUCT} runtime persistence and communication with Infinispan are handled through a protobuf schema and generated marshallers.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#con-persistence_kogito-configuring[_Persistence in {PRODUCT}_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-persistence_kogito-configuring[]
-endif::[]
+* {PERSISTENCE_LINK}
 
 task life cycle::
-A mechanism that moves a user task or custom task (work item) across various phases, such as *Active* -> *Claim* -> *Complete*. {PRODUCT} provides standard life cycle phases for user tasks and also supports custom life cycles or life cycle phases.
+A mechanism that moves a user task or custom task (work item) across various phases, such as *Active* -> *Claim* -> *Complete*.
+{PRODUCT} provides standard life cycle phases for user tasks and also supports custom life cycles or life cycle phases.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_PROCESS_SERVICES}#con-task-life-cycle_kogito-developing-process-services[_Task life cycle in {PRODUCT} processes_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-task-life-cycle_kogito-developing-process-services[]
-endif::[]
+* {TASK_LIFE_CYCLE_LINK}
 
 unit of work::
-A component in {PRODUCT} that serves as the basis for {PRODUCT} runtime execution. Units of work capture all steps in a process and are used internally to move a process instance from one state to the next state. After all possible steps in a process are successfully executed, the final state is sent to the {PRODUCT} runtime as a runtime event. {PRODUCT} can then use these events to notify third parties about changes to the BPMN process instance and its data.
+A component in {PRODUCT} that serves as the basis for {PRODUCT} runtime execution.
+Units of work capture all steps in a process and are used internally to move a process instance from one state to the next state.
+After all possible steps in a process are successfully executed, the final state is sent to the {PRODUCT} runtime as a runtime event.
+{PRODUCT} can then use these events to notify third parties about changes to the BPMN process instance and its data.
 +
 .Additional resources
-ifdef::KOGITO-ENT[]
-* {URL_CONFIGURING_KOGITO}#con-kogito-runtime-events_kogito-configuring[_{PRODUCT} runtime events_]
-endif::[]
-ifdef::KOGITO-COMM[]
-* xref:con-kogito-runtime-events_kogito-configuring[]
-endif::[]
+* {RUNTIME_EVENTS_LINK}
 
 
 
 ////
-//@comment: Excluding for now due to current lack of support in Kogito. Will add once settled. (Stetson 2 Apr 2020)
+//@comment: Excluding for now due to current lack of support in Kogito.
+Will add once settled.
+(Stetson 2 Apr 2020)
 Work item::
 A custom task, typically a custom service task, that you can reuse across multiple business processes.
 
@@ -1518,6 +1490,7 @@ A Java object that contains the implementation logic for a custom task (work ite
 ////
 //end::ref-kogito-glossary[]
 
+// TODO: I don't know if anything needs to happen here - Jason
 == Additional resources
 * {URL_DEPLOYING_ON_OPENSHIFT}[_{DEPLOYING_ON_OPENSHIFT}_]
 * {URL_DECISION_SERVICES}[_{DECISION_SERVICES}_]
