@@ -2,7 +2,7 @@
 = Creating and running your first {PRODUCT} services
 ifdef::context[:parent-context: {context}]
 :context: kogito-creating-running
-include::_artifacts/document-attributes.adoc[]
+include::../../../../../../_artifacts/document-attributes.adoc[]
 
 // Purpose statement for the assembly
 
