@@ -3,8 +3,33 @@
 ifdef::context[:parent-context: {context}]
 :context: kogito-creating-running
 ifdef::env-github[]
-include::../../../../../../_artifacts/document-attributes.adoc[]
 :imagesdir: ../../../../../../_images
+:PRODUCT: Kogito
+:CONFIGURING_KOGITO: Configuring {PRODUCT} supporting services and runtime capabilities
+:DECISION_SERVICES: Developing decision services with {PRODUCT} 
+:DEPLOYING_ON_OPENSHIFT: Deploying {PRODUCT} services on {OPENSHIFT}
+:OPENSHIFT: OpenShift
+:PROCESS_SERVICES: Developing process services with {PRODUCT}
+:PRODUCT_INIT: kogito
+:DEVELOPMENT_MODE: development mode or in native mode
+:DECISION_SERVICES_LINK: xref:con-drl-rule-units_drl-rules[]
+:PROCESS_SERVICES_LINK: xref:chap-kogito-developing-process-services[]
+:RUNTIME_EVENTS_LINK: xref:con-kogito-runtime-events_kogito-configuring[]
+:DATA_INDEX_SERVICE_LINK: xref:con-data-index-service_kogito-configuring[]
+:DECISION_TABLES_LINK: xref:con-decision-tables_decision-tables[]
+:CREATING_RUNNING_LINK: xref:proc-kogito-running-app_kogito-creating-running[]
+:DECISION_RULES_LINK: xref:con-drl_drl-rules[]
+:RULE_UNITS_DRL_LINK: xref:con-drl-rule-units_drl-rules[]
+:DECISION_DMN_MODELS_LINK: xref:con-dmn_dmn-models[]
+:EVENT_LISTENERS_REGISTERING_LINK: xref:proc-event-listeners-registering_kogito-configuring[]
+:DEPLOYING_ON_OPENSHIFT_CLI_LINK: xref:proc-kogito-deploying-on-ocp-kogito-cli_kogito-deploying-on-openshift[]
+:JOBS_SERVICE_LINK: xref:con-jobs-service_kogito-configuring[]
+:MANAGEMENT_CONSOLE_LINK: xref:con-management-console_kogito-developing-process-services[]
+:DEPLOYING_ON_OPENSHIFT_LINK: xref:con-kogito-on-ocp_kogito-deploying-on-openshift[]
+:PERSISTENCE_LINK: xref:con-persistence_kogito-configuring[]
+:ENABLING_PERSISTENCE_LINK: xref:proc-persistence-enabling_kogito-configuring[]
+:ENABLING_MESSAGING_LINK: xref:proc-messaging-enabling_kogito-configuring[]
+:TASK_LIFE_CYCLE_LINK: xref:con-task-life-cycle_kogito-developing-process-services[]
 endif::[]
 
 // Purpose statement for the assembly
