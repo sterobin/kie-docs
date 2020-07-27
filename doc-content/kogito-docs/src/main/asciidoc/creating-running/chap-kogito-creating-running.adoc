@@ -1024,7 +1024,7 @@ To create this example BPMN process in VSCode using the {PRODUCT} BPMN modeler, 
 .. Save the BPMN process file.
 --
 
-[id='proc-kogito-designing-app-rule-units_{context}']
+[id='proc-kogito-designing-app-rule-units_{context}', xreflabel='Using DRL rule units as an alternative decision service']
 === Using DRL rule units as an alternative decision service
 
 As an alternative to using Decision Model and Notation (DMN) to define this example decision service, you can also use a Drools Rule Language (DRL) file implemented as a rule unit.
