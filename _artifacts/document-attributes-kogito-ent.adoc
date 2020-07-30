@@ -46,26 +46,4 @@
 
 // Additional variables used in files
 :DEVELOPMENT_MODE: development mode
-:DECISION_SERVICES_LINK: {URL_DECISION_SERVICES}#con-drl-rule-units_drl-rules[_{DECISION_SERVICES}_]
-:PROCESS_SERVICES_LINK: {URL_PROCESS_SERVICES}[_{PROCESS_SERVICES}_]
-:RUNTIME_EVENTS_LINK: {URL_CONFIGURING_KOGITO}#con-kogito-runtime-events_kogito-configuring[_{PRODUCT} runtime events_]
-:DATA_INDEX_SERVICE_LINK: {URL_CONFIGURING_KOGITO}#con-data-index-service_kogito-configuring[_{PRODUCT} Data Index Service_]
-:DECISION_TABLES_LINK: {URL_DECISION_SERVICES}#con-decision-tables_decision-tables[_Designing a decision service using spreadsheet decision tables_]
-:CREATING_RUNNING_LINK: {URL_CREATING_RUNNING}#proc-kogito-running-app_kogito-creating-running[_Running a {PRODUCT} service_] 
-:DECISION_RULES_LINK: {URL_DECISION_SERVICES}#con-drl_drl-rules[_Designing a decision service using DRL rules_]
-:RULE_UNITS_DRL_LINK: {URL_DECISION_SERVICES}#con-drl-rule-units_drl-rules[_Rule units in DRL_]
-:DECISION_DMN_MODELS_LINK: {URL_DECISION_SERVICES}#con-dmn_dmn-models[_Designing a decision service using DMN models_]
-:EVENT_LISTENERS_REGISTERING_LINK: {URL_CONFIGURING_KOGITO}#proc-event-listeners-registering_kogito-configuring[_Registering event listeners_]
-:DEPLOYING_ON_OPENSHIFT_CLI_LINK: {URL_DEPLOYING_ON_OPENSHIFT}#proc-kogito-deploying-on-ocp-kogito-cli_kogito-deploying-on-openshift[_Deploying {PRODUCT} on {OPENSHIFT} using the {PRODUCT} CLI_]
-:DATA_INDEX_SERVICE_LINK: {URL_CONFIGURING_KOGITO}#con-data-index-service_kogito-configuring[_{PRODUCT} Data Index Service_]
-:JOBS_SERVICE_LINK: {URL_CONFIGURING_KOGITO}#con-jobs-service_kogito-configuring[_{PRODUCT} Jobs Service_]
-:MANAGEMENT_CONSOLE_LINK: {URL_PROCESS_SERVICES}#con-management-console_kogito-developing-process-services[_{PRODUCT} Management Console_]
-:DEPLOYING_ON_OPENSHIFT_LINK: {URL_DEPLOYING_ON_OPENSHIFT}#con-kogito-on-ocp_kogito-deploying-on-openshift[_{PRODUCT} on {OPENSHIFT}_]
-:RUNTIME_EVENTS_LINK: xref:con-kogito-runtime-events_kogito-configuring[]
-:PERSISTENCE_LINK: {URL_CONFIGURING_KOGITO}#con-persistence_kogito-configuring[_Persistence in {PRODUCT}_]
-:DATA_INDEX_SERVICE_LINK: {URL_CONFIGURING_KOGITO}#con-data-index-service_kogito-configuring[_{PRODUCT} Data Index Service_]
-:JOBS_SERVICE_LINK: {URL_CONFIGURING_KOGITO}#con-jobs-service_kogito-configuring[_{PRODUCT} Jobs Service_]
-:ENABLING_PERSISTENCE_LINK: {URL_CONFIGURING_KOGITO}#proc-persistence-enabling_kogito-configuring[_Enabling persistence for {PRODUCT} services_]
-:ENABLING_MESSAGING_LINK: {URL_CONFIGURING_KOGITO}#proc-messaging-enabling_kogito-configuring[_Enabling messaging for {PRODUCT} services_]
-:TASK_LIFE_CYCLE_LINK: {URL_PROCESS_SERVICES}#con-task-life-cycle_kogito-developing-process-services[_Task life cycle in {PRODUCT} processes_]
 
