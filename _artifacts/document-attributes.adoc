@@ -50,6 +50,11 @@ ifdef::KOGITO-COMM[]
 include::document-attributes-kogito-comm.adoc[]
 endif::KOGITO-COMM[]
 
+ifdef::env-github[]
+include::document-attributes-kogito-comm.adoc[]
+:imagesdir: ../../../../../../_images
+endif::[]
+
 //For source includes
 :kogito-dir: doc-content/kogito-docs/src/main/asciidoc
 :asciidoc-dir: ../
