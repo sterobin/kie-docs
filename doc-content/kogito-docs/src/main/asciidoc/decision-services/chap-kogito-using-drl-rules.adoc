@@ -1,7 +1,6 @@
-ifdef::context[:parent-context: {context}]
-
 [id='chap-kogito-using-drl-rules']
 = Using DRL rules in {PRODUCT} services
+ifdef::context[:parent-context: {context}]
 :context: drl-rules
 
 As a developer of business decisions, you can define business rules using Drools Rule Language (DRL) directly in free-form `.drl` text files. A DRL file can contain one or more rules that define at a minimum the rule conditions (`when`) and actions (`then`).
@@ -880,6 +879,7 @@ end
 
 For more information about using data sources for rule actions, see xref:con-drl-rule-units_drl-rules[].
 
+[replace-with="../decision-engine/con-property-change-listeners.adoc" replace-with-params="leveloffset=+1"]
 include::{asciidoc-dir}/decision-engine/chap-kogito-decision-engine.adoc[tags=con-property-change-listeners]
 
 [id='proc-drl-rules-central-create_{context}']
@@ -1082,7 +1082,8 @@ If the applicant passes both checks, then the loan is approved.
 * xref:con-drl-rules-conditions_drl-rules[]
 * xref:con-drl-rules-actions_drl-rules[]
 
-include::chap-kogito-using-dmn-models.adoc[tags=con-kogito-service-execution]
+[replace-with="../decision-services/con-kogito-service-execution.adoc" replace-with-params="leveloffset=+1"]
+include::{asciidoc-dir}/decision-services/chap-kogito-using-dmn-models.adoc[tags=con-kogito-service-execution]
 
 ifdef::parent-context[:context: {parent-context}]
 ifndef::parent-context[:!context:]

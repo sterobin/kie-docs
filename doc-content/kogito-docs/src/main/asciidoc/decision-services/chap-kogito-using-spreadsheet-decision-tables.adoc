@@ -1,7 +1,6 @@
-ifdef::context[:parent-context: {context}]
-
 [id='chap-kogito-using-spreadsheet-decision-tables']
 = Using spreadsheet decision tables in {PRODUCT} services
+ifdef::context[:parent-context: {context}]
 :context: decision-tables
 
 As a developer of business decisions, you can define business rules in a tabular format in spreadsheet decision tables and then include the spreadsheet file in your {PRODUCT} project. These rules are compiled into Drools Rule Language (DRL) for the decision service in your project.
@@ -414,7 +413,8 @@ Example: `LOCK-ON-ACTIVE true`
 .Sample decision table spreadsheet with attribute columns
 image::kogito/decision-tables/decision-table-example-03.png[Example decision table with definitions used]
 
-include::chap-kogito-using-dmn-models.adoc[tags=con-kogito-service-execution]
+[replace-with="../decision-services/con-kogito-service-execution.adoc" replace-with-params="leveloffset=+1"]
+include::{asciidoc-dir}/decision-services/chap-kogito-using-dmn-models.adoc[tags=con-kogito-service-execution]
 
 ifdef::parent-context[:context: {parent-context}]
 ifndef::parent-context[:!context:]

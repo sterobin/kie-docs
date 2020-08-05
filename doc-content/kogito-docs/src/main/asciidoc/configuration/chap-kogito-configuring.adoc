@@ -1,7 +1,6 @@
-ifdef::context[:parent-context: {context}]
-
 [id='chap-kogito-configuring_{context}']
 = Configuring {PRODUCT} supporting services and runtime capabilities
+ifdef::context[:parent-context: {context}]
 :context: kogito-configuring
 
 // Purpose statement for the assembly

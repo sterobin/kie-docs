@@ -1,7 +1,6 @@
-ifdef::context[:parent-context: {context}]
-
 [id='chap-kogito-developing-process-services']
 = Developing process services with {PRODUCT}
+ifdef::context[:parent-context: {context}]
 :context: kogito-developing-process-services
 
 // Purpose statement for the assembly
@@ -11,6 +10,7 @@ For more information about BPMN, see the Object Management Group (OMG) https://w
 
 // Modules - concepts, procedures, refs, etc.
 
+[replace-with="./modules/creating-running/ref-kogito-app-examples.adoc" replace-with-params="leveloffset=+1"]
 include::{asciidoc-dir}/creating-running/chap-kogito-creating-running.adoc[tags=ref-kogito-app-examples]
 
 [id='con-bpmn_{context}']
@@ -509,6 +509,7 @@ image::kogito/bpmn/bpmn-model-example-mortgage-application.png[Image of mortgage
 For more {PRODUCT} examples and instructions for using them, see the https://github.com/kiegroup/kogito-examples[`kogito-examples`] repository in GitHub.
 --
 
+[replace-with="../decision-services/con-kogito-service-execution.adoc" replace-with-params="leveloffset=+1"]
 include::{asciidoc-dir}/decision-services/chap-kogito-using-dmn-models.adoc[tags=con-kogito-service-execution]
 
 ifdef::KOGITO-ENT[]
