@@ -1,0 +1,35 @@
+:PAM:
+
+////
+// @Misha: The content in this file is currently duplicated from title.adoc for now so it can build. We need to update build script so that we can use something like the following include like before, and then delete all other file content here. Might require unsafe mode to go up a level (ifdef::safe-mode-unsafe[]). I suggest something like this instead of the legacy `include::topics/main.adoc`, unless you know of reasons against it.
+
+include::../title.adoc[]
+
+You can just focus on getting this one title building from an include like the above, for both PAM and DM. Once you have it working, I'll remove all symlinks and take care of all the clean-up and duplication of all other title and master.adoc files, which are likewise currently duplicated for now.
+////
+
+[id='title-developing-decision-services']
+include::_artifacts/document-attributes.adoc[]
+
+= Developing decision services in {PRODUCT}
+:context: developing-decision-services
+:imagesdir: _images
+
+As a developer of business decisions, you can use {PRODUCT} to develop decision services using Decision Model and Notation (DMN) models, Drools Rule Language (DRL) rules, guided decision tables, and other decision-authoring assets.
+
+// Assembly includes
+include::assemblies/assembly-dmn-models.adoc[]
+include::assemblies/assembly-pmml-models.adoc[]
+include::assemblies/assembly-drl-rules.adoc[]
+include::assemblies/assembly-guided-decision-tables.adoc[]
+include::assemblies/assembly-decision-tables.adoc[]
+include::assemblies/assembly-guided-rules.adoc[]
+include::assemblies/assembly-guided-rule-templates.adoc[]
+include::assemblies/assembly-test-scenarios.adoc[]
+include::assemblies/assembly-decision-engine.adoc[]
+
+// Versioning info
+include::_artifacts/versioning-information.adoc[]
+
+// Contact information
+include::_artifacts/author-group.adoc[]
