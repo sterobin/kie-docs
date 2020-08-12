@@ -17,4 +17,4 @@ endif::[]
 ifdef::KOGITO-COMM[]
 xref:con-data-index-service_kogito-configuring[].
 endif::[]
-* *{PRODUCT} process management add-on*: Enables the Management Console to interact with the process data from your {PRODUCT} services through the add-on REST endpoint `/management/processes`. If you do not enable this add-on for your {PRODUCT} service, the Management Console provides read-only access to your service data without the ability to modify instances, such as aborting process instances. For more information about the process management add-on, see xref:con-bpmn-process-management-addon_kogito-developing-process-services[].
+* *{PRODUCT} process management add-on*: Enables the Management Console to interact with the process data from your {PRODUCT} services through the add-on REST endpoint `/management/processes`. If you do not enable this add-on for your {PRODUCT} service, the Management Console provides read-only access to your service data without the ability to modify instances, such as aborting process instances. For more information about the process management add-on, see xref:con-bpmn-process-management-addon_kogito-bpmn-models[].

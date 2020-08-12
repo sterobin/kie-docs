@@ -11,7 +11,7 @@ ifdef::KOGITO-ENT[]
 * {URL_PROCESS_SERVICES}[_{PROCESS_SERVICES}_]
 endif::[]
 ifdef::KOGITO-COMM[]
-* xref:chap-kogito-developing-process-services[]
+* xref:chap-kogito-bpmn-models[]
 endif::[]
 
 business domain API::
@@ -83,10 +83,10 @@ A definition of a business decision flow based on the https://www.omg.org/spec/D
 +
 .Additional resources
 ifdef::KOGITO-ENT[]
-* {URL_DECISION_SERVICES}#con-dmn_dmn-models[_Designing a decision service using DMN models_]
+* {URL_DECISION_SERVICES}#con-dmn_kogito-dmn-models[_Designing a decision service using DMN models_]
 endif::[]
 ifdef::KOGITO-COMM[]
-* xref:con-dmn_dmn-models[]
+* xref:con-dmn_kogito-dmn-models[]
 endif::[]
 
 event listener::
@@ -150,10 +150,10 @@ A user interface for viewing the state of all available {PRODUCT} services and m
 +
 .Additional resources
 ifdef::KOGITO-ENT[]
-* {URL_PROCESS_SERVICES}#con-management-console_kogito-developing-process-services[_{PRODUCT} Management Console_]
+* {URL_PROCESS_SERVICES}#con-management-console_kogito-bpmn-models[_{PRODUCT} Management Console_]
 endif::[]
 ifdef::KOGITO-COMM[]
-* xref:con-management-console_kogito-developing-process-services[]
+* xref:con-management-console_kogito-bpmn-models[]
 endif::[]
 
 {PRODUCT} Operator::
@@ -265,10 +265,10 @@ A mechanism that moves a user task or custom task (work item) across various pha
 +
 .Additional resources
 ifdef::KOGITO-ENT[]
-* {URL_PROCESS_SERVICES}#con-task-life-cycle_kogito-developing-process-services[_Task life cycle in {PRODUCT} processes_]
+* {URL_PROCESS_SERVICES}#con-task-life-cycle_kogito-bpmn-models[_Task life cycle in {PRODUCT} processes_]
 endif::[]
 ifdef::KOGITO-COMM[]
-* xref:con-task-life-cycle_kogito-developing-process-services[]
+* xref:con-task-life-cycle_kogito-bpmn-models[]
 endif::[]
 
 unit of work::

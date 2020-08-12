@@ -22,7 +22,7 @@ a|
 * Can be integrated efficiently with Business Process Model and Notation (BPMN) process models
 * Are optimal for creating comprehensive, illustrative, and stable decision flows
 |{PRODUCT} DMN modeler in VSCode or other DMN-compliant editor
-|xref:con-dmn_dmn-models[]
+|xref:con-dmn_kogito-dmn-models[]
 
 |DRL rules
 a|

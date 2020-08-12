@@ -11,7 +11,7 @@ endif::[]
 ifdef::KOGITO-COMM[]
 xref:con-data-index-service_kogito-configuring[].
 endif::[]
-* The `pom.xml` file of your {PRODUCT} project contains the following dependency for the process management add-on. This add-on enables the Management Console to interact with the process data through the add-on REST endpoint `/management/processes`. For more information about the process management add-on, see xref:con-bpmn-process-management-addon_kogito-developing-process-services[].
+* The `pom.xml` file of your {PRODUCT} project contains the following dependency for the process management add-on. This add-on enables the Management Console to interact with the process data through the add-on REST endpoint `/management/processes`. For more information about the process management add-on, see xref:con-bpmn-process-management-addon_kogito-bpmn-models[].
 +
 .Project dependency to enable process management REST operations
 [source,xml]

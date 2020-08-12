@@ -46,7 +46,7 @@ endif::[]
 * Root context (`kie-server`)
 * Base REST path (`services/rest/`)
 
-ifeval::["{context}" == "dmn-models"]
+ifeval::["{context}" == "kogito-dmn-models"]
 Example base URL in local deployment:
 
 `\http://localhost:8080/kie-server/services/rest/`
@@ -97,7 +97,7 @@ curl -H "accept: application/xml" -H "content-type: application/xml"
 
 Example curl request:
 
-ifeval::["{context}" == "dmn-models"]
+ifeval::["{context}" == "kogito-dmn-models"]
 [source]
 ----
 curl -u krisv:krisv -H "accept: application/xml" -X GET "http://localhost:8080/kie-server/services/rest/server/containers/MovieDMNContainer/dmn"
@@ -544,7 +544,7 @@ endif::[]
 
 . Execute the model:
 
-ifeval::["{context}" == "dmn-models"]
+ifeval::["{context}" == "kogito-dmn-models"]
 +
 --
 *[POST]* `server/containers/{containerId}/dmn`

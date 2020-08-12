@@ -1,18 +1,8 @@
 ifdef::context[:parent-context: {context}]
 
 [id='assembly-kogito-configuring']
-
-ifdef::KOGITO-ENT[]
-include::_artifacts/document-attributes.adoc[]
-endif::[]
-
 = Configuring {PRODUCT} supporting services and runtime capabilities
 :context: kogito-configuring
-ifdef::KOGITO-ENT[]
-:doctype: book
-:imagesdir: _images
-include::_artifacts/author-group.adoc[]
-endif::[]
 
 // Purpose statement for the assembly
 As a developer of business processes and decisions, you can configure {PRODUCT} supporting services and runtime properties for advanced use cases with your {PRODUCT} services.
@@ -35,17 +25,11 @@ include::modules/configuration/proc-jobs-service-persistence.adoc[leveloffset=+2
 include::modules/configuration/proc-jobs-service-messaging.adoc[leveloffset=+2]
 include::modules/process-services/con-bpmn-process-management-addon.adoc[leveloffset=+1]
 
-
-ifdef::KOGITO-ENT[]
 == Additional resources
 * {URL_CREATING_RUNNING}[_{CREATING_RUNNING}_]
 * {URL_DEPLOYING_ON_OPENSHIFT}[_{DEPLOYING_ON_OPENSHIFT}_]
 * {URL_DECISION_SERVICES}[_{DECISION_SERVICES}_]
 * {URL_PROCESS_SERVICES}[_{PROCESS_SERVICES}_]
-
-// Versioning info
-include::_artifacts/versioning-information.adoc[]
-endif::[]
 
 ifdef::parent-context[:context: {parent-context}]
 ifndef::parent-context[:!context:]

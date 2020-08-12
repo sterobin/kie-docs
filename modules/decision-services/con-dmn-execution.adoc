@@ -5,7 +5,7 @@ You can create or import DMN files in your {PRODUCT} project using {CENTRAL} or 
 ifeval::["{context}" == "decision-service-getting-started"]
 and interacting with the container using the {KIE_SERVER} REST API.
 endif::[]
-ifeval::["{context}" == "dmn-models"]
+ifeval::["{context}" == "kogito-dmn-models"]
 or by manipulating the KIE container directly as a dependency of the calling application. Other options for creating and deploying DMN knowledge packages are also available, and most are similar for all types of knowledge assets, such as DRL files or process definitions.
 endif::[]
 

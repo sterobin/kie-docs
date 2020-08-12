@@ -5,7 +5,7 @@ You can use the {PRODUCT} BPMN modeler in VSCode to design BPMN process models a
 
 {PRODUCT} currently supports a subset of the https://www.omg.org/spec/BPMN/2.0/About-BPMN[Business Process Model and Notation 2.0 specification]. Although the {PRODUCT} BPMN modeler displays many BPMN components in the canvas palette, the {PROCESS_ENGINE} (process runtime component) in {PRODUCT} currently executes only the supported subset of components. If you use any BPMN components from the {PRODUCT} BPMN modeler palette that are not supported by the {PROCESS_ENGINE}, your {PRODUCT} project might fail to compile or execute. Additional BPMN components are added to {PRODUCT} runtime support with every release.
 
-For more information about BPMN2 support in {PRODUCT}, see xref:ref-bpmn-support_kogito-developing-process-services[].
+For more information about BPMN2 support in {PRODUCT}, see xref:ref-bpmn-support_kogito-bpmn-models[].
 
 .Prerequisites
 * https://code.visualstudio.com/[VSCode] 1.43.0 or later is installed.
@@ -122,7 +122,7 @@ Although the {PRODUCT} BPMN modeler displays many BPMN components in the canvas 
 . In the BPMN modeler canvas, for each new BPMN component that you add, select the new node, and in the upper-right corner of the BPMN modeler, click *Properties* to define the node identity and behavior.
 +
 --
-For more information about BPMN component properties, see xref:ref-bpmn-support_kogito-developing-process-services[].
+For more information about BPMN component properties, see xref:ref-bpmn-support_kogito-bpmn-models[].
 
 For this example, use a business rule task based on a Decision Model and Notation (DMN) decision model as your first activity node.
 
