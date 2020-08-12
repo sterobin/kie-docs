@@ -8,4 +8,4 @@ For more information about working with single-sourced community and enterprise 
 
 * [Community collaboration guide](https://redhat-documentation.github.io/community-collaboration-guide/)
 * [Creating modular documentation repositories course](https://learning.redhat.com/mod/facetoface/view.php?id=6590)
-* [Creating modular documentation repositories agenda](https://docs.google.com/document/d/1XLptcmIaU9ymQoxwC5FIf_VDhBNrHb4zzvUiM8qesEw/edit?usp=sharing)
+* [Creating modular documentation repositories agenda](https://docs.google.com/document/d/1XLptcmIaU9ymQoxwC5FIf_VDhBNrHb4zzvUiM8qesEw/edit?usp=sharing) (contains links to example single-sourced repositories)
