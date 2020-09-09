@@ -3,8 +3,8 @@
 
 :COMMUNITY_VERSION: 0.9
 :ENTERPRISE_VERSION: {COMMUNITY_VERSION}
-:ENTERPRISE_VERSION_LONG: {COMMUNITY_VERSION}.1
-:COMMUNITY_VERSION_LONG: {COMMUNITY_VERSION}.1
+:ENTERPRISE_VERSION_LONG: {COMMUNITY_VERSION}.0
+:COMMUNITY_VERSION_LONG: {COMMUNITY_VERSION}.0
 :COMMUNITY_VERSION_FINAL: {COMMUNITY_VERSION_LONG}.Final
 :COMMUNITY_VERSION_BRANCH: 0.9.x
 
@@ -78,7 +78,7 @@ endif::[]
 :URL_COMPONENT_PROCESS_ENGINE: process-engine
 :URL_COMPONENT_PLANNING_ENGINE: planner-engine
 
-// Assembly names (some of these will likely be moved product-specific attrs docs in the future, i.e., document-attributes-dm.adoc and ..-ba.adoc)
+// Title names, containing assemblies (several are currently single-assembly titles, such as release notes and creating-running, and thus function as both assembly and title for now)
 
 :RELEASE_NOTES: Release notes for {PRODUCT} {ENTERPRISE_VERSION}
 :CREATING_RUNNING: Creating and running your first {PRODUCT} services
@@ -86,5 +86,11 @@ endif::[]
 :DECISION_SERVICES: Developing decision services with {PRODUCT}
 :PROCESS_SERVICES: Developing process services with {PRODUCT}
 :CONFIGURING_KOGITO: Configuring {PRODUCT} supporting services and runtime capabilities
+
+// Assemblies within titles (excluding single-assembly titles such as release notes, which are listed above)
+
+:DMN_MODELS: Using DMN models in {PRODUCT} services
+:DRL_RULES: Using DRL rules in {PRODUCT} services
+:SPREADSHEET_DECISION_TABLES: Using spreadsheet decision tables in {PRODUCT} services
 
 :ndash: &ndash;

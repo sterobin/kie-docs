@@ -952,13 +952,7 @@ end
 ----
 
 .Prerequisites
-* You have created a {PRODUCT} project and have included any Java data objects required for your {PRODUCT} service. For information about creating a project, see
-ifdef::KOGITO-ENT[]
-{URL_CREATING_RUNNING}[_{CREATING_RUNNING}_].
-endif::[]
-ifdef::KOGITO-COMM[]
-xref:chap-kogito-creating-running[].
-endif::[]
+* You have created a {PRODUCT} project and have included any Java data objects required for your {PRODUCT} service. For information about creating a project, see {URL_CREATING_RUNNING}#chap-kogito-creating-running[_{CREATING_RUNNING}_].
 
 .Procedure
 . In your VSCode IDE, open your {PRODUCT} project and create a `src/main/resources/org/mortgages` folder. This folder serves as the package for your DRL files in this example.
