@@ -1,0 +1,13 @@
+:KOGITO-ENT:
+:imagesdir: _images
+
+include::_artifacts/document-attributes.adoc[]
+
+// Assembly includes
+include::assemblies/assembly-kogito-creating-running.adoc[]
+
+// Versioning info
+include::_artifacts/versioning-information.adoc[]
+
+// Contact information
+include::_artifacts/author-group.adoc[]

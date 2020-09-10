@@ -3,13 +3,8 @@
 
 As an alternative to using Decision Model and Notation (DMN) to define this example decision service, you can also use a Drools Rule Language (DRL) file implemented as a rule unit.
 
-A DRL rule unit is a module for rules and a unit of execution. A rule unit collects a set of rules with the declaration of the type of facts that the rules act on. A rule unit also serves as a unique namespace for each group of rules. A single rule base can contain multiple rule units. You typically store all the rules for a unit in the same file as the unit declaration so that the unit is self-contained. For more information about rule units, see
-ifdef::KOGITO-ENT[]
-{URL_DECISION_SERVICES}#con-drl-rule-units_drl-rules[_{DECISION_SERVICES}_].
-endif::[]
-ifdef::KOGITO-COMM[]
-xref:con-drl-rule-units_drl-rules[].
-endif::[]
+A DRL rule unit is a module for rules and a unit of execution. A rule unit collects a set of rules with the declaration of the type of facts that the rules act on. A rule unit also serves as a unique namespace for each group of rules. A single rule base can contain multiple rule units. You typically store all the rules for a unit in the same file as the unit declaration so that the unit is self-contained. For more information about rule units, see {URL_DECISION_SERVICES}#con-drl-rule-units_drl-rules[_{DRL_RULES}_].
+
 
 .Procedure
 . In the `src/main/resources` folder of your example {PRODUCT} project, instead of using a DMN file, add the following `PersonRules.drl` file:

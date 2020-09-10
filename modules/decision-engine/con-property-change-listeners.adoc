@@ -119,3 +119,5 @@ declare Person
 end
 ----
 --
+// end::con-property-change-listeners[]
+

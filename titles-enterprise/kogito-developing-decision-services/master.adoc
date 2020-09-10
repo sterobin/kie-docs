@@ -1,0 +1,23 @@
+:KOGITO-ENT:
+:imagesdir: _images
+
+include::_artifacts/document-attributes.adoc[]
+
+// Assembly includes
+include::assemblies/assembly-kogito-developing-decision-services.adoc[]
+include::assemblies/assembly-kogito-using-dmn-models.adoc[]
+include::assemblies/assembly-kogito-using-drl-rules.adoc[]
+include::assemblies/assembly-kogito-using-spreadsheet-decision-tables.adoc[]
+include::assemblies/assembly-kogito-decision-engine.adoc[]
+
+== Additional resources
+* {URL_CREATING_RUNNING}[_{CREATING_RUNNING}_]
+* {URL_DEPLOYING_ON_OPENSHIFT}[_{DEPLOYING_ON_OPENSHIFT}_]
+* {URL_PROCESS_SERVICES}[_{PROCESS_SERVICES}_]
+* {URL_CONFIGURING_KOGITO}[_{CONFIGURING_KOGITO}_]
+
+// Versioning info
+include::_artifacts/versioning-information.adoc[]
+
+// Contact information
+include::_artifacts/author-group.adoc[]

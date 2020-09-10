@@ -31,9 +31,9 @@ Quarkus and Spring Boot support the following run modes:
 
 * *Development mode*: For local testing. On Quarkus, development mode also offers live reload of your processes and decisions in your running applications for advanced debugging.
 * *JVM mode*: For compatibility with a Java virtual machine (JVM).
-ifdef::KOGITO-COMM[]
-* *Native mode*: (Quarkus only, requires GraalVM) For direct binary execution as native code.
-endif::[]
+
+
+
 
 The command that you use depends on your preferred run mode and application environment:
 
@@ -60,17 +60,17 @@ mvn clean package
 java -jar target/sample-kogito-1.0-SNAPSHOT-runner.jar
 ----
 +
-ifdef::KOGITO-COMM[]
-* For native mode (requires GraalVM):
-+
-.On Quarkus only
-[source]
-----
-mvn clean package -Dnative
-./target/sample-kogito-1.0-SNAPSHOT-runner
-----
-+
-endif::[]
+
+
+
+
+
+
+
+
+
+
+
 --
 . After the {PRODUCT} service is running, use a REST client, curl utility, or the Swagger UI configured for the application at http://localhost:8080/swagger-ui/ to send API requests with the following components:
 +
@@ -117,12 +117,12 @@ curl -X POST http://localhost:8080/orders -H 'content-type: application/json' -H
 image::kogito/creating-running/kogito-swagger-example-jbpm.png[Image of Swagger UI for example application]
 
 NOTE: For the predefined {PRODUCT} example applications, the Swagger UI for interacting with service endpoints is available only on Quarkus examples that you run in
-ifdef::KOGITO-ENT[]
-development mode.
-endif::[]
-ifdef::KOGITO-COMM[]
-development mode or in native mode.
-endif::[]
+
+
+
+
+
+
 
 This example procedure uses the following curl commands for convenience:
 

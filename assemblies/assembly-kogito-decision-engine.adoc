@@ -1,57 +1,23 @@
 ifdef::context[:parent-context: {context}]
-
 [id='assembly-kogito-decision-engine']
 = {DECISION_ENGINE_CAP} in {PRODUCT}
+ifdef::context[:parent-context: {context}]
 :context: decision-engine
 
 As a developer of business decisions, your understanding of the {DECISION_ENGINE} in {PRODUCT} can help you design more effective business assets and a more scalable decision management architecture. The {DECISION_ENGINE} is the {PRODUCT} component that stores, processes, and evaluates data to execute business rules and to reach the decisions that you define. This document describes basic concepts and functions of the {DECISION_ENGINE} to consider as you create your business rule system and decision services in {PRODUCT}.
 
 include::modules/decision-engine/con-decision-engine.adoc[leveloffset=+1]
-////
-//Excluded for now, not applicable to Kogito, no replacement yet. (Stetson, 9 Mar 2020)
-include::modules/decision-engine/con-kie-sessions.adoc[leveloffset=+1]
-include::modules/decision-engine/con-kie-sessions-stateless.adoc[leveloffset=+2]
-include::modules/decision-engine/con-kie-sessions-stateless-globals.adoc[leveloffset=+3]
-include::modules/decision-engine/con-kie-sessions-stateful.adoc[leveloffset=+2]
-include::modules/decision-engine/con-kie-sessions-pools.adoc[leveloffset=+2]
-////
-//@comment evacchi not totally sure how to make it "flow" with OOPath @MarkP ?
-//include::modules/decision-engine/con-inference-and-truth-maintenance.adoc[leveloffset=+1]
-//@comment evacchi equality mode currently defaults to identity and there is really no real way to override. So I'd just leave this out for now
-//include::modules/decision-engine/con-fact-equality-modes.adoc[leveloffset=+2]
+
 include::modules/decision-engine/con-execution-control.adoc[leveloffset=+1]
-//@comment Currently TBD for Kogito. (Stetson 7 Apr 2020)
-//include::modules/decision-engine/con-rule-execution-modes.adoc[leveloffset=+2]
-//include::modules/decision-engine/con-fact-propagation-modes.adoc[leveloffset=+2]
-//include::modules/decision-engine/con-agenda-filters.adoc[leveloffset=+2]
-//@comment Rule units seem no longer portrayed for execution control but for general strategy. Will see. (Stetson 7 Apr 2020)
-//include::modules/decision-services/con-drl-rule-units.adoc[leveloffset=+2]
-include::modules/decision-engine/con-phreak-algorithm.adoc[leveloffset=+1]
-include::modules/decision-engine/con-phreak-rule-evaluation.adoc[leveloffset=+2]
-include::modules/decision-engine/con-forward-and-backward-chaining.adoc[leveloffset=+3]
-//@comment Currently TBD for Kogito (Stetson 7 Apr 2020)
-//include::modules/decision-engine/con-rule-base-configuration.adoc[leveloffset=+2]
-//include::modules/decision-engine/con-phreak-sequential-mode.adoc[leveloffset=+2]
-include::modules/decision-engine/con-property-change-listeners.adoc[leveloffset=+2]
-////
-//Excluded for now, not yet supported in Kogito. (9 Mar 2020)
-include::modules/decision-engine/con-cepn.adoc[leveloffset=+1]
-include::modules/decision-engine/con-cep-events.adoc[leveloffset=+2]
-include::modules/decision-engine/proc-cep-events.adoc[leveloffset=+2]
-include::modules/decision-services/ref-drl-declarations-metadata-tags.adoc[leveloffset=+2]
-include::modules/decision-engine/con-cep-modes.adoc[leveloffset=+2]
-include::modules/decision-engine/con-cep-negative-patterns.adoc[leveloffset=+3]
-include::modules/decision-engine/ref-cep-temporal-operators.adoc[leveloffset=+2]
-include::modules/decision-engine/ref-cep-clock.adoc[leveloffset=+2]
-include::modules/decision-engine/con-cep-event-streams.adoc[leveloffset=+2]
-include::modules/decision-engine/proc-cep-event-streams.adoc[leveloffset=+3]
-include::modules/decision-engine/con-cep-sliding-windows.adoc[leveloffset=+2]
-include::modules/decision-engine/proc-cep-sliding-windows.adoc[leveloffset=+3]
-include::modules/decision-engine/con-cep-memory-management.adoc[leveloffset=+2]
-include::modules/decision-engine/con-engine-queries.adoc[leveloffset=+1]
-////
+
+include::modules/decision-engine/con-phreak-rule-evaluation.adoc[leveloffset=+1]
+
+include::modules/decision-engine/con-forward-and-backward-chaining.adoc[leveloffset=+2]
+
+include::modules/decision-engine/con-property-change-listeners.adoc[leveloffset=+1]
+
 include::modules/decision-engine/con-engine-event-listeners.adoc[leveloffset=+1]
-//include::modules/decision-engine/proc-logging-decision-engine.adoc[leveloffset=+2]
+
 
 ifdef::parent-context[:context: {parent-context}]
 ifndef::parent-context[:!context:]
