@@ -42,3 +42,8 @@ a|
 |Spreadsheet editor
 |xref:con-decision-tables_decision-tables[]
 |===
+
+//@Jason: The following `{asciidoc-dir}` functions as a symlink for both enterprise (document attribute) and community (pom.xml attribute) so that we can house chaps in subject-matter dirs and still cross-ref like this to other chaps in other folders. The docs are already doing this sort of thing for artifacts and images, so just following suite.
+include::../creating-running/ref-kogito-app-examples.adoc[leveloffset=+1]
+
+

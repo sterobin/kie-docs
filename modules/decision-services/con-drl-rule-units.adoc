@@ -154,9 +154,9 @@ temperature.append(new Temperature(100));
 ----
 
 * `DataStore`: A writable storage option for adding or removing data and then notifying all subscribers that mutable data has been modified. Rules can pattern-match against incoming values and update or remove available values.
-ifdef::KOGITO-COMM[]
-For users familiar with {PRODUCT_DROOLS}, this option is equivalent to a typed version of an entry point. In fact, a `DataStore<Object>` is equivalent to an old-style entry point.
-endif::[]
+
+
+
 +
 .Example DataStore data source definition
 [source,java]
@@ -173,9 +173,9 @@ temperature.remove(t);
 ----
 
 * `SingletonStore`: A writable storage option for setting or clearing a single element and then notifying all subscribers that the element has been modified. Rules can pattern-match against the value and update or clear available values.
-ifdef::KOGITO-COMM[]
-For users familiar with {PRODUCT_DROOLS}, this option is equivalent to a global. In fact, a `Singleton<Object>` is similar to an old-style global, except that when used in conjuction with rules, you can pattern-match against it.
-endif::[]
+
+
+
 +
 .Example SingletonStore data source definition
 [source,java]

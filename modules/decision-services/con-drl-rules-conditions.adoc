@@ -1,13 +1,13 @@
 [id='con-drl-rules-conditions_{context}']
 = Rule conditions in DRL
 
-ifdef::KOGITO-COMM[]
-.Rule
-image::kogito/drl/rule.png[align="center"]
 
-.Conditional element in a rule
-image::kogito/drl/lhs.png[align="center"]
-endif::[]
+
+
+
+
+
+
 
 The `when` part of a DRL rule (also known as the _Left Hand Side (LHS)_ of the rule) contains the conditions that must be met to execute an action. Conditions consist of a series of stated OOPath expressions of patterns and constraints, with optional bindings and supported rule condition elements (keywords), based on the available data objects in the package. OOPath is an object-oriented syntax extension to XPath for navigating through related elements while handling collections and filtering constraints.
 
@@ -331,18 +331,18 @@ By default, the {DECISION_ENGINE} supports the date format `dd-mmm-yyyy`. You ca
 /person[ bornBefore < "27-Oct-2009" ]
 ----
 
-ifdef::KOGITO-COMM[]
-== Auto-boxing and primitive types
 
-Drools attempts to preserve numbers in their primitive or object wrapper form, so a variable bound to an int primitive when used in a code block or expression will no longer need manual unboxing; unlike early Drools versions where all primitives were autoboxed, requiring manual unboxing.
-A variable bound to an object wrapper will remain as an object; the existing JDK 1.5 and JDK 5 rules to handle auto-boxing and unboxing apply in this case.
-When evaluating field constraints, the system attempts to coerce one of the values into a comparable format; so a primitive is comparable to an object wrapper.
-endif::[]
+
+
+
+
+
+
 
 ////
 //@comment evacchi: I am not sure the following sections still apply/work. I would hide for now (evacchi, 2020-03-16)*>
 
-== Other Features
+= Other Features
 
 OOPath has several other advanced features. We report them here for completeness
 
@@ -370,7 +370,7 @@ grade: /student/plan/exams[0]/grades
 
 
 
-== Object reactivity in OOPath expressions
+= Object reactivity in OOPath expressions
 
 OOPath expressions can be reactive or non-reactive. The {DECISION_ENGINE} does not react to updates involving a deeply nested object that is traversed during the evaluation of an OOPath expression.
 

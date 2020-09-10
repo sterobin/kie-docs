@@ -35,12 +35,12 @@ For example, the following REST operations use the endpoint `/orders` to interac
 image::kogito/creating-running/kogito-swagger-example-jbpm.png[Image of Swagger UI for example application]
 
 NOTE: For the predefined {PRODUCT} example applications, the Swagger UI for interacting with service endpoints is available only on Quarkus examples that you run in
-ifdef::KOGITO-ENT[]
-development mode.
-endif::[]
-ifdef::KOGITO-COMM[]
-development mode or in native mode.
-endif::[]
+
+
+
+
+
+
 
 .Example POST request body to create an order (JSON)
 [source,json]

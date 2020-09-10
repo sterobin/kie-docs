@@ -75,3 +75,7 @@ Example: `LOCK-ON-ACTIVE true`
 
 .Sample decision table spreadsheet with attribute columns
 image::kogito/decision-tables/decision-table-example-03.png[Example decision table with definitions used]
+
+[replace-with="../decision-services/con-kogito-service-execution.adoc" replace-with-params="leveloffset=+1"]
+include::../../modules/decision-services/con-kogito-service-execution.adoc[leveloffset=+1]
+

@@ -19,3 +19,6 @@ end
 ----
 
 For more information about using data sources for rule actions, see xref:con-drl-rule-units_drl-rules[].
+
+include::../decision-engine/con-property-change-listeners.adoc[leveloffset=+1]
+

@@ -5,7 +5,7 @@ After you configure and run your {PRODUCT} service and the {PRODUCT} Data Index 
 
 The {PRODUCT} Data Index Service supports GraphQL queries for process definitions (domain cache) and for process instances and task instances (instance caches).
 
-== GraphQL queries for process definitions (domain cache)
+=== GraphQL queries for process definitions (domain cache)
 
 Use the following GraphQL queries to retrieve data about process definitions. These example queries assume that a `Travels` Business Process Model and Notation (BPMN) process model is running or has been executed.
 
@@ -171,7 +171,7 @@ You can use the `pagination` parameter to specify a `limit` and `offset` for que
 ----
 --
 
-== GraphQL queries for process instances and user task instances (instance caches)
+=== GraphQL queries for process instances and user task instances (instance caches)
 
 Use the following GraphQL queries to retrieve data about process instances and user task instances.
 

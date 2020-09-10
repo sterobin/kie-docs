@@ -9,20 +9,8 @@ For more information about BPMN2 support in {PRODUCT}, see xref:ref-bpmn-support
 
 .Prerequisites
 * https://code.visualstudio.com/[VSCode] 1.43.0 or later is installed.
-* The {PRODUCT} https://github.com/kiegroup/kogito-tooling/releases[VSCode extension] is installed and enabled in your VSCode IDE. For information about enabling the VSCode extension, see
-ifdef::KOGITO-ENT[]
-{URL_CREATING_RUNNING}#proc-kogito-vscode-extension_kogito-creating-running[_{CREATING_RUNNING}_].
-endif::[]
-ifdef::KOGITO-COMM[]
-xref:proc-kogito-vscode-extension_kogito-creating-running[].
-endif::[]
-* You have created a {PRODUCT} project and have included any Java objects required for your {PRODUCT} service. For information about creating a project, see
-ifdef::KOGITO-ENT[]
-{URL_CREATING_RUNNING}[_{CREATING_RUNNING}_].
-endif::[]
-ifdef::KOGITO-COMM[]
-xref:chap-kogito-creating-running[].
-endif::[]
+* The {PRODUCT} https://github.com/kiegroup/kogito-tooling/releases[VSCode extension] is installed and enabled in your VSCode IDE. For information about enabling the VSCode extension, see {URL_CREATING_RUNNING}#proc-kogito-vscode-extension_kogito-creating-running[_{CREATING_RUNNING}_].
+* You have created a {PRODUCT} project and have included any Java objects required for your {PRODUCT} service. For information about creating a project, see {URL_CREATING_RUNNING}#chap-kogito-creating-running[_{CREATING_RUNNING}_].
 
 .Procedure
 . In your VSCode IDE, create or import a BPMN file in the relevant folder of your {PRODUCT} project, typically in `src/main/resources`.
@@ -177,3 +165,16 @@ image::kogito/bpmn/bpmn-model-example-mortgage-application.png[Image of mortgage
 
 For more {PRODUCT} examples and instructions for using them, see the https://github.com/kiegroup/kogito-examples[`kogito-examples`] repository in GitHub.
 --
+
+include::../decision-services/con-kogito-service-execution.adoc[leveloffset=+1]
+
+
+
+
+
+
+
+
+
+
+
