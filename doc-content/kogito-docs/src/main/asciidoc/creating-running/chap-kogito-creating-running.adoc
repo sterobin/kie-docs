@@ -5,14 +5,14 @@ ifdef::context[:parent-context: {context}]
 
 // Purpose statement for the assembly
 
-As a developer of business processes and decisions, you can use {PRODUCT} business automation to build  cloud-native applications that adapt to your business domain and tooling.
+As a developer of business processes and decisions, you can use {PRODUCT} business automation to build cloud-native applications that adapt to your business domain and tooling.
 
 .Prerequisites
 * JDK 11 or later is installed.
 * Apache Maven 3.6.2 or later is installed.
 * Docker is installed.
 
-// Modules - concepts, procedures, refs.
+// Modules - concepts, procedures, refs, etc.
 
 ifdef::KOGITO-ENT[]
 // tag::con-kogito-automation[]
