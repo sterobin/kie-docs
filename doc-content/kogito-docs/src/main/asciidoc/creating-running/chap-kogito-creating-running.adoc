@@ -1392,6 +1392,7 @@ A Java object that contains the implementation logic for a custom task (work ite
 ////
 //end::ref-kogito-glossary[]
 
+ifdef::KOGITO-ENT[]
 == Additional resources
 * {URL_DECISION_SERVICES}#chap-kogito-developing-decision-services[_{DECISION_SERVICES}_]
 * {URL_PROCESS_SERVICES}#chap-kogito-developing-process-services[_{PROCESS_SERVICES}_]
