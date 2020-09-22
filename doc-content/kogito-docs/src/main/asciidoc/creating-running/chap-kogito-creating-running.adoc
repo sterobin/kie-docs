@@ -12,7 +12,7 @@ As a developer of business processes and decisions, you can use {PRODUCT} busine
 * Apache Maven 3.6.2 or later is installed.
 * Docker is installed.
 
-// Modules - concepts, procedures, refs, etc.
+// Modules - concepts, procedures, refs
 
 ifdef::KOGITO-ENT[]
 // tag::con-kogito-automation[]
