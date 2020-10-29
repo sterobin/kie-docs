@@ -1,4 +1,4 @@
-[id='ref-kogito-rn-new-features_{context}']
+[id="ref-kogito-rn-new-features_{context}"]
 = New features in {PRODUCT} {PRODUCT_VERSION}
 
 The following sections describe some of the new features or enhancements in {PRODUCT} {PRODUCT_VERSION}.
@@ -17,7 +17,7 @@ These example applications illustrate how to use OptaPlanner to optimize plannin
 For more information about OptaPlanner integration with {PRODUCT}, see the https://docs.optaplanner.org/latestFinal/optaplanner-docs/html_single/index.html#integrationWithQuarkus[OptaPlanner documentation].
 
 For more information about running {PRODUCT} example applications, see
-ifdef::KOGITO[]
+ifdef::KOGITO-ENT[]
 {URL_CREATING_RUNNING}#proc-kogito-app-examples-running_kogito-creating-running[_{CREATING_RUNNING}_].
 endif::[]
 ifdef::KOGITO-COMM[]
@@ -50,7 +50,7 @@ Beginning in VSCode 1.46.0, the {PRODUCT} VSCode extension is now available in V
 To install the {PRODUCT} VSCode extension directly in VSCode, select the *Extensions* menu option in VSCode and search for and install the *{PRODUCT} Bundle* extension.
 
 For more information about {PRODUCT} modeler extensions and applications, see
-ifdef::KOGITO[]
+ifdef::KOGITO-ENT[]
 {URL_CREATING_RUNNING}#con-kogito-modelers_kogito-creating-running[_{CREATING_RUNNING}_].
 endif::[]
 ifdef::KOGITO-COMM[]
@@ -67,11 +67,11 @@ Test scenarios in {PRODUCT} enable you to validate the functionality of business
 image::kogito/creating-running/kogito-test-scenario-example-person.png[Image of PersonDecisionsTest test scenario]
 
 For more information about test scenarios, see
-ifdef::KOGITO[]
-{URL_DECISION_SERVICES}#con-test-scenarios_test-scenarios[_{DECISION_SERVICES}_].
+ifdef::KOGITO-ENT[]
+{URL_DECISION_SERVICES}#con-test-scenarios_kogito-test-scenarios[_{DECISION_SERVICES}_].
 endif::[]
 ifdef::KOGITO-COMM[]
-xref:con-test-scenarios_test-scenarios[].
+xref:con-test-scenarios_kogito-test-scenarios[].
 endif::[]
 
 IMPORTANT: Test scenarios in {PRODUCT} currently support DMN decision services only. Test scenarios will support Drools Rule Language (DRL) decision services in a future release.
@@ -93,7 +93,7 @@ The {PRODUCT} BPMN modeler includes the following notable improvements:
 * Ability to import work item definitions from external files [https://issues.redhat.com/browse/KOGITO-1426[KOGITO-1426]]
 
 For more information about process services in {PRODUCT}, see
-ifdef::KOGITO[]
+ifdef::KOGITO-ENT[]
 {URL_PROCESS_SERVICES}[_{PROCESS_SERVICES}_]
 endif::[]
 ifdef::KOGITO-COMM[]

@@ -1,4 +1,4 @@
-[id='ref-kogito-rn-new-features_{context}']
+[id="ref-kogito-rn-new-features_{context}"]
 = New features in {PRODUCT} {PRODUCT_VERSION}
 
 The following sections describe some of the new features or enhancements in {PRODUCT} {PRODUCT_VERSION}.
@@ -12,7 +12,7 @@ The following sections describe some of the new features or enhancements in {PRO
 Serverless Workflow is a specification for defining declarative workflow models that orchestrate event-driven, serverless applications. You can use Serverless Workflow definition files in your {PRODUCT} project to define your domain-specific orchestration services. Your Serverless Workflow files can be in JSON or YAML format with the extension `.sw.json` or `.sw.yaml`.
 
 For more information about Serverless Workflow orchestration in {PRODUCT}, see
-ifdef::KOGITO[]
+ifdef::KOGITO-ENT[]
 {URL_ORCHESTRATING_SERVICES}[_{ORCHESTRATING_SERVICES}_].
 endif::[]
 ifdef::KOGITO-COMM[]
@@ -28,7 +28,7 @@ When the Knative Eventing add-on is enabled in a {PRODUCT} project that contains
 Knative Eventing is currently supported for {PRODUCT} services on Quarkus only.
 
 For more information about Knative Eventing in {PRODUCT} services, see
-ifdef::KOGITO[]
+ifdef::KOGITO-ENT[]
 {URL_PROCESS_SERVICES}#con-knative-eventing_kogito-developing-process-services[_{PROCESS_SERVICES}_].
 endif::[]
 ifdef::KOGITO-COMM[]
@@ -45,7 +45,7 @@ With this enhancement, the following new example applications are available to d
 * https://github.com/kiegroup/kogito-examples/tree/stable/process-mongodb-persistence-springboot[`process-mongodb-persistence-springboot`]: Example on Spring Boot
 
 For more information about MongoDB persistence in {PRODUCT}, see
-ifdef::KOGITO[]
+ifdef::KOGITO-ENT[]
 {URL_CONFIGURING_KOGITO}#proc-mongodb-persistence-enabling_kogito-configuring[_{CONFIGURING_KOGITO}_].
 endif::[]
 ifdef::KOGITO-COMM[]
@@ -62,11 +62,11 @@ image::kogito/dmn/kogito-audit-console-home.png[Image of Kogito Audit Investigat
 You can use the Audit Investigation Console to browse DMN model executions, verify execution status, retrieve execution details, such as decision outcomes, input data, and model preview, and obtain explanation information about how the processed decisions were made.
 
 For more information about the {PRODUCT} Audit Investigation Console, see
-ifdef::KOGITO[]
-{URL_DECISION_SERVICES}#con-audit-console_dmn-models[_{DECISION_SERVICES}_].
+ifdef::KOGITO-ENT[]
+{URL_DECISION_SERVICES}#con-audit-console_kogito-dmn-models[_{DECISION_SERVICES}_].
 endif::[]
 ifdef::KOGITO-COMM[]
-xref:con-audit-console_dmn-models[].
+xref:con-audit-console_kogito-dmn-models[].
 endif::[]
 
 === {PRODUCT} Management Console enhancements
@@ -96,7 +96,7 @@ image::kogito/bpmn/kogito-management-console-variables-update-attribute.png[Imag
 image::kogito/bpmn/kogito-management-console-variables-save-changes.png[Image of updating attributes on process variables in Management Console]
 
 For more information about the {PRODUCT} Management Console, see
-ifdef::KOGITO[]
+ifdef::KOGITO-ENT[]
 {URL_PROCESS_SERVICES}#con-management-console_kogito-developing-process-services[_{PROCESS_SERVICES}_].
 endif::[]
 ifdef::KOGITO-COMM[]
@@ -152,7 +152,7 @@ With this enhancement, the https://repository.jboss.org/org/kie/kogito/data-inde
 * https://repository.jboss.org/org/kie/kogito/data-index-service-mongodb/[`data-index-service-mongodb`]: Use this artifact to run the Data Index Service with MongoDB persistence storage.
 
 For more information about using the {PRODUCT} Data Index Service with MongoDB, see
-ifdef::KOGITO[]
+ifdef::KOGITO-ENT[]
 {URL_CONFIGURING_KOGITO}#proc-data-index-service-mongodb_kogito-configuring[_{CONFIGURING_KOGITO}_].
 endif::[]
 ifdef::KOGITO-COMM[]
@@ -165,7 +165,7 @@ To align with Quarkus improvements, {PRODUCT} now provides a new OpenID Connect 
 {PRODUCT} Jobs Service to enable or disable security at runtime. Before this enhancement, you could enable or disable security for these services only at build time.
 
 For more information about enabling security in the {PRODUCT} Data Index Service, see
-ifdef::KOGITO[]
+ifdef::KOGITO-ENT[]
 {URL_CONFIGURING_KOGITO}#proc-data-index-service-security_kogito-configuring[_{CONFIGURING_KOGITO}_]
 endif::[]
 ifdef::KOGITO-COMM[]
@@ -173,7 +173,7 @@ xref:proc-data-index-service-security_kogito-configuring[].
 endif::[]
 
 For more information about enabling security in the {PRODUCT} Jobs Service, see
-ifdef::KOGITO[]
+ifdef::KOGITO-ENT[]
 {URL_CONFIGURING_KOGITO}#proc-jobs-service-security_kogito-configuring[_{CONFIGURING_KOGITO}_]
 endif::[]
 ifdef::KOGITO-COMM[]
@@ -187,9 +187,9 @@ endif::[]
 You can now use the *Included Models* tab in the {PRODUCT} VSCode DMN modeler to include Predictive Model Markup Language (PMML) models from your project in a specified DMN file. When you include a PMML model within a DMN file, you can invoke that PMML model as a boxed function expression for a DMN decision node or business knowledge model node.
 
 For more information about included models in DMN files, see
-ifdef::KOGITO[]
-{URL_DECISION_SERVICES}#con-dmn-included-models_dmn-models[_{DECISION_SERVICES}_]
+ifdef::KOGITO-ENT[]
+{URL_DECISION_SERVICES}#con-dmn-included-models_kogito-dmn-models[_{DECISION_SERVICES}_]
 endif::[]
 ifdef::KOGITO-COMM[]
-xref:con-dmn-included-models_dmn-models[].
+xref:con-dmn-included-models_kogito-dmn-models[].
 endif::[]

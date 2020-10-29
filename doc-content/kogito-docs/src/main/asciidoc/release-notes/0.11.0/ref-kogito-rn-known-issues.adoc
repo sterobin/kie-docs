@@ -1,4 +1,4 @@
-[id='ref-kogito-rn-known-issues_{context}']
+[id="ref-kogito-rn-known-issues_{context}"]
 = Known issues in {PRODUCT} {PRODUCT_VERSION}
 
 The following list describes some of the known issues in {PRODUCT} {PRODUCT_VERSION}. For more information about each known issue, select the Atlassian Jira link provided.
